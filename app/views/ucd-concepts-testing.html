@@ -19,136 +19,8 @@
 {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
-{% set mtpBacklogHtml %}
-<h2 class="govuk-heading-l">MTP Backlog</h2>
-{{ govukTable({
-  head: [
-    {
-      text: "Screen or journey"
-    },
-    {
-      text: "Screen or prototype link"
-    }
-  ],
-  rows: [
-  [
-  {
-    text: "Clear session data"
-  },
-  {
-    html: '<a href="/ucd-register/clear-session-data/signposting-eligibility/service-start-page" class="govuk-link">Exit application > clear session'
-  }
- ],
-  [
-  {
-    text: "Save and return- divert from a claim"
-  },
-  {
-    html: '<a href="/ucd-register/save-and-return/fresh-task-list" class="govuk-link">Divert from a claim v1'
-  }
- ],
-  [
-  {
-    text: "Save and return- resume a claim"
-  },
-  {
-    html: '<a href="/ucd-register/save-and-return/service-home-call-type" class="govuk-link">Save and return v1'
-  }
- ],
- [
- {
-   text: "Copy data into AfP agent UI"
- },
- {
-   html: '<a href="/versions/UCD/submit-data/copy-data-button" class="govuk-link">Copy to clipboard button'
- }
-],
-  [
-  {
-    text: "Eligibility and signposting"
-  },
-  {
-    html: '<a href="/versions/UCD/post-mtp-sign-eligibility/service-start-page" class="govuk-link">Preferred version (Pre MTP if poss)'
-  }
- ],
- [
- {
-   text: "Contact details- content change for (letters) contact"
- },
- {
-   html: "<a href='/versions/UCD/contact-details/correspondence-address' class='govuk-link'>'...address we should use to contact you?'"
- }
-],
- [
- {
-   text: "Contact details- Address lookup"
- },
- {
-   html: '<a href="/versions/UCD/contact-details/no-perm-address-link" class="govuk-link">Address lookup- no permanant address added'
- }
-],
-[
-{
-  text: "Contact details: Address playback before confirming (Design clinic)"
-},
-{
-  html: '<a href="/design-updates/address-lookup/address-confirm-playback" class="govuk-link">Concept (POST MTP): Address confirmation'
-}
-],
-[
-{
-  text: "Nationality: EEA 4 question route (TESTED)"
-},
-{
-  html: '<a href="/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad" class="govuk-link">4 question split journey'
-}
-],
-[
-{
-  text: "HCP Details: Remove only HCP warning"
-},
-{
-  html: '<a href="/v2-ucd-register/healthcare-professional/mtp-backlog/remove-add-health-professional" class="govuk-link">Warning to add an HCP'
-}
-],
-  [
-   {
-     text: "Accommodation: Hospice date asked separately if known (UCD)"
-   },
-   {
-     html: '<a href="/v2-ucd-register/hospital-dates/mtp-backlog/5-8-know-hospice-date" class="govuk-link">Hospice date new route'
-   }
-  ],
-[
-{
-  text: "What happens next: Collect online contact information"
-},
-{
-  html: '<a href="/versions/UCD/what-happens-next-v2/online-form-contact" class="govuk-link">Collecting contact info on our Agent UI'
-}
-],
-[
-{
-  text: "Submit data from agent UI"
-},
-{
-  html: '<a href="/versions/UCD/submit-data/after-form-sent" class="govuk-link">Submit application v1 (tactical)'
-}
-],
-[
-{
-  text: "Submit data from agent UI - preferred"
-},
-{
-  html: '<a href="/versions/UCD/submit-data/after-form-sent-2" class="govuk-link">Submit application v2'
-}
-]
-    ]
-    }) }}
-    {% endset -%}
-
 {% set pastYearHtml %}
-<h2 class="govuk-heading-l">User group variations</h2>
+<h2 class="govuk-heading-l">Journey scenarios</h2>
 {{ govukTable({
   head: [
     {
@@ -222,6 +94,14 @@
 {
   html: '<a href="/ucd-register/declaration" class="govuk-link">v1 NI Declaration'
 }
+],
+[
+{
+  text: "Bank validation error"
+},
+{
+  html: '<a href="/v2-ucd-register/bank-details/error-messages/bank-val-error/6-3-main-account-details-v2" class="govuk-link">Bank validation error journey'
+}
 ]
   ]
 }) }}
@@ -244,9 +124,25 @@
       text: "Contact details CYA"
     },
     {
-      html: '<a href="/ucd-register/contact-details/contact-details-summary" class="govuk-link">CYA with all potential fields & answers'
+      html: '<a href="/scenarios/contact-details/cya-preferred-name" class="govuk-link">CYA with preferred name'
     }
   ],
+  [
+  {
+    text: "Contact details CYA"
+  },
+  {
+    html: '<a href="/scenarios/contact-details/cya-previous-last-name" class="govuk-link">CYA with previous name'
+  }
+  ],
+  [
+  {
+    text: "Contact information"
+  },
+  {
+    html: '<a href="/v2-ucd-register/contact-details/contact-details-summary" class="govuk-link">Main CYA'
+  }
+ ],
  [
  {
    text: ""
@@ -273,28 +169,18 @@
 ],
   [
   {
-    text: "Additional support"
+    text: "Additional support (pending)"
   },
   {
-    html: '<a href="/ucd-register/additional-support/add-support-summary" class="govuk-link"> Additional support needs'
+    html: '<a href="/v2-ucd-register/additional-support/add-support-summary" class="govuk-link"> TBC Additional support needs'
   }
  ],
- [
+[
 {
   text: "Nationality, work and residence"
 },
 {
-  html: '<ul class="govuk-list">
-    <li>
-      <a class="govuk-link" href="/ucd-register/nationality/nationality-summary">Nationality MTP version</a>
-    </li>
-    <li>
-      <a href="/v2-ucd-register/nationality/nationality-summary" class="govuk-link">ALL FIELDS Nationality V2 (new route)</a>
-    </li>
-    <li>
-      <a href="/v2-ucd-register/nationality/nationality-summary-dev" class="govuk-link">Nationality V1</a>
-    </li>
-  </ul>'
+  html: '<a href="/v2-ucd-register/nationality/nationality-summary" class="govuk-link">Nationality'
 }
 ],
 [
@@ -302,7 +188,7 @@
   text: "Health and care contacts"
 },
 {
-  html: '<a href="/scenarios/healthcare-professionals/scenario-number-np" class="govuk-link">Number and address not provided - "Save and continue"'
+  html: '<a href="/scenarios/healthcare-professionals/scenario-number-np" class="govuk-link">Number and address not provided'
 }
 ],
 [
@@ -310,7 +196,7 @@
   text: "Health and care contacts"
 },
 {
-  html: '<a href="#" class="govuk-link">TO UPDATE - 2 HCPs (no link)'
+  html: '<a href="/design-updates/hcp-cya-concepts/hcp-edit-journey/hp-summary-two-remove" class="govuk-link">2 HCPs'
 }
 ],
 [
@@ -318,7 +204,7 @@
   text: ""
 },
 {
-  html: '<a href="#" class="govuk-link">TO UPDATE - 1 HCP (no link)'
+  html: '<a href="/design-updates/hcp-cya-concepts/hcp-edit-journey/hp-summary-one" class="govuk-link">1 HCP'
 }
 ],
 [
@@ -326,7 +212,7 @@
   text: "Hospital and care facilities"
 },
 {
-  html: '<a href="/v2-ucd-register/hospital-dates/hospital-residence-summary-dev" class="govuk-link">Hospital CYA - "Save and continue"'
+  html: '<a href="/v2-ucd-register/hospital-dates/hospital-residence-summary" class="govuk-link">Hospital CYA'
 }
 ],
 [
@@ -334,7 +220,7 @@
   text: ""
 },
 {
-  html: '<a href="/v2-ucd-register/hospital-dates/hospice-residence-summary-dev" class="govuk-link">Hospice CYA - "Save and continue"'
+  html: '<a href="/v2-ucd-register/hospital-dates/hospice-residence-summary" class="govuk-link">Hospice CYA'
 }
 ],
 [
@@ -342,23 +228,7 @@
   text: ""
 },
 {
-  html: '<a href="/v2-ucd-register/hospital-dates/other-residence-summary-dev" class="govuk-link">Other accom CYA - "Save and continue"'
-}
-],
-[
-{
-  text: ""
-},
-{
-  html: '<a href="/v2-ucd-register/hospital-dates/no-third-party-paying-summary-dev" class="govuk-link">No third party paying CYA - "Save and continue"'
-}
-],
-[
-{
-  text: ""
-},
-{
-  html: '<a href="/v2-ucd-register/hospital-dates/no-other-residence-summary-dev" class="govuk-link">No other care facility CYA - "Save and continue"'
+  html: '<a href="/v2-ucd-register/hospital-dates/other-residence-summary" class="govuk-link">Other accom CYA'
 }
 ],
 [
@@ -366,15 +236,7 @@
   text: "How we pay you"
 },
 {
-  html: '<a href="/v2-ucd-register/bank-details/bank-details-summary" class="govuk-link">Bank details UK - "Save and continue"'
-}
-],
-[
-{
-  text: ""
-},
-{
-  html: '<a href="/v2-ucd-register/bank-details/bank-details-summary-non-uk" class="govuk-link">Bank details International - "Save and continue"'
+  html: '<a href="/design-updates/bank-details/bank-details-summary" class="govuk-link">Bank details'
 }
 ]
   ]
@@ -386,116 +248,67 @@
 {{ govukTable({
   head: [
     {
-      text: "Section or pattern"
+      text: "Section or component"
     },
     {
       text: "Page or prototype link"
     }
   ],
   rows: [
-  [
-  {
-    text: "Eligibility"
-  },
-  {
-    html: '<a href="/design-updates/eligibility/security-check" class="govuk-link">Option 1: Security question check (radios)'
-  }
-],
-  [
-{
-  text: "Welcome screens"
-},
-{
-  html: '<ul class="govuk-list">
-    <li>
-      <a href="/design-updates/welcome-screens/three-screen-version/welcome-screen-ni" class="govuk-link">V.2 NI: Content split across 3 screens</a>
-    </li>
-    <li>
-      <a href="/design-updates/welcome-screens/welcome-screen-ni" class="govuk-link">V.1 NI welcome screen: op 1</a>
-    </li>
-  </ul>'
-}
-],
+    [
+      {
+        text: "Contact details"
+      },
+      {
+        html: '<a href="/design-updates/v2-phone-number" class="govuk-link">V.3 phone number'
+      }
+    ],
     [
     {
       text: "Contact details"
     },
     {
-      html: '
-      <ul class="govuk-list">
-        <li>
-          <a href="/v2-ucd-register/contact-details/what-is-your-dob" class="govuk-link">V.1 What is your DOB?</a>
-        </li>
-      </ul>
-
-      <ul class="govuk-list">
-        <li>
-          <a href="/design-updates/v2-phone-number" class="govuk-link">V.3 phone number</a>
-        </li>
-        <li>
-          <a href="/design-updates/phone-hint-text-examples" class="govuk-link">V.2 phone number</a>
-        </li>
-      </ul>
-
-      <ul class="govuk-list">
-        <li>
-          <a href="/design-updates/contact-details/do-you-want-to-opt-out" class="govuk-link">V.3 text message updates</a>
-        </li>
-        <li>
-          <a href="/design-updates/contact-details/do-you-want-to-receive-text-updates" class="govuk-link">V.2 text message updates</a>
-        </li>
-      </ul>
-      
-      <ul class="govuk-list">
-        <li>
-          <a href="/design-updates/contact-details/what-is-your-name" class="govuk-link">Full name, preferred name & previous name</a>
-        </li>
-      </ul>
-
-      <ul class="govuk-list">
-        <li>
-          <a href="/versions/devs/address-development/select-your-address" class="govuk-link">V.1 Address pagination</a>
-        </li>
-      </ul>
-
-      <ul class="govuk-list">
-        <li>
-          <a href="/design-updates/address-lookup/address-confirm-playback" class="govuk-link">Concept (POST MTP): Address confirmation</a>
-        </li>
-      </ul>'
+      html: '<a href="/design-updates/phone-hint-text-examples" class="govuk-link">V.2 phone number'
     }
   ],
   [
+{
+  text: "Contact details"
+},
+{
+  html: '<a href="/design-updates/contact-details/do-you-want-to-opt-out" class="govuk-link">V.3 text message updates'
+}
+],
+  [
   {
-    text: "Contact details & Alt formats"
+    text: "Contact details"
   },
   {
-    html: '<ul class="govuk-list">
-      <li>
-        <a class="govuk-link" href="/design-updates/alt-formats-concepts/ni-mtp-contact-formats-1">MTP op 1: Contact format options hint</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="/design-updates/alt-formats-concepts/ni-mtp-contact-formats-inset">MTP op 2: Contact format options inset</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="/design-updates/alt-formats-concepts/ni-mtp-routed">MTP op 3: Other formats routed to another page</a>
-      </li>
-    </ul>'
+    html: '<a href="/design-updates/contact-details/do-you-want-to-receive-text-updates" class="govuk-link">V.2 text message updates'
   }
 ],
 [
 {
-  text: "Contact information: Additional support"
+  text: "Contact details"
 },
 {
-  html: '<ul class="govuk-list">
-    <li>
-      <a href="/design-updates/additional-support/start-info" class="govuk-link"> V.1 Additional support original script</a>
-    </li>
-    <li>
-      <a href="/v2-ucd-register/additional-support/start-info" class="govuk-link"> V.2 Additional support</a>
-    </li>
-  </ul>'
+  html: '<a href="/design-updates/contact-details/what-is-your-name" class="govuk-link">Name questions split 2 screens'
+}
+],
+[
+{
+  text: "Welcome screens"
+},
+{
+  html: '<a href="/design-updates/welcome-screens/three-screen-version/welcome-screen-ni" class="govuk-link">V.2 NI: Content split across 3 screens'
+}
+],
+[
+{
+  text: "Welcome screens"
+},
+{
+  html: '<a href="/design-updates/welcome-screens/welcome-screen-ni" class="govuk-link">V.1 NI welcome screen: op 1'
 }
 ],
   [
@@ -503,41 +316,23 @@
     text: "Nationality- input accessibility"
   },
   {
-    html: '<ul class="govuk-list">
-      <li>
-    <a href="/design-updates/nationality/what-is-your-nationality-con" class="govuk-link">Country lived in- select accessibility: conditional reveal</a>
-    </li>
-    <li>
-      <a href="/design-updates/nationality/what-is-your-nationality-drop" class="govuk-link">select accessibility: dropdown</a>
-      </li>
-    </ul>'
+    html: '<a href="/design-updates/nationality/what-is-your-nationality-con" class="govuk-link">conditional reveal'
   }
   ],
   [
   {
-    text: "Health and care contacts"
+    text: "Nationality- input accessibility"
   },
   {
-    html: '<ul class="govuk-list">
-      <li>
-        <a href="/design-updates/hcp-cya-concepts/hcp-edit-journey/remove-add-health-professional" class="govuk-link">HCP remove hint text</a>
-      </li>
-      <li>
-        <a href="/design-updates/additional-support-needed" class="govuk-link">Grouped hcp second types</a>
-      </li>
-    </ul>'
+    html: '<a href="/design-updates/nationality/what-is-your-nationality-drop" class="govuk-link">dropdown'
   }
   ],
   [
   {
-    text: "What happens next"
+    text: "Country normally lived in- input accessibility"
   },
   {
-    html: '<ul class="govuk-list">
-      <li>
-        <a href="/versions/UCD/what-happens-next/previously-claimed-online" class="govuk-link">IEG script previously claimed online</a>
-      </li>
-    </ul>'
+    html: '<a href="/design-updates/nationality/what-country-do-you-live-in-con" class="govuk-link">conditional reveal'
   }
   ],
     [
@@ -550,10 +345,42 @@
     ],
     [
     {
+      text: "Health and care contacts"
+    },
+    {
+      html: '<a href="/design-updates/hcp-cya-concepts/hcp-edit-journey/remove-add-health-professional" class="govuk-link">HCP remove hint text'
+    }
+    ],
+    [
+    {
+      text: "Health and care contacts"
+    },
+    {
+      html: '<a href="/design-updates/additional-support-needed" class="govuk-link">Grouped hcp second types'
+    }
+    ],
+    [
+    {
       text: "Why we need accomodation info concepts"
     },
     {
       html: '<a href="/accom-dates-context" class="govuk-link">Open page'
+    }
+    ],
+    [
+    {
+      text: "Contact information"
+    },
+    {
+      html: '<a href="/design-updates/additional-support/start-info" class="govuk-link"> V.1 Additional support original script'
+    }
+    ],
+    [
+    {
+      text: "Contact information"
+    },
+    {
+      html: '<a href="/v2-ucd-register/additional-support/start-info" class="govuk-link"> V.2 Additional support'
     }
     ]
       ]
@@ -562,15 +389,8 @@
 
 {{ govukTabs({
   items: [
-  {
-    label: "MTP backlog",
-    id: "mtp-backlog",
-    panel: {
-      html: mtpBacklogHtml
-    }
-  },
     {
-      label: "User group variations",
+      label: "User journey scenarios",
       id: "past-year",
       panel: {
         html: pastYearHtml

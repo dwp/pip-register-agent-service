@@ -21,7 +21,8 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
-          <h1 class="govuk-heading-l">Do you have an agreement with [name of health and social care trust] to pay back any of the costs?</h1>
+          <span class="govuk-caption-l">Healthcare and support</span>
+          <h1 class="govuk-heading-l">Do you have an agreement with [name of the local authority] to pay back any of the costs?</h1>
           
           {% call govukFieldset({
             legend: {
@@ -43,7 +44,7 @@
               },
               {
                 value: "unsure",
-                text: "Don't know"
+                text: "I don't know"
                 }
             ]
           }) }}

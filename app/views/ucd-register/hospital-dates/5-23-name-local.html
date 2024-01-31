@@ -21,20 +21,23 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
-          <h1 class="govuk-heading-l">
-            What is the name of the [organisation type]?
-          </h1>
+          <span class="govuk-caption-l">Healthcare and support</span>
 
-          
           {% from "govuk/components/input/macro.njk" import govukInput %}
-          {{ govukInput({
-            id: "event-name",
-            name: "eventName"
+
+        {{ govukInput({
+          label: {
+            text: "What is the name of the [organisation type]?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+          {{ govukButton({
+            text: "Continue"
           }) }}
-  
-            {{ govukButton({
-              text: "Continue"
-            }) }}
 
         </div>
       </form>

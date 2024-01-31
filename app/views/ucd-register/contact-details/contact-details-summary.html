@@ -44,27 +44,10 @@
           },
           {
             key: {
-              text: "Same name for contact"
+              html: '<p class="govuk-body govuk-!-font-size-19 govuk-!-font-weight-bold">Same name for contact</p><p class="govuk-body govuk-!-font-size-19 govuk-!-font-weight-bold">Preferred name</p>'
             },
             value: {
-              text: "Yes / No"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ucd-register/contact-details/what-is-your-name#no",
-                  text: "Change",
-                  visuallyHiddenText: "Question 1"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Preferred name"
-            },
-            value: {
-              text: "Eliza Smith"
+            html: '<p class="govuk-body govuk-!-font-size-19">No</p><br><p class="govuk-body govuk-!-font-size-19">Lizzie Smith</p>'
             },
             actions: {
               items: [
@@ -78,51 +61,17 @@
           },
           {
             key: {
-              text: "Date of birth"
+              text: "Previous last name"
             },
             value: {
-              text: "21 5 1979"
+              text: "None"
             },
             actions: {
               items: [
                 {
-                  href: "/ucd-register/contact-details/what-is-your-dob",
+                  href: "/ucd-register/contact-details/what-is-your-name",
                   text: "Change",
                   visuallyHiddenText: "Question 1"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Need textphone or interpreter"
-            },
-            value: {
-              text: "No / Textphone / Interpreter"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ucd-register/contact-details/change-what-is-your-phone-number",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Textphone number"
-            },
-            value: {
-              text: "18002 876546"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ucd-register/contact-details/change-what-is-your-phone-number",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
                 }
               ]
             }
@@ -137,7 +86,7 @@
             actions: {
               items: [
                 {
-                  href: "/ucd-register/contact-details/what-is-your-phone-number",
+                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -154,7 +103,7 @@
             actions: {
               items: [
                 {
-                  href: "/ucd-register/contact-details/what-is-your-phone-number",
+                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -188,7 +137,7 @@
             actions: {
               items: [
                 {
-                  href: "/ucd-register/contact-details/select-your-address",
+                  href: "/v2-ucd-register/contact-details/select-your-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -205,7 +154,7 @@
             actions: {
               items: [
                 {
-                  href: "/ucd-register/contact-details/correspondence-address",
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -222,94 +171,35 @@
             actions: {
               items: [
                 {
-                  href: "/ucd-register/contact-details/correspondence-address",
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
               ]
             }
-          },
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Alternative formats
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
           {
             key: {
-              text: "Alternative letter format"
+              text: "Alternative formats needed"
             },
             value: {
-              text: "No / Large print / Audio CD / Braille type 1 / Email / PDF"
+              text: "No"
             },
             actions: {
               items: [
                 {
-                  href: "/ucd-register/contact-details/correspondence-address",
+                  href: "/v2-ucd-register/contact-details/alternative-formats",
                   text: "Change",
-                  visuallyHiddenText: "Question 3"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Large print letter size"
-            },
-            value: {
-              text: "16 / [size entered in conditional reveal textbox]"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ucd-register/contact-details/correspondence-address",
-                  text: "Change",
-                  visuallyHiddenText: "Question 3"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Need for email"
-            },
-            value: {
-              text: "[text entered in text area]"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ucd-register/contact-details/correspondence-address",
-                  text: "Change",
-                  visuallyHiddenText: "Question 3"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Need for PDF"
-            },
-            value: {
-              text: "[text entered in text area]"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ucd-register/contact-details/correspondence-address",
-                  text: "Change",
-                  visuallyHiddenText: "Question 3"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              text: "example@gmail.com"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ucd-register/contact-details/correspondence-address",
-                  text: "Change",
-                  visuallyHiddenText: "Question 3"
+                  visuallyHiddenText: "Question 1"
                 }
               ]
             }
@@ -322,6 +212,10 @@
         {{ govukButton({
           text: "Save and continue"
         }) }}
+
+        <p class="govuk-body">
+          <a href="/ucd-register/task-list-cd-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
 
       </form>
 

@@ -7,59 +7,12 @@ const util = require('util')
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-
 // Add your routes here
 
 // alt-formats routes
 require('./views/alternative-formats/_routes')(router);
 
-// Eligilibility v2
-
-// welcome to PIP
-router.post('/v2-ucd-register/signposting-eligibility/service-start-page', function(request, response) {
-    var claimingSelf = request.session.data['claiming-self']
-    if (claimingSelf == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
-    } else if (claimingSelf == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/someone-else-bau-kickout')
-    }
-})
-
-// Are you over 16 and under SPA?
-router.post('/v2-ucd-register/signposting-eligibility/over-16', function(request, response) {
-    var correctAge = request.session.data['age']
-    if (correctAge == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/security-check')
-    } else if (correctAge == "no-under-16") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/under-16-ineligible')
-    } else if (correctAge == "no-over-spa") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/stop-getting-pip-last-year')
-    }
-})
-
-
-// Passed security?
-router.post('/v2-ucd-register/signposting-eligibility/security-check', function(request, response) {
-    var verified = request.session.data['security-verified']
-    if (verified == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/srel')
-    } else if (verified == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/failed-security')
-    }
-})
-
-// Claiming under SREL?
-router.post('/v2-ucd-register/signposting-eligibility/srel', function(request, response) {
-    var srel = request.session.data['srel']
-    if (srel == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/srel-bau-kickout')
-    } else if (srel == "no") {
-        response.redirect('/v2-ucd-register/welcome-screens/welcome-screen-ni')
-    } 
-})
-
-//---------------------------------------------------------------------------------------------
-// Eligilibility v1
+// Eligilibility
 
 // 16 or over
 router.post('/research/sprint-4/16-or-over', function(request, response) {
@@ -418,136 +371,35 @@ router.post('/register/hospital-dates/other-residence-summary', function(request
 
 // -------------------------------------------------------------------------------------
 
-// DEV READY- Start service- Eligibility and signposting
+// UCD-REGISTER (IN PROGRESS--->)
 
-// Eligibility launched from main UI
-router.post('/ucd-register/signposting-eligibility/service-start-page', function(request, response) {
-    var newClaim = request.session.data['new-claims']
-    if (newClaim == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/new-ni-claims')
-    } else if (newClaim == "no") {
-        response.redirect('/ucd-register/signposting-eligibility/existing-claims')
-    }
-    })
-    
-    // NI new claims
-    router.post('/ucd-register/signposting-eligibility/new-ni-claims', function(request, response) {
-    var niPip = request.session.data['ni-pip']
-    if (niPip == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/claiming-self')
-    } else if (niPip == "england-wales") {
-        response.redirect('/ucd-register/signposting-eligibility/england-wales')
-    } else if (niPip == "scotland") {
-        response.redirect('/ucd-register/signposting-eligibility/scotland')
-    }
-    })
-    
-    // Are you claiming for yourself?
-    router.post('/ucd-register/signposting-eligibility/claiming-self', function(request, response) {
-    var self = request.session.data['claiming-self']
-    if (self == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/over-16')
-    } else if (self == "no") {
-        response.redirect('/ucd-register/signposting-eligibility/someone-else-bau-kickout')
-    } 
-    })
-
-    //Are you over 16?
-    router.post('/ucd-register/signposting-eligibility/over-16', function(request, response) {
-    var over16 = request.session.data['age']
-    if (over16 == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/search-claimant')
-    } else if (over16 == "no-under-16") {
-        response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
-    } else if (over16 == "no-over-spa") {
-        response.redirect('/ucd-register/signposting-eligibility/stop-getting-pip-last-year')
-    }
-    })
-
-      // POST MTP: AGE ELIGIBILITY UPDATE TBC: Establish identity
- router.post('/ucd-register/signposting-eligibility/what-is-your-dob', function(request, response) {
-    response.redirect('/ucd-register/signposting-eligibility/search-claimant')
-       })
-
-     // Establish identity
-     router.post('/ucd-register/signposting-eligibility/search-claimant', function(request, response) {
-            response.redirect('/ucd-register/signposting-eligibility/kbvs-checkboxes-link')
-        })
-
- // What security questions were answered?
-    router.post('/ucd-register/signposting-eligibility/kbvs-checkboxes-link', function(request, response) {
-        var security = request.session.data['security']
-        if (security == 'passed'){
-            response.redirect('/ucd-register/signposting-eligibility/srel')
-        } else if (security == "failed") {
-            response.redirect('/ucd-register/signposting-eligibility/failed-security')
-        } 
-        })
-
-    // Failed security
-         router.post('/ucd-register/signposting-eligibility/failed-security', function(request, response) {
-         response.redirect('/ucd-register/signposting-eligibility/srel')
-         })
-
-    // Not enough applicant data
-         router.post('/ucd-register/signposting-eligibility/not-enough-cis-data', function(request, response) {
-         response.redirect('/ucd-register/signposting-eligibility/srel')
-         })
-
-    // Claiming under SREL?
-    router.post('/ucd-register/signposting-eligibility/srel', function(request, response) {
-        var srel = request.session.data['srel']
-        if (srel == 'yes'){
-            response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
-        } else if (srel == "no") {
-            response.redirect('/ucd-register/welcome-screens/welcome-screen-ni')
-        } 
-        })
-
-//--------------------------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------------------------
-
-
-// DEVS
 // Declaration
 router.post('/ucd-register/declaration', function(request, response) {
-    var agree = request.session.data['agree']
-    if (agree == 'yes'){
+    var otherYesterday = request.session.data['agree']
+    if (otherYesterday == 'yes'){
         response.redirect('/ucd-register/task-list')
-    } else if (agree == 'no') {
-        response.redirect('/ucd-register/declaration-kickout')
+    } else if (otherYesterday == 'no') {
+        response.redirect('#')
     }
 })
 
 // -------------------------------------------------------------------------------------
-// DEVS
-//UCD-REGISTER/Contact-details
 
-// What is your name
+//ucd-register/contact-details
+
+// What is your name page
 router.post('/ucd-register/contact-details/what-is-your-name', function(request, response) {
-    response.redirect('/ucd-register/contact-details/what-is-your-dob')
+    response.redirect('/ucd-register/contact-details/do-you-have-a-previous-last-name')
 })
 
-// What is your DOB
-router.post('/ucd-register/contact-details/what-is-your-dob', function(request, response) {
+// What is your name page
+router.post('/ucd-register/contact-details/do-you-have-a-previous-last-name', function(request, response) {
     response.redirect('/ucd-register/contact-details/what-is-your-phone-number')
 })
 
+
 // What is your phone number page
 router.post('/ucd-register/contact-details/what-is-your-phone-number', function(request, response) {
-        response.redirect("/ucd-register/contact-details/do-you-want-to-receive-text-updates")
-}) 
-
-// What is your Textphone number?
-router.post('/ucd-register/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
-    response.redirect('/ucd-register/contact-details/do-you-want-to-receive-text-updates')
-})
-
-// What signing or lipspeaking service do you need?
-router.post('/ucd-register/contact-details/alt-formats/signing-lipspeaking', function(request, response) {
     response.redirect('/ucd-register/contact-details/do-you-want-to-receive-text-updates')
 })
 
@@ -575,44 +427,10 @@ router.post('/ucd-register/contact-details/enter-address-manually-country', func
 router.post('/ucd-register/contact-details/correspondence-address', function(request, response) {
     var sendLettersElsewhere = request.session.data['should-we-write-to-you']
     if (sendLettersElsewhere == 'yes'){
-        response.redirect('/ucd-register/contact-details/alt-formats/written-format')
+        response.redirect('/ucd-register/contact-details/dev-alt-formats')
     } else if (sendLettersElsewhere == 'no') {
         response.redirect('/ucd-register/contact-details/correspondence-postcode')
     }
-})
-
-// Would you like us to send your letters in another way, like larger text, audio or braille?
-router.post('/ucd-register/contact-details/alt-formats/written-format', function(request, response) {
-    var writtenFormat = request.session.data['written-format']
-    if (writtenFormat == 'standard-letter'){
-        response.redirect('/ucd-register/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'large-print') {
-        response.redirect('/ucd-register/contact-details/alt-formats/large-print')
-     } else if (writtenFormat == 'audio') {
-        response.redirect('/ucd-register/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'braille') {
-        response.redirect('/ucd-register/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'email') {
-        response.redirect('/ucd-register/contact-details/alt-formats/email-reason')
-    } else if (writtenFormat == 'pdf') {
-        response.redirect('/ucd-register/contact-details/alt-formats/email-reason')
-    } 
-    
-})
-
-// What size print do you need?
-router.post('/ucd-register/contact-details/alt-formats/large-print', function(request, response) {
-    response.redirect('/ucd-register/contact-details/contact-details-summary')
-})
-
-// Why do you need us to contact you by email instead of printed letters?
-router.post('/ucd-register/contact-details/alt-formats/email-reason', function(request, response) {
-    response.redirect('/ucd-register/contact-details/alt-formats/what-is-your-email')
-})
-
-// What is your email address?
-router.post('/ucd-register/contact-details/alt-formats/what-is-your-email', function(request, response) {
-    response.redirect('/ucd-register/contact-details/contact-details-summary')
 })
 
 // What is your correspondence postcode page
@@ -622,17 +440,38 @@ router.post('/ucd-register/contact-details/correspondence-postcode', function(re
 
 // Confirm correspondence address > correspondence alt formats page
 router.post('/ucd-register/contact-details/confirm-correspondence-address', function(request, response) {
-    response.redirect('/ucd-register/contact-details/alt-formats/written-format')
+    response.redirect('/ucd-register/contact-details/correspondence-alternative-formats')
 })
 
 // Confirm correspondence address page
 router.post('/ucd-register/contact-details/correspondence-enter-address-manually', function(request, response) {
-    response.redirect('/ucd-register/contact-details/alt-formats/written-format')
+    response.redirect('/ucd-register/contact-details/correspondence-alternative-formats')
+})
+
+// Correspondence alternative formats page
+router.post('/ucd-register/contact-details/correspondence-alternative-formats', function(request, response) {
+    var differentFormat = request.session.data['different-format']
+    if (differentFormat == 'yes'){
+        response.redirect('#')
+    } else if (differentFormat == 'no') {
+        response.redirect('/ucd-register/contact-details/contact-details-correspondence-summary')
+    }
+})
+
+
+// Alternative formats page
+router.post('/ucd-register/contact-details/dev-alt-formats', function(request, response) {
+    var differentFormat = request.session.data['different-format']
+    if (differentFormat == 'yes'){
+        response.redirect('#')
+    } else if (differentFormat == 'no') {
+        response.redirect('/ucd-register/contact-details/contact-details-summary')
+    }
 })
 
 // Contact details summary page
 router.post('/ucd-register/contact-details/contact-details-summary', function(request, response) {
-    response.redirect('/ucd-register/task-list-cd-done')
+    response.redirect('/ucd-register/task-list')
 })
 
 // -------------------------------------------------------------------------------------
@@ -643,184 +482,59 @@ router.post('/ucd-register/contact-details/contact-details-summary', function(re
 
 //UCD-REGISTER/NATIONALITY
 
-//MTP APRIL RELEASE - NATIONALITY
-//ucd-register/nationality
-
-//start
-router.post('/ucd-register/nationality/start', function(request, response) {
-    response.redirect('/ucd-register/nationality/what-is-your-nationality')
-})
-
 //what is your nationality
 router.post('/ucd-register/nationality/what-is-your-nationality', function(request, response) {
-    var nationality = request.session.data['nationality']
-    if (nationality == 'british'){
-        response.redirect('/ucd-register/nationality/uk-2-of-3-years')
-    } else if (nationality == 'irish') {
-        response.redirect('/ucd-register/nationality/uk-2-of-3-years')
-    } else if (nationality == 'other') {
-        response.redirect('/ucd-register/nationality/another-nationality')
-    }
+    response.redirect('/ucd-register/nationality/what-country-do-you-live-in')
 })
 
-//Have you been in the UK for at least 2 of the last 3 years?
-router.post('/ucd-register/nationality/uk-2-of-3-years', function(request, response) {
-    var ukYears = request.session.data['uk-years']
-    if (ukYears == 'yes'){
-        response.redirect('/ucd-register/nationality/insurance-abroad')
-    } else if (ukYears == 'no') {
-        response.redirect('/ucd-register/nationality/insurance-abroad')
-    } else if (ukYears == 'unsure') {
-        response.redirect('/ucd-register/nationality/insurance-abroad')
-    } 
+//what is country do you normally live in page
+router.post('/ucd-register/nationality/what-country-do-you-live-in', function(request, response) {
+    response.redirect('/ucd-register/nationality/lived-elsewhere')
 })
-
-//Select other nationality
-router.post('/ucd-register/nationality/another-nationality', function(request, response) {
-    var anotherNationality = request.session.data['another-nationality']
-    if (anotherNationality == 'Norway' || anotherNationality == 'Iceland'){
-        response.redirect('/ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before')
-    }
-    if (anotherNationality == 'Australia' || anotherNationality == 'Brazil' || anotherNationality == 'Bangladesh' ){
-        response.redirect('/ucd-register/nationality/uk-2-of-3-years')
-    }
-})
-
-//Were you living in the UK on or before 31/12/20?
-router.post('/ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before', function(request, response) {
-    response.redirect('/ucd-register/nationality/uk-2-of-3-years')
-})
-
-//Are you working or paying national insurance in another country?
-
-router.post('/ucd-register/nationality/insurance-abroad', function(request, response) {
-    var payingInsurance= request.session.data['insurance-abroad']
-    if (payingInsurance == 'no'){
-      response.redirect('/ucd-register/nationality/benefits-abroad')
-    } else if (payingInsurance == 'yes') {
-        response.redirect('/ucd-register/nationality/benefits-abroad')
-    }
-  })
-  
-  // Are you receiving pensions or benefits in another country?
-  router.post('/ucd-register/nationality/benefits-abroad', function(request, response) {
-      var payingBenefits= request.session.data['benefits-abroad']
-      if (payingBenefits == 'no'){
-        response.redirect('/ucd-register/nationality/nationality-summary')
-      } else if (payingBenefits == 'yes') {
-          response.redirect('/ucd-register/nationality/nationality-summary')
-      }
-  })
-  
-        //What country are you receiving pensions or benefits in?
-        router.post('/ucd-register/nationality/exportability/what-country-benefits', function(request, response) {
-            response.redirect('/ucd-register/task-list-nat-done')
-        })
-  
-    //Are any of your family members receiving pensions or benefits in another country?
-    router.post('/ucd-register/nationality/exportability/family-receiving-benefits', function(request, response) {
-        var payingBenefits= request.session.data['family-receiving-benefits']
-        if (payingBenefits == 'no'){
-        response.redirect('/ucd-register/task-list-nat-done')
-        } else if (payingBenefits == 'yes') {
-            response.redirect('/ucd-register/nationality/exportability/family-country-benefits')
-        }
-    })
-
-    //What country are your family members receiving pensions or benefits in?
-    router.post('/ucd-register/nationality/exportability/family-country-benefits', function(request, response) {
-    response.redirect('/ucd-register/task-list-nat-done')
-    })
-
-
-//--------------------------------------------------------------------------------------------------------------
-//nationality start
-router.post('/ucd-register/nationality/start', function(request, response) {
-    response.redirect('/ucd-register/nationality/what-is-your-nationality')
-})
-
-//what is your nationality
-router.post('/ucd-register/nationality/what-is-your-nationality', function(request, response) {
-    var nationality = request.session.data['nationality']
-    if (nationality == 'british'){
-        response.redirect('/ucd-register/nationality/what-country-do-you-live-in')
-    } else if (nationality == 'irish') {
-        response.redirect('/ucd-register/nationality/what-country-do-you-live-in')
-    } else if (nationality == 'other') {
-        response.redirect('/ucd-register/nationality/another-nationality')
-    }
-})
-
-// Another nationality
-router.post('/versions/devs/nationality/another-nationality', function(request, response) {
-    response.redirect('/versions/devs/nationality/what-country-do-you-live-in')
-})
-
-//what country do you normally live in page
-router.post('/versions/devs/nationality/what-country-do-you-live-in', function(request, response) {
-    var nationality = request.session.data['country']
-    if (nationality == 'northern-ireland'){
-        response.redirect('/versions/devs/nationality/lived-elsewhere')
-    } else if (nationality == 'england') {
-        response.redirect('/versions/devs/nationality/lived-elsewhere')
-    } else if (nationality == 'wales') {
-        response.redirect('/versions/devs/nationality/lived-elsewhere')
-    } else if (nationality == 'scotland') {
-        response.redirect('/versions/devs/nationality/lived-elsewhere')
-    } else if (nationality == 'another-country') {
-        response.redirect('/versions/devs/nationality/another-country-lived-in')
-    }
-})
-
-// Another country
-router.post('/versions/devs/another-country-lived-in', function(request, response) {
-    response.redirect('/versions/devs/nationality/lived-elsewhere')
-})
-
 
 //Have you lived anywhere other than UK in last 3 years page
-router.post('/versions/devs/nationality/lived-elsewhere', function(request, response) {
+router.post('/ucd-register/nationality/lived-elsewhere', function(request, response) {
     var livedElsewhere = request.session.data['lived-elsewhere']
     if (livedElsewhere == 'yes'){
         response.redirect('#')
     } else if (livedElsewhere == 'no') {
-        response.redirect('/versions/devs/nationality/abroad-over-four-weeks')
+        response.redirect('/ucd-register/nationality/abroad-over-four-weeks')
     }
 })
 
 //Have you been abroad for any periods over 4 weeks, in the last 3 years page
-router.post('/versions/devs/nationality/abroad-over-four-weeks', function(request, response) {
+router.post('/ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
     var livedAbroad = request.session.data['abroad-over-four-weeks']
     if (livedAbroad == 'yes'){
         response.redirect('#')
     } else if (livedAbroad == 'no') {
-        response.redirect('/versions/devs/nationality/benefits-abroad')
+        response.redirect('/ucd-register/nationality/benefits-abroad')
     }
 })
 
 //benefits abroad
-router.post('/versions/devs/nationality/benefits-abroad', function(request, response) {
+router.post('/ucd-register/nationality/benefits-abroad', function(request, response) {
     var benefitsAbroad = request.session.data['benefits-abroad']
     if (benefitsAbroad == 'yes'){
-        response.redirect('/versions/devs/nationality/insurance-abroad')
+        response.redirect('/ucd-register/nationality/insurance-abroad')
     } else if (benefitsAbroad == 'no') {
-        response.redirect('/versions/devs/nationality/insurance-abroad')
+        response.redirect('/ucd-register/nationality/insurance-abroad')
     }
 })
 
 //are you or a family member working or paying insurance from Switzerland or EEA?
-router.post('/versions/devs/nationality/insurance-abroad', function(request, response) {
+router.post('/ucd-register/nationality/insurance-abroad', function(request, response) {
     var insuranceAbroad = request.session.data['insurance-abroad']
     if (insuranceAbroad == 'yes'){
-        response.redirect('/versions/devs/nationality/nationality-summary')
+        response.redirect('/ucd-register/nationality/nationality-summary')
     } else if (insuranceAbroad == 'no') {
-        response.redirect('/versions/devs/nationality/nationality-summary')
+        response.redirect('/ucd-register/nationality/nationality-summary')
     }
 })
 
 //summary to task list
-router.post('/versions/devs/nationality/nationality-summary', function(request, response) {
-    response.redirect('/versions/devs/task-list-nat-done')
+router.post('/ucd-register/nationality/nationality-summary', function(request, response) {
+    response.redirect('/ucd-register/task-list-nat-done')
 })
 
 // -------------------------------------------------------------------------------------
@@ -899,18 +613,18 @@ router.post('/ucd-register/healthcare-professional/consent-NI', function(request
 //ucd-register/HEALTHCARE-PROFESSIONAL/CYAS
 
 //remove 2nd hcp
-router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-health-professional-2', function(request, response) {
-    var removeHcp = request.session.data['remove-second-hcp']
+router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-health-professional', function(request, response) {
+    var removeHcp = request.session.data['remove-hcp']
     if (removeHcp == 'yes'){
-        response.redirect('/ucd-register/healthcare-professional/healthcare-prof-type')
+        response.redirect('/ucd-register/healthcare-professional/hcp-cyas/remove-second-hcp')
     } else if (removeHcp == 'no'){
-    response.redirect('/ucd-register/healthcare-professional/hcp-cyas/remove-second-hcp')
+    response.redirect('/ucd-register/healthcare-professional/hcp-cyas/hp-summary-two')
 }
 })
 
 //remove main hcp
-router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-health-professional', function(request, response) {
-    var removeHcp = request.session.data['remove-hcp']
+router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-main-professional', function(request, response) {
+    var removeHcp = request.session.data['remove-main-hcp']
     if (removeHcp == 'yes'){
         response.redirect('/ucd-register/healthcare-professional/hcp-cyas/remove-main-hcp')
     } else if (removeHcp == 'no'){
@@ -939,7 +653,7 @@ router.post('/ucd-register/healthcare-professional/hcp-cyas/add-new/additional-s
 }
 })
 
-//----------------------------------------------------------------------------------
+
 //UCD-REGISTER/ADDITIONAL-SUPPORT
 
 router.post('/ucd-register/additional-support/start-info', function(request, response) {
@@ -948,11 +662,11 @@ router.post('/ucd-register/additional-support/start-info', function(request, res
 
 // do you have a condition 
 router.post('/ucd-register/additional-support/do-you-have-a-condition', function(request, response) {
-    var anyCondition = request.session.data['any-condition']
-    if (anyCondition == 'yes'){
+    var condition = request.session.data['condition']
+    if (condition == 'yes'){
         response.redirect('/ucd-register/additional-support/complete-forms')
-    } else if (anyCondition == 'no') {
-        response.redirect('/ucd-register/additional-support/advice-non-as-marker')
+    } else if (condition == 'no') {
+        response.redirect('/ucd-register/additional-support/complete-forms')
     }
 })
 
@@ -966,10 +680,6 @@ router.post('/ucd-register/additional-support/complete-forms', function(request,
       } else if (forms == 'no' || letters == 'no' || post == 'no') {
         response.redirect('/ucd-register/additional-support/helpers')
       }
-})
-
-router.post('/ucd-register/additional-support/advice-non-as-marker', function(request, response) {
-    response.redirect('/ucd-register/additional-support/add-support-summary')
 })
 
 router.post('/ucd-register/additional-support/read-letters', function(request, response) {
@@ -1035,17 +745,17 @@ router.post('/ucd-register/hospital-dates/5-6-postcode', function(request, respo
 
 // postcode > select address
 router.post('/ucd-register/hospital-dates/5-7-select-hospital-address', function(request, response) {
-    response.redirect('/ucd-register/hospital-dates/hospital-residence-summary')
+    response.redirect('/ucd-register/task-list-accom-done')
 })
 
 // hospital manually > start bank
 router.post('/ucd-register/hospital-dates/5-17-hospital-address-manually', function(request, response) {
-    response.redirect('/ucd-register/hospital-dates/hospital-residence-summary')
+    response.redirect('/ucd-register/task-list-accom-done')
 })
 
 // hospice manually > start bank
 router.post('/ucd-register/hospital-dates/5-18-hospice-address-manually', function(request, response) {
-    response.redirect('/ucd-register/hospital-dates/hospice-residence-summary')
+    response.redirect('/ucd-register/task-list-accom-done')
 })
 
 // other manually > start bank
@@ -1080,7 +790,7 @@ router.post('/ucd-register/hospital-dates/5-10-hospice-postcode', function(reque
 
 //  Can you confirm the first line of the address place you are staying in?
 router.post('/ucd-register/hospital-dates/5-11-select-hospice-address', function(request, response) {
-    response.redirect('/ucd-register/hospital-dates/hospice-residence-summary')
+    response.redirect('/ucd-register/task-list-accom-done')
 })
 
 // Are you living in a care home or nursing home, sheltered housing, a residential college or a hostel today?
@@ -1116,10 +826,10 @@ router.post('/ucd-register/hospital-dates/5-16-select-other-address', function(r
 // Does a local authority, health authority, Jobcentre Plus, or a charity pay any of the costs for you to live there?
 router.post('/ucd-register/hospital-dates/5-13-third-party-pay', function(request, response) {
     var thirdPartyPay = request.session.data['third-party-pay']
-    if (thirdPartyPay == 'health-trust'){
+    if (thirdPartyPay == 'local'){
         response.redirect('/ucd-register/hospital-dates/5-23-name-local')
     } else if (thirdPartyPay == 'no') {
-        response.redirect('/ucd-register/hospital-dates/other-residence-summary')
+        response.redirect('/ucd-register/hospital-dates/5-23-name')
     } else if (thirdPartyPay == 'yes') {
         response.redirect('/ucd-register/hospital-dates/5-23-name')
     }
@@ -1135,19 +845,8 @@ router.post('/ucd-register/hospital-dates/5-23-name-local', function(request, re
     response.redirect('/ucd-register/hospital-dates/5-14-local-agreement')
 })
 
-// agreement to task list
-router.post('/ucd-register/hospital-dates/5-14-local-agreement', function(request, response) {
-    response.redirect('/ucd-register/task-list-accom-done')
-})
-
 // Do you have an agreement with the local authority to repay any of the costs?
 router.post('/ucd-register/hospital-dates/hospital-dates/5-14-local-agreement', function(request, response) {
-    response.redirect('/ucd-register/task-list-accom-done')
-})
-
-
-// other residence summary >  tasklist
-router.post('/ucd-register/hospital-dates/hospital-dates/other-residence-summary', function(request, response) {
     response.redirect('/ucd-register/task-list-accom-done')
 })
 
@@ -1167,7 +866,7 @@ router.post('/ucd-register/bank-details/6-1-start', function(request, response) 
 
 // You can continue without entering account details
 router.post('/ucd-register/bank-details/6-2-no-details-now', function(request, response) {
-    response.redirect('/ucd-register/task-list-bank-done')
+    response.redirect('/ucd-register/bank-details/bank-details-summary-none')
 })
 
 // Main account details
@@ -1180,371 +879,7 @@ router.post('/ucd-register/bank-details/bank-details-summary', function(request,
     response.redirect('/ucd-register/task-list-bank-done')
 })
 
-//Motability to Motability CYA
-router.post('/ucd-register/motability/motability', function(request, response) {
-    response.redirect('/ucd-register/task-list-motability-done')
-})
 
-//Motability to Motability CYA
-router.post('/ucd-register/task-list-motability-done', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/what-happens-next')
-})
-
-// -------------------------------------------------------------------------------------
-
-// Save application- i will now submit
-router.post('/ucd-register/what-happens-next/save-application', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/what-happens-next')
-})
-//design-updates/sprint-20/what-happens-next/what-happens-next
-router.post('/ucd-register/what-happens-next/what-happens-next', function(request, response) {
-    var previousOnline = request.session.data['previous-online-claim']
-    if (previousOnline  == 'yes'){
-        response.redirect('/ucd-register/what-happens-next/paper-whn-1')
-    } else if (previousOnline  == 'no') {
-        response.redirect('/ucd-register/what-happens-next/online-form-option')
-    }
-})
-
-router.post('/ucd-register/what-happens-next/online-form-option', function(request, response) {
-    var previousOnline = request.session.data['form-online']
-    if (previousOnline  == 'online'){
-        response.redirect('/ucd-register/what-happens-next/online-form-contact')
-    } else if (previousOnline  == 'paper') {
-        response.redirect('/ucd-register/what-happens-next/paper-whn-1')
-    }
-})
-
-// Online whn1 (form contact details)
-router.post('/ucd-register/what-happens-next/online-form-contact', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/online-whn-1')
-})
-
-// Online whn 1- whn 2
-router.post('/ucd-register/what-happens-next/online-whn-1', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/online-whn-2')
-})
-
-// Online whn 2- paper-after-sent
-router.post('/ucd-register/what-happens-next/online-whn-2', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/after-form-sent')
-})
-
-router.post('/ucd-register/what-happens-next/previously-claimed-online', function(request, response) {
-        response.redirect('/ucd-register/what-happens-next/paper-whn-1')
-})
-
-// Paper whn 1- whn 2
-router.post('/ucd-register/what-happens-next/paper-whn-1', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/paper-whn-2')
-})
-
-// Paper whn 2- paper-after-sent
-router.post('/ucd-register/what-happens-next/paper-whn-2', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/after-form-sent')
-})
-
-// After-form-sent > end claim and clear session
-router.post('/ucd-register/what-happens-next/after-form-sent', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/application-submitted')
-})
-
-// -------------------------------------------------------------------------------------
-
-// ARCHIVED PROTOTYPES
-
-// SIGNPOSTING AND ELIGIIBILITY V1 (FIRST MTP RELEASE)
-
-// Eligibility launched from main UI
-router.post('/versions/devs/signposting-eligibility/service-start-page', function(request, response) {
-    var newClaim = request.session.data['claiming-self']
-    if (newClaim == 'yes'){
-        response.redirect('/versions/devs/signposting-eligibility/over-16')
-    } else if (newClaim == "no") {
-        response.redirect('/versions/devs/signposting-eligibility/someone-else-bau-kickout')
-    }
-    })
-    
-    
-    // Are you over 16 and under SPA?
-    router.post('/versions/devs/signposting-eligibility/over-16', function(request, response) {
-        var correctAge = request.session.data['age']
-        if (correctAge == 'yes'){
-            response.redirect('/versions/devs/signposting-eligibility/security-check')
-        } else if (correctAge == "no-under-16") {
-            response.redirect('/versions/devs/signposting-eligibility/under-16-ineligible')
-        } else if (correctAge == "no-over-spa") {
-            response.redirect('/versions/devs/signposting-eligibility/stop-getting-pip-last-year')
-        }
-    })
-    
-    // What security questions were answered?
-    router.post('/versions/devs/signposting-eligibility/security-check', function(request, response) {
-        var srel = request.session.data['security-verified']
-        if (srel == 'yes'){
-            response.redirect('/versions/devs/signposting-eligibility/srel')
-        } else if (srel == "no") {
-            response.redirect('/versions/devs/signposting-eligibility/failed-security')
-        } 
-        })
-    
-    // Claiming under SREL?
-    router.post('/versions/devs/signposting-eligibility/srel', function(request, response) {
-        var srel = request.session.data['srel']
-        if (srel == 'yes'){
-            response.redirect('/versions/devs/signposting-eligibility/srel-bau-kickout')
-        } else if (srel == "no") {
-            response.redirect('/versions/devs/welcome-screens/welcome-screen-ni')
-        } 
-        })
-
-// --------------------------------------------------------------------------------------------
-
-// POST MTP: 
-
-// DIVERT FROM A CLAIM (save and continue button with exit link)
-
-// Delete application or save and come back later
-router.post('/ucd-register/save-and-return/save-or-clear-claim', function(request, response) {
-    var saveOrClear = request.session.data['save-or-clear']
-    if (saveOrClear == 'save-and-return'){
-        response.redirect('/ucd-register/save-and-return/application-saved')
-    } else if (saveOrClear == 'delete') {
-        response.redirect('/ucd-register/save-and-return/are-you-sure-delete-question')
-    }
-})
-
-// What is your name?
-router.post('/ucd-register/save-and-return/contact-details/what-is-your-name', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/what-is-your-dob')
-})
-
-// What is your DOB
-router.post('/ucd-register/save-and-return/contact-details/what-is-your-dob', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/what-is-your-phone-number')
-})
-
-// What is your phone number page
-router.post('/ucd-register/save-and-return/contact-details/what-is-your-phone-number', function(request, response) {
-        response.redirect("/ucd-register/save-and-return/contact-details/do-you-want-to-receive-text-updates")
-}) 
-
-// Do you want to receive text updates
-router.post('/ucd-register/save-and-return/contact-details/do-you-want-to-receive-text-updates', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/what-is-your-postcode')
-})
-
-// What is your postcode page
-router.post('/ucd-register/save-and-return/contact-details/what-is-your-postcode', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/select-your-address')
-})
-
-// Select your address page
-router.post('/ucd-register/save-and-return/contact-details/select-your-address', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/correspondence-address')
-})
-
-// Enter address manually page
-router.post('/ucd-register/save-and-return/contact-details/enter-address-manually-country', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/correspondence-address')
-})
-
-// Is this the address we should send letters to page
-router.post('/ucd-register/save-and-return/contact-details/correspondence-address', function(request, response) {
-    var sendLettersElsewhere = request.session.data['should-we-write-to-you']
-    if (sendLettersElsewhere == 'yes'){
-        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/written-format')
-    } else if (sendLettersElsewhere == 'no') {
-        response.redirect('/ucd-register/save-and-return/contact-details/correspondence-postcode')
-    }
-})
-
-// Would you like us to send your letters in another way, like larger text, audio or braille?
-router.post('/ucd-register/save-and-return/contact-details/alt-formats/written-format', function(request, response) {
-    var writtenFormat = request.session.data['written-format']
-    if (writtenFormat == 'standard-letter'){
-        response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'large-print') {
-        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/large-print')
-     } else if (writtenFormat == 'audio') {
-        response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'braille') {
-        response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'email') {
-        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/email-reason')
-    } else if (writtenFormat == 'pdf') {
-        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/email-reason')
-    } 
-    
-})
-
-// What size print do you need?
-router.post('/ucd-register/save-and-return/contact-details/alt-formats/large-print', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
-})
-
-// Why do you need us to contact you by email instead of printed letters?
-router.post('/ucd-register/save-and-return/contact-details/alt-formats/email-reason', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/what-is-your-email')
-})
-
-// What is your email address?
-router.post('/ucd-register/save-and-return/contact-details/alt-formats/what-is-your-email', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
-})
-
-// What is your correspondence postcode page
-router.post('/ucd-register/save-and-return/contact-details/correspondence-postcode', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/confirm-correspondence-address')
-})
-
-// Confirm correspondence address > correspondence alt formats page
-router.post('/ucd-register/save-and-return/contact-details/confirm-correspondence-address', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/written-format')
-})
-
-// Confirm correspondence address page
-router.post('/ucd-register/save-and-return/contact-details/correspondence-enter-address-manually', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/written-format')
-})
-
-// Contact details summary page
-router.post('/ucd-register/save-and-return/contact-details/contact-details-summary', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/task-list-cd-done')
-})
-
-// -------------------------------------------------------------------------------------
-
-
-// -------------------------------------------------------------------------------------
-// POST MTP: 
-
-//new claims
-
-//new claim?
-router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', function(request, response) {
-    var newClaim = request.session.data['new-claims']
-    if (newClaim  == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims')
-    } else if (newClaim  == 'no') {
-        response.redirect('/ucd-register/signposting-eligibility/existing-claims')
-    }
-})
-
-// NI new claims
-router.post('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims', function(request, response) {
-    var niPip = request.session.data['ni-pip']
-    if (niPip == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/claiming-self')
-    } else if (niPip == "england-wales") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/england-wales')
-    } else if (niPip == "scotland") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/scotland')
-    }
-    })
-    
-    // Are you claiming for yourself?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/claiming-self', function(request, response) {
-    var self = request.session.data['claiming-self']
-    if (self == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/over-16')
-    } else if (self == "no") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/someone-else-bau-kickout')
-    } 
-    })
-
-    //Are you over 16?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/over-16', function(request, response) {
-    var over16 = request.session.data['age']
-    if (over16 == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/search-claimant')
-    } else if (over16 == "no-under-16") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/under-16-ineligible')
-    } else if (over16 == "no-over-spa") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/stop-getting-pip-last-year')
-    }
-    })
-
-     // Establish identity
-     router.post('/versions/UCD/post-mtp-sign-eligibility/search-claimant', function(request, response) {
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes-link')
-        })
-
- // What security questions were answered?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes-link', function(request, response) {
-        var security = request.session.data['security']
-        if (security == 'passed'){
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
-        } else if (security == "failed") {
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/failed-security')
-        } else if (security == "not-enough") {
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/not-enough-cis-data')
-        } 
-        })
-
-    // Claiming under SREL?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/srel', function(request, response) {
-        var srel = request.session.data['srel']
-        if (srel == 'yes'){
-            response.redirect('/ucd-concepts-testing#mtp-backlog')
-        } else if (srel == "no") {
-            response.redirect('/ucd-concepts-testing#mtp-backlog')
-        } 
-        })
-
-     // 1 or no correct answers available
-    router.post('/versions/UCD/post-mtp-sign-eligibility/failed-security', function(request, response) {
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
-        })
-
-     // no applicant data
-    router.post('/versions/UCD/post-mtp-sign-eligibility/not-enough-cis-data', function(request, response) {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
-    })
-
-// RESUME A CLAIM
-
-//Save and return
-router.post('/ucd-register/save-and-return/service-home-call-type', function(request, response) {
-    var callType = request.session.data['call-type']
-    if (callType  == 'new-claim'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims')
-    } else if (callType  == 'resume-application') {
-        response.redirect('/ucd-register/save-and-return/self-or-appointee')
-    }
-})
-
-// self or appointee > search claimant
-router.post('/ucd-register/save-and-return/self-or-appointee', function(request, response) {
-    var caller = request.session.data['caller-type']
-    if (caller == 'self'){
-        response.redirect('/ucd-register/save-and-return/search-claimant')
-    } else if (caller  == 'legal-appointee') {
-        response.redirect('/ucd-register/save-and-return/search-claimant')
-    } else if (caller  == 'other') {
-        response.redirect('/ucd-register/save-and-return/search-claimant')
-    }
-})
-
-// claimant search > found nino
-router.post('/ucd-register/save-and-return/search-claimant', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/security-check')
-})
-
-// confirm nino > security check
-router.post('/ucd-register/save-and-return/security-check', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/nino-found')
-})
-
-// security check > access task list
-router.post('/ucd-register/save-and-return/security-check', function(request, response) {
-    var passed = request.session.data['security-verified']
-    if (passed  == 'yes') {
-    response.redirect('/ucd-register/save-and-return/task-list-in-progress-hospice')
-} else if (passed  == 'no') {
-    response.redirect('#')
-}
-})
 
 // -------------------------------------------------------------------------------------
 
@@ -2104,119 +1439,6 @@ router.post('/research/sprint-12/new-order/nationality/insurance-abroad', functi
     }
 })
 
-//For MTP in backlog-Eligibility route 
-
-// What is your name
-router.post('/versions/UCD/signposting-eligibility/service-start-page', function(request, response) {
-    response.redirect('/ucd-register/contact-details/what-is-your-dob')
-})
-
-// What is your DOB
-router.post('/ucd-register/contact-details/what-is-your-dob', function(request, response) {
-    response.redirect('/ucd-register/contact-details/what-is-your-phone-number')
-})
-
-// What is your phone number page
-router.post('/ucd-register/contact-details/what-is-your-phone-number', function(request, response) {
-        response.redirect("/ucd-register/contact-details/do-you-want-to-receive-text-updates")
-}) 
-
-// What is your Textphone number?
-router.post('/ucd-register/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
-    response.redirect('/ucd-register/contact-details/do-you-want-to-receive-text-updates')
-})
-
-// What signing or lipspeaking service do you need?
-router.post('/ucd-register/contact-details/alt-formats/signing-lipspeaking', function(request, response) {
-    response.redirect('/ucd-register/contact-details/do-you-want-to-receive-text-updates')
-})
-
-// Do you want to receive text updates
-router.post('/ucd-register/contact-details/do-you-want-to-receive-text-updates', function(request, response) {
-    response.redirect('/ucd-register/contact-details/what-is-your-postcode')
-})
-
-// What is your postcode page
-router.post('/ucd-register/contact-details/what-is-your-postcode', function(request, response) {
-    response.redirect('/ucd-register/contact-details/select-your-address')
-})
-
-// Select your address page
-router.post('/ucd-register/contact-details/select-your-address', function(request, response) {
-    response.redirect('/ucd-register/contact-details/correspondence-address')
-})
-
-// Enter address manually page
-router.post('/ucd-register/contact-details/enter-address-manually-country', function(request, response) {
-    response.redirect('/ucd-register/contact-details/correspondence-address')
-})
-
-// Is this the address we should send letters to page
-router.post('/ucd-register/contact-details/correspondence-address', function(request, response) {
-    var sendLettersElsewhere = request.session.data['should-we-write-to-you']
-    if (sendLettersElsewhere == 'yes'){
-        response.redirect('/ucd-register/contact-details/alt-formats/written-format')
-    } else if (sendLettersElsewhere == 'no') {
-        response.redirect('/ucd-register/contact-details/correspondence-postcode')
-    }
-})
-
-// Would you like us to send your letters in another way, like larger text, audio or braille?
-router.post('/ucd-register/contact-details/alt-formats/written-format', function(request, response) {
-    var writtenFormat = request.session.data['written-format']
-    if (writtenFormat == 'standard-letter'){
-        response.redirect('/ucd-register/task-list-cd-done')
-    } else if (writtenFormat == 'large-print') {
-        response.redirect('/ucd-register/contact-details/alt-formats/large-print')
-     } else if (writtenFormat == 'audio') {
-        response.redirect('/ucd-register/task-list-cd-done')
-    } else if (writtenFormat == 'braille') {
-        response.redirect('/ucd-register/task-list-cd-done')
-    } else if (writtenFormat == 'email') {
-        response.redirect('/ucd-register/contact-details/alt-formats/email-reason')
-    } else if (writtenFormat == 'pdf') {
-        response.redirect('/ucd-register/contact-details/alt-formats/email-reason')
-    } 
-    
-})
-
-// What size print do you need?
-router.post('/ucd-register/contact-details/alt-formats/large-print', function(request, response) {
-    response.redirect('/ucd-register/contact-details/contact-details-summary')
-})
-
-// Why do you need us to contact you by email instead of printed letters?
-router.post('/ucd-register/contact-details/alt-formats/email-reason', function(request, response) {
-    response.redirect('/ucd-register/contact-details/alt-formats/what-is-your-email')
-})
-
-// What is your email address?
-router.post('/ucd-register/contact-details/alt-formats/what-is-your-email', function(request, response) {
-    response.redirect('/ucd-register/contact-details/contact-details-summary')
-})
-
-// What is your correspondence postcode page
-router.post('/ucd-register/contact-details/correspondence-postcode', function(request, response) {
-    response.redirect('/ucd-register/contact-details/confirm-correspondence-address')
-})
-
-// Confirm correspondence address > correspondence alt formats page
-router.post('/ucd-register/contact-details/confirm-correspondence-address', function(request, response) {
-    response.redirect('/ucd-register/contact-details/alt-formats/written-format')
-})
-
-// Confirm correspondence address page
-router.post('/ucd-register/contact-details/correspondence-enter-address-manually', function(request, response) {
-    response.redirect('/ucd-register/contact-details/alt-formats/written-format')
-})
-
-// Contact details summary page
-router.post('/ucd-register/contact-details/contact-details-summary', function(request, response) {
-    response.redirect('/ucd-register/task-list-cd-done')
-})
-
-// -------------------------------------------------------------------------------------
-
 // -------------------------------------------------------------------------------------
 //HEALTHCARE AND SUPPORT
 
@@ -2422,6 +1644,8 @@ router.post('/research/sprint-12/new-orderbank-details/6-2-no-details-now', func
 // -------------------------------------------------------------------------------------
 
 
+
+
 // ITERATION 1: NON-MVP PROTOTYPE
 
 // What is your name page
@@ -2619,101 +1843,7 @@ router.post('/non-MVP/additional-support/who-helps', function(request, response)
 
 //-------------------------------------------------------------------------------------------
 
-// RESEARCH SPRINT 19 - ELIGIBILITY ROUTES
-
-// welcome to PIP
-router.post('/research/sprint-19/signposting-eligibility/service-start-page', function(request, response) {
-    var newClaim = request.session.data['welcome']
-    if (newClaim == 'yes'){
-        response.redirect('/research/sprint-19/signposting-eligibility/new-ni-claims')
-    } else if (newClaim == "no") {
-        response.redirect('/research/sprint-19/signposting-eligibility/existing-claims')
-    }
-})
-
-// NI new claims
-router.post('/research/sprint-19/signposting-eligibility/new-ni-claims', function(request, response) {
-    var niPip = request.session.data['ni-pip']
-    if (niPip == 'yes'){
-        response.redirect('/research/sprint-19/signposting-eligibility/claiming-self')
-    } else if (niPip == "england-wales") {
-        response.redirect('/research/sprint-19/signposting-eligibility/england-wales')
-    } else if (niPip == "scotland") {
-        response.redirect('/research/sprint-19/signposting-eligibility/scotland')
-    }
-})
-
-// Are you claiming for yourself?
-router.post('/research/sprint-19/signposting-eligibility/claiming-self', function(request, response) {
-    var self = request.session.data['claiming-self']
-    if (self == 'yes'){
-        response.redirect('/research/sprint-19/signposting-eligibility/srel')
-    } else if (self == "no") {
-        response.redirect('/research/sprint-19/signposting-eligibility/srel-bau-kickout')
-    } 
-})
-
-// Claiming under SREL?
-router.post('/research/sprint-19/signposting-eligibility/srel', function(request, response) {
-    var srel = request.session.data['srel']
-    if (srel == 'yes'){
-        response.redirect('/research/sprint-19/signposting-eligibility/srel-bau-kickout')
-    } else if (srel == "no") {
-        response.redirect('/research/sprint-19/signposting-eligibility/over-16')
-    } 
-})
-
-// Authorised person
-router.post('/research/sprint-19/signposting-eligibility/authorised-person', function(request, response) {
-    var authorised = request.session.data['authorised-person']
-    if (authorised == 'authorised'){
-        response.redirect('/research/sprint-19/signposting-eligibility/third-party-route')
-    } else if (authorised == "appointed") {
-        response.redirect('/research/sprint-19/signposting-eligibility/external-party-route')
-    } else if (authorised == "neither") {
-        response.redirect('/research/sprint-19/signposting-eligibility/end-call')
-    } 
-})
-
-// Are you over 16?
-router.post('/research/sprint-19/signposting-eligibility/over-16', function(request, response) {
-    var over16 = request.session.data['over-16']
-    if (over16 == 'yes'){
-        response.redirect('/research/sprint-19/signposting-eligibility/under-state-pension')
-    } else if (over16 == "no") {
-        response.redirect('/research/sprint-19/signposting-eligibility/under-16-ineligible')
-    }
-})
-
-// Are you under state pension age?
-router.post('/research/sprint-19/signposting-eligibility/under-state-pension', function(request, response) {
-    var underState = request.session.data['under-state-pension']
-    if (underState == 'yes'){
-        response.redirect('/research/sprint-19/signposting-eligibility/what-is-ni-number')
-    } else if (underState == "no") {
-        response.redirect('/research/sprint-19/signposting-eligibility/stop-getting-pip-last-year')
-    }
-})
-
-// What is your National Insurance number?
-router.post('/research/sprint-19/signposting-eligibility/what-is-ni-number', function(request, response) {
-    response.redirect('/research/sprint-19/signposting-eligibility/security-check')
-})
-
-// What security questions were answered?
-router.post('/research/sprint-19/signposting-eligibility/security-check', function(request, response) {
-    response.redirect('/research/sprint-19/signposting-eligibility/passed-security')
-})
-
-// Passed security
-router.post('/research/sprint-19/signposting-eligibility/passed-security', function(request, response) {
-    response.redirect('/index')
-})
-
-// ----------------------------------------------------------------------------------------------------------------
-
 // RESEARCH: NON-MVP PROTOTYPE
-
 
 //RESEARCH/SPRINT-8/CONTACT-DETAILS
 
@@ -3106,66 +2236,6 @@ router.post('/versions/sprint-6/contact-details/contact-details-summary', functi
 
 //-------------------------------------------------------------------------------------------
 
-// RESEARCH-SPRINT-20
-
-// Save application- i will now submit
-router.post('/design-updates/what-happens-next/save-application', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/what-happens-next')
-})
-//design-updates/sprint-20/what-happens-next/what-happens-next
-router.post('/design-updates/what-happens-next/what-happens-next', function(request, response) {
-    var previousOnline = request.session.data['previous-online-claim']
-    if (previousOnline  == 'yes'){
-        response.redirect('/design-updates/what-happens-next/paper-whn-1')
-    } else if (previousOnline  == 'no') {
-        response.redirect('/design-updates/what-happens-next/online-form-option')
-    }
-})
-
-router.post('/design-updates/what-happens-next/online-form-option', function(request, response) {
-    var previousOnline = request.session.data['form-online']
-    if (previousOnline  == 'online'){
-        response.redirect('/design-updates/what-happens-next/online-form-contact')
-    } else if (previousOnline  == 'paper') {
-        response.redirect('/design-updates/what-happens-next/paper-whn-1')
-    }
-})
-
-// Online whn1 (form contact details)
-router.post('/design-updates/what-happens-next/online-form-contact', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/online-whn-1')
-})
-
-// Online whn 1- whn 2
-router.post('/design-updates/what-happens-next/online-whn-1', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/online-whn-2')
-})
-
-// Online whn 2- paper-after-sent
-router.post('/design-updates/what-happens-next/online-whn-2', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/after-form-sent')
-})
-
-router.post('/design-updates/what-happens-next/previously-claimed-online', function(request, response) {
-        response.redirect('/design-updates/what-happens-next/paper-whn-1')
-})
-
-// Paper whn 1- whn 2
-router.post('/design-updates/what-happens-next/paper-whn-1', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/paper-whn-2')
-})
-
-// Paper whn 2- paper-after-sent
-router.post('/design-updates/what-happens-next/paper-whn-2', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/after-form-sent')
-})
-
-// After-form-sent > end claim and clear session
-router.post('/design-updates/what-happens-next/after-form-sent', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/end-clear-session')
-})
-//-------------------------------------------------------------------------------------------
-
 // RESEARCH/PIP-CS/ADD-SUPPORT
 
 // Alternative formats page
@@ -3180,138 +2250,21 @@ router.post('/research/pipcs/add-support/read-letters', function(request, respon
 
 //-------------------------------------------------------------------------------------------
 
-// MTP-BACKLOG
-
-// Do you know the date you entered the hospice? > what was the date
-router.post('/v2-ucd-register/hospital-dates/mtp-backlog/5-8-know-hospice-date', function(request, response) {
-    var knowDate = request.session.data['know-the-date']
-    if (knowDate == 'today'){
-        response.redirect('/ucd-register/hospital-dates/5-10-hospice-postcode')
-    } else if (knowDate == 'before-today') {
-        response.redirect('/v2-ucd-register/hospital-dates/mtp-backlog/5-9-hospice-date')
-    } else if (knowDate == 'no') {
-        response.redirect('/ucd-register/hospital-dates/5-10-hospice-postcode')
-    }
-})
-
-// -------------------------------------------------------------------------------------
-
-//ucd-register/contact-details
-
-// What is your name page
-router.post('/versions/devs/what-is-your-name', function(request, response) {
-    response.redirect('/versions/devs/do-you-have-a-previous-last-name')
-})
-
-// Do you have a previous last name?
-router.post('/versions/devs/do-you-have-a-previous-last-name', function(request, response) {
-    response.redirect('/versions/devs/what-is-your-phone-number')
-})
-
-// What is your phone number page
-router.post('/versions/devs/what-is-your-phone-number', function(request, response) {
-    response.redirect('/versions/devs/do-you-want-to-receive-text-updates')
-})
-
-// Do you want to receive text updates
-router.post('/versions/devs/do-you-want-to-receive-text-updates', function(request, response) {
-    response.redirect('/versions/devs/what-is-your-postcode')
-})
-
-// What is your postcode page
-router.post('/versions/devs/what-is-your-postcode', function(request, response) {
-    response.redirect('/versions/devs/select-your-address')
-})
-
-// Select your address page
-router.post('/versions/devs/select-your-address', function(request, response) {
-    response.redirect('/versions/devs/correspondence-address')
-})
-
-// Enter address manually page
-router.post('/versions/devs/enter-address-manually-country', function(request, response) {
-    response.redirect('/versions/devs/correspondence-address')
-})
-
-// Is this the address we should send letters to page
-router.post('/versions/devs/correspondence-address', function(request, response) {
-    var sendLettersElsewhere = request.session.data['should-we-write-to-you']
-    if (sendLettersElsewhere == 'yes'){
-        response.redirect('/versions/devs/dev-alt-formats')
-    } else if (sendLettersElsewhere == 'no') {
-        response.redirect('/versions/devs/correspondence-postcode')
-    }
-})
-
-// What is your correspondence postcode page
-router.post('/versions/devs/correspondence-postcode', function(request, response) {
-    response.redirect('/versions/devs/confirm-correspondence-address')
-})
-
-// Confirm correspondence address > correspondence alt formats page
-router.post('/versions/devs/confirm-correspondence-address', function(request, response) {
-    response.redirect('/versions/devs/correspondence-alternative-formats')
-})
-
-// Confirm correspondence address page
-router.post('/versions/devs/correspondence-enter-address-manually', function(request, response) {
-    response.redirect('/versions/devs/correspondence-alternative-formats')
-})
-
-// Correspondence alternative formats page
-router.post('/versions/devs/correspondence-alternative-formats', function(request, response) {
-    var differentFormat = request.session.data['different-format']
-    if (differentFormat == 'yes'){
-        response.redirect('#')
-    } else if (differentFormat == 'no') {
-        response.redirect('//versions/devs/contact-details-correspondence-summary')
-    }
-})
-
-
-// Alternative formats page
-router.post('/versions/devs/dev-alt-formats', function(request, response) {
-    var differentFormat = request.session.data['different-format']
-    if (differentFormat == 'yes'){
-        response.redirect('#')
-    } else if (differentFormat == 'no') {
-        response.redirect('/versions/devs/contact-details-summary')
-    }
-})
-
-// Contact details summary page
-router.post('/versions/devs/contact-details-summary', function(request, response) {
-    response.redirect('/versions/devs/task-list')
-})
-
-//--------------------------------------------------------------------------------------------
-
-
-
 // V2-UCD-REGISTER/Contact-details
+
 
 // What is your name
 router.post('/v2-ucd-register/contact-details/what-is-your-name', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/what-is-your-dob')
+    response.redirect('/v2-ucd-register/contact-details/do-you-have-a-previous-last-name')
 })
 
-// What is your DOB?
-router.post('/v2-ucd-register/contact-details/what-is-your-dob', function(request, response) {
+// Do you have a previous last name?
+router.post('/v2-ucd-register/contact-details/do-you-have-a-previous-last-name', function(request, response) {
     response.redirect('/v2-ucd-register/contact-details/what-is-your-phone-number')
 })
 
 // What is your phone number page
 router.post('/v2-ucd-register/contact-details/what-is-your-phone-number', function(request, response) {
-        response.redirect("/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates")
-}) 
-
-// What is your Textphone number?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates')
-})
-
-// What signing or lipspeaking service do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/signing-lipspeaking', function(request, response) {
     response.redirect('/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates')
 })
 
@@ -3339,44 +2292,10 @@ router.post('/v2-ucd-register/contact-details/enter-address-manually-country', f
 router.post('/v2-ucd-register/contact-details/correspondence-address', function(request, response) {
     var sendLettersElsewhere = request.session.data['should-we-write-to-you']
     if (sendLettersElsewhere == 'yes'){
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/written-format')
+        response.redirect('/alternative-formats/written-format')
     } else if (sendLettersElsewhere == 'no') {
         response.redirect('/v2-ucd-register/contact-details/correspondence-postcode')
     }
-})
-
-// Would you like us to send your letters in another way, like larger text, audio or braille?
-router.post('/v2-ucd-register/contact-details/alt-formats/written-format', function(request, response) {
-    var writtenFormat = request.session.data['written-format']
-    if (writtenFormat == 'standard-letter'){
-        response.redirect('/v2-ucd-register/additional-support/start-info')
-    } else if (writtenFormat == 'large-print') {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/large-print')
-     } else if (writtenFormat == 'audio') {
-        response.redirect('/v2-ucd-register/additional-support/start-info')
-    } else if (writtenFormat == 'braille') {
-        response.redirect('/v2-ucd-register/additional-support/start-info')
-    } else if (writtenFormat == 'email') {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/email-reason')
-    } else if (writtenFormat == 'pdf') {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/email-reason')
-    } 
-    
-})
-
-// What size print do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/large-print', function(request, response) {
-    response.redirect('/v2-ucd-register/additional-support/start-info')
-})
-
-// Why do you need us to contact you by email instead of printed letters?
-router.post('/v2-ucd-register/contact-details/alt-formats/email-reason', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
-})
-
-// What is your email address?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-email', function(request, response) {
-    response.redirect('/v2-ucd-register/additional-support/start-info')
 })
 
 // What is your correspondence postcode page
@@ -3386,20 +2305,170 @@ router.post('/v2-ucd-register/contact-details/correspondence-postcode', function
 
 // Confirm correspondence address > correspondence alt formats page
 router.post('/v2-ucd-register/contact-details/confirm-correspondence-address', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/written-format')
+    response.redirect('/alternative-formats/written-format')
 })
 
 // Confirm correspondence address page
 router.post('/v2-ucd-register/contact-details/correspondence-enter-address-manually', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/written-format')
+    response.redirect('/alternative-formats/written-format')
 })
+
+// Correspondence alternative formats page
+router.post('/v2-ucd-register/contact-details/correspondence-alternative-formats', function(request, response) {
+    var differentFormat = request.session.data['different-format']
+    if (differentFormat == 'yes'){
+        response.redirect('#')
+    } else if (differentFormat == 'no') {
+        response.redirect('/v2-ucd-register/additional-support/start-info')
+    }
+})
+
+//Alt formats new pattern
+router.post('/v2-ucd-register/contact-details/alt-formats/how-should-we-write-to-you', function(request, response) {
+
+    var writtenFormat = request.session.data['written-format']
+    if (writtenFormat == "Standard letter"){
+        response.redirect("/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you")
+    } else if (writtenFormat == "Large print") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-size-print-do-you-need')
+    } else if (writtenFormat == "Letter with changes") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-changes-do-you-need')
+    } else if (writtenFormat == "Audio") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-type-of-audio-format')
+    } else if (writtenFormat == "Braille") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-type-of-braille-do-you-need')
+    } else if (writtenFormat == "British Sign Language video") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-video-format-do-you-need')
+    } else if (writtenFormat == "PDF with accessible text") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
+    }
+})
+
+// radio 2- what size print do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-size-print-do-you-need', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+})
+
+// radio 3- what changes do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-changes-do-you-need', function(request, response) {
+
+    var changesNeeded = request.session.data['changes-needed']
+    if (changesNeeded == "A different font"){
+        response.redirect("/v2-ucd-register/contact-details/alt-formats/what-font-do-you-need")
+    } else if (changesNeeded == "Bold text") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+    } else if (changesNeeded == "Coloured paper") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-colour-paper-do-you-need')
+    } else if (changesNeeded == "Double line spacing") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+    } else if (changesNeeded == "Large print") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-size-print-do-you-need')
+    } else if (changesNeeded == "Standard letter") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+    } 
+})
+
+// What font do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-font-do-you-need', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+})
+    
+// What type of audio do you need?
+
+// What type of audio do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-type-of-audio-format', function(request, response) {
+
+    var audio = request.session.data['audio-format']
+    if (audio == "CD"){
+        response.redirect("/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you")
+    } else if (audio == "MP3 by email") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
+    } else if (audio == "Casette tape") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+    } else if (audio == "DVD") {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+    } 
+})
+
+// What type of braille do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-type-of-braille-do-you-need', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+})
+
+// What video format do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-video-format-do-you-need', function(request, response) {
+
+    var videoFormat = request.session.data['video-format']
+    if (videoFormat == "DVD"){
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+    } else if (videoFormat == "MPEG file by email"){
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
+    }
+})
+
+// What is your email address?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-email', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+})
+
+// What colour paper do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-colour-paper-do-you-need', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
+})
+
+// How should we contact you if we need to speak to you?
+router.post('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you', function(request, response) {
+
+    var spokenOptions = request.session.data['spoken-options']
+    if (spokenOptions == "Standard phone call"){
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
+    } else if (spokenOptions == "Relay UK"){
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-relay-uk-number')
+    } else if (spokenOptions == "Textphone"){
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number')
+    } else if (spokenOptions == "Signing or lipspeaking"){
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-signing-service')
+    }
+})
+
+// What is your relay number?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-is-relay-uk-number', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
+})
+
+// What signing or lipspeaking do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-signing-service', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
+})
+
+// What is your textphone number?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
+})
+
+//Do you need any other help when we contact you?
+
+router.post('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact', function(request, response) {
+    var readLetters = request.session.data['other-help']
+    if (readLetters == 'yes'){
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-other-help-when-we-contact')
+    } else if (readLetters == 'no') {
+        response.redirect('/v2-ucd-register/task-list-cd-done')
+    }
+})
+
+// What other help?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-other-help-when-we-contact', function(request, response) {
+    response.redirect('/v2-ucd-register/task-list-cd-done')
+})
+
 
 //-------------------------------------------------------------------------------------------
 
 //V2-UCD-REGISTER/additional-support
 
 router.post('/v2-ucd-register/additional-support/start-info', function(request, response) {
-            response.redirect('/v2-ucd-register/additional-support/do-you-have-a-condition')
+    response.redirect('/v2-ucd-register/additional-support/do-you-have-a-condition')
 })
 
 // do you have a condition 
@@ -3408,7 +2477,7 @@ router.post('/v2-ucd-register/additional-support/do-you-have-a-condition', funct
     if (condition == 'yes'){
         response.redirect('/v2-ucd-register/additional-support/complete-forms')
     } else if (condition == 'no') {
-        response.redirect('/v2-ucd-register/additional-support/advice-non-as-marker')
+        response.redirect('/v2-ucd-register/additional-support/complete-forms')
     }
 })
 
@@ -3433,7 +2502,6 @@ router.post('/v2-ucd-register/additional-support/helpers', function(request, res
         response.redirect('/v2-ucd-register/additional-support/advice-as-marker')
     }
 })
-
 
 router.post('/v2-ucd-register/additional-support/who-helps', function(request, response) {
     response.redirect('/v2-ucd-register/additional-support/advice-as-marker')
@@ -3462,115 +2530,34 @@ router.post('/v2-ucd-register/nationality/start', function(request, response) {
 router.post('/v2-ucd-register/nationality/what-is-your-nationality', function(request, response) {
     var nationality = request.session.data['nationality']
     if (nationality == 'british'){
-        response.redirect('/v2-ucd-register/nationality/uk-2-of-3-years')
+        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
     } else if (nationality == 'irish') {
-        response.redirect('/v2-ucd-register/nationality/uk-2-of-3-years')
+        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
     } else if (nationality == 'other') {
-        response.redirect('/ucd-register/nationality/another-nationality')
+        response.redirect('/v2-ucd-register/nationality/another-nationality')
     }
 })
 
-//UNHAPPY PATH
 //Select other nationality
 router.post('/v2-ucd-register/nationality/another-nationality', function(request, response) {
-    var anotherNationality = request.session.data['another-nationality']
-    if (anotherNationality == 'Norway' || anotherNationality == 'Iceland'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before')
-    }
-    if (anotherNationality == 'Australia' || anotherNationality == 'Brazil' ){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status')
-    }
-})
-
-
-//Were you living in the UK on or before 31/12/20?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before', function(request, response) {
-    var before = request.session.data['before']
-    if (before == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/eu-settlement-scheme')
-    } else if (before == 'no') {
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status')
-    }
-})
-
-//Have you made an application to the EU Settlement Scheme or been given a status from the EU Settlement Scheme?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/eu-settlement-scheme', function(request, response) {
-    var application = request.session.data['eu-settlement']
-    if (application == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/what-settlement-scheme')
-    } else if (application == 'no') {
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status')
-    }
-})
-
-//Have you made an application to the EU Settlement Scheme or been given a status from the EU Settlement Scheme?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/what-settlement-scheme', function(request, response) {
-    var scheme = request.session.data['what-scheme']
-    if (scheme =='settled' || scheme =='pending'){
-        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
-    } else if (scheme == 'pre-settled') {
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end')
-    } else if (scheme == 'refused') {
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain')
-    }
-    
-})
-
-//Have you been granted refugee or humanitarian protection status?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status', function(request, response) {
-    var granted = request.session.data['granted-refugee']
-    if (granted == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain')
-    } else if (granted == 'no') {
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/passport-public-funds')
-    }
-})
-
-//Does your passport, or any other document from the Home Office say ‘No recourse to public funds’?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/passport-public-funds', function(request, response) {
-    response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain')
-})
-
-//What restrictions, if any, are there on your leave to remain?
-
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain', function(request, response) {
-  var restrictions = request.session.data['restrictions']
-    if (restrictions =='none' || restrictions =='indefinite' || restrictions =='no-leave' || restrictions =='unknown'){
-        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
-    } else if (restrictions =='limited'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end')
-       }  else if (restrictions == 'extension-applied') {
-            response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end-applied-for')
-    } 
-})
-
-//Limited leave to remain- When does your leave to remain end?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end', function(request, response) {
     response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
 })
 
-//Limited leave to remain applied for- When does your leave to remain end?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end-applied-for', function(request, response) {
-    response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/when-did-you-apply')
-})
 
-//When did you apply for extension?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/when-did-you-apply', function(request, response) {
-    response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
-})
-
-//----------------------------------------------------------------------------------------------------
-
-//Have you been in the UK for at least 2 of the last 3 years?
-router.post('/v2-ucd-register/nationality/uk-2-of-3-years', function(request, response) {
-    var ukYears = request.session.data['uk-years']
-    if (ukYears == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
-    } else if (ukYears == 'no') {
-        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
-    } else if (ukYears == 'unsure') {
-        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
-    } 
+//what country do you normally live in page
+router.post('/v2-ucd-register/nationality/what-country-do-you-live-in', function(request, response) {
+    var nationality = request.session.data['country']
+    if (nationality == 'northern-ireland'){
+        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'england') {
+        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'wales') {
+        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'scotland') {
+        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'another-country') {
+        response.redirect('/v2-ucd-register/nationality/another-country-lived-in')
+    }
 })
 
 // Another country
@@ -3578,50 +2565,25 @@ router.post('/v2-ucd-register/nationality/another-country-lived-in', function(re
     response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
 })
 
-
-//When you lived abroad
-router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to', function(request, response) {
-    var whyDidYouGo = request.session.data['why-did-you-go']
-      if (whyDidYouGo =='holiday'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
-      } else if (whyDidYouGo =='other'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
-         }  
-  })
-
-  //When you left the UK for more than four weeks
-router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/left-the-uk-more-than-4-weeks', function(request, response) {
-    var moreThanFour = request.session.data['more-than-four-weeks']
-      if (moreThanFour =='holiday'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
-      } else if (moreThanFour =='other'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
-         }  
-  })
-
-  //More places?
-router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places', function(request, response) {
-    var morePlaces = request.session.data['more']
-    if (morePlaces =='yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/the-other-time-you-went-away')
-    } else if (morePlaces =='no'){
-        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
-       }  
+//Have you lived anywhere other than UK in last 3 years page
+router.post('/v2-ucd-register/nationality/lived-elsewhere', function(request, response) {
+    var livedElsewhere = request.session.data['lived-elsewhere']
+    if (livedElsewhere == 'yes'){
+        response.redirect('/v2-ucd-register/nationality/abroad-over-four-weeks')
+    } else if (livedElsewhere == 'no') {
+        response.redirect('/v2-ucd-register/nationality/abroad-over-four-weeks')
+    }
 })
 
-//The other time you went away
-router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/the-other-time-you-went-away', function(request, response) {
-    var otherTime = request.session.data['other-time']
-      if (otherTime =='holiday'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
-      } else if (otherTime =='other'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
-         }  
-  })
-    //When you went away did you intend to return?
-    router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return', function(request, response) {
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
-    })
+//Have you been abroad for any periods over 4 weeks, in the last 3 years page
+router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
+    var livedAbroad = request.session.data['abroad-over-four-weeks']
+    if (livedAbroad == 'yes'){
+        response.redirect('#')
+    } else if (livedAbroad == 'no') {
+        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    }
+})
 
 //Are you working or paying national insurance in another country?
 
@@ -3667,7 +2629,7 @@ router.post('/v2-ucd-register/nationality/exportability/working-paying-insurance
   
         //What country are you receiving pensions or benefits in?
         router.post('/v2-ucd-register/nationality/exportability/what-country-benefits', function(request, response) {
-            response.redirect('/v2-ucd-register/healthcare-professional/start')
+            response.redirect('/v2-ucd-register/nationality/exportability/family-receiving-benefits')
         })
   
     //Are any of your family members receiving pensions or benefits in another country?
@@ -3841,19 +2803,19 @@ router.post('/v2-ucd-register/hospital-dates/5-7-select-hospital-address', funct
     response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
-// hospital manually > motability
+// hospital manually > start bank
 router.post('/v2-ucd-register/hospital-dates/5-17-hospital-address-manually', function(request, response) {
-    response.redirect('/v2-ucd-register/motability/motability')
+    response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
-// hospice manually > motability
+// hospice manually > start bank
 router.post('/v2-ucd-register/hospital-dates/5-18-hospice-address-manually', function(request, response) {
-    response.redirect('/v2-ucd-register/motability/motability')
+    response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
-// other manually > motability
+// other manually > start bank
 router.post('/v2-ucd-register/hospital-dates/5-19-other-address-manually', function(request, response) {
-    response.redirect('/v2-ucd-register/motability/motability')
+    response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
 // Were you in hospice yesterday?
@@ -3881,9 +2843,9 @@ router.post('/v2-ucd-register/hospital-dates/5-10-hospice-postcode', function(re
     response.redirect('/v2-ucd-register/hospital-dates/5-11-select-hospice-address')
 })
 
-//  Can you confirm the first line of the address place you are staying in? > motability
+//  Can you confirm the first line of the address place you are staying in?
 router.post('/v2-ucd-register/hospital-dates/5-11-select-hospice-address', function(request, response) {
-    response.redirect('/v2-ucd-register/motability/motability')
+    response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
 // Are you living in a care home or nursing home, sheltered housing, a residential college or a hostel today?
@@ -3892,7 +2854,7 @@ router.post('/v2-ucd-register/hospital-dates/5-3-other-housing-today', function(
     if (otherToday == 'yes'){
         response.redirect('/v2-ucd-register/hospital-dates/5-12-other-yesterday')
     } else if (otherToday == 'no') {
-        response.redirect('/v2-ucd-register/motability/motability')
+        response.redirect('/v2-ucd-register/bank-details/6-1-start')
     }
 })
 
@@ -3916,21 +2878,21 @@ router.post('/v2-ucd-register/hospital-dates/5-16-select-other-address', functio
     response.redirect('/v2-ucd-register/hospital-dates/5-13-third-party-pay')
 })
 
-// Does a health or social trust, health authority, government body, or a charity pay any of the costs for you to live there?
+// Does a local authority, health authority, Jobcentre Plus, or a charity pay any of the costs for you to live there?
 router.post('/v2-ucd-register/hospital-dates/5-13-third-party-pay', function(request, response) {
     var thirdPartyPay = request.session.data['third-party-pay']
-    if (thirdPartyPay == 'no') {
+    if (thirdPartyPay == 'local'){
+        response.redirect('/v2-ucd-register/hospital-dates/5-23-name-local')
+    } else if (thirdPartyPay == 'no') {
         response.redirect('/v2-ucd-register/bank-details/6-1-start')
     } else if (thirdPartyPay == 'yes') {
         response.redirect('/v2-ucd-register/hospital-dates/5-23-name')
-    } else if (thirdPartyPay == 'health-trust') {
-        response.redirect('/v2-ucd-register/hospital-dates/5-23-name-local')
     }
 })
 
 // What is the name of the [organisation type]?
 router.post('/v2-ucd-register/hospital-dates/5-23-name', function(request, response) {
-    response.redirect('/v2-ucd-register//motability/motability')
+    response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
 // local auth ---> What is the name -----> agreement?
@@ -3940,7 +2902,7 @@ router.post('/v2-ucd-register/hospital-dates/5-23-name-local', function(request,
 
 // Do you have an agreement with the local authority to repay any of the costs?
 router.post('/v2-ucd-register/hospital-dates/5-14-local-agreement', function(request, response) {
-    response.redirect('/v2-ucd-register//motability/motability')
+    response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 // -------------------------------------------------------------------------------------
 
@@ -3952,19 +2914,9 @@ router.post('/v2-ucd-register/hospital-dates/5-14-local-agreement', function(req
 router.post('/v2-ucd-register/bank-details/6-1-start', function(request, response) {
     var detailsNow = request.session.data['details-now']
     if (detailsNow == 'yes'){
-        response.redirect('/v2-ucd-register/bank-details/6-5-foreign-account')
+        response.redirect('/v2-ucd-register/bank-details/6-3-main-account-details-v2')
     } else if (detailsNow == 'no') {
         response.redirect('/v2-ucd-register/bank-details/6-2-no-details-now')
-    }
-})
-
-// Do you want to get payments in a UK account or a foreign account?
-router.post('/v2-ucd-register/bank-details/6-5-foreign-account', function(request, response) {
-    var uk = request.session.data['foreign-account']
-    if (uk == 'uk'){
-        response.redirect('/v2-ucd-register/bank-details/6-3-main-account-details-v2')
-    } else if (uk == 'non-uk') {
-        response.redirect('/v2-ucd-register/bank-details/6-6-foreign-account-details')
     }
 })
 
@@ -3974,15 +2926,9 @@ router.post('/v2-ucd-register/bank-details/6-3-main-account-details-v2', functio
 })
 
 
-
-// NOT FOR MTP foreign account details
-router.post('/v2-ucd-register/bank-details/6-6-foreign-account-details', function(request, response) {
-    response.redirect('/v2-ucd-register/task-list-bank-done')
-})
-
 // You can continue without entering account details
 router.post('/v2-ucd-register/bank-details/6-2-no-details-now', function(request, response) {
-    response.redirect('/v2-ucd-register/task-list-motability-done')
+    response.redirect('/v2-ucd-register/motability/motability')
 })
 
 // -------------------------------------------------------------------------------------
@@ -4015,7 +2961,7 @@ router.post('/design-updates/new-script-as/read-letters', function(request, resp
 
 //helpers
 router.post('/design-updates/new-script-as/helpers', function(request, response) {
-    var helpers = reqest.session.data['helpers']
+    var helpers = request.session.data['helpers']
     if (helpers == 'yes'){
         response.redirect('/design-updates/new-script-as/who-helps')
     } else if (helpers == 'no') {
@@ -4030,230 +2976,58 @@ router.post('/design-updates/new-script-as/who-helps', function(request, respons
 
 // -------------------------------------------------------------------------------------
 
-// -------------------------------------------------------------------------------------
+//UCD-REGISTER/ADDITIONAL-SUPPORT
 
-//POST MTP- BACKLOG
-// EXIT APPLICATION > CLEAR SESSION DATA
-
-// Eligibility launched from main UI
-router.post('/ucd-register/clear-session-data/signposting-eligibility/service-start-page', function(request, response) {
-    var newClaim = request.session.data['new-claims']
-    if (newClaim == 'yes'){
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/new-ni-claims')
-    } else if (newClaim == "no") {
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/existing-claims')
-    }
-    })
-    
-    // NI new claims
-    router.post('/ucd-register/clear-session-data/signposting-eligibility/new-ni-claims', function(request, response) {
-    var niPip = request.session.data['ni-pip']
-    if (niPip == 'yes'){
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/claiming-self')
-    } else if (niPip == "england-wales") {
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/england-wales')
-    } else if (niPip == "scotland") {
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/scotland')
-    }
-    })
-    
-    // Are you claiming for yourself?
-    router.post('/ucd-register/clear-session-data/signposting-eligibility/claiming-self', function(request, response) {
-    var self = request.session.data['claiming-self']
-    if (self == 'yes'){
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/over-16')
-    } else if (self == "no") {
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/someone-else-bau-kickout')
-    } 
-    })
-
-    //Are you over 16?
-    router.post('/ucd-register/clear-session-data/signposting-eligibility/over-16', function(request, response) {
-    var over16 = request.session.data['age']
-    if (over16 == 'yes'){
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/search-claimant')
-    } else if (over16 == "no-under-16") {
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/under-16-ineligible')
-    } else if (over16 == "no-over-spa") {
-        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/stop-getting-pip-last-year')
-    }
-    })
-
-      // POST MTP: AGE ELIGIBILITY UPDATE TBC: Establish identity
- router.post('/ucd-register/clear-session-data/signposting-eligibility/what-is-your-dob', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/signposting-eligibility/search-claimant')
-       })
-
-     // Establish identity
-     router.post('/ucd-register/clear-session-data/signposting-eligibility/search-claimant', function(request, response) {
-            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/kbvs-checkboxes-link')
-        })
-
- // What security questions were answered?
-    router.post('/ucd-register/clear-session-data/signposting-eligibility/kbvs-checkboxes-link', function(request, response) {
-        var security = request.session.data['security']
-        if (security == 'passed'){
-            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel')
-        } else if (security == "failed") {
-            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/failed-security')
-        } 
-        })
-
-    // Failed security
-         router.post('/ucd-register/clear-session-data/signposting-eligibility/failed-security', function(request, response) {
-         response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel')
-         })
-
-    // Not enough applicant data
-         router.post('/ucd-register/clear-session-data/signposting-eligibility/not-enough-cis-data', function(request, response) {
-         response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel')
-         })
-
-    // Claiming under SREL?
-    router.post('/ucd-register/clear-session-data/signposting-eligibility/srel', function(request, response) {
-        var srel = request.session.data['srel']
-        if (srel == 'yes'){
-            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel-bau-kickout')
-        } else if (srel == "no") {
-            response.redirect('/ucd-register/clear-session-data/welcome-screens/welcome-screen-ni')
-        } 
-        })
-
-//--------------------------------------------------------------------------------------------
-
-//Exit session routes
-router.post('/ucd-register/clear-session-data/save-or-clear-claim', function(request, response) {
-    var srel = request.session.data['save-or-clear']
-    if (srel == 'save-copy'){
-        response.redirect('/ucd-register/clear-session-data/task-list-cd-in-progress')
-    } else if (srel == "cancel") {
-        response.redirect('/ucd-register/clear-session-data/are-you-sure-delete-question')
-    } 
-    })
-
-    router.post('/ucd-register/clear-session-data/are-you-sure-cancel', function(request, response) {
-        var cancel = request.session.data['cancel-session']
-        if (cancel == 'yes'){
-            response.redirect('/ucd-register/clear-session-data/application-cleared')
-        } else if (cancel == "no") {
-            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/service-start-page')
-        } 
-        })
-
-    router.post('/ucd-register/clear-session-data/are-you-sure-delete-question', function(request, response) {
-        var clear = request.session.data['clear-session']
-        if (clear == 'yes'){
-            response.redirect('/ucd-register/clear-session-data/application-cleared')
-        } else if (clear == "no") {
-            response.redirect('/ucd-register/clear-session-data/fresh-task-list')
-        } 
-        })
-//--------------------------------------------------------------------------------------------
-
-//ucd-register/clear-session-data/contact-details/what-is-your-name
-
-// What is your name
-router.post('/ucd-register/clear-session-data/contact-details/what-is-your-name', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/what-is-your-dob')
+router.post('/design-updates/additional-support/start-info', function(request, response) {
+    response.redirect('/design-updates/additional-support/do-you-have-a-condition')
 })
 
-// What is your DOB
-router.post('/ucd-register/clear-session-data/contact-details/what-is-your-dob', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/what-is-your-phone-number')
-})
-
-// What is your phone number page
-router.post('/ucd-register/clear-session-data/contact-details/what-is-your-phone-number', function(request, response) {
-        response.redirect('/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates')
-}) 
-
-// What signing or lipspeaking service do you need?
-router.post('/ucd-register/clear-session-data/contact-details/alt-formats/signing-lipspeaking', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates')
-})
-
-// Do you want to receive text updates
-router.post('/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/what-is-your-postcode')
-})
-
-// What is your postcode page
-router.post('/ucd-register/clear-session-data/contact-details/what-is-your-postcode', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/select-your-address')
-})
-
-// Select your address page
-router.post('/ucd-register/clear-session-data/contact-details/select-your-address', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/correspondence-address')
-})
-
-// Enter address manually page
-router.post('/ucd-register/clear-session-data/contact-details/enter-address-manually-country', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/correspondence-address')
-})
-
-// Is this the address we should send letters to page
-router.post('/ucd-register/clear-session-data/contact-details/correspondence-address', function(request, response) {
-    var sendLettersElsewhere = request.session.data['should-we-write-to-you']
-    if (sendLettersElsewhere == 'yes'){
-        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/written-format')
-    } else if (sendLettersElsewhere == 'no') {
-        response.redirect('/ucd-register/clear-session-data/contact-details/correspondence-postcode')
+// do you have a condition 
+router.post('/design-updates/additional-support/do-you-have-a-condition', function(request, response) {
+    var condition = request.session.data['condition']
+    if (condition == 'yes'){
+        response.redirect('/design-updates/additional-support/complete-forms')
+    } else if (condition == 'no') {
+        response.redirect('/design-updates/additional-support/complete-forms')
     }
 })
 
-// Would you like us to send your letters in another way, like larger text, audio or braille?
-router.post('/ucd-register/clear-session-data/contact-details/alt-formats/written-format', function(request, response) {
-    var writtenFormat = request.session.data['written-format']
-    if (writtenFormat == 'standard-letter'){
-        response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'large-print') {
-        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/large-print')
-     } else if (writtenFormat == 'audio') {
-        response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'braille') {
-        response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
-    } else if (writtenFormat == 'email') {
-        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/email-reason')
-    } else if (writtenFormat == 'pdf') {
-        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/email-reason')
-    } 
-    
+// can you complete forms
+router.post('/design-updates/additional-support/complete-forms', function(request, response) {
+    var completeForms = request.session.data['complete-forms']
+    if (completeForms == 'yes'){
+        response.redirect('/design-updates/additional-support/read-letters')
+    } else if (completeForms == 'no') {
+        response.redirect('/design-updates/additional-support/read-letters')
+    }
 })
 
-// What size print do you need?
-router.post('/ucd-register/clear-session-data/contact-details/alt-formats/large-print', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
+router.post('/design-updates/additional-support/read-letters', function(request, response) {
+    response.redirect('/design-updates/additional-support/post')
 })
 
-// Why do you need us to contact you by email instead of printed letters?
-router.post('/ucd-register/clear-session-data/contact-details/alt-formats/email-reason', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/what-is-your-email')
+router.post('/design-updates/additional-support/post', function(request, response) {
+    response.redirect('/design-updates/additional-support/helpers')
 })
 
-// What is your email address?
-router.post('/ucd-register/clear-session-data/contact-details/alt-formats/what-is-your-email', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
+// Do you have anyone to help you?
+router.post('/design-updates/additional-support/helpers', function(request, response) {
+    var anyoneHelp = request.session.data['helpers']
+    if (anyoneHelp == 'yes'){
+        response.redirect('/design-updates/additional-support/who-helps')
+    } else if (anyoneHelp == 'no') {
+        response.redirect('/design-updates/additional-support/advice')
+    }
 })
 
-// What is your correspondence postcode page
-router.post('/ucd-register/clear-session-data/contact-details/correspondence-postcode', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/confirm-correspondence-address')
+router.post('/design-updates/additional-support/who-helps', function(request, response) {
+    response.redirect('/design-updates/additional-support/advice')
 })
 
-// Confirm correspondence address > correspondence alt formats page
-router.post('/ucd-register/clear-session-data/contact-details/confirm-correspondence-address', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/written-format')
+router.post('/design-updates/additional-support/advice', function(request, response) {
+    response.redirect('/design-updates/additional-support/add-support-summary')
 })
 
-// Confirm correspondence address page
-router.post('/ucd-register/clear-session-data/contact-details/correspondence-enter-address-manually', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/written-format')
+router.post('/design-updates/additional-support/add-support-summary', function(request, response) {
+    response.redirect('/ucd-concepts-testing')
 })
-
-// Contact details summary page
-router.post('/ucd-register/clear-session-data/contact-details/contact-details-summary', function(request, response) {
-    response.redirect('/ucd-register/clear-session-data/task-list-cd-done')
-})
-
-// -------------------------------------------------------------------------------------

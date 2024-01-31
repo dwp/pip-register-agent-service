@@ -21,12 +21,6 @@
         <h1 class="govuk-heading-l">
           Are any of your family members working or paying national insurance in a country outside the UK?
         </h1>
-
-        <p class="govuk-body">By family member we mean:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>A husband, wife or civil partner, or</li>
-              <li>A parent you are dependent on</li>
-            </ul>
       
         {{ govukRadios({
           name: "family-insurance-abroad",
@@ -35,6 +29,14 @@
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
+          },
+          hint: {
+            html:'
+            <p class="govuk-body govuk-hint">By family member we mean:</p>
+            <ul class="govuk-list govuk-list--bullet govuk-hint">
+              <li>A husband, wife or civil partner, or</li>
+              <li>A parent you are dependent on</li>
+            </ul>'
           },
           items: [
             {

@@ -20,119 +20,58 @@
   titleText: "There is a problem",
   errorList: [
     {
-      text: "Phone number must be 15 characters or less",
-      href: "#other-number"
+      text: "Secondary phone number must be 15 characters or less, like 01632 960 001, 07700 900 982 or +44 808 157 0192",
+      href: "#full-name-input"
     }
   ]
 }) }}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="#" method="post">
+      <h1 class="govuk-heading-l">
+        What is the main phone number we can use to contact you?
+      </h1>
 
-      <h1 class="govuk-heading-l">If we need to speak to you about your claim, we'll usually contact you by phone</h1>
+      <p> We will contact you about your application by phone.</p>
 
-      <h2 class="govuk-heading-m">Will you need a textphone or an interpreter?</h2>
+      <p>  If you provide a mobile phone number, you can choose to receive updates by text message.</p>
 
-      {% set textphoneHtml %}
-      {{ govukInput({
-        id: "textphone",
-        name: "textphone",
-        type: "tel",
-        autocomplete: "tel",
-        classes: "govuk-!-width-one-third",
-        label: {
-          text: "Textphone number"
-        }
-      }) }}
-      {% endset -%}
-
-      {% set interpreterHtml %}
-      {{ govukInput({
-        id: "interpreter",
-        name: "interpreter",
-        type: "tel",
-        autocomplete: "tel",
-        classes: "govuk-!-width-two-thirds",
-        label: {
-          text: "Type of interpreter"
-        }
-      }) }}
-      {% endset -%}
-
-      {{ govukRadios({
-        name: "spoken-format",
-        fieldset: {
-          legend: {
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-
-        items: [
-          {
-            value: "standard-phone-call",
-            text: "No, contact by standard phone call"
+      <form class="form" action="#" method="post">
+        {{ govukInput({
+          label: {
+            text: "Main phone number"
           },
-          {
-            divider: "or"
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+        
+        {{ govukInput({
+          label: {
+            text: "Secondary phone number (optional)"
           },
-          {
-            value: "textphone",
-            text: "Yes, textphone",
-            conditional: {
-              html: textphoneHtml
-            }
+          hint: {
+            text: "Enter an alternative phone number with the dialling code"
           },
-          {
-            value: "interpreter",
-            text: "Yes, interpreter",
-            hint: {
-              text: "Enter interpreter needs in PIPCS notes, such as sign language or a non-English language."
-            }
+          errorMessage: {
+            text: "Secondary phone number must be 15 characters or less, like 01632 960 001, 07700 900 982 or +44 808 157 0192"
+          },
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="#" class="govuk-link">Applicant finds it difficult to hear or speak on the phone</a></p>
 
-          }
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m">What is your mobile phone number?</h2>
-
-      {{ govukInput({
-        label: {
-          text: "Mobile phone number"
-        },
-        id: "telephone-number",
-        name: "telephone-number",
-        type: "tel",
-        autocomplete: "tel",
-        classes: "govuk-input--width-20"
-      }) }}
-      
-      {{ govukInput({
-        label: {
-          text: "Other phone number (optional)"
-        },
-        hint: {
-          text: "For landline, include a dialling code like 01632 960 001."
-        },
-        errorMessage: {
-          text: "Phone number must be 15 characters or less"
-        },
-        id: "other-number",
-        name: "other-number",
-        type: "tel",
-        autocomplete: "tel",
-        classes: "govuk-input--width-20"
-      }) }}
-    
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
-    </form>
-    
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
   </div>
-</div>
 
 {% endblock %}

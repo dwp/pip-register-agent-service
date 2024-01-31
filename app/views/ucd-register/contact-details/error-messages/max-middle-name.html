@@ -37,7 +37,7 @@
             }
           ]
         }) }}
-        <span class="govuk-caption-l">Contact information</span>
+
         <h1 class="govuk-heading-l">What is your name?</h1>
 
         {{ govukInput({
@@ -73,30 +73,6 @@
         }) }}
 
         {% endcall %}
-
-        {{ govukRadios({
-          name: "contact",
-          fieldset: {
-            legend: {
-              text: "Is this the name we should use when we contact you?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No",
-              conditional: {
-                html: noHtml
-              }
-            }
-          ]
-        }) }}
 
         {{ govukButton({
           text: "Continue"

@@ -18,11 +18,6 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    <form class="form" action="#" method="post">
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -33,7 +28,7 @@
 
         <span class="govuk-caption-l">Nationality, work and residence</span>
         <h1 class="govuk-heading-l">
-          What is your nationality?
+          What country do you normally live in?
         </h1>
         
         {{ govukRadios({
@@ -46,12 +41,20 @@
           },
           items: [
           {
-            value: "british",
-            text: "British"
+            value: "northern-script",
+            text: "Northern Ireland"
           },
           {
-            value: "irish",
-            text: "Irish"
+            value: "england",
+            text: "England"
+          },
+          {
+            value: "wales",
+            text: "Wales"
+          },
+          {
+            value: "scotland",
+            text: "Scotland"
           }
           ]
         }) }}
@@ -59,29 +62,37 @@
         {% from "govuk/components/select/macro.njk" import govukSelect %}
 
         {{ govukSelect({
-          id: "another-nationality",
-          name: "another-nationality",
+          id: "another-country",
+          name: "another-country",
           label: {
-            text: "Another nationality",
-            for: "another-nationality"
+            text: "Another country",
+            for: "country"
           },
           items: [
           {
-            value: "select-nationality",
-            text: "Select a nationality"
+            value: "select-country",
+            text: "Select a country",
+            selected: true
+          },
+          {
+            value: "pipcs",
+            text: "list of countries"
           }
           ]
         }) }}
+
+
 
           {{ govukButton({
             text: "Continue"
           }) }}
 
-
       </form>
-      {% endblock %}
+
     </div>
   </div>
+
+{% endblock %}
 
 {% block scripts %}
   {{ super() }}

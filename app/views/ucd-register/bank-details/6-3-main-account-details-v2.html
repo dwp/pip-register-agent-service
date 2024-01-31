@@ -21,6 +21,7 @@
       {% from "govuk/components/button/macro.njk" import govukButton %}
      {% from "govuk/components/input/macro.njk" import govukInput %}
 
+     <span class="govuk-caption-l">Bank details</span>
       <h1 class="govuk-heading-l">Your account details</h1>
 
       <h2 class="govuk-heading-m">It is very important you give me the correct details so that any payments you are due are not delayed or lost</h2>
@@ -78,7 +79,7 @@
       <form class="form" action="#" method="post">
 
           {{ govukButton({
-            text: "Continue"
+            text: "Continue",
           }) }}
 
 

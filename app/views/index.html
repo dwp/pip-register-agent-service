@@ -26,59 +26,22 @@
   rows: [
   {
     key: {
-      text: "MTP - E2E prototype"
+      text: "Sprint 14"
     },
     value: {
-      html: '<p>Aligned prototype for MTP</p>
-      <ol class="govuk-list govuk-list--bullet">
-        <li>To be used in reference to current sprint for development tickets.</li>
-      </ol>'
+      text: "To be used in reference to current sprint for development tickets."
     },
     actions: {
       items: [
         {
-          href: "/ucd-register/signposting-eligibility/service-start-page",
+          href: "/ucd-register/welcome-screens/welcome-screen-ni",
           text: "Prototype",
           visuallyHiddenText: "prototype"
         },
         {
-          href: "/ucd-concepts-testing#check-answers",
-          text: "CYA",
+          href: "/ucd-concepts-testing#past-year",
+          text: "Scenarios",
           visuallyHiddenText: "contact details"
-        }
-      ]
-    }
-  },
-  {
-    key: {
-      text: "Eligibility MTP"
-    },
-    value: {
-      text: "Signposting and eligibility for NI."
-    },
-    actions: {
-      items: [
-        {
-          href: "/ucd-register/signposting-eligibility/service-start-page",
-          text: "Prototype",
-          visuallyHiddenText: "contact details"
-        }
-      ]
-    }
-  },
-  {
-    key: {
-      text: "Claim registration shortcut"
-    },
-    value: {
-      text: "Use to access claim reg tasks without going through welcome section."
-    },
-    actions: {
-      items: [
-        {
-          href: "/ucd-register/task-list",
-          text: "Prototype",
-          visuallyHiddenText: "prototype"
         }
       ]
     }
@@ -88,12 +51,12 @@
       text: "Error messages"
     },
     value: {
-      text: "Error message designs (ready for Dev). "
+      text: "Error message designs (ready for Dev) "
     },
     actions: {
       items: [
         {
-          href: "/error-messages-contents-2",
+          href: "/error-messages-contents",
           text: "Open page",
           visuallyHiddenText: "prototype"
         }
@@ -107,97 +70,47 @@
 <div class="govuk-!-padding-bottom-6"></div>
 
 {{govukTag({
-  text: "MTP ready backlog",
-  classes: "govuk-tag--purple"
-})}}
-
-{{ govukSummaryList({
-
-  rows: [
-  {
-    key: {
-      text: "MTP ready designs"
-    },
-    value: {
-        text:"Designs we have tested and ready to bring into dev pre MTP depending on sprint capacity (pre-release)."
-    },
-    actions: {
-      items: [
-        {
-          href: "/ucd-concepts-testing#mtp-backlog",
-          text: "Open page",
-          visuallyHiddenText: "contact details"
-        }
-      ]
-    }
-  }
-  ]
-}) }}
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-{{govukTag({
-  text: "UCD- paused for MTP",
-  classes: "govuk-tag--orange"
+  text: "UCD- in progress",
+  classes: "govuk-tag--blue"
 })}}
 
 {{ govukSummaryList({
 rows: [
 {
   key: {
-    text: "Sprint 19 - E2E prototype"
+    text: "Sprint 14"
   },
   value: {
-    html: '<p>Prototype <b>not relevant for MTP</b></p>
-  <ol class="govuk-list govuk-list--bullet">
-    <li>Full journey user experience.</li>
-    <li>Change previous answers button available throughout journey</li>
-  </ol>'
+    text: "Descriptive questions based on PIPCS script. Check your answers after each section that navigates back to tasklist on completion."
   },
   actions: {
     items: [
-    {
-      href: "/v2-ucd-register/signposting-eligibility/service-start-page",
-      text: "Prototype",
-      visuallyHiddenText: "prototype"
-    },
       {
-        href: "/ucd-concepts-testing#concepts",
+        href: "/v2-ucd-register/welcome-screens/welcome-screen-ni",
+        text: "Prototype",
+        visuallyHiddenText: "prototype"
+      },
+      {
+        href: "/ucd-concepts-testing",
         text: "Concepts",
         visuallyHiddenText: "contact details"
       }
     ]
   }
 },
+
 {
   key: {
-    text: "Eligibility MTP V1"
+    text: "Error messages "
   },
   value: {
-    text: "Signposting and eligibility for NI."
+    text: "Error message designs (TBC for dev)"
   },
   actions: {
     items: [
       {
-        href: "/v2-ucd-register/signposting-eligibility/service-start-page",
-        text: "Prototype",
-        visuallyHiddenText: "contact details"
-      }
-    ]
-  }
-},
-{
-  key: {
-    text: "Claim registration shortcut"
-  },
-  value: {
-    text: "Use to access claim reg tasks without going through welcome section."
-  },
-  actions: {
-    items: [
-      {
-        href: "/v2-ucd-register/task-list",
-        text: "Prototype",
+        href: "/error-messages-contents",
+        text: "Open page",
         visuallyHiddenText: "prototype"
       }
     ]
@@ -244,95 +157,6 @@ rows: [
 {{ govukAccordion({
   id: "accordion-with-summary-sections",
   items: [
-  {
-    heading: {
-      text: "Sprint 20"
-    },
-    summary: {
-      text: "Submit and what happens next"
-    },
-    content: {
-      html:
-      ' <ul class="govuk-list">
-        <li>
-          <a href="/design-updates/what-happens-next/save-application">WHN before submit</a>
-        </li> 
-        <li>
-          <a href="/design-updates/what-happens-next/task-list-motability-done">Standard pattern- Submit before WHN</a>
-        </li>
-      </ul>'
-    }
-  },
-  {
-    heading: {
-      text: "Sprint 19"
-    },
-    summary: {
-      text: "Eligibility"
-    },
-    content: {
-      html:
-      ' <ul class="govuk-list">
-        <li>
-          <a href="/research/sprint-19/signposting-eligibility/service-start-page">V1 Eligibility journey</a>
-        </li>
-        <li>
-          <a href="/v2-ucd-register/signposting-eligibility/other-benefits">Other benefits design concept</a>
-        </li>
-      </ul>
-      <p class="govuk-body">Testing interactions:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>How do these benefits impact the claim gather? (if others are in claim?)</li>
-      </ul>'
-    }
-  },
-  {
-    heading: {
-      text: "Sprint 18"
-    },
-    summary: {
-      text: "Additonal support conditions question- splitting testing"
-    },
-    content: {
-      html:
-      ' <ul class="govuk-list">
-        <li>
-          <a href="/research/sprint-18/additional-support/start-info">AS testing prototype link</a>
-        </li>
-      </ul>
-      <p class="govuk-body">Testing interactions:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Is splitting the original question into 2, cognitively easier to understand for agent?</li>
-      </ul>'
-    }
-  },
-
-  {
-    heading: {
-      text: "Sprint 17"
-    },
-    summary: {
-      text: "Nationality unhappy path journeys and error messaging"
-    },
-    content: {
-      html:
-      ' <ul class="govuk-list">
-        <li>
-          <a href="/v2-ucd-register/nationality/start">Nationality prototype link</a>
-        </li>
-        <li>
-          <a href="/ucd-register/bank-details/error-messages/6-1-start-val-journey">Bank validation journey link</a>
-        </li>
-      </ul>
-      <p class="govuk-body">Testing interactions:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>type of nationality unhappy path</li>
-        <li>periods abroad</li>
-        <li>bank validation page and redirection routes</li>
-      </ul>'
-    }
-  },
-
   {
     heading: {
       text: "Sprint 14"

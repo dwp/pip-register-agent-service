@@ -43,9 +43,18 @@
             ]
           }) }}
 
+        
+          <div class="govuk-button-group">
             {{ govukButton({
               text: "Continue"
             }) }}
+      
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/v2-ucd-register/task-list-as-in-progress"
+            }) }}
+          </div>
 
 
       </form>

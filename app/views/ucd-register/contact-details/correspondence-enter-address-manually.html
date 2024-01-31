@@ -28,7 +28,7 @@
 
 {% call govukFieldset({
   legend: {
-    text: "What is the address we should use to contact you?",
+    text: "What is the address we should send letters to?",
     classes: "govuk-fieldset__legend--l",
     isPageHeading: true
   }
@@ -96,13 +96,14 @@
       }
     ]
   }) }}
-
-  {{ govukButton({
-    text: "Confirm this address"
-  }) }}
+  
+    {{ govukButton({
+      text: "Confirm this address",
+      href:"/ucd-register/contact-details/dev-alt-formats"
+    }) }}
 
   <div class="govuk-body">
-    <a href="/ucd-register/contact-details/correspondence-postcode">Search by postcode</a>
+    <a href="/ucd-register/contact-details/what-is-your-postcode">Search by postcode</a>
   </div>
 
 {% endcall %}

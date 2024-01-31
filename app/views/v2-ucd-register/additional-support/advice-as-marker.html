@@ -17,67 +17,43 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        Please fill in the form to the best of your ability
+        We will send you a form about how your disability or health condition affects you
       </h1>
 
       <p class="govuk-body">
-        And send it back to us as soon as possible, to prevent delays to your claim. 
+        Please complete the form to the best of your ability, as soon as possible, to prevent delays to your claim. If you complete the form in full, your claim may be assessed without you needing an appointment with a health professional.
       </p>
 
-      <p class="govuk-body">If you complete the form in full, your claim may be assessed without you needing an appointment with a health professional.</p>
+      <p class="govuk-body">If you need more time to complete the form, you can contact us on the number I gave you earlier.  </p>
+
+     <p class="govuk-body">
+      If you have difficulties completing the form, you could also contact a local advice service. Their details can be found on your local council websites. 
+    </p>
+
 
     <h2 class="govuk-heading-m">
-      If you need more time to complete the form 
+      Would you like assistance from the Make the Call service I mentioned earlier?
     </h2>
 
-    <p class="govuk-body">
-      You can contact us on the number I gave you earlier.
-    </p>
-
-    <p class="govuk-body">
-      Phone number: 0800 121 4433.
-    </p>
-
-    <h2 class="govuk-heading-m">
-      If you have difficulties completing the form
-    </h2>
-
-    <p class="govuk-body">
-      Local advice services may be able to help you. Their details can be found on your council website.
-    </p>
-
-    <p class="govuk-body">
-      'Make the Call' is the Department's own service, and can support people who need help. 
-    </p>
-
-    {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-{{ govukInsetText({
-  text: "Phone number: 0800 232 1271"
-}) }}
-
-    {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-{{ govukRadios({
-  name: "make-call",
-  fieldset: {
-    legend: {
-      text: "Would you like assistance from the Make the Call service?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "yes",
-      text: "Yes"
-    },
-    {
-      value: "no",
-      text: "No"
-    }
-  ]
-}) }}
+    {{ govukRadios({
+      name: "makeTheCall",
+      fieldset: {
+        legend: {
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
             
         <div class="govuk-button-group">
           {{ govukButton({

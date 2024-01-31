@@ -14,72 +14,41 @@
 
       <form class="form" action="/alternative-formats/spoken-format" method="post" novalidate>
         
-        <h1 class="govuk-heading-l">If we need to speak to you about your claim, we'll usually contact you by phone</h1>
-
-        <form class="form" action="#" method="post">
-
-          {{ govukRadios({
-            id: "format",
-            name: "[altFormats].[spoken].[format]",
-            value: data["altFormats"]["spoken"]["format"],
-              fieldset: {
-              legend: {
-                text: "Do you need support when we contact you by phone, like use of a Textphone or an interpreter?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--m
-              "
-              }
+        {{ govukRadios({
+          id: "format",
+          name: "[altFormats].[spoken].[format]",
+          value: data["altFormats"]["spoken"]["format"],
+            fieldset: {
+            legend: {
+              text: "How should we contact you if we need to speak to you?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l
+            "
+            }
+            
+          },
+          hint: {
+            text: "We usually contact you by phone if we need to speak to you. Select the best option for your needs."  
+         },
+          items: [
+            {
+              value: "standard-phone-call",
+              text: "standard-phone-call" | getLabel
             },
-  
-            items: [
-              {
-                value: "standard-phone-call",
-                text: "No, contact by standard phone call"
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "textphone",
-                text: "textphone"
-              },
-              {
-                value: "signing-lipspeaking",
-                text: "Signing or lipspeaking"
-              },
-              {
-                value: "interpreter",
-                text: "big-word" | getLabel
-              }
-            ]
-          }) }}
-
-          <h2 class="govuk-heading-m">What phone number can we use to contact you?</h2>
-
-          {{ govukInput({
-            label: {
-              text: "Mobile phone number"
+            {
+              value: "textphone",
+              text: "textphone" | getLabel
             },
-            id: "telephone-number",
-            name: "telephone-number",
-            type: "tel",
-            autocomplete: "tel",
-            classes: "govuk-input--width-20"
-          }) }}
-          
-          {{ govukInput({
-            label: {
-              text: "Other phone number (optional)"
+            {
+              value: "signing-lipspeaking",
+              text: "signing-lipspeaking" | getLabel
             },
-            hint: {
-              text: "For landlines, include a dialling code like 01632 960 001."
-            },
-            id: "telephone-number",
-            name: "telephone-number",
-            type: "tel",
-            autocomplete: "tel",
-            classes: "govuk-input--width-20"
-          }) }}
+            {
+              value: "big-word",
+              text: "big-word" | getLabel
+            }
+          ]
+        }) }}
 
         <div class="govuk-button-group">
           {{ govukButton({

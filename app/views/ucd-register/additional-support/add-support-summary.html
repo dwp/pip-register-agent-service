@@ -17,7 +17,7 @@
 
       <div class="govuk-body govuk-!-margin-bottom-9">
 
-        <h1 class="govuk-heading-l">
+        <h1 class="govuk-heading-xl">
           Check your answers
         </h1>
   
@@ -29,15 +29,15 @@
           rows: [
             {
               key: {
-                text: "Mental health condition or other condition that causes difficulty"
+                text: "Has a health condition that makes it hard to remember things"
               },
               value: {
-                text: "Yes / No"
+                text: "No"
               },
               actions: {
                 items: [
                   {
-                    href: "/ucd-register/additional-support/do-you-have-a-condition",
+                    href: "/current-non-MVP/additional-support/do-you-have-a-condition",
                     text: "Change",
                     visuallyHiddenText: "Question 1"
                   }
@@ -50,12 +50,12 @@
                 text: "Able to complete forms"
               },
               value: {
-                text: "Yes / No"
+                text: "Yes"
               },
               actions: {
                 items: [
                   {
-                    href: "/ucd-register/additional-support/complete-forms",
+                    href: "additional-support/complete-forms",
                     text: "Change",
                     visuallyHiddenText: "Question 2"
                   }
@@ -67,82 +67,65 @@
                 text: "Able to read and respond to letters"
               },
               value: {
-                text: "Yes / No"
+                text: "Yes"
               },
               actions: {
                 items: [
                   {
-                    href: "/ucd-register/additional-support/complete-forms",
+                    href: "/current-non-MVP/additional-support/read-letters",
                     text: "Change",
-                    visuallyHiddenText: "Question 3"
+                    visuallyHiddenText: "Question 2"
                   }
                 ]
               }
             },
             {
               key: {
-                text: "Able to manage post"
+                text: "Able to manage your post"
               },
               value: {
-                text: "Yes / No"
+                text: "Yes"
               },
               actions: {
                 items: [
                   {
-                    href: "/ucd-register/additional-support/complete-forms",
+                    href: "/current-non-MVP/additional-support/post",
                     text: "Change",
-                    visuallyHiddenText: "Question 4"
+                    visuallyHiddenText: "Question 2"
                   }
                 ]
               }
             },
             {
               key: {
-                text: "Anyone to help with these tasks"
+                text: "Anyone to help"
               },
               value: {
-                text: "Yes / No"
+                text: "Yes"
               },
               actions: {
                 items: [
                   {
-                    href: "/ucd-register/additional-support/helpers",
+                    href: "/current-non-MVP/additional-support/helpers",
                     text: "Change",
-                    visuallyHiddenText: "Question 5"
+                    visuallyHiddenText: "Question 2"
                   }
                 ]
               }
             },
             {
               key: {
-                text: "Helper name"
+                text: "Who will help"
               },
               value: {
-                text: "Judy Dench"
+                text: "An organisation or professional"
               },
               actions: {
                 items: [
                   {
-                    href: "/ucd-register/additional-support/who-helps",
+                    href: "/current-non-MVP/additional-support/who-helps",
                     text: "Change",
-                    visuallyHiddenText: "Question 6"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Would like 'Make the Call' assistance"
-              },
-              value: {
-                text: "Yes / No"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/ucd-register/additional-support/advice-as-marker",
-                    text: "Change",
-                    visuallyHiddenText: "Question 7"
+                    visuallyHiddenText: "Question 2"
                   }
                 ]
               }
@@ -156,6 +139,10 @@
               href: "/ucd-register/task-list-as-done"
             }) }}
 
+            
+        <p class="govuk-body">
+          <a href="/ucd-register/task-list-cd-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
         
         </form>
 

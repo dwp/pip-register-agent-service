@@ -34,24 +34,12 @@
               }
             ]
           }
-        },
-        {
-          key: {
-            text: "UK account"
-          },
-          value: {
-            text: "Yes"
-          },
-          actions: {
-            items: [
-              {
-                href: "/v2-ucd-register/bank-details/6-1-start",
-                text: "Change",
-                visuallyHiddenText: "Question 1"
-              }
-            ]
-          }
-        },
+        }
+        ]
+      }) }}
+      
+      {{ govukSummaryList({
+        rows: [
           {
             key: {
               text: "Name on account"
@@ -126,7 +114,7 @@
       <form action="#" method="post">
 
         {{ govukButton({
-          text: "Save and continue",
+          text: "Resume questions",
           href: "/v2-ucd-register/additional-support/start-info"
         }) }}
 

@@ -17,7 +17,7 @@
     <div class="govuk-grid-column-two-thirds">
       
       <h1 class="govuk-heading-l">
-        When we need you to send us information about your claim
+        Communicating with the Department for Communities
       </h1>
 
       <form class="form" action="#" method="post">
@@ -98,9 +98,17 @@
                   }) }}
 
              
-                  {{ govukButton({
-                    text: "Continue"
-                  }) }}
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+      
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/v2-ucd-register/task-list-as-in-progress"
+            }) }}
+          </div>
 
       </form>
 

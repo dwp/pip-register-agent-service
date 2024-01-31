@@ -9,7 +9,7 @@ addFilter('getLabel', (id, isCheckAnswers) => {
   
   // Radio/Checkbox button labels
   const labelContent = new Object ({
-    'standard-letter' : 'No, standard letter',
+    'standard-letter' : 'Standard letter (12-point Arial text on white paper)',
     'non-standard-letter' : 'Letter with changes to font, paper colour, spacing or print size',
     'large-print' : 'Large print letter',
     'large-print-16' : '16 point',
@@ -46,10 +46,10 @@ addFilter('getLabel', (id, isCheckAnswers) => {
     'word-doc' : 'Microsoft Word document',
     'pdf' : 'PDF with accessibile text',
     'irish-sign-language-video' : 'Irish Sign Language video',
-    'standard-phone-call' : 'Contact by standard phone call',
+    'standard-phone-call' : 'Standard phone call',
     'relay-uk' : 'Relay UK',
     'textphone' : 'Textphone',
-    'big-word' : 'Language interpreter',
+    'big-word' : 'Big word language translation',
     'signing-lipspeaking' : 'Signing or lipspeaking',
     'british-sign-language-interpreter' : 'British Sign Language (BSL) interpreter',
     'deafblind-manual-alphabet' : 'Deafblind Manual alphabet',

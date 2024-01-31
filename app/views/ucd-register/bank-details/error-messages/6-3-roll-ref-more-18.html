@@ -73,48 +73,20 @@
         spellcheck: false
       }) }}
 
-      {% set accountHtml %}
       {{ govukInput({
-        id: "roll-number",
-        name: "rollNumber",
-        type: "tel",
-        autocomplete: "tel",
-        classes: "govuk-input--width-20",
         label: {
-          text: "Roll or reference number"
+          text: "Do you have a building society roll or reference number? (optional)"
         },
-        errorMessage: {
-          text: "Roll or reference number must only include letters a to z, numbers, hyphens, spaces and forward slashes"
-        }
-      }) }}
-      {% endset -%}
-
-      {{ govukRadios({
-        name: "rollNumber",
-        fieldset: {
-          legend: {
-            text: "Does your account have a roll or reference number?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
+        classes: "govuk-input--width-20 govuk-input--extra-letter-spacing",
         hint: {
           text: "You can find it on your card, statement or passbook."
         },
-        items: [
-          {
-            value: "yes",
-            text: "Yes",
-            checked: true,
-            conditional: {
-              html: accountHtml
-            }
-          },
-          {
-            value: "no",
-            text: "No"
-          }
-        ]
+        errorMessage: {
+          text: "Roll or reference number must only include letters a to z, numbers, hyphens, spaces and forward slashes"
+        },
+        id: "roll-number",
+        name: "rollNumber",
+        spellcheck: false
       }) }}
 
       <form class="form" action="#" method="post">

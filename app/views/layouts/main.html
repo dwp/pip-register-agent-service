@@ -5,53 +5,12 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
-{% block stylesheets %}
-  {{ super() }}
-  <link href="/public/css/filename-here.css" rel="stylesheet" type="text/css" />
-{% endblock %}
-
 {% from "internal-service-header/macro.njk" import dwpHeader %}
+
 {% block header %}
   {{ dwpHeader({
-  name: "Personal Independence Payment",
-  serviceHref: '/index',
-  container:true,
-  action: 'Delete application data',
-  actionHref: "/ucd-register/clear-session-data/are-you-sure-delete-question"
+  name: "Register for PIP",
+  serviceHref: '/',
+  container:true
   }) }}
-{% endblock %}
-
-
-{% block footer %}
-{% from "internal-service-footer/macro.njk" import dwpFooter %}
-
-{{ dwpFooter({
-  meta: {
-    visuallyHiddenTitle: "Meta links",
-    items: [
-    ]
-  }
-}) }} 
-{% endblock %}
-
-{% block dwpKeyDetailsBar %}
-{% from "key-details-bar/macro.njk" import dwpKeyDetailsBar %}
-
-{{
-    dwpKeyDetailsBar({
-        primaryIdentifier: {
-            text: 'Name:',
-            value: 'Jane Doe'
-        },
-        secondaryIdentifier: {
-            text: 'National Insurance Number:',
-            value: 'QQ 12 34 56 X'
-        },
-        status: {
-            text: 'Claim status:',
-            value: 'Urgent',
-            classes: 'govuk-tag--red'
-        }
-    })
-}}
 {% endblock %}

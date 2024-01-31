@@ -22,7 +22,8 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
-          <h1 class="govuk-heading-l">What date did you enter the hospice?</h1>
+          <span class="govuk-caption-l">Healthcare and support</span>
+          <h1 class="govuk-heading-l">What date did you go into the hospice?</h1>
 
           {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
@@ -46,14 +47,15 @@
           items: [
             {
               value: "unknown",
-              text: "Applicant does not know the date"
+              text: "Date unknown"
             }
           ]
         }) }}
 
         {{ govukButton({
           text: "Continue"
-          }) }}    
+          }) }}
+          
 
         </div>
       </form>

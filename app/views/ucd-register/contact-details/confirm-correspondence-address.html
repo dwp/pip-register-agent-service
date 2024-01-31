@@ -15,9 +15,8 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    
     <h1 class="govuk-heading-l">
-      Can you confirm the address we should use to contact you?
+      Can you confirm the address we should send letters to?
     </h1>
 
     <form class="form" action="#" method="post">
@@ -53,13 +52,16 @@
         }
       ]
       }) }}
+      
+      <p class="govuk-body govuk-!-margin-bottom-6"><a href="/register/contact-details/correspondence-enter-address-manually" class="govuk-link">Enter address manually</a></p>
     </div> 
 
     {{ govukButton({
-      text: "Confirm this address"
+      text: "Confirm this address",
+      href:"/ucd-register/contact-details/dev-alt-formats"
       }) }}
-
-      <p class="govuk-body govuk-!-margin-bottom-6"><a href="/ucd-register/contact-details/correspondence-enter-address-manually" class="govuk-link">Enter address manually</a></p>
 
 
 {% endblock %}
+
+

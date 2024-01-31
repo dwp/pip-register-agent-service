@@ -27,7 +27,6 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
-
   {% call govukFieldset({
     legend: {
       text: "What is your full address?",
@@ -91,9 +90,6 @@
     label: {
       text: "Country",
       for: "country"
-    },
-    hint: {
-      text: "Enter country and select it from the list."
     },
     items: [
     {

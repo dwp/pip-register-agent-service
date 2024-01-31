@@ -19,7 +19,7 @@
       <form action="#" method="post" method="post">
         
           <h1 class="govuk-heading-l">
-            I will now read out the declaration then ask you to agree to it
+            I will now read out the declaration then ask you to agree it
           </h1>
 
           <h2 class="govuk-body">You declare that the information you give will be correct and complete as far as you know and believe.​
@@ -37,18 +37,36 @@
             <li>any other benefit you may claim or be awarded in the future.</li>
           </ul>
 
-          {% from "govuk/components/button/macro.njk" import govukButton %}
+          <h2 class="govuk-heading-m">Do you agree?  </h2>
 
-          <p class="govuk-body">If you agree, we can continue to gather the information needed for your claim.</p>
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-          <div class="govuk-button-group">
-          {{ govukButton({
-          text: "Agree and continue",
-          href:"/v2-ucd-register/task-list"
+          {{ govukRadios({
+            name: "agree",
+            fieldset: {
+              legend: {
+                isPageHeading: true
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
           }) }}
 
-          <a class="govuk-link" href="/v2-ucd-register/declaration-kickout">Applicant does not agree</a>
-        </div>
+          <p class="govuk-body">Thank you, we will now continue to gather the information needed for your claim.</p>
+
+            {{ govukButton({
+              text: "Continue",
+              href:"/v2-ucd-register/task-list"
+            }) }}
+
 
       </form>
 

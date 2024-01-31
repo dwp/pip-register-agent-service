@@ -16,26 +16,24 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">Additional support needs</span>
       <h1 class="govuk-heading-l">
-        Local advice services may be able to help you fill in the forms we send to you
+        We will send you a form about how your disability or health condition affects you
       </h1>
 
       <p class="govuk-body">
-        Their details can be found on your council website.
+        Please complete the form to the best of your ability, as soon as possible, to prevent delays to your claim. If you complete the form in full, your claim may be assessed without you needing an appointment with a health professional.
       </p>
 
-      <p class="govuk-body">'Make the Call' is the Department's own service, and can support people who need help with forms.  </p>
+      <p class="govuk-body">If you need more time to complete the form, you can contact us on the number I gave you earlier.  </p>
 
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-      {{ govukInsetText({
-        text:  "'Make the Call' phone number: 0800 232 1271"
-      }) }}
-
+     <p class="govuk-body">
+      If you have difficulties completing the form, you could also contact a local advice service. Their details can be found on your local council websites. 
+    </p>
 
 
     <h2 class="govuk-heading-m">
-      Would you like assistance from the Make the Call service?
+      Would you like assistance from the Make the Call service I mentioned earlier?
     </h2>
 
     {{ govukRadios({
@@ -45,9 +43,6 @@
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
-      },
-      hint: {
-        text: "If yes, someone from Make the Call will contact you to help you fill in the forms."
       },
       items: [
         {

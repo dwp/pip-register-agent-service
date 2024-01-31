@@ -38,7 +38,7 @@
           <label class="govuk-label" for="sort">
             Choose nationality
           </label>
-          <select id="country" name="another-nationality" class="form-control">
+          <select class="govuk-select" id="sort" name="sort">
             <option value="Afghanistan">Afghan</option>
             <option value="Albania">Albanian</option>
             <option value="Algeria">Algerian</option>
@@ -308,10 +308,18 @@
 
         <div class="govuk-body govuk-!-margin-bottom-6"></div>
 
+
+        <div class="govuk-button-group">
           {{ govukButton({
             text: "Continue"
           }) }}
     
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-as-done"
+          }) }}
+        </div>
 
       </form>
       {% endblock %}

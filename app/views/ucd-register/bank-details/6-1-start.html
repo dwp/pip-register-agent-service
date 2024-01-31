@@ -32,6 +32,7 @@
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
           {{ govukRadios({
+            classes: "govuk-radios--inline",
             name: "details-now",
             fieldset: {
               legend: {

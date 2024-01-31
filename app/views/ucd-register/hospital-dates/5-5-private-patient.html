@@ -18,6 +18,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">Healthcare and support</span>
       <h1 class="govuk-heading-l">
         Are you a private patient paying all your own costs?
       </h1>
@@ -33,6 +34,7 @@
           }) %}
 
           {{ govukRadios({
+            classes: "govuk-radios--inline",
             name: "hospital-today",
             items: [
               {
@@ -42,11 +44,7 @@
               {
               value: "no",
               text: "No"
-              },
-              {
-                value: "do-not-know",
-                text: "Don't know"
-                }
+              }
             ]
           }) }}
 
