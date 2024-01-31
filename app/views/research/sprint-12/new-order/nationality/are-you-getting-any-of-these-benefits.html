@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="#" method="post">
+        <p>
+          {{ govukCheckboxes({
+            name: "are-you-getting-any-of-these-benefits",
+            fieldset: {
+              legend: {
+                text: "Are you getting any of these benefits?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "armed-forces-independence-payment",
+                text: "Armed Forces Independence Payment"
+              },
+              {
+                value: "disability-living-allowance",
+                text: "Disability Living Allowance"
+              },
+              {
+                value: "personal-independence-payment",
+                text: "Personal Independence Payment"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "none-of-these",
+                text: "None of these"
+              }
+            ]
+          }) }}
+        </p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

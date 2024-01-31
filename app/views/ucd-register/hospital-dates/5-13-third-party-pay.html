@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+
+          <span class="govuk-caption-l">Healthcare and support</span>
+          <h1 class="govuk-heading-l">Does a local authority, health authority, education authority, Jobcentre Plus, or a charity pay any of the costs for you to live there?</h1>
+
+          {% call govukFieldset({
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+            }
+          }) %}
+
+          {{ govukRadios({
+            name: "third-party-pay",
+            items: [
+          {
+            value: "no",
+            text: "No, none of these"
+          },
+          {
+            value: "no",
+            text: "I don't know"
+          },
+          {
+            divider: "or,"
+          },
+            {
+              value: "local",
+              text: "Local authority"
+            },
+            {
+              value: "yes",
+              text: "Health authority"
+            },
+            {
+              value: "yes",
+              text: "Education authority"
+            },
+            {
+              value: "yes",
+              text: "Jobcentre Plus"
+            },
+            {
+              value: "yes",
+              text: "Charity"
+            }
+          ]
+          }) }}
+
+          {% endcall %}
+          
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+    
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

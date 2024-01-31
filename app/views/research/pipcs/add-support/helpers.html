@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        <h1 class="govuk-heading-l">
+          Who will help you?
+        </h1>
+
+        <div id="account-number-hint" class="govuk-hint">
+          For example a family member, friend, neighbour, support worker or local support organisation such as Citizens Advice or other advice organisation.
+        </div>
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "up to 200 characters"
+          },
+          classes: "govuk-!-width-full",
+          id: "full",
+          name: "full"
+        }) }}
+
+          {{ govukButton({
+            text: "Continue",
+            href: "/research/pipcs/add-support/difficulty-communicating",
+            isContinueButton: true
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

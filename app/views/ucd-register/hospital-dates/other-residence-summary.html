@@ -1,0 +1,165 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+        <h1 class="govuk-heading-xl">
+          Check your answers
+        </h1>
+  
+        <h2 class="govuk-heading-m">
+          Hospital and care facilities
+        </h2>
+  
+              {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "In hospital or hospice today"
+              },
+              value: {
+                text: "No"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/5-2-today",
+                    text: "Change",
+                    visuallyHiddenText: "Question 1"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "In other accommodation today"
+              },
+              value: {
+                text: "Care home"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/5-3-other-housing-today",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "In this accommodation yesterday"
+              },
+              value: {
+                text: "Yes"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/5-12-other-yesterday",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Third party paying costs"
+              },
+              value: {
+                text: "I don't know"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/5-13-third-party-pay",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Accommodation address"
+              },
+              value: {
+                html: "1 Washington street,<br>Worcester<br> WR1 1NL"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/5-16-select-other-address",
+                    text: "Change",
+                    visuallyHiddenText: "Question 3"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Third party name"
+              },
+              value: {
+                html: "XXXXX XXXXXX"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/5-23-name",
+                    text: "Change",
+                    visuallyHiddenText: "Question 3"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Agreement to pay back costs"
+              },
+              value: {
+                html: "Yes"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/5-14-local-agreement",
+                    text: "Change",
+                    visuallyHiddenText: "Question 3"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      </div>
+  
+            {{ govukButton({
+              text: "Save and continue",
+              href: "/ucd-register/task-list-in-progress-hospice"
+            }) }}
+
+            <p class="govuk-body">
+              <a href="/ucd-register/task-list-bank-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+            </p>
+        </form>
+
+    </div>
+  </div>
+{% endblock %}

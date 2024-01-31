@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          <form action="#" method="post" novalidate>
+            {{ govukRadios({
+              name: "are-you-getting-any-of-these-benefits",
+              fieldset: {
+                legend: {
+                  text: "Are you getting any of these benefits?",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--l"
+                }
+              },
+              items: [
+                {
+                  value: "armed-forces",
+                  text: "Armed Forces Independence Payment"
+                },
+                {
+                  value: "dla",
+                  text: "Disability Living Allowance"
+                },
+                {
+                  value: "pip",
+                  text: "Personal Independance Payment"
+                },
+                {
+                  divider:"or"
+                },
+                {
+                  value: "none",
+                  text: "None of these"
+                }
+              ]
+            }) }}
+    
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

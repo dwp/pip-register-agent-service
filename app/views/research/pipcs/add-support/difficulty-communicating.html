@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Do you have difficulty communicating with us?
+      </h1>
+
+      <p class="govuk-body">This could be things like sending information to us or understanding information that we may send to you, due to your health condition or disability?</p>
+
+      <p class="govuk-hint">For example, you may have a condition such as: severe mental health or behavioural condition, learning difficulty, developmental disorder or memory problems.</p>
+
+      <form class="form" action="#" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+            name: "condition",
+            fieldset: {
+              legend: {
+
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No",
+                hint: {
+                  text: "If your needs change, you can let us know at any time on the number I gave you earlier"
+                }
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue",
+            href: "/index",
+            isContinueButton: true
+          }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

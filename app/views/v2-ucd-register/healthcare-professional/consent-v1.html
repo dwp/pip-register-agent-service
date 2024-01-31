@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/ucd-register/task-list-in-progress-hcp-done" method="post" method="post">
+
+        <span class="govuk-caption-l">Healthcare and support</span>
+          <h1 class="govuk-heading-l">
+            I just need to ask you about giving your consent to share your information.
+          </h1>
+
+          <h2 class="govuk-body govuk-!-font-weight-bold">The Department for Work and Pensions (DWP) or approved healthcare professionals that work for DWP, might need more information about your health condition and how it affects you.</h2>
+
+          <p class="govuk-body">They might ask for relevant information from your doctor, or any other relevant professional you tell them about.</p>
+
+          <p class="govuk-body">DWP uses this information to process and to make a decision on your claim, or any mandatory reconsideration or appeal you make.</p>
+
+            <p class="govuk-body">The law allows DWP to get, keep and use this information. </p>
+
+
+            <h2 class="govuk-body govuk-!-font-weight-bold"> Your doctor (or other relevant professionals you tell DWP about) needs your consent to give information to DWP.</h2>
+
+            <p class="govuk-body">If you give your consent, this lets them know that they are legally allowed to share this information with DWP.</p>
+
+            <p class="govuk-body">DWP can lawfully ask your doctor, hospital consultant or other relevant professionals for information about your health condition and how it affects you. This is because we are asking for the information to help us carry out our official social security functions.</p>
+
+
+            <h2 class="govuk-body govuk-!-font-weight-bold"> You do not have to give your consent. </h2>
+
+            <p class="govuk-body">If you do not, DWP will make a decision based on the information they have already, as well as any you give them yourself.</p>
+
+
+            <h2 class="govuk-heading-m">Do you give consent for your doctor or other relevant professionals to give DWP more information about your health condition? </h2>
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            name: "details-now",
+            fieldset: {
+              legend: {
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          <h2 class="govuk-body govuk-!-font-weight-bold">If you change your mind </h2>
+
+            <p class="govuk-body">You can contact us on the number I gave you earlier, and say you want to give or withdraw your consent</p>
+
+            <p class="govuk-body">If you withdraw your consent, DWP cannot get information from your doctor or others you tell us about.</p>
+
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

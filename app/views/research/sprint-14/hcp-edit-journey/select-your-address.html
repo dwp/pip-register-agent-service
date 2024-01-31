@@ -1,0 +1,92 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Can you confirm the full address?
+      </h1>
+
+      <form class="form" action="/design-updates/hcp-cya-concepts/hcp-edit-journey/additional-support-needed" method="post">
+        <div class="govuk-width-container">
+          <p>6 addresses found for <b>wr11nl</b> and <b>1</b>. <a href="/research/sprint-12/new-order/healthcare-professional/postcode">Search again</a></p>
+
+        {{ govukRadios({
+          name: "select-an-address",
+          items: [
+            {
+            value: "John Radcliffe Hospital, Headley Way, Headington, Oxford, Oxfordshire, OX3 9DU",
+            text: "John Radcliffe Hospital, Headley Way, Headington, Oxford, Oxfordshire, OX3 9DU"
+            },
+            {
+            value: "Beech Road, Headington, Oxford, Oxfordshire, OX3 7RP",
+            text: "Beech Road, Headington, Oxford, Oxfordshire, OX3 7RP"
+            },
+            {
+            value: "Warneford Lane, Headington, Oxford, Oxfordshire, OX3 7JX",
+            text: "Warneford Lane, Headington, Oxford, Oxfordshire, OX3 7JX"
+            },
+            {
+            value: "Old Road, Headington, Oxford, Oxfordshire, OX3 7LE",
+            text: "Old Road, Headington, Oxford, Oxfordshire, OX3 7LE"
+            },
+            {
+            value: "Churchill Hospital, Old Road, Headington, Oxford, Oxfordshire, OX3 7JU",
+            text: "Churchill Hospital, Old Road, Headington, Oxford, Oxfordshire, OX3 7JU"
+            },
+            {
+            value: "Sandford Road, Littlemore, Oxford, Oxfordshire, OX4 4XN",
+            text: "Sandford Road, Littlemore, Oxford, Oxfordshire, OX4 4XN"
+            },
+            {
+              value:"Abingdon Community Hospital, Marcham Road, Abingdon, Oxfordshire, OX14 1AG",
+              text: "Abingdon Community Hospital, Marcham Road, Abingdon, Oxfordshire, OX14 1AG"
+              },
+              {
+                value:"Bicester Community Hospital, Piggy Lane, Bicester, Oxfordshire, OX26 6HT",
+                text: "Bicester Community Hospital, Piggy Lane, Bicester, Oxfordshire, OX26 6HT"
+                },
+              {
+               value:"Thame Community Hospital, East Street, Thame, OX9 3JT",
+               text: "Thame Community Hospital, East Street, Thame, OX9 3JT"
+               },
+               {
+                value: "Didcot Community Hospital, Wantage Road, Didcot, Oxfordshire, OX11 0AG",
+                text: "Didcot Community Hospital, Wantage Road, Didcot, Oxfordshire, OX11 0AG"
+               },
+               {
+                value: "Witney Community Hospital, Welch Way, Witney, Oxfordshire, OX28 6JJ",
+                text: "Witney Community Hospital, Welch Way, Witney, Oxfordshire, OX28 6JJ"
+               }
+          ]
+        }) }}
+        
+      </div> 
+
+        {{ govukButton({
+        text: "Confirm this address",
+        href: "/research/sprint-14/hcp-edit-journey/hp-summary-main-changed"
+        }) }}
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/research/sprint-14/hcp-edit-journey/main-enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

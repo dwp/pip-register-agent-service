@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Benefits and insurance in other countries
+      </h1>
+
+      <p class="govuk-body">
+        The next questions refer to countries in the European Economic Area (EEA) and Switzerland.
+      </p>
+
+      <p class="govuk-body"><a href="#" class="govuk-link">Check which countries are in the EEA (opens in a new tab)</a>
+      </p>
+
+      <p class="govuk-body">
+        If you or a family member is working or receiving payments in one of these countries, it may affect your entitlement to PIP.
+      </p>
+
+      <p class="govuk-body">
+        By family member we meean:
+      </p>
+
+      <p class="govuk-body">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>A husband, wife or civil partner</li>
+          <li>A parent you are dependent on</li>
+        </ul>
+      </p>
+
+      <form action="/research/sprint-6/complex-question/benefits-abroad" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

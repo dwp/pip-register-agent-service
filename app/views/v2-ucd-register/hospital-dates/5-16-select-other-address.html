@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Can you confirm the care home's address?
+      </h1>
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+          <p>13 addresses found for <b>Isabel hospice</b>. <a href="/v2-ucd-register/hospital-dates/5-15-other-postcode">Search again</a></p>
+
+        {{ govukRadios({
+          name: "select-an-address",
+          items: [
+            {
+            value: "Isabel Hospice, Douglas Tilbe House, Hall GroveWelwyn Garden City, AL7 4PH",
+            text: "Isabel Hospice, Douglas Tilbe House, Hall GroveWelwyn Garden City, AL7 4PH"
+            },
+            {
+            value: "Isabel Hospice, 29 Stonehills, Welwyn Garden City, AL8 6NA",
+            text: "Isabel Hospice, 29 Stonehills, Welwyn Garden City, AL8 6NA"
+            },
+            {
+            value: "Isabel Hospice, 72 Town Centre, Hatfield, AL10 0JW",
+            text: "Isabel Hospice, 72 Town Centre, Hatfield, AL10 0JW"
+            },
+            {
+            value: "Isabel Hospice, 34 Town Centre, Hatfield, AL10 0LD",
+            text: "Isabel Hospice, 34 Town Centre, Hatfield, AL10 0LD"
+            },
+            {
+            value: "Isabel Hospice, 83-84, The Galleria Comet Way, Hatfield, AL10 0YA",
+            text: "Isabel Hospice, 83-84, The Galleria Comet Way, Hatfield, AL10 0YA"
+            },
+            {
+            value: "Isabel Hospice, 6 Bridge Street, Bishop's Stortford, CM23 2JY",
+            text: "Isabel Hospice, 6 Bridge Street, Bishop's Stortford, CM23 2JY"
+            },
+
+            {
+              value: "Isabel Hospice, 3 Station RoadCuffley, Potters Bar, EN6 4HU",
+              text: "Isabel Hospice, 3 Station Road, Cuffley, Potters Bar, EN6 4HU"
+              },
+              {
+              value: "Isabel Hospice, 61 Bridge Road, EastWelwyn Garden City, AL7 1JR",
+              text: "Isabel Hospice, 61 Bridge Road, EastWelwyn Garden City, AL7 1JR"
+              },
+              {
+              value: "Isabel Hospice Shop, 29 Stonehills, Welwyn Garden City, AL8 6NA",
+              text: "Isabel Hospice Shop, 29 Stonehills, Welwyn Garden City, AL8 6NA"
+              },
+              {
+              value: "Isabel Hospice, 34 Town Centre, Hatfield, AL10 0LD",
+              text: "Isabel Hospice, 34 Town Centre, Hatfield, AL10 0LD"
+              },
+              {
+              value: "Summer Raffle, 61 Bridge Road East, Welwyn Garden City, AL7 1JR",
+              text: "Summer Raffle, 61 Bridge Road East, Welwyn Garden City, AL7 1JR"
+              },
+              {
+              value: "Isabel Hospice Head Office, 61 Bridge Road EastWelwyn Garden City, AL7 1JR",
+              text: "Isabel Hospice Head Office, 61 Bridge Road EastWelwyn Garden City, AL7 1JR"
+              },
+              {
+                value: "Lights of Love, 61 Bridge Road East, Welwyn Garden City, AL7 1JR",
+                text: "Lights of Love, 61 Bridge Road East, Welwyn Garden City, AL7 1JR"
+                }
+          ]
+        }) }}
+      
+      </div> 
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Confirm this address"
+        }) }}
+  
+        {{ govukButton({
+          text: "Change previous answers",
+          classes: "govuk-button--secondary",
+          href: "/v2-ucd-register/task-list-accom-in-progress"
+        }) }}
+      </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/v2-ucd-register/hospital-dates/5-19-other-address-manually" class="govuk-link">Enter address manually</a></p>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+
+          <span class="govuk-caption-l">How we pay you</span>
+          <h1 class="govuk-heading-l">What date did you go into the hospice?</h1>
+
+          {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "passport-issued",
+          namePrefix: "hospice-date",
+          hint: {
+            text: "Enter a date, like  27 3 2007"
+          }
+        }) }}
+
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          name: "hospice-date",
+          fieldset: {
+            legend: {
+              isPageHeading: true
+            }
+          },
+          items: [
+            {
+              value: "unknown",
+              text: "Date unknown"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+          }) }}
+          
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

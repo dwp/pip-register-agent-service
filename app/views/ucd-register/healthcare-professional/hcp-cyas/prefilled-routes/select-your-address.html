@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Healthcare and support</span>
+      <h1 class="govuk-heading-l">
+        Can you confirm the full address?
+      </h1>
+
+      <form class="form" action="/v2-ucd-register/healthcare-professional/enter-address-manually" method="post">
+        <div class="govuk-width-container">
+          <p>6 addresses found for <b>wr11nl</b> and <b>1</b>. <a href="/v2-ucd-register/healthcare-professional/postcode">Search again</a></p>
+
+        {{ govukRadios({
+          name: "select-an-address",
+          items: [
+            {
+            value: "1 Washington Street, Worcester, WR1 1NL",
+            text: "1 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "10 Washington Street, Worcester, WR1 1NL",
+            text: "10 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "11 Washington Street, Worcester, WR1 1NL",
+            text: "11 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "101 Washington Street, Worcester, WR1 1NL",
+            text: "101 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "110 Washington Street, Worcester, WR1 1NL",
+            text: "110 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "111 Washington Street, Worcester, WR1 1NL",
+            text: "111 Washington Street, Worcester, WR1 1NL"
+            }
+          ]
+        }) }}
+        
+      </div> 
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Confirm this address",
+          href: "/v2-ucd-register/healthcare-professional/hcp-cyas/remove-second-hcp"
+        }) }}
+
+        {{ govukButton({
+          text: "Change previous answers",
+          classes: "govuk-button--secondary",
+          href: "/v2-ucd-register/task-list-hcp-in-progress"
+        }) }}
+      </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/v2-ucd-register/healthcare-professional/enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

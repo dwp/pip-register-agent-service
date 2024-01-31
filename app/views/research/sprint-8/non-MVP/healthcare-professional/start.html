@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" novalidate></form>
+
+          <h1 class="govuk-heading-l">
+            These next questions are about the people that support you with your long term health condition
+          </h1>
+
+          <p>
+            You will be able to give me details of up to two people during this call.</p>
+
+           <p>If you want to provide more, you will be able to give more in the form we will send you after this call.</p>
+
+           <p>(Something about if you have not consent, why we still need to take a health professionals information).</p>
+
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue",
+              href: "/research/sprint-8/non-MVP/healthcare-professional/healthcare-prof-type",
+              isContinueButton: true
+            }) }}
+
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/research/sprint-8/non-MVP/task-list-in-progress-hcp"
+            }) }}
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

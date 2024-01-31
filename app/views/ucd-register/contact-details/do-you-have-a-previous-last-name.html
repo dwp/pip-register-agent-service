@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="#" method="post">
+
+        <span class="govuk-caption-l">Contact information</span>
+
+        {% set yesHtml %}
+        {{ govukInput({
+          id: "contact-by-phone",
+          name: "contactByPhone",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Previous last name"
+          },
+          hint: {
+            text: "If there is more than one previous last name, enter the most recent."
+          }
+        }) }}
+        {% endset -%}
+  
+  
+          {{ govukRadios({
+            name: "contact",
+            fieldset: {
+              legend: {
+                text: "Do you have a previous last name?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                conditional: {
+                  html: yesHtml
+                }
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+      
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+

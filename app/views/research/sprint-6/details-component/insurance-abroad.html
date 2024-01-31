@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post"></form>
+
+    <h1 class="govuk-heading-l">Are you or a family member working or paying insurance in a country in the European Economic Area or Switzerland?</h1>
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+    {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{{ govukDetails({
+summaryText: "What we mean by family member",
+text: "By 'family member' we mean husband, wife, civil partner or a parent you're financially dependant on."
+}) }}
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "research-insurance-abroad",
+        fieldset: {
+          legend: {
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      <form action="/index" method="post" novalidate>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </div>
+</div>
+
+
+{% endblock %}

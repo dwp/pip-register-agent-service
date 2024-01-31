@@ -1,0 +1,374 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+      <h1 class="govuk-heading-xl">
+        Answers given so far
+      </h1>
+
+      <h2 class="govuk-heading-l">
+        Contact details
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "John Smith"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/contact-details/what-is-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>07700 900457</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/contact-details/what-is-your-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Text message updates"
+            },
+            value: {
+              text: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/contact-details/do-you-want-to-receive-text-updates",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "1 Washington Street,<br>Worcester<br>WR1 1NL"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/contact-details/select-your-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Same address for letters"
+            },
+            value: {
+              text: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Alternative formats
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Alternative formats needed"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/contact-details/alternative-formats",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-l">
+        Nationality, residence and living abroad
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Nationality"
+            },
+            value: {
+              text: "British"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/nationality/what-is-your-nationality",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Country normally lived in"
+            },
+            value: {
+              text: "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Lived anywhere other than UK in last 3 years"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Left UK for more than 4 weeks at once in last 3 years"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/nationality/abroad-over-four-weeks",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Pensions, benefits and work outside the UK
+      </h2>
+
+            {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Receiving pensions or benefits from EEA country or Switzerland"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/nationality/benefits-abroad",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Working or paying insurance in EEA country or Switzerland"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/nationality/insurance-abroad",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+      <h2 class="govuk-heading-l">
+        Health and support contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Main health contact"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Remove",
+                visuallyHiddenText: "of University of Bristol"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: "Dr Jones"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Profession or support type"
+            },
+            value: {
+              html: "General Practitioner"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey, 
+                CR3 0BD</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/hcp-change-address",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          }
+        ]
+      }) }}
+
+    </div>
+
+          {{ govukButton({
+            text: "Go back to where I left off",
+            href: "/non-MVP/additional-support/start-info"
+          }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

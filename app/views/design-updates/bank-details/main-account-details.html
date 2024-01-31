@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" novalidate></form>
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+     {% from "govuk/components/input/macro.njk" import govukInput %}
+
+      <h1 class="govuk-heading-l">Your account details</h1>
+
+      {{ govukInput({
+        label: {
+          text: "Name on the account"
+        },
+        hint: {
+          text: "The name must be exactly what is shown on the debit card, chequebook or statement"
+        },
+        id: "name-on-the-account",
+        name: "nameOnTheAccount",
+        autocomplete: "name",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Sort code"
+        },
+        classes: "govuk-input--width-5 govuk-input--extra-letter-spacing",
+        hint: {
+          text: "Please tell us all six numbers, for example, 12-34-56"
+        },
+        id: "sort-code",
+        name: "sortCode",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Account number "
+        },
+        classes: "govuk-input--width-10 govuk-input--extra-letter-spacing",
+        hint: {
+          text: "Most account numbers are eight numbers long"
+        },
+        id: "account-number",
+        name: "accountNumber",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Do you have a building society roll or reference number? (optional)"
+        },
+        classes: "govuk-input--width-20 govuk-input--extra-letter-spacing",
+        hint: {
+          text: "This may be a mix of letters and numbers, and may be up to 18 characters long."
+        },
+        id: "roll-number",
+        name: "rollNumber",
+        spellcheck: false
+      }) }}
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+        {{ govukInsetText({
+          text: "It is very important you give me the correct details so that any payments you are due are not delayed or lost."
+        }) }}
+
+      <form class="form" action="#" method="post">
+
+
+          {{ govukButton({
+            text: "Continue",
+            href: "/ucd-register/task-list-in-progress-pay-done",
+            isContinueButton: true
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

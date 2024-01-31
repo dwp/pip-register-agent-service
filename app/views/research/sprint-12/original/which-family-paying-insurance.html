@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+
+      <span class="govuk-caption-l">Nationality, work and residence</span>
+        <h1 class="govuk-heading-l">
+          Which of your family members are working or paying national insurance in this country?
+        </h1>
+      
+        {{ govukRadios({
+          name: "which-family-member",
+          fieldset: {
+            legend: {
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html:
+            '<p class="govuk-body govuk-hint">select all that apply</p>'
+          },
+          items: [
+          {
+            value: "spouse-another",
+            text: " A husband, wife, or civil partner"
+          },
+            {
+              value: "parent",
+              text: "A parent"
+            },
+            {
+              value: "spouse-another",
+              text: "Another family member"
+            }
+          ]
+        }) }}
+  
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+
+  </div>
+</div>
+
+
+{% endblock %}

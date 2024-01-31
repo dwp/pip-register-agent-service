@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+
+          <h1 class="govuk-heading-l">
+            Were you living in this care home yesterday?
+          </h1>
+          
+          {% call govukFieldset({
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+            }
+          }) %}
+
+          {{ govukRadios({
+            name: "other-yesterday",
+            items: [
+              {
+              value: "yes",
+              text: "Yes"
+              },
+              {
+              value: "no",
+              text: "No"
+              }
+            ]
+          }) }}
+
+          {% endcall %}
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+      
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/v2-ucd-register/task-list-accom-in-progress"
+            }) }}
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

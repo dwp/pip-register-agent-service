@@ -1,0 +1,224 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+{% set textHtml %}
+{{ govukInput({
+  id: "other-support-type",
+  name: "support",
+  type: "tel",
+  autocomplete: "tel",
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Support person"
+  }
+}) }}
+{% endset -%}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" novalidate>
+        
+        <h1 class="govuk-heading-l">Your second health contact</h1>
+
+        {{ govukRadios({
+          name: "astype",
+          fieldset: {
+            legend: {
+              text: "What is their job or their relationship to you?",
+            classes: "govuk-label--m",
+              isPageHeading: true,
+              classes: "govuk-label--m"
+            }
+          },
+          hint: {
+            text: "For example, hospital doctor, community psychiatric nurse, carer, family member or friend."
+          },
+          items: [
+          {
+            value: "support-workers",
+            text: "Support worker"
+          },
+          {
+            value: "carer",
+            text: "Carer"
+          },
+          {
+            value: "spec-nurse",
+            text: "Specialist nurse"
+          },
+          {
+            value: "other",
+            text: "Other",
+            conditional: {
+              html: textHtml
+            }
+          }
+          ]
+        }) }}
+
+        <div><p class="govuk-body govuk-!-margin-bottom-6"></div>
+
+        {{ govukInput({
+          label: {
+            text: "What is their full name?",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter their position or job title if name is not known. For example, 'Duty GP'."
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        <div><p class="govuk-body govuk-!-margin-bottom-6"></div>
+
+        {% set textHtml %}
+          {{ govukInput({
+            id: "phone-number-known",
+            name: "contact",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Phone number"
+            }
+          }) }}
+        {% endset -%}
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+        
+        {% call govukFieldset({
+          legend: {
+            text: "What is their address?",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: true
+          }
+        }) %}
+        
+          {{ govukInput({
+            label: {
+              text: 'Address line 1'
+            },
+            id: "address-line-1",
+            name: "address-line-1",
+            autocomplete: "address-line1"
+          }) }}
+        
+          {{ govukInput({
+            label: {
+              text: 'Address line 2 (optional)'
+            },
+            id: "address-line-2",
+            name: "address-line-2",
+            autocomplete: "address-line2"
+          }) }}
+        
+          {{ govukInput({
+            label: {
+              text: "Town or city"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "address-town",
+            name: "address-town",
+            autocomplete: "address-level2"
+          }) }}
+        
+          {{ govukInput({
+            label: {
+              text: "County (optional)"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "address-county",
+            name: "address-county"
+          }) }}
+        
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "address-postcode",
+            name: "address-postcode",
+            autocomplete: "postal-code"
+          }) }}
+
+          <div class="govuk-body govuk-!-margin-bottom-6"></div>
+      
+          {% set textHtml %}
+          {{ govukInput({
+            id: "phone-number-known",
+            name: "contact",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Phone number"
+            }
+          }) }}
+        {% endset -%}
+      
+          {{ govukRadios({
+            name: "contact",
+            fieldset: {
+              legend: {
+                text: "Do you know their phone number?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: textHtml
+              }
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+            ]
+          }) }}
+
+          <div><p class="govuk-body govuk-!-margin-bottom-6"></div>
+          
+            <div class="govuk-button-group">
+              {{ govukButton({
+                text: "Continue"
+              }) }}
+      
+              {{ govukButton({
+                text: "Change previous answers",
+                classes: "govuk-button--secondary",
+                href: "/research/sprint-8/non-MVP/task-list-in-progress-hcp"
+              }) }}
+            </div>
+
+          {% endcall %}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

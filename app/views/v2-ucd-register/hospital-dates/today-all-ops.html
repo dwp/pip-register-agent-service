@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <span class="govuk-caption-l">Hospital and care facilities</span>
+      <h1 class="govuk-heading-l">
+        Are you in hospital or a hospice as an in-patient today?
+      </h1>
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          name: "hosp-all-today",
+          fieldset: {
+            legend: {
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes-hospital",
+              text: "Yes, hospital"
+            },
+            {
+              value: "yes-hospice",
+              text: "Yes, hospice"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+
+     <form class="form" action="#" method="post">
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/ucd-register/hospital-dates/today",
+      isButton: true
+    }) }}
+
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}

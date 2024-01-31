@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        <span class="govuk-caption-l">Contact information</span>
+        <h1 class="govuk-heading-l">
+          Do you need us to send letters in another format?
+        </h1>
+       
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+            name: "different-format",
+            fieldset: {
+              legend: {
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html:'
+              <p class="govuk-hint">This could be braille, sign language, audio, paper and other formats.</p>'
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+  
+            {{ govukButton({
+              text: "Edit answers",
+              classes: "govuk-button--secondary",
+              href: "/non-MVP/task-list-in-progress"
+            }) }}
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

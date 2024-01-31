@@ -1,0 +1,135 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <form action="#" method="post">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Health and care contacts
+      </h2>
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Karen Jones"
+          },
+          actions: {
+            items: [
+              {
+                href: "/ucd-register/healthcare-professional/hcp-cyas/remove-add-health-professional",
+                text: "Remove",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        rows: [
+        {
+          key: {
+            text: "Name"
+          },
+          value: {
+            html: "Karen Jones"
+          },
+          actions: {
+            items: [
+              {
+                href: "/ucd-register/healthcare-professional/hcp-cyas/prefilled-routes/additional-support-type",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+          {
+            key: {
+              text: "Job or support role"
+            },
+            value: {
+              html: "<p class='govuk-body'> Physiotherapist</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/hcp-cyas/prefilled-routes/additional-support-type",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>0795 42687</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/hcp-cyas/prefilled-routes/additional-support-type",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>64 Zoo lane, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/hcp-cyas/prefilled-routes/second-postcode",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body">
+        <a href="/ucd-register/healthcare-professional/hcp-cyas/add-another/additional-support-type" class="govuk-link govuk-link--no-visited-state">Add another contact</a>
+      </p>
+
+      <div class="govuk-!-padding-bottom-3"></div> 
+
+      {{ govukButton({
+        text: "Save and continue",
+        href: "/ucd-register/task-list-hcp-done"
+      }) }}
+
+
+        <p class="govuk-body">
+          <a href="#" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

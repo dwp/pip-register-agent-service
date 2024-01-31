@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" novalidate>
+        
+         <span class="govuk-caption-l">Healthcare and support</span>
+          <h1 class="govuk-heading-l">
+            These next questions are about the people that support you and know about the help you need
+          </h1>
+
+          <p> You will be able to give me details of up to two people during this call.</p>
+
+           <p>You can give more in the form we will send you after this call.</p>
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

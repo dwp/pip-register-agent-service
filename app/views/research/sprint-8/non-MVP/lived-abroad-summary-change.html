@@ -1,0 +1,129 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Return to task list",
+    href: "/research/sprint-8/non-MVP/task-list-in-progress-add"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+        {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+        {% set html %}
+          <h3 class="govuk-notification-banner__heading">
+           Living abroad details updated
+          </h3>
+          <p class="govuk-body">Review your updated answers in <a class="govuk-notification-banner__link" href="#">Nationality, residence and living abroad</a> before continuing.</p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: html,
+          type: "success"
+        }) }}
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-l">
+        Nationality, residence and living abroad
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Nationality"
+            },
+            value: {
+              text: "British"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/nationality/what-is-your-nationality",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Country normally lived in"
+            },
+            value: {
+              text: "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Lived anywhere other than UK in last 3 years"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/nationality/lived-elsewhere",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Left UK for more than 4 weeks at once in last 3 years"
+            },
+            value: {
+              text: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/nationality/abroad-over-four-weeks-change",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+
+    {{ govukButton({
+      text: "Resume questions",
+      href: "/research/sprint-8/non-MVP/additional-support/start-info"
+    }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

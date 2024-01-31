@@ -1,0 +1,168 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+{% set textHtml %}
+{{ govukInput({
+  id: "other-support-type",
+  name: "support",
+  type: "tel",
+  autocomplete: "tel",
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Support person"
+  }
+}) }}
+{% endset -%}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" novalidate>
+
+        <span class="govuk-caption-l">Healthcare and support</span>
+        <h1 class="govuk-heading-l">
+          Your second health contact
+        </h1>
+
+          {% set jobHtml %}
+          {{ govukInput({
+            id: "job",
+            name: "job",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-!-width-two-thirds"
+          }) }}
+          {% endset -%}
+
+          {{ govukRadios({
+            name: "contact",
+            fieldset: {
+              legend: {
+                text: "What is their job or their relationship to you?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "GP",
+                text: "GP"
+              },
+              {
+                value: "hospital-doctor",
+                text: "Hospital doctor"
+              },
+              {
+                value: "specialist-nurse",
+                text: "Specialist nurse"
+              },
+              {
+                value: "other",
+                text: "Other job or support role",
+                conditional: {
+                  html: jobHtml
+                }
+              }
+            ]
+          }) }}
+
+        <div class="govuk-body govuk-!-margin-bottom-6"></div>
+
+        {{ govukInput({
+          label: {
+            text: "What is their full name?",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter their position or job title if name is not known. For example, 'Duty GP'."
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+          <div class="govuk-body govuk-!-margin-bottom-6"></div>
+      
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {% from "govuk/components/input/macro.njk" import govukInput %}
+  
+  
+        {% set phoneHtml %}
+        {{ govukInput({
+          id: "phone-number",
+          name: "phoneNumber",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Enter phone number"
+          }
+        }) }}
+        {% endset -%}
+  
+          {{ govukRadios({
+            name: "contact",
+            fieldset: {
+              legend: {
+                text: "Do you know their phone number?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "Enter a phone number, like 07700 900 982 or 01632 960 001."
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                conditional: {
+                  html: phoneHtml
+                }
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+
+          <div class="govuk-body govuk-!-margin-bottom-6"></div>
+          
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue",
+              href: "/ucd-register/healthcare-professional/hcp-cyas/add-another/postcode-support"
+            }) }}
+    
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/ucd-register/task-list-hcp-in-progress"
+            }) }}
+          </div>
+
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

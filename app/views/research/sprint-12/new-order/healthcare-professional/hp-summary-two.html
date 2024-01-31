@@ -1,0 +1,168 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Health and care contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Dr Smith"
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-12/new-order/healthcare-professional/healthcare-prof-type",
+                text: "Change",
+                visuallyHiddenText: "of University of Bristol"
+              }
+            ]
+          }
+        },
+        rows: [
+        {
+          key: {
+            text: "Job or support role"
+          },
+          value: {
+            html: "General Practitioner"
+          }
+        },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-12/new-order/healthcare-professional/postcode",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Add another health contact"
+            },
+            value: {
+              text: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-12/new-order/healthcare-professional/additional-support-needed",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Karen Jones"
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-12/new-order/healthcare-professional/additional-support-type",
+                text: "Change",
+                visuallyHiddenText: "of University of Bristol"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Job or support role"
+            },
+            value: {
+              html: "<p class='govuk-body'> Family member</p>"
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>0795 42687</p>"
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>64 Zoo lane, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-12/new-order/healthcare-professional/postcode-support",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+      <form action="#" method="post">
+
+        {{ govukButton({
+          text: "Save and continue",
+          href: "/research/sprint-12/new-order/healthcare-professional/hp-summary"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

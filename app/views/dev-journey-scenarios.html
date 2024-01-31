@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">All Scenario types</h1>
+
+<h1 class="govuk-heading-m">Uniform patterns across all journeys</h1>
+
+<h1 class="govuk-body">Address not found pattern for all address journeys</h1>
+
+<div class="govuk-body"><a href="/no-address-found-journey/no-address-found">'No address found'</a></div>
+
+
+
+<h1 class="govuk-heading-m">Contact details specific</h1>
+
+<h1 class="govuk-body">Check your answers edge case scenarios</h1>
+
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+    <ol class="govuk-list govuk-list--number">
+      <li>
+        <a href="/ucd-register/contact-details/middle-name-summary">Person with a middle name and Textphone number</a>
+      </li>
+      <li>
+        <a href="/ucd-register/contact-details/contact-details-correspondence-summary">This person does not have a permanent address</a>
+      </li>
+      <li>
+        <a href="/ucd-register/contact-details/contact-details-correspondence-summary">Send letters to correspondence address</a>
+      </li>
+      <li>
+        <a href="/ucd-register/contact-details/contact-details-summary-secondary-number">Secondary phone number</a>
+      </li>
+    </ol>
+
+  </div>
+</div>
+
+{% endblock %}

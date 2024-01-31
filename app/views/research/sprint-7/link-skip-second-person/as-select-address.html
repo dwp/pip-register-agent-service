@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Can you confirm the first line of the address?
+      </h1>
+
+      <form class="form" action="/research/sprint-7/link-skip-second-person/hp-summary" method="post">
+        <div class="govuk-width-container">
+          <p>6 addresses found for <b>wr11nl</b> and <b>1</b>. <a href="/research/sprint-7/link-skip-second-person/what-is-as-postcode">Search again</a></p>
+
+        {{ govukRadios({
+          name: "select-an-address",
+          items: [
+            {
+            value: "64 Zoo lane, Surrey",
+            text: "64 Zoo lane, Surrey"
+            },
+            {
+            value: "10 Washington Street, Worcester, WR1 1NL",
+            text: "10 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "11 Washington Street, Worcester, WR1 1NL",
+            text: "11 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "101 Washington Street, Worcester, WR1 1NL",
+            text: "101 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "110 Washington Street, Worcester, WR1 1NL",
+            text: "110 Washington Street, Worcester, WR1 1NL"
+            },
+            {
+            value: "111 Washington Street, Worcester, WR1 1NL",
+            text: "111 Washington Street, Worcester, WR1 1NL"
+            }
+          ]
+        }) }}
+        
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/research/sprint-7/link-skip-second-person/as-full-address" class="govuk-link">Enter address manually</a></p>
+      </div> 
+
+        {{ govukButton({
+        text: "Confirm this address"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

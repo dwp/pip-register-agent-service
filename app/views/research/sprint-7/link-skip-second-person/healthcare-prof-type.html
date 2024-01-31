@@ -1,0 +1,131 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+{% set textHtml %}
+{{ govukInput({
+  id: "phone-number-known",
+  name: "phone-number-known",
+  type: "tel",
+  autocomplete: "tel",
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Phone number"
+  }
+}) }}
+{% endset -%}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Health professional information</h1>
+
+      <form action="/research/sprint-7/link-skip-second-person/what-is-hp-postcode" method="post" novalidate>
+
+        {{ govukRadios({
+          name: "hptype",
+          fieldset: {
+            legend: {
+              text: "Which health professional knows most about your daily living and mobility needs?",
+              isPageHeading: true,
+              classes: "govuk-label--m"
+            }
+          },
+          hint: {
+            html:'
+            <p class="govuk-hint">For example, a hospital doctor, specialist nurse or your GP.</p>'
+          },
+          items: [
+            {
+              value: "gp",
+              text: "GP"
+            },
+            {
+              value: "hosp-doctor",
+              text: "Hospital doctor"
+            },
+            {
+              value: "specialist-nurse",
+              text: "Specialist nurse"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "What is their full name?",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        {{ govukRadios({
+          name: "contact",
+          fieldset: {
+            legend: {
+              text: "Do you know their phone number?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: textHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "address-known",
+          fieldset: {
+            legend: {
+              text: "Do you know the address of the place where they work?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+          },
+          items: [
+            {
+            value: "yes",
+            text: "Yes"
+            },
+            {
+            value: "no",
+            text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

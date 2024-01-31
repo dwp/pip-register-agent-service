@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+      {{ govukCheckboxes({
+        name: "countries",
+        fieldset: {
+          legend: {
+            text: "Do any of the following apply to a family member?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          html:'
+            <p class="govuk-hint">By family we mean:</p>
+            <ul class="govuk-list govuk-list--bullet govuk-hint">
+              <li>A husband, wife or civil partner</li>
+              <li>A parent you are dependent on</li>
+            </ul>'
+        },
+        items: [
+          {
+            value: "receiving-pensions",
+            text: "Receiving pensions or benefits from a country in the European Economic Area (EEA) or Switzerland"
+          },
+          {
+            value: "working-paying-insurance",
+            text: "Working or paying national insurance in an EEA country or Switzerland"
+          },
+          {
+            divider: "or"
+          },
+          {
+            value: "none",
+            text: "None of thse",
+            behaviour: "exclusive"
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body"><a href="#" class="govuk-link">Check which countries are in the EEA (opens in a new tab)</a>
+      </p>
+
+      <form action="/index" method="post" novalidate>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+
+        {{ govukRadios({
+        name: "written-format",
+        fieldset: {
+        legend: {
+        text: "How should we write to you?",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+        }
+        },
+        hint: {
+          html: "<p class='govuk-hint'>Select the best option for you.<p>"  
+          },
+            items: [
+            {
+            value: "Standard letter",
+            text: "Standard letter (12-point Arial text on white paper)"
+            },
+            {
+            value: "Large print",
+            text:  "Large print"
+            },
+            {
+            value: "Letter with changes",
+            text: "Letter with changes to font, paper colour, spacing or print size"
+            },
+            {
+            value: "Audio",
+            text: "Audio"
+            },
+            {
+            value: "Braille",
+            text: "Braille"
+            },
+            {
+            value: "British Sign Language video",
+            text: "British Sign Language video"
+            },
+
+            {
+            value: "British Sign Language video",
+            text: "Irish Sign Language video"
+            },
+            {
+            value: "PDF with accessible text",
+            text: "PDF with accessible text"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+        text: "Continue"
+        }) }}
+        
+        </form> 
+      </div>
+    </div> 
+
+{% endblock %}
+

@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        <span class="govuk-caption-l">Nationality, work and residence</span>
+        <h1 class="govuk-heading-l">
+          What country do you normally live in?
+        </h1>
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        
+        
+        {% set textHtml %}
+        {{ govukInput({
+          id: "what-country-normally-live-in",
+          name: "what-country-normally-live-in",
+          type: "tel",
+          autocomplete: "tel",
+          text: "20 character width",
+          classes: "govuk-input--width-20",
+          label: {
+            text: "Enter country"
+          }
+        }) }}
+        {% endset -%}
+        
+        {{ govukRadios({
+          name: "contact",
+          fieldset: {
+            legend: {
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+          {
+            value: "england",
+            text: "England"
+          },
+          {
+            value: "wales",
+            text: "Wales"
+          },
+           {
+             value: "another-country",
+            text: "Another country",
+             conditional: {
+               html: textHtml
+             }
+           }
+          ]
+        }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+          <p class="govuk-body">
+            <a href="/current-non-MVP/task-list-in-progress-nation" class="govuk-link govuk-link--no-visited-state">Change previous answers</a>
+          </p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

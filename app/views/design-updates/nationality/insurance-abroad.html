@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+
+      <span class="govuk-caption-l">Nationality, work and residence</span>
+        <h1 class="govuk-heading-l">
+          Are you or a family member working or paying insurance in a country in the European Economic Area or Switzerland?
+        </h1>
+
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+        {{ govukInsetText({
+          text: "By insurance we mean insurance connected to your work, like UK National Insurance."
+        }) }}
+
+        <p class="govuk-body">We do not mean insurances like holiday, travel, or motor insurance.</p>
+      
+      {{ govukRadios({
+        name: "insurance-abroad",
+        fieldset: {
+          legend: {
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+
+  </div>
+</div>
+
+
+{% endblock %}

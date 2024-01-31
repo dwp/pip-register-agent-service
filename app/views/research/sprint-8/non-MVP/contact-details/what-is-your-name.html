@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="#" method="post">
+        {% call govukFieldset({
+          legend: {
+            text: "What is your name?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+        {{ govukInput({
+          label: {
+            text: "First name"
+          },
+          id: "first-name",
+          name: "first-name",
+          autocomplete: "name",
+          spellcheck: false
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Middle name"
+          },
+          id: "middle-name",
+          name: "middle-name",
+          autocomplete: "name",
+          spellcheck: false
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Last name"
+          },
+          id: "last-name",
+          name: "last-name",
+          autocomplete: "name",
+          spellcheck: false
+        }) }}
+
+        {% endcall %}
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+    
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/research/sprint-8/non-MVP/task-list-in-progress"
+            }) }}
+          </div>
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+

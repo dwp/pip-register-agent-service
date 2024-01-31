@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+
+          <span class="govuk-caption-l">How we pay you</span>
+          <h1 class="govuk-heading-l">Do you have an agreement with the local authority to repay any of the costs?</h1>
+          
+          {% call govukFieldset({
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+            }
+          }) %}
+
+          {{ govukRadios({
+            name: "third-party-pay",
+            items: [
+              {
+              value: "yes",
+              text: "Yes"
+              },
+              {
+              value: "no",
+              text: "No"
+              },
+              {
+                value: "unsure",
+                text: "I don't know"
+                }
+            ]
+          }) }}
+
+          {% endcall %}
+
+          {{ govukButton({
+          text: "Continue"
+          }) }}
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

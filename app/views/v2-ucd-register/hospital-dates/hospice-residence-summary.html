@@ -1,0 +1,116 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+        <h1 class="govuk-heading-xl">
+          Check your answers
+        </h1>
+
+        <h2 class="govuk-heading-m">
+          Hospital and care facilities
+        </h2>
+  
+              {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "In hospital or hospice today"
+              },
+              value: {
+                text: "Yes, hospice"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/hospital-dates/today",
+                    text: "Change",
+                    visuallyHiddenText: "Question 1"
+                  }
+                ]
+              }
+            }
+            ,
+            {
+              key: {
+                text: "In hospice yesterday"
+              },
+              value: {
+                text: "Yes"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/hospice-yesterday",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Date of admission"
+              },
+              value: {
+                text: "21/10/2022"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/hospital-dates/hospice-dates",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Hospice address"
+              },
+              value: {
+                html: "Princess Alice Hospice,<br>West End Lane,<br> Esher<br> KT10 8NA"
+
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ud-register/hospital-dates/select-hospice-address",
+                    text: "Change",
+                    visuallyHiddenText: "Question 3"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      </div>
+  
+            {{ govukButton({
+              text: "Resume questions",
+              href: "/v2-ucd-register/task-list-in-progress-hospice"
+            }) }}
+
+            <p class="govuk-body">
+              <a href="/v2-ucd-register/task-list-bank-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+            </p>
+        </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Can you confirm the full address?
+      </h1>
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+          <p>6 addresses found for <b>OX18 6RE</b>. <a href="/research/sprint-14/hcp-edit-journey/postcode-support">Search again</a></p>
+
+        {{ govukRadios({
+          name: "select-an-address",
+          items: [
+            {
+            value: "59 Sheep Street, Burford, Oxfordshire, OX18 6RE",
+            text: "Burford Surgery, 59 Sheep Street, Burford, Oxfordshire, OX18 6RE"
+            },
+            {
+            value: "Broadshires Way, Carterton, Oxfordshire, OX18 1JA",
+            text: "Broadshires Health Centre, Broadshires Way, Carterton, Oxfordshire, OX18 1JA"
+            },
+            {
+            value: "Carterton Health Centre, 17 Alvescot Road, Carterton, Oxfordshire, OX18 3LJ",
+            text: "Carterton Health Centre, 17 Alvescot Road, Carterton, Oxfordshire, OX18 3LJ"
+            },
+            {
+            value: "Meadow Lane, Shipton-under-Wychwood, Chipping Norton, Oxfordshire, OX7 6BW",
+            text: "Meadow Lane, Shipton-under-Wychwood, Chipping Norton, Oxfordshire, OX7 6BW"
+            }
+          ]
+        }) }}
+        
+      </div> 
+
+        {{ govukButton({
+        text: "Confirm this address",
+        href: "/research/sprint-14/hcp-edit-journey/hp-summary-second-changed"
+        }) }}
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/research/sprint-14/hcp-edit-journey/enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

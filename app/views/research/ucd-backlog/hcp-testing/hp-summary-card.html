@@ -1,0 +1,272 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "University of Gloucestershire"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete choice",
+          visuallyHiddenText: "of University of Gloucestershire"
+        },
+        {
+          href: "#",
+          text: "Withdraw",
+          visuallyHiddenText: "from University of Gloucestershire"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: "English (3DMD)<br>PGCE with QTS full time"
+      }
+    },
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: "School name<br>Road, City, SW1 1AA"
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "University of Bristol"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete choice",
+          visuallyHiddenText: "of University of Bristol"
+        },
+        {
+          href: "#",
+          text: "Withdraw",
+          visuallyHiddenText: "from University of Bristol"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Course"
+      },
+      value: {
+        html: "English (Q3X1)<br>PGCE with QTS full time"
+      }
+    },
+    {
+      key: {
+        text: "Location"
+      },
+      value: {
+        html: "School name<br>Road, City, SW2 1AA"
+      }
+    }
+  ]
+}) }}
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "changedName",
+        fieldset: {
+          legend: {
+            text: "Would you like to add another person?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "For example a community psychiatric nurse, occupational therapist, support worker, social worker, counsellor, carer, or family member or friend."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Healthcare professional details
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Health professional type"
+            },
+            value: {
+              text: "Genereal Practitioner"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Health professional name"
+            },
+            value: {
+              text: "Dr Jones"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/what-is-hp-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/as-full-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/what-is-as-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Additional support person?"
+            },
+            value: {
+              html: "<p class='govuk-body'> Family member</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/additional-supporters",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address of support person"
+            },
+            value: {
+              html: "<p class='govuk-body'>64 Zoo lane, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/as-full-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Support person phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/what-is-as-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>
+        Make sure you've checked your answers before you save and continue.
+      </p>
+
+      <form action="/research/sprint-7/question-second-person/additional-support-type" method="post">
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

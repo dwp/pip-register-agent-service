@@ -1,0 +1,31 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-m">Hosptial and care facilities</h1>
+
+<h2 class="govuk-body">Adding context for why we ask about yesterday in hospital/hospice</h2>
+
+<div class="govuk-body"><a href="/design-updates/5-2-warning-today">Warning: Are you in hospital as an inpatient today?</a></div>
+
+<div class="govuk-body"><a href="/design-updates/5-4-warning-yesterday">Warning: Is today your first day as an in-patient?</a></div>
+
+
+<div class="govuk-body"><a href="/design-updates/5-2-inset-today">Inset: Are you in hospital as an inpatient today?</a></div>
+
+
+
+<div class="govuk-body"><a href="/design-updates/5-4-1-no-yesterday">New screen: cannot recieve payments until you leave</a></div>
+{% endblock %}

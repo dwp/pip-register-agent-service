@@ -1,0 +1,121 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" novalidate>
+
+        <span class="govuk-caption-l">Healthcare and support</span>
+        <h1 class="govuk-heading-l">Your main health contact</h1>
+        
+        {{ govukRadios({
+          name: "hptype",
+          fieldset: {
+            legend: {
+              text: "Which health professional knows most about your daily living and mobility needs?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "gp",
+              text: "GP"
+            },
+            {
+              value: "hosp-doctor",
+              text: "Hospital doctor"
+            },
+            {
+              value: "specialist-nurse",
+              text: "Specialist nurse"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Other health professional type"
+          },
+          classes: "govuk-input--width-20",
+          id: "width-10",
+          name: "width10"
+        }) }}
+
+        <div class="govuk-body govuk-!-margin-bottom-6"></div>
+
+        {{ govukInput({
+          label: {
+            text: "What is their full name?",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Enter their position or job title if name is not known. For example, 'Duty GP'."
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        <div class="govuk-body govuk-!-margin-bottom-6"></div>
+
+        <h2 class="govuk-heading-m">What is their phone number?</h2>
+        {{ govukInput({
+          label: {
+          classes: "govuk-input--width-20",
+          id: "width-10",
+          name: "width10"
+        },
+        hint: {
+          text: "For example, 01632 960 001 or +44 7700 900 982."
+        }
+        }) }}
+
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          name: "unknown-number",
+          fieldset: {
+            legend: {
+              isPageHeading: true
+            }
+          },
+          items: [
+            {
+              value: "unknown",
+              text: "Does not know phone number"
+            }
+          ]
+        }) }}
+
+    <div class="govuk-body govuk-!-margin-bottom-6"></div>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+
+
+
+      </form>
+    </div>
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Additional support
+      </h1>
+
+      <p class="govuk-body">
+        As I mentioned earlier we will be sending you a ‘how your disability affects you’ form, so you can tell us how your condition affects your daily life.
+      </p>
+
+      <p class="govuk-body">We understand that some people find it difficult to return forms because of a mental-health or behavioural condition, learning difficulty, developmental disorder or memory problems.
+     </p>
+
+     <form class="form" action="#" method="post">
+
+     {{ govukDetails({
+      summaryText: "Examples of conditions",
+      html: '
+          <ul class="govuk-list govuk-list--bullet">
+            <p class= "govuk-body govuk-!-font-weight-bold">By mental-health conditions we mean for example:</p>
+            <li>Depression</li>
+            <li>Anxiety</li>
+            <li>Post Traumatic Stress Disorder (PTSD)</li>
+            <li>Obsessive Compulsive Disorder (OCD)</li>
+            <li>Psychosis</li>
+          </ul>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li class= "govuk-body govuk-!-font-weight-bold">By behavioural conditions conditions we mean for example:</li>
+            <li>Attention Deficit Hyperactivity Disorder (ADHD)</li>
+            <li>Conduct disorder</li>
+          </ul>
+          
+          <ul class="govuk-list govuk-list--bullet">
+            <li class= "govuk-body govuk-!-font-weight-bold">By learning difficulty, we mean for example:</li>
+            <li>Down syndrome</li>
+            <li>Fragile X syndrome</li>
+          </ul>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li class= "govuk-body govuk-!-font-weight-bold">By developmental disorder we mean for example:</li>
+            <li>Autistic Spectrum disorder</li>
+            <li> developmental delay</li>
+            <li> speech or language disorder</li>
+          </ul>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li class= "govuk-body govuk-!-font-weight-bold">By memory problems we mean for example:</li>
+            <li>Any form of dementia – for example Alzheimer’s, dementia with Lewy bodies, vascular dementia, dementia associated with other conditions.  </li>
+            <li> Brain injury after an accident is an example of a cognitive disorder.</li>
+          </ul>'
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/research/pipcs/add-support/read-letters",
+      isContinueButton: true
+    }) }}
+
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}

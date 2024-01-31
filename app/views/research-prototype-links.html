@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-m">Research prototypes by sprint</h1>
+<h2 class="govuk-heading-s">Sprint 6</h2>
+
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+<ul class="govuk-list">
+  <li>
+    <a href="/research/sprint-6/hint-text/benefits-abroad">Hint text</a>
+  </li>
+  <li>
+    <a href="/research/sprint-6/details-component/benefits-abroad">Details component</a>
+  </li>
+  <li>
+    <a href="/research/sprint-6/user-defined/apply-to-you">User defined</a>
+  </li>
+  <li>
+    <a href="/research/sprint-6/complex-question/information-start">Complex questions</a>
+  </li>
+</ul>
+
+<h2 class="govuk-heading-s">Sprint 5</h2>
+<ul class="govuk-list">
+  <li>
+    <a href="#">Contact details (not added)</a>
+  </li>
+</ul>
+
+<h2 class="govuk-heading-s">Sprint 4</h2>
+<ul class="govuk-list">
+  <li>
+    <a href="/research/sprint-4/16-or-over">Eligibility</a>
+  </li>
+</ul>
+
+{% endblock %}

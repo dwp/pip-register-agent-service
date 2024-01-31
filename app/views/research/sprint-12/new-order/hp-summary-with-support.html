@@ -1,0 +1,208 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Healthcare professional details
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Health professional type"
+            },
+            value: {
+              text: "Genereal Practitioner"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Health professional name"
+            },
+            value: {
+              text: "Dr Jones"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/what-is-hp-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/as-full-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/what-is-as-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Additional support person?"
+            },
+            value: {
+              html: "<p class='govuk-body'> Family member</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/additional-supporters",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address of support person"
+            },
+            value: {
+              html: "<p class='govuk-body'>64 Zoo lane, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/as-full-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Support person phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ucd-register/healthcare-professional/what-is-as-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Additional support
+      </h2>
+
+            {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Additional support needed?"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Difficulty communicating with us?"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>
+        Make sure you've checked your answers before you save and continue.
+      </p>
+
+      <form action="/ucd-register/task-list" method="post">
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

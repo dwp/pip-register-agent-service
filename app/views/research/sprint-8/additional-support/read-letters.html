@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Are you able to read and respond to letters?
+      </h1>
+
+      <p class="govuk-body govuk-!-margin-bottom-3">This includes:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>answering questions we might ask in letters</li>
+          <li>remembering to read and respond to letters</li>
+          <li>responding to letters by post or phone</li>
+        </ul>
+      </p>
+
+      <form class="form" action="#" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+            name: "different-format",
+            fieldset: {
+              legend: {
+
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue",
+            href: "/research/sprint-8/additional-support/post",
+            isContinueButton: true
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

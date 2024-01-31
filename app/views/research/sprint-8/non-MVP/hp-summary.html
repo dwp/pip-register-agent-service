@@ -1,0 +1,128 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Return to task list",
+    href: "/research/sprint-8/non-MVP/task-list-in-progress-add"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-l">
+        Health and support contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Main health contact"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Remove",
+                visuallyHiddenText: "of University of Bristol"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: "Dr Jones"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-8/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Profession or support type"
+            },
+            value: {
+              html: "General Practitioner"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-8/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey, 
+                CR3 0BD</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-8/non-MVP/hcp-change-address",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-8/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          }
+        ]
+      }) }}
+
+    </div>
+
+          {{ govukButton({
+            text: "Resume questions",
+            href: "research/sprint-8/non-MVP/additional-support/start-info"
+          }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

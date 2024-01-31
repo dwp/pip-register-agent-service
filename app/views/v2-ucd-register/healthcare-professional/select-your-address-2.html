@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Can you confirm the full address?
+      </h1>
+
+      <form class="form" action="/v2-ucd-register/healthcare-professional/enter-address-manually" method="post">
+        <div class="govuk-width-container">
+
+          {{ govukRadios({
+            name: "select-an-address",
+            items: [
+            {
+            value: "Burford Surgery, 59 Sheep Street, Burford, OX18 4LS",
+            text: "Burford Surgery, 59 Sheep Street, Burford, OX18 4LS"
+            },
+
+            {
+              value: "Calendars, Sheep Street, Burford, OX18 4LS",
+              text: "Calendars, Sheep Street, Burford, OX18 4LS"
+              },
+                {
+                value: "Culvers Close, Sheep Street, Burford, OX18 4LS",
+                text: "Culvers Close, Sheep Street, Burford, OX18 4LS"
+                },
+                {
+                value: "Flat Grafton House, Sheep Street, Burford, OX18 4LS",
+                text: "Flat Grafton House, Sheep Street, Burford, OX18 4LS"
+                },
+                {
+                value: "Greenbank Cottage, Sheep Street, Burford, OX18 4LS",
+                text: "Greenbank Cottage, Sheep Street, Burford, OX18 4LS"
+                },
+                {
+                value: "Hanover House, Sheep Street, Burford, OX18 4LS",
+                text: "Hanover House, Sheep Street, Burford, OX18 4LS"
+                },
+                {
+                  value: "Lenthall Cottage, Sheep Street, Burford, OX18 4LS",
+                  text: "Lenthall Cottage, Sheep Street, Burford, OX18 4LS"
+                  },
+                  {
+                    value: "Redesdale Cottage, Sheep Street, Burford, OX18 4LS",
+                    text: "Redesdale Cottage, Sheep Street, Burford, OX18 4LS"
+                    },
+                {
+                value: "Roche House, Sheep Street, Burford, OX18 4LS",
+                 text: "Roche House, Sheep Street, Burford, OX18 4LS"
+                 },
+                 {
+                 value: "St. Albans House, Sheep Street, Burford, OX18 4LS",
+                text: "St. Albans House, Sheep Street, Burford, OX18 4LS"
+                }
+              ]
+            }) }}
+
+              {% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+              {{ govukPagination({
+                next: {
+                  href: "/v2-ucd-register/healthcare-professional/select-your-address-3"
+                },
+                items: [
+                  {
+                    number: 1,
+                    href: "/v2-ucd-register/healthcare-professional/select-your-address"
+                  },
+                  {
+                    number: 2,
+                    current: true,
+                    href: "/v2-ucd-register/healthcare-professional/select-your-address-2"
+                  },
+                  {
+                    number: 3,
+                    href: "/v2-ucd-register/healthcare-professional/select-your-address-3"
+                  }
+                ]
+              }) }}
+        
+      </div> 
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Confirm this address"
+        }) }}
+
+        {{ govukButton({
+          text: "Change previous answers",
+          classes: "govuk-button--secondary",
+          href: "/v2-ucd-register/task-list-hcp-in-progress"
+        }) }}
+      </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/v2-ucd-register/healthcare-professional/enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

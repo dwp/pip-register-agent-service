@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        What is the main phone number we can use to contact you?
+      </h1>
+
+      <p> We will contact you about your application by phone.</p>
+
+      <p>  If you provide a mobile phone number, you can choose to receive updates by text message.</p>
+
+      <form class="form" action="#" method="post">
+        {{ govukInput({
+          label: {
+            text: "Main phone number"
+          },
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+        
+        {{ govukInput({
+          label: {
+            text: "Secondary phone number (optional)"
+          },
+          hint: {
+            text: "Enter an alternative phone number we can use to contact you, with the dialling code"
+          },
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="#" class="govuk-link">This person finds it difficult to hear or speak on the phone</a></p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

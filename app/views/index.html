@@ -1,0 +1,481 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column--full">
+   
+    <h1 class="govuk-heading-xl">
+      PIP prototype index
+    </h1>
+
+    <h1 class="govuk-heading-m">Active prototypes</h1>
+
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+    {{govukTag({
+      text: "Development ready",
+      classes: "govuk-tag--green"
+    })}}
+  
+    
+{{ govukSummaryList({
+
+  rows: [
+  {
+    key: {
+      text: "Sprint 14"
+    },
+    value: {
+      text: "To be used in reference to current sprint for development tickets."
+    },
+    actions: {
+      items: [
+        {
+          href: "/ucd-register/welcome-screens/welcome-screen-ni",
+          text: "Prototype",
+          visuallyHiddenText: "prototype"
+        },
+        {
+          href: "/ucd-concepts-testing#past-year",
+          text: "Scenarios",
+          visuallyHiddenText: "contact details"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "Error messages"
+    },
+    value: {
+      text: "Error message designs (ready for Dev) "
+    },
+    actions: {
+      items: [
+        {
+          href: "/error-messages-contents",
+          text: "Open page",
+          visuallyHiddenText: "prototype"
+        }
+      ]
+    }
+  }
+  ]
+}) }}
+
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+{{govukTag({
+  text: "UCD- in progress",
+  classes: "govuk-tag--blue"
+})}}
+
+{{ govukSummaryList({
+rows: [
+{
+  key: {
+    text: "Sprint 14"
+  },
+  value: {
+    text: "Descriptive questions based on PIPCS script. Check your answers after each section that navigates back to tasklist on completion."
+  },
+  actions: {
+    items: [
+      {
+        href: "/v2-ucd-register/welcome-screens/welcome-screen-ni",
+        text: "Prototype",
+        visuallyHiddenText: "prototype"
+      },
+      {
+        href: "/ucd-concepts-testing",
+        text: "Concepts",
+        visuallyHiddenText: "contact details"
+      }
+    ]
+  }
+},
+
+{
+  key: {
+    text: "Error messages "
+  },
+  value: {
+    text: "Error message designs (TBC for dev)"
+  },
+  actions: {
+    items: [
+      {
+        href: "/error-messages-contents",
+        text: "Open page",
+        visuallyHiddenText: "prototype"
+      }
+    ]
+  }
+}
+]
+}) }}
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+{{govukTag({
+  text: "Archived prototypes",
+  classes: "govuk-tag--red"
+})}}
+
+{{ govukSummaryList({
+
+  rows: [
+  {
+    key: {
+      text: ""
+    },
+    value: {
+      text: "Prototypes that have been used in various testing scenarios and also UCD playground versions."
+    },
+    actions: {
+      items: [
+        {
+          href: "archived-prototypes",
+          text: "Open page",
+          visuallyHiddenText: "Current"
+        }
+      ]
+    }
+  }
+  ]
+}) }}
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<h1 class="govuk-heading-m">Research prototypes by sprint</h1>
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
+{{ govukAccordion({
+  id: "accordion-with-summary-sections",
+  items: [
+  {
+    heading: {
+      text: "Sprint 14"
+    },
+    summary: {
+      text: "HCP route testing"
+    },
+    content: {
+      html:
+      ' <ul class="govuk-list">
+        <li>
+          <a href="/research/sprint-14/hcp-edit-journey/hp-summary-two">Prototype link</a>
+        </li>
+      </ul>
+      <p class="govuk-body">Testing interactions:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Change, edit and remove</li>
+        <li>Change a detail in main health contact</li>
+        <li>Remove/change interaction</li>
+ 
+      </ul>'
+    }
+  },
+
+  {
+    heading: {
+      text: "Sprint 13"
+    },
+    summary: {
+      text: "New route based on UR from Sprint 12"
+    },
+    content: {
+      html:
+      ' <ul class="govuk-list">
+        <li>
+          <a href="/v2-ucd-register/declaration">prototype link</a>
+        </li>
+      </ul>
+      <p class="govuk-body">Updates include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Full journey reroute  (reflected in the tasklist)</li>
+        <li>Exportability EEA route included in Nationality</li>
+        <li>Each section flows directly into the next</li>
+        <li>change previous answers functionality added</li>
+        <li>Return to task list functionality on the CYA pages</li>
+        <li>Health contacts includes postcode lookup</li>
+        <li>Hospital and care facilities updates (new screen added)</li>
+      </ul>'
+    }
+  },
+
+  {
+    heading: {
+      text: "Sprint 12"
+    },
+    summary: {
+      text: "New proposed EEA reroutes"
+    },
+    content: {
+      html:
+      '<ul class="govuk-list">
+        <li>
+          <a href="/research/sprint-12/original/working-paying-insurance-abroad">EEA reroute (shown to SPD and Policy)</a>
+        </li>
+        <li>
+          <a href="/research/sprint-12/exportability/working-paying-insurance-abroad">EEA reroute: Exportability team</a>
+        </li>
+      </ul>
+
+        <p class="govuk-heading-s">Link: Change previous answers</p>
+          <ul class="govuk-list">
+          <li>
+            <a href="/current-non-MVP/contact-details/what-is-your-name">Review answers Link (shows from nationality route)</a>
+          </li>
+        </ul>
+        
+        <p class="govuk-heading-s">New journey route: moved tasks in tasklist</p>
+          <ul class="govuk-list">
+          <li>
+            <a href="/research/sprint-12/new-order/task-list">Additional support > Contact details, Hospital and care facilities > Healthcare and support</a>
+          </li>
+        </ul>'
+        }
+  },
+
+  {
+    heading: {
+      text: "Sprint 9"
+    },
+    summary: {
+      text: "	Check your answers A/B testing"
+    },
+    content: {
+      html:
+      '<p class="govuk-heading-s">Button: Change previous answers</p>
+      <ul class="govuk-list">
+        <li>
+          <a href="/research/sprint-8/non-MVP/contact-details/what-is-your-name">Review answers button</a>
+        </li>
+      </ul>
+
+        <p class="govuk-heading-s">Link: Change previous answers</p>
+          <ul class="govuk-list">
+          <li>
+            <a href="/current-non-MVP/contact-details/what-is-your-name">Review answers Link</a>
+          </li>
+        </ul>'
+        }
+  },
+
+  {
+    heading: {
+      text: "Sprint 8"
+    },
+    summary: {
+      text: "	Check your answers routing and HCP consent order."
+    },
+    content: {
+      html:
+      '<p class="govuk-heading-s">Check your answers navigation </p>
+      <p class="govuk-body">Review your answers > task list > ongoing CYA</p>
+      <ul class="govuk-list">
+        <li>
+          <a href="/research/sprint-8/non-MVP/contact-details/what-is-your-name">review answers button</a>
+        </li>
+      </ul>
+      
+      <p class="govuk-heading-s">Healthcare professional:</p>
+      <p class="govuk-body">Consent postioning</p>
+      <ul class="govuk-list">
+        <li>
+          <a href="/research/sprint-8/healthcare-professional/start">Consent end of journey</a>
+        </li>
+      </ul>
+
+      <p class="govuk-heading-s">Additional support:</p>
+      <ul class="govuk-list">
+        <li>
+          <p class="govuk-body">Shown to Script team 28/09/23</p>
+          <a href="/research/sprint-8/additional-support/start-info">Additional support journey future script: combined last question</a>
+        </li>
+      </ul>'
+        }
+  },
+  {
+    heading: {
+      text: "Sprint 7"
+    },
+    summary: {
+      text: "	Healthcare multiple questions per page concept testing."
+    },
+    content: {
+      html:
+      '<p class="govuk-heading-s">Healthcare professional:</p>
+      <p class="govuk-body">Add another contact concept testing</p>
+      <ul class="govuk-list">
+        <li>
+          <a href="/research/sprint-7/link-skip-second-person/healthcare-prof-type">Link to skip second HCP</a>
+        </li>
+        <li>
+          <a href="/research/sprint-7/question-second-person/healthcare-prof-type">Question to skip second HCP</a>
+        </li>
+        <li>
+          <a href="/research/sprint-7/radio-second-person/healthcare-prof-type">Radio to skip second HCP</a>
+        </li>
+        <li>
+          <a href="/research/ucd-backlog/hcp-testing/hp-summary-add-another">Add another contact CYA</a>
+        </li>
+      </ul>'
+    }
+  },
+    {
+      heading: {
+        text: "Sprint 6"
+      },
+      summary: {
+        text: "	A/B prototypes for nationality, EEA questions including new routing optons."
+      },
+      content: {
+        html:
+        '<ul class="govuk-list">
+          <li>
+            <a href="/research/sprint-6/hint-text/benefits-abroad">Hint text</a>
+          </li>
+          <li>
+            <a href="/research/sprint-6/details-component/benefits-abroad">Details component</a>
+          </li>
+          <li>
+            <a href="/research/sprint-6/user-defined/apply-to-you">User defined</a>
+          </li>
+          <li>
+            <a href="/research/sprint-6/complex-question/information-start">Complex questions</a>
+          </li>
+        </ul>'
+      }
+    },
+    {
+      heading: {
+        text: "Sprint 5"
+      },
+      summary: {
+        text: "A/B testing for contact details section and task list concept testing."
+      },
+      content: {
+        html:
+        '<ul class="govuk-list">
+            <li>
+               <a class="govuk-body">No journey added yet</a>
+            </li>
+        </ul>'
+      }
+    },
+    {
+      heading: {
+        text: "Sprint 4"
+      },
+      summary: {
+        text: "Initial concept testing of eligibility journey with codesign groups."
+      },
+      content: {
+        html:
+        '<ul class="govuk-list">
+            <li>
+              <a class="govuk-link" href="/research/sprint-4/16-or-over">Eligibility</a>
+            </li>
+        </ul>'
+      }
+    },
+    
+    {
+      heading: {
+        text: "Testing archive"
+      },
+      summary: {
+        text: "	Designs to consider and bring into sprint research"
+      },
+      content: {
+        html:
+        '<p class="govuk-heading-s">Health and care contacts</p>
+        <ul class="govuk-list">
+          <li>
+            <a href="/design-updates/hcp-cya-concepts/hcp-edit-journey/start">HCP CYA journey</a>
+          </li>
+        </ul>
+  
+        <p class="govuk-heading-s">Additional support:</p>
+        <ul class="govuk-list">
+          <li>
+            <a href="/ucd-register/additional-support/start-info">Current UCD: Test and learn script</a>
+          </li>
+          <li>
+            <a href="/research/sprint-8/additional-support/start-info">Future script: combined last question</a>
+          </li>
+          <li>
+            <a href="/research/pipcs/add-support/start-info">Current PIPCS script</a>
+          </li>
+        </ul>
+        
+        <p class="govuk-heading-s">Eligibility:</p>
+        <ul class="govuk-list">
+          <li>
+          <a href="/research/sprint-4/16-or-over">Iteration 1: Eligibility (with northern ireland)</a>
+          <li>
+            </li>
+        </ul>
+  
+        <p class="govuk-heading-s">Contact details:</p>
+        <p class="govuk-body">Phone number screens</p>
+        <ul class="govuk-list">
+          <li>
+            <a href="/research/ucd-backlog/contact-details-testing/a-current">Content option A: Current</a>
+          </li>
+          <li>
+            <a href="/research/ucd-backlog/contact-details-testing/b-we-can-use">Content option B: We can use</a>
+          </li>
+          <li>
+            <a href="/research/ucd-backlog/contact-details-testing/c-another">Content option C: Another</a>
+          </li>
+          <li>
+            <a href="/research/ucd-backlog/contact-details-testing/d-additional">Content option D: Additional</a>
+          </li>
+          <li>
+            <a href="/research/ucd-backlog/contact-details-testing/e-second">Content option E: Second</a>
+          </li>
+          <li>
+            <a href="/research/ucd-backlog/contact-details-testing/f-alternative">Content option F: Alternative</a>
+          </li>
+        </ul>
+  
+        <p class="govuk-heading-s">Nationality and living abroad</p>
+        <ul class="govuk-list">
+          <li>
+          <a href="#">Non-MVP: re-route for benefits and working abroad</a>
+          <li>
+            </li>
+        </ul>
+  
+        <p class="govuk-heading-s">Healthcare professional:</p>
+        <ul class="govuk-list">
+          <li>
+            <a href="/ucd-register/healthcare-professional/healthcare-prof-type-conditional-reveal">HCP- conditional reveal</a>
+          </li>
+          <li>
+            <a href="/ucd-register/hp-summary-with-support">HCP CYA with additional support</a>
+          </li>
+          <li>
+            <a href="/no-address-found-journey/no-address-found">No address found journey</a>
+          </li>
+        </ul>'
+      }
+    }
+  ]
+}) }}
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+{% endblock %}
+
+  </div>
+</div>
+
+ 

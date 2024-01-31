@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+        <h1 class="govuk-heading-xl">
+          Check your answers
+        </h1>
+
+        <h2 class="govuk-heading-m">
+          Hospital and care facilities
+        </h2>
+  
+              {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "In a hospital or hospice as an in-patient today"
+              },
+              value: {
+                text: "Yes, hospice"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/hospital-dates/today",
+                    text: "Change",
+                    visuallyHiddenText: "Question 1"
+                  }
+                ]
+              }
+            }
+            ,
+            {
+              key: {
+                text: "In hospice yesterday"
+              },
+              value: {
+                text: "Yes"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/hospital-dates/hospice-yesterday",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Date of hospice admission"
+              },
+              value: {
+                text: "21/10/2022"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/hospital-dates/hospice-dates",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Address"
+              },
+              value: {
+                html: "Princess Alice Hospice,<br>West End Lane,<br> Esher<br> KT10 8NA"
+
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ud-register/hospital-dates/select-hospice-address",
+                    text: "Change",
+                    visuallyHiddenText: "Question 3"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      </div>
+  
+            {{ govukButton({
+              text: "Save and continue",
+              href: "/research/sprint-12/new-order/task-list-in-progress-hospice"
+            }) }}
+        </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">Check your answers scenarios</h1>
+
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+<div>
+    <ol class="govuk-list">
+      <li>
+        <a href="/current-non-MVP/task-list">Current non MVP</a>
+      </li>
+      <li>
+        <a href="/non-MVP/task-list">first non MVP</a>
+      </li>
+      <li>
+        <a href="/ucd-register/task-list">original UCD prototype: Check your answers after each section that navigates back to tasklist on completion.</a>
+      </li>
+    </ol>
+
+    <ol class="govuk-list">
+      <li>
+        <a href="/ucd-register/task-list">original UCD prototype: Check your answers after each section that navigates back to tasklist on completion.</a>
+      </li>
+      <li>
+        <a href="/ucd-register/task-list">Devs prototype: now can go off UCD prototype for devs.</a>
+      </li>
+    </ol>
+  </div>
+</div>
+
+{% endblock %}

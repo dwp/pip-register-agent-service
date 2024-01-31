@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Additional support needs</span>
+      <h1 class="govuk-heading-l">
+        The next questions are to tell us if you have difficulty communicating with the Department for Communities
+      </h1>
+
+      <p class="govuk-body">Your answers will not affect your eligibility for the benefit.</p>
+
+      <p class="govuk-body">If you need help communicating with us, local advice services may be able to assist you. Their details can be found on your local council website.</p>
+     <p class="govuk-body">Make the Call is the Department's own service, and can support  people who need help. </p>
+
+     <h2 class="govuk-heading-m">
+      Would you like me to give you the number for the Make the Call service? 
+    </h2>
+
+    {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+    {{ govukInsetText({
+      text: "'Make the Call' phone number: 0800 232 1271"
+    }) }}
+
+     <form class="form" action="#" method="post">
+ 
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+  
+        {{ govukButton({
+          text: "Change previous answers",
+          classes: "govuk-button--secondary",
+          href: "/v2-ucd-register/task-list-as-in-progress"
+        }) }}
+      </div>
+
+  
+
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}

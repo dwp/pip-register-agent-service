@@ -1,0 +1,96 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<form action="#" method="post">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Health and care contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Dr Smith"
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-12/new-order/healthcare-professional/healthcare-prof-type",
+                text: "Change",
+                visuallyHiddenText: "of University of Bristol"
+              }
+            ]
+          }
+        },
+        rows: [
+        {
+          key: {
+            text: "Job or support role"
+          },
+          value: {
+            html: "General Practitioner"
+          }
+        },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-12/new-order/healthcare-professional/postcode",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <p class="govuk-body">
+        <a href="/ucd-register/healthcare-professional/additional-support-type" class="govuk-link govuk-link--no-visited-state">Add another healthcare professional</a>
+      </p>
+
+        {{ govukButton({
+          text: "Save and continue",
+          href: "/design-updates/hcp-cya-concepts/hcp-edit-journey/task-list-in-progress-hcp-done"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

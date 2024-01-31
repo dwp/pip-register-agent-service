@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" novalidate></form>
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+     {% from "govuk/components/input/macro.njk" import govukInput %}
+
+      <h1 class="govuk-heading-l">It is very important you give me the correct details so that any payments you are due are not delayed or lost.</h1>
+
+      {{ govukInput({
+        label: {
+          text: "What is the name of the account holder?"
+        },
+        hint: {
+          text: "The name must be exactly what is shown on the debit card, chequebook or statement"
+        },
+        id: "name-on-the-account",
+        name: "nameOnTheAccount",
+        autocomplete: "name",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "What is the Sort code?"
+        },
+        classes: "govuk-input--width-5 govuk-input--extra-letter-spacing",
+        hint: {
+          text: "Please tell us all six numbers, for example, 12-34-56"
+        },
+        id: "sort-code",
+        name: "sortCode",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Can you now tell me the Account number? "
+        },
+        classes: "govuk-input--width-10 govuk-input--extra-letter-spacing",
+        hint: {
+          text: "Most account numbers are eight numbers long"
+        },
+        id: "account-number",
+        name: "accountNumber",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Can I take the roll or reference number?"
+        },
+        classes: "govuk-input--width-20 govuk-input--extra-letter-spacing",
+        hint: {
+          text: "This may be a mix of letters and numbers, and may be up to 18 characters long."
+        },
+        id: "roll-number",
+        name: "rollNumber",
+        spellcheck: false
+      }) }}
+
+          {{ govukButton({
+            text: "Continue",
+            href: "/ucd-register/task-list-in-progress-pay",
+            isContinueButton: true
+          }) }}
+
+          <p class="govuk-body">
+            <a href="/current-non-MVP/task-list-in-progress-pay" class="govuk-link govuk-link--no-visited-state">Change previous answers</a>
+          </p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

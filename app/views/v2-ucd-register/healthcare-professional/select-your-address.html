@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Can you confirm the full address?
+      </h1>
+
+      <form class="form" action="/v2-ucd-register/healthcare-professional/enter-address-manually" method="post">
+        <div class="govuk-width-container">
+          <p>22 addresses found for <b>OX18</b> and <b>4LS</b>. <a href="/v2-ucd-register/healthcare-professional/postcode">Search again</a></p>
+
+        {{ govukRadios({
+          name: "select-an-address",
+          items: [
+            {
+            value: "Kendall & Davies, 7 Sheep Street, Burford, OX18 4LS",
+            text: "Kendall & Davies, 7 Sheep Street, Burford, OX18 4LS"
+            },
+            {
+            value: "9 Sheep Street, Burford, OX18 4LS",
+            text: "9 Sheep Street, Burford, OX18 4LS"
+            },
+            {
+            value: "The Brewery, 18 Sheep Street, Burford, OX18 4LS",
+            text: "The Brewery, 18 Sheep Street, Burford, OX18 4LS"
+            },
+            {
+            value: "31 Sheep Street, Burford, OX18 4LS",
+            text: "31 Sheep Street, Burford, OX18 4LS"
+            },
+            {
+            value: "33 Sheep Street, Burford, OX18 4LS",
+            text: "33 Sheep Street, Burford, OX18 4LS"
+            },
+            {
+            value: "35 Sheep Street, Burford, OX18 4LS",
+            text: "35 Sheep Street, Burford, OX18 4LS"
+            },
+            {
+              value: "45 Sheep Street, Burford, OX18 4LS",
+              text: "45 Sheep Street, Burford, OX18 4LS"
+              },
+                {
+                value: "47 Sheep Street, Burford, OX18 4LS",
+                text: "47 Sheep Street, Burford, OX18 4LS"
+                },
+                {
+                value: "49 Sheep Street, Burford, OX18 4LS",
+                text: "49 Sheep Street, Burford, OX18 4LS"
+                },
+                {
+                  value: "51 Sheep Street, Burford, OX18 4LS",
+                  text: "51 Sheep Street, Burford, OX18 4LS"
+                  }
+                ]
+              }) }}
+
+              {% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+              {{ govukPagination({
+                next: {
+                  href: "/v2-ucd-register/healthcare-professional/select-your-address-2"
+                },
+                items: [
+                  {
+                    number: 1,
+                    current: true,
+                    href: "/v2-ucd-register/healthcare-professional/select-your-address"
+                  },
+                  {
+                    number: 2,
+                    href: "/v2-ucd-register/healthcare-professional/select-your-address-2"
+                  },
+                  {
+                    number: 3,
+                    href: "/v2-ucd-register/healthcare-professional/select-your-address-3"
+                  }
+                ]
+              }) }}
+        
+      </div> 
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Confirm this address"
+        }) }}
+
+        {{ govukButton({
+          text: "Change previous answers",
+          classes: "govuk-button--secondary",
+          href: "/v2-ucd-register/task-list-hcp-in-progress"
+        }) }}
+      </div>
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/v2-ucd-register/healthcare-professional/enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        After this call, we'll send you a claim form if you're eligible to apply
+      </h1>
+
+      <p class="govuk-body">
+        You can use this to tell us how your condition affects you. 
+        <ul class="govuk-list govuk-list--bullet">
+          <li>charities or support organisations</li>
+          <li>someone you know - for example, a family member, friend, neighbour or support worker</li>
+        </ul>
+      </p>
+
+      <p class="govuk-body">
+        Your claim can sometimes be assessed without you needing an appointment if you fill in all of the form. 
+      </p>
+
+      <p class="govuk-body">
+        You can also call us to let us know if you need more time.
+      </p>
+
+      {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+      {{ govukDetails({
+        summaryText: "DWP phone number",
+        text: "0800 121 6279"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        href: "/index",
+       isContinueButton: true
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Bank details
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+        {
+          key: {
+            text: "Can give account details now"
+          },
+          value: {
+            text: "Yes"
+          },
+          actions: {
+            items: [
+              {
+                href: "/design-updates/bank-details/6-1-start",
+                text: "Change",
+                visuallyHiddenText: "Question 1"
+              }
+            ]
+          }
+        }
+        ]
+      }) }}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name on account"
+            },
+            value: {
+              text: "John Smith"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/design-updates/bank-details/6-3-main-account-details-v2",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Sort code"
+            },
+            value: {
+              html: "<p class='govuk-body'>45-32-06</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/design-updates/bank-details/6-3-main-account-details-v2",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Account number"
+            },
+            value: {
+              text: "31510604"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/design-updates/bank-details/6-3-main-account-details-v2",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Roll or reference number"
+            },
+            value: {
+              text: "12345672"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/design-updates/bank-details/6-3-main-account-details-v2",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form action="#" method="post">
+
+        {{ govukButton({
+          text: "Save and continue",
+          href: "/ucd-concepts-testing"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+{% set textHtml %}
+{{ govukInput({
+  id: "other-support-type",
+  name: "support",
+  type: "tel",
+  autocomplete: "tel",
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Support person"
+  }
+}) }}
+{% endset -%}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">The person who supports you</h1>
+
+      <form action="/research/sprint-7/question-second-person/what-is-as-postcode" method="post" novalidate>
+
+        <h1 class="govuk-heading-m">What is their job or their relationship to you?</h1>
+
+        <p class="govuk-hint">For example a community psychiatric nurse, occupational therapist, support worker, social worker, counsellor, carer, or family member or friend</p>
+        
+
+        {{ govukRadios({
+          name: "astype",
+          fieldset: {
+            legend: {
+              isPageHeading: true,
+              classes: "govuk-label--m"
+            }
+          },
+          items: [
+          {
+            value: "support-workers",
+            text: "Support worker"
+          },
+          {
+            value: "carer",
+            text: "Carer"
+          },
+          {
+            value: "family-member",
+            text: "Family member"
+          },
+          {
+            value: "other",
+            text: "Other",
+            conditional: {
+              html: textHtml
+            }
+          }
+          ]
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "What is their name?",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        {% set textHtml %}
+          {{ govukInput({
+            id: "phone-number-known",
+            name: "contact",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Phone number"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          name: "contact",
+          fieldset: {
+            legend: {
+              text: "Do you know their phone number?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: textHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "address-known",
+          fieldset: {
+            legend: {
+              text: "Do you know the address of the place where we can contact them?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+          },
+          hint: {
+            html:'
+            <p class="govuk-hint">You can find the address on letters from your GP or the hospital. If you don’t know the address, you can still continue with your claim.</p>'
+          },
+          items: [
+            {
+            value: "yes",
+            text: "Yes"
+            },
+            {
+            value: "no",
+            text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

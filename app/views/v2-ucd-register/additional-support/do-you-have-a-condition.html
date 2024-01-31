@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <h1 class="govuk-heading-l">
+        Do you have a mental health condition or a condition that causes you significant difficulties remembering things, learning new things, or making everyday decisions?
+      </h1>
+
+      <form class="form" action="#" method="post">
+
+        {{ govukDetails({
+          summaryText: "Examples of conditions",
+          html: '
+          <p class="govuk-body">This list is not exhaustive:</p>
+          
+              <ul class="govuk-list govuk-list--bullet">
+                <p class= "govuk-body govuk-!-font-weight-bold">By mental-health conditions we mean for example:</p>
+                <li>Severe depression</li>
+                <li>Post Traumatic Stress Disorder (PTSD)</li>
+                <li>Obsessive Compulsive Disorder (OCD)</li>
+                <li>Psychosis</li>
+              </ul>
+    
+              <ul class="govuk-list govuk-list--bullet">
+                <li class= "govuk-body govuk-!-font-weight-bold">By behavioural conditions conditions we mean for example:</li>
+                <li>Attention Deficit Hyperactivity Disorder (ADHD)</li>
+                <li>Conduct disorder</li>
+              </ul>
+              
+              <ul class="govuk-list govuk-list--bullet">
+                <li class= "govuk-body govuk-!-font-weight-bold">By learning difficulty, we mean for example:</li>
+                <li>Down syndrome</li>
+              </ul>
+    
+              <ul class="govuk-list govuk-list--bullet">
+                <li class= "govuk-body govuk-!-font-weight-bold">By developmental disorder we mean for example:</li>
+                <li>Autistic Spectrum disorder</li>
+                <li> developmental delay</li>
+                <li> speech or language disorder</li>
+              </ul>
+    
+              <ul class="govuk-list govuk-list--bullet">
+                <li class= "govuk-body govuk-!-font-weight-bold">By memory problems we mean for example:</li>
+                <li>Alzheimer’s or Dementia</li>
+              </ul>'
+        }) }}
+
+        {{ govukRadios({
+            name: "condition",
+            fieldset: {
+              legend: {
+
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+      
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/v2-ucd-register/task-list-as-in-progress"
+            }) }}
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

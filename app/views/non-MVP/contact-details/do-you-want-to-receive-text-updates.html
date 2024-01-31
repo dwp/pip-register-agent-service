@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="#" method="post">
+        
+        <span class="govuk-caption-l">Contact information</span>
+        <h1 class="govuk-heading-l">
+          Do you want to receive text messages with updates about the progress of your claim?
+        </h1>
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "do-you-want-to-receive-text-updates",
+            fieldset: {
+              legend: {
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html:'
+              <p class="govuk-hint">You can opt out of receiving these at any time by contacting us.</p>'
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+  
+            {{ govukButton({
+              text: "Edit answers",
+              classes: "govuk-button--secondary",
+              href: "/non-MVP/task-list-in-progress"
+            }) }}
+          </div>
+
+    </div>
+  </div>
+
+{% endblock %}

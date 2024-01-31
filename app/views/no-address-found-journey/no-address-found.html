@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        <div class="govuk-width-container">
+          <h1 class="govuk-heading-l">No address found</h1>
+          <p>We could not find an address that matches <b>wr11nl</b> and <b>1</b>. You can search again or enter the address manually.</p>
+          <p><a href="/no-address-found-journey/what-is-your-postcode">Search again</a></p>
+          <p class="govuk-body govuk-!-margin-bottom-0"><a href="/no-address-found-journey/enter-address-manually" class="govuk-link">Enter address manually</a></p>
+          </div> 
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

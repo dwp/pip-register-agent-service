@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Select yes if applicant can give account details now",
+      href: "#nationality"
+    }
+  ]
+}) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
+
+        <span class="govuk-caption-l">How we pay you</span>
+        <h1 class="govuk-heading-l">
+          The next questions are about your account details 
+        </h1>
+        
+          <p class="govuk-body">By account we mean a bank, building society or credit union.</p>
+
+          {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+          {{ govukInsetText({
+            text: "If your application for a claim is successful, we can use these details to pay you straightaway."
+          }) }}
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "details-now",
+            fieldset: {
+              legend: {
+                text: "Can you give me your account details now?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            errorMessage: {
+              text: "Select yes if applicant can give account details now"
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

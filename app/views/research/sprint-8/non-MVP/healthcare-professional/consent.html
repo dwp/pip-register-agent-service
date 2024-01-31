@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/path/of/next/page" method="post">
+
+        {{ govukRadios({
+          name: "consent",
+          fieldset: {
+            legend: {
+              text: "Do you agree that your health and care professionals can share relevant information about your health conditions to support your claim?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html:'
+            <p class="govuk-body">The Department for Work and Pensions (DWP), or assessment providers approved by the Secretary of State, may need more information or evidence to process and make a decision on your claim.</p>'
+          },
+          items: [
+            {
+            value: "yes",
+            text: "Yes, I agree"
+            },
+            {
+            value: "no",
+            text: "No, I do not agree"
+            }
+          ]
+        }) }}
+
+        <div>
+          <p class="govuk-body govuk-!-margin-bottom-6"></p>
+
+          <h2 class="govuk-heading-m">How DWP uses this information</h1></h2>
+
+          <p class="govuk-body">If you agree, DWP will store your consent on your behalf. This means your health and care professionals will know they are legally allowed to share information about you.</p>
+
+          <p class="govuk-body">DWP needs information about your health condition and how it affects you</p>
+          
+          <p class="govuk-body">The law allows DWP to get, keep, and use this information for the purpose of processing and making a decision on your claim and on any mandatory reconsideration or appeal that you've made.</p>
+      
+       </div>
+
+       <div>
+        <p class="govuk-body govuk-!-margin-bottom-6"></p>
+
+        <h2 class="govuk-heading-m">If you change your mind</h1></h2>
+
+        <p class="govuk-body">You can change your mind at any time. If you do, DWP will not ask your health and care professionals to share any more information.</p>
+
+        <p class="govuk-body">If you want to give or withdraw your consent later, contact:</p>
+        
+        <p class="govuk-body">Phone: 0800 121 6279<br>
+          Textphone: 0800 121 4493 if you have speech or hearing difficulties</p>
+    
+     </div>
+
+        {{ govukButton({
+          text: "Continue",
+          href: "/ucd-register/healthcare-professional/start",
+            isContinueButton: true
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

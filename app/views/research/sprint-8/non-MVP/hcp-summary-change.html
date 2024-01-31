@@ -1,0 +1,143 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Return to task list",
+    href: "/research/sprint-8/non-mvp/task-list-in-progress-add"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+        {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+        {% set html %}
+          <h3 class="govuk-notification-banner__heading">
+           Main health contact address updated
+          </h3>
+          <p class="govuk-body">Review your updated answers in <a class="govuk-notification-banner__link" href="#">Health and support contacts</a> before continuing.</p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: html,
+          type: "success"
+        }) }}
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-l">
+        Health and support contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Main health contact"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Remove",
+                visuallyHiddenText: "of University of Bristol"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: "Dr Jones"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Profession or support type"
+            },
+            value: {
+              html: "General Practitioner"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>Buckingham Palace, London, SW1A 1AA</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/non-MVP/healthcare-professional/healthcare-prof-type",
+                  text: "Change",
+                  visuallyHiddenText: "whether details are known"
+                }
+                ]
+              }
+          }
+        ]
+      }) }}
+
+    </div>
+
+          {{ govukButton({
+            text: "Resume questions",
+            href: "/research/sprint-8/non-MVP/additional-support/do-you-have-a-condition"
+          }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

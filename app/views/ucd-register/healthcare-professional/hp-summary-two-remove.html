@@ -1,0 +1,215 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Health and care contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Dr Smith"
+          },
+          actions: {
+            items: [
+              {
+                href: "/design-updates/hcp-cya-concepts/hcp-edit-journey/hp-summary-one",
+                text: "Remove",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        rows: [
+        {
+          key: {
+            text: "Name"
+          },
+          value: {
+            html: "Dr Smith"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Job or support role"
+          },
+          value: {
+            html: "General Practitioner"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/design-updates/hcp-cya-concepts/hcp-edit-journey/postcode",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Karen Jones"
+          },
+          actions: {
+            items: [
+              {
+                href: "/design-updates/hcp-cya-concepts/hp-summary",
+                text: "Remove",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        rows: [
+        {
+          key: {
+            text: "Name"
+          },
+          value: {
+            html: "Karen Jones"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+          {
+            key: {
+              text: "Job or support role"
+            },
+            value: {
+              html: "<p class='govuk-body'> Family member</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>0795 42687</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>64 Zoo lane, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/design-updates/hcp-cya-concepts/hcp-edit-journey/postcode-support",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+
+      <form action="/ucd-register/task-list-bank-done" method="post">
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

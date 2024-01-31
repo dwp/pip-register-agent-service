@@ -1,0 +1,221 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+      {% set html %}
+        <h3 class="govuk-notification-banner__heading">
+         Second contact address updated
+        </h3>
+        <p class="govuk-body">Review updated details in <a class="govuk-notification-banner__link" href="#">Health and care contacts</a> before continuing.</p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html,
+        type: "success"
+      }) }}
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Health and care contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Dr Smith"
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-14/hcp-edit-journey/healthcare-prof-type",
+                text: "Change",
+                visuallyHiddenText: "contact details"
+              },
+              {
+                href: "/research/sprint-14/hcp-edit-journey/hp-summary-second-only",
+                text: "Remove",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        rows: [
+        {
+          key: {
+            text: "Job or support role"
+          },
+          value: {
+            html: "General Practitioner"
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-14/hcp-edit-journey/healthcare-prof-type",
+                text: "Change",
+                visuallyHiddenText: "age"
+              }
+            ]
+          }
+        },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 55987</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-14/hcp-edit-journey/healthcare-prof-typee",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>4 Privet Drive, Little Whinging, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-14/hcp-edit-journey/postcode",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Add another health contact"
+            },
+            value: {
+              text: "Yes"
+            }
+          }
+        ]
+      }) }}
+
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Karen Jones"
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-14/hcp-edit-journey/additional-support-type",
+                text: "Change",
+                visuallyHiddenText: "contact details"
+              },
+              {
+                href: "/research/sprint-14/hcp-edit-journey/hp-summary-second-removed",
+                text: "Remove",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Job or support role"
+            },
+            value: {
+              html: "<p class='govuk-body'> Family member</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-14/hcp-edit-journey/additional-support-type",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>0795 42687</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-14/hcp-edit-journey/additional-support-type",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>Burford Surgery, Tanners Lane, OX18 6RE</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-14/hcp-edit-journey/postcode-support",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form action="#" method="post">
+
+        {{ govukButton({
+          text: "Save and continue",
+          href: "/research/sprint-14/hcp-edit-journey/task-list-in-progress-hcp-done"
+        }) }}
+
+        <p class="govuk-body">
+          <a href="/research/sprint-14/hcp-edit-journey/task-list-in-progress-hcp-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

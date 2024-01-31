@@ -1,0 +1,118 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<form action="#" method="post">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Health and care contacts
+      </h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Karen Jones"
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-12/new-order/healthcare-professional/healthcare-prof-type",
+                text: "Change",
+                visuallyHiddenText: "of University of Bristol"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Job or support role"
+            },
+            value: {
+              html: "<p class='govuk-body'> Family member</p>"
+            }
+          },
+          actions: {
+            items: [
+              {
+                href: "/research/sprint-12/new-order/healthcare-professional/additional-support-type",
+                text: "Change",
+                visuallyHiddenText: "age"
+              }
+            ]
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>0795 42687</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-12/new-order/healthcare-professional/additional-support-type",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "<p class='govuk-body'>64 Zoo lane, Surrey</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/research/sprint-12/new-order/healthcare-professional/postcode-support",
+                  text: "Change",
+                  visuallyHiddenText: "age"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p class="govuk-body">
+        <a href="/ucd-register/healthcare-professional/additional-support-type" class="govuk-link govuk-link--no-visited-state">Add another healthcare professional</a>
+      </p>
+
+        {{ govukButton({
+          text: "Save and continue",
+          href: "/research/sprint-12/new-order/healthcare-professional/hp-summary-two"
+        }) }}
+
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/task-list-bank-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
