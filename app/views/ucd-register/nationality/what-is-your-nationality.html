@@ -30,14 +30,12 @@
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
         
-
-        <span class="govuk-caption-l">Nationality, work and residence</span>
         <h1 class="govuk-heading-l">
           What is your nationality?
         </h1>
         
         {{ govukRadios({
-          name: "contact",
+          name: "nationality",
           fieldset: {
             legend: {
               isPageHeading: true,
@@ -52,26 +50,14 @@
           {
             value: "irish",
             text: "Irish"
-          }
-          ]
-        }) }}
-
-        {% from "govuk/components/select/macro.njk" import govukSelect %}
-
-        {{ govukSelect({
-          id: "another-nationality",
-          name: "another-nationality",
-          label: {
-            text: "Another nationality",
-            for: "another-nationality"
           },
-          items: [
           {
-            value: "select-nationality",
-            text: "Select a nationality"
+            value: "other",
+            text: "Another nationality"
           }
           ]
         }) }}
+
 
           {{ govukButton({
             text: "Continue"
@@ -84,12 +70,5 @@
   </div>
 
 {% block scripts %}
-  {{ super() }}
-  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-  <script type="text/javascript">
-    element = document.querySelector('#country')
-    accessibleAutocomplete.enhanceSelectElement({
-      selectElement: element
-    })
-  </script>
+
 {% endblock %}
