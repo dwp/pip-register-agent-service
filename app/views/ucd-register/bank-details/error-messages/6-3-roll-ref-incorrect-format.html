@@ -17,7 +17,7 @@
   titleText: "There is a problem",
   errorList: [
     {
-      text: "Enter a real sort code like 123456, 12-34-56, or 12 34 56",
+      text: "Enter a real roll or reference number like CXJ-K6 897/98X or 10/00002183-9",
       href: "#nationality"
     }
   ]
@@ -53,9 +53,6 @@
         hint: {
           text: "Must be 6 digits long."
         },
-        errorMessage: {
-          text: "Enter a real sort code like 123456, 12-34-56, or 12 34 56"
-        },
         id: "sort-code",
         name: "sortCode",
         inputmode: "numeric",
@@ -83,6 +80,9 @@
         classes: "govuk-input--width-20 govuk-input--extra-letter-spacing",
         hint: {
           text: "You can find it on your card, statement or passbook."
+        },
+        errorMessage: {
+          text: "Enter a real roll or reference number like CXJ-K6 897/98X or 10/00002183-9"
         },
         id: "roll-number",
         name: "rollNumber",

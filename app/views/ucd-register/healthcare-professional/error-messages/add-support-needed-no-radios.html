@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+
+          {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Select yes if there is another health contact",
+                href: "#nationality"
+              }
+            ]
+          }) }}
+
+          <span class="govuk-caption-l">Healthcare and support</span>
+          <h1 class="govuk-heading-l">
+            Is there anyone else who knows about your condition and how it affects you?
+          </h1>
+          
+          {% call govukFieldset({
+            legend: {
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+            }
+          }) %}
+
+          <p class="govuk-hint">For example, a community psychiatric nurse, occupational therapist, support worker, social worker, counsellor, carer, or family member or friend. </p>
+
+
+          {{ govukRadios({
+            name: "support-needed",
+            errorMessage: {
+              text: "Select yes if there is another health contact"
+            },
+
+            items: [
+              {
+              value: "yes",
+              text: "Yes"
+              },
+              {
+              value: "no",
+              text: "No"
+              }
+            ]
+          }) }}
+
+          {% endcall %}
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

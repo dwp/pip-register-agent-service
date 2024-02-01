@@ -22,7 +22,7 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
-          <h1 class="govuk-heading-l">What date did you go into the hospice?</h1>
+          <h1 class="govuk-heading-l">What date did you enter the hospice?</h1>
 
           {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
@@ -34,6 +34,7 @@
           }
         }) }}
 
+        
         {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
         {{ govukCheckboxes({
@@ -46,7 +47,7 @@
           items: [
             {
               value: "unknown",
-              text: "Date unknown"
+              text: "Applicant does not know the date"
             }
           ]
         }) }}

@@ -22,6 +22,19 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
+          {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Date of entering hospice must be in the past",
+                href: "#nationality"
+              }
+            ]
+          }) }}
+
+          <span class="govuk-caption-l">Healthcare and support</span>
           <h1 class="govuk-heading-l">What date did you enter the hospice?</h1>
 
           {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
@@ -31,6 +44,9 @@
           namePrefix: "hospice-date",
           hint: {
             text: "Enter a date, like  27 3 2007"
+          },
+          errorMessage: {
+            text: "Date of entering hospice must be in the past"
           }
         }) }}
 
@@ -53,7 +69,8 @@
 
         {{ govukButton({
           text: "Continue"
-          }) }}    
+          }) }}
+          
 
         </div>
       </form>

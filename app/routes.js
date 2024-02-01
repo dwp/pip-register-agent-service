@@ -371,15 +371,15 @@ router.post('/register/hospital-dates/other-residence-summary', function(request
 
 // -------------------------------------------------------------------------------------
 
-// UCD-REGISTER (IN PROGRESS--->)
+// UCD-REGISTER 
 
 // Declaration
 router.post('/ucd-register/declaration', function(request, response) {
-    var otherYesterday = request.session.data['agree']
-    if (otherYesterday == 'yes'){
+    var agree = request.session.data['agree']
+    if (agree == 'yes'){
         response.redirect('/ucd-register/task-list')
-    } else if (otherYesterday == 'no') {
-        response.redirect('#')
+    } else if (agree == 'no') {
+        response.redirect('/ucd-register/declaration-kickout')
     }
 })
 
@@ -482,15 +482,49 @@ router.post('/ucd-register/contact-details/contact-details-summary', function(re
 
 //UCD-REGISTER/NATIONALITY
 
+//nationality start
+router.post('/ucd-register/nationality/start', function(request, response) {
+    response.redirect('/ucd-register/nationality/what-is-your-nationality')
+})
+
 //what is your nationality
 router.post('/ucd-register/nationality/what-is-your-nationality', function(request, response) {
+    var nationality = request.session.data['nationality']
+    if (nationality == 'british'){
+        response.redirect('/ucd-register/nationality/what-country-do-you-live-in')
+    } else if (nationality == 'irish') {
+        response.redirect('/ucd-register/nationality/what-country-do-you-live-in')
+    } else if (nationality == 'other') {
+        response.redirect('/ucd-register/nationality/another-nationality')
+    }
+})
+
+// Another nationality
+router.post('/ucd-register/nationality/another-nationality', function(request, response) {
     response.redirect('/ucd-register/nationality/what-country-do-you-live-in')
 })
 
-//what is country do you normally live in page
+//what country do you normally live in page
 router.post('/ucd-register/nationality/what-country-do-you-live-in', function(request, response) {
+    var nationality = request.session.data['country']
+    if (nationality == 'northern-ireland'){
+        response.redirect('/ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'england') {
+        response.redirect('/ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'wales') {
+        response.redirect('/ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'scotland') {
+        response.redirect('/ucd-register/nationality/lived-elsewhere')
+    } else if (nationality == 'another-country') {
+        response.redirect('/ucd-register/nationality/another-country-lived-in')
+    }
+})
+
+// Another country
+router.post('/ucd-register/nationality/another-country-lived-in', function(request, response) {
     response.redirect('/ucd-register/nationality/lived-elsewhere')
 })
+
 
 //Have you lived anywhere other than UK in last 3 years page
 router.post('/ucd-register/nationality/lived-elsewhere', function(request, response) {
@@ -866,7 +900,7 @@ router.post('/ucd-register/bank-details/6-1-start', function(request, response) 
 
 // You can continue without entering account details
 router.post('/ucd-register/bank-details/6-2-no-details-now', function(request, response) {
-    response.redirect('/ucd-register/bank-details/bank-details-summary-none')
+    response.redirect('/ucd-register/motability/motability')
 })
 
 // Main account details
@@ -876,10 +910,13 @@ router.post('/ucd-register/bank-details/6-3-main-account-details-v2', function(r
 
 // Bank details CYA to task list
 router.post('/ucd-register/bank-details/bank-details-summary', function(request, response) {
-    response.redirect('/ucd-register/task-list-bank-done')
+    response.redirect('/ucd-register/motability/motability')
 })
 
-
+// Bank details CYA to task list
+router.post('/ucd-register/motability/motability', function(request, response) {
+    response.redirect('/ucd-register/task-list-bank-done')
+})
 
 // -------------------------------------------------------------------------------------
 
@@ -2542,6 +2579,7 @@ router.post('/v2-ucd-register/nationality/what-is-your-nationality', function(re
 router.post('/v2-ucd-register/nationality/another-nationality', function(request, response) {
     response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
 })
+
 
 
 //what country do you normally live in page
