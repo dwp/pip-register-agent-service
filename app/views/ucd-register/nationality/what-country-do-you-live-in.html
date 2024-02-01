@@ -24,15 +24,13 @@
       <form class="form" action="#" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
-        
 
-        <span class="govuk-caption-l">Nationality, work and residence</span>
         <h1 class="govuk-heading-l">
           What country do you normally live in?
         </h1>
         
         {{ govukRadios({
-          name: "contact",
+          name: "country",
           fieldset: {
             legend: {
               isPageHeading: true,
@@ -41,7 +39,7 @@
           },
           items: [
           {
-            value: "northern-script",
+            value: "northern-ireland",
             text: "Northern Ireland"
           },
           {
@@ -55,37 +53,18 @@
           {
             value: "scotland",
             text: "Scotland"
+          },
+          {
+            value: "another-country",
+            text: "Another country"
           }
           ]
         }) }}
-
-        {% from "govuk/components/select/macro.njk" import govukSelect %}
-
-        {{ govukSelect({
-          id: "another-country",
-          name: "another-country",
-          label: {
-            text: "Another country",
-            for: "country"
-          },
-          items: [
-          {
-            value: "select-country",
-            text: "Select a country",
-            selected: true
-          },
-          {
-            value: "pipcs",
-            text: "list of countries"
-          }
-          ]
-        }) }}
-
-
 
           {{ govukButton({
             text: "Continue"
           }) }}
+    
 
       </form>
 
@@ -95,12 +74,5 @@
 {% endblock %}
 
 {% block scripts %}
-  {{ super() }}
-  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-  <script type="text/javascript">
-    element = document.querySelector('#country')
-    accessibleAutocomplete.enhanceSelectElement({
-      selectElement: element
-    })
-  </script>
+
 {% endblock %}
