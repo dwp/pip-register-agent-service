@@ -1,0 +1,138 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/public/sass/accessible-autocomplete.min.css">
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Town or city must be between 3 and 35 characters",
+            href: "#full-name-input"
+          }
+        ]
+      }) }}
+
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+  {% call govukFieldset({
+    legend: {
+      text: " What is their work address?",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  }) %}
+
+  {{ govukInput({
+    label: {
+      text: 'Address line 1'
+    },
+    id: "address-line-1",
+    name: "address-line-1",
+    autocomplete: "address-line1"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: 'Address line 2 (optional)'
+    },
+    id: "address-line-2",
+    name: "address-line-2",
+    autocomplete: "address-line2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Town or city"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-town",
+    name: "address-town",
+    errorMessage: {
+      text: "Town or city must be between 3 and 35 characters"
+    },
+    autocomplete: "address-level2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "County (optional)"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-county",
+    name: "address-county"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Postcode"
+    },
+    classes: "govuk-input--width-10",
+    id: "address-postcode",
+    name: "address-postcode",
+    autocomplete: "postal-code"
+  }) }}
+
+  {% from "govuk/components/select/macro.njk" import govukSelect %}
+
+{{ govukSelect({
+  id: "country",
+  name: "country",
+  classes: "govuk-!-width-20",
+  label: {
+    text: "Country"
+  },
+  items: [
+    {
+      value: "select-country",
+      text: "Select a country"
+    }
+  ]
+}) }}
+
+  {{ govukButton({
+    text: "Confirm this address"
+  }) }}
+
+  <div class="govuk-body">
+    <a href="/ucd-register/healthcare-professional/postcode">Search by postcode</a>
+  </div>
+  
+{% endcall %}
+
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+  <script type="text/javascript">
+    element = document.querySelector('#country')
+    accessibleAutocomplete.enhanceSelectElement({
+      selectElement: element
+    })
+  </script>
+{% endblock %}

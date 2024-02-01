@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+
+          {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "Building number or name must be 35 characters or less",
+                href: "#nationality"
+              }
+            ]
+          }) }}
+          <span class="govuk-caption-l">Healthcare and support</span>
+          {% call govukFieldset({
+            legend: {
+              text: "What is the postcode and name of their work address?",
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+            }
+          }) %}
+
+
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "postcode",
+            name: "postcode"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Building number or name (optional)"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "searchString",
+            name: "searchString",
+            errorMessage: {
+              text: "Building number or name must be 35 characters or less"
+            }
+          }) }}
+          {% endcall %}
+
+            {{ govukButton({
+              text: "Find address"
+            }) }}
+
+
+          <p class="govuk-body"><a href="/ucd-register/healthcare-professional/enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
+          <p class="govuk-body"><a href="/ucd-register/healthcare-professional/additional-support-needed" class="govuk-link">Applicant does not know the address</a></p>
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
