@@ -2600,7 +2600,7 @@ router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/living-
 })
 
 //Have you made an application to the EU Settlement Scheme or been given a status from the EU Settlement Scheme?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/EU-settlement-scheme', function(request, response) {
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/eu-settlement-scheme', function(request, response) {
     var application = request.session.data['eu-settlement']
     if (application == 'yes'){
         response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/what-settlement-scheme')
@@ -2700,7 +2700,7 @@ router.post('/v2-ucd-register/nationality/lived-elsewhere', function(request, re
 router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
     var livedAbroad = request.session.data['abroad-over-four-weeks']
     if (livedAbroad == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/abroad-over-four-weeks')
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to')
     } else if (livedAbroad == 'no') {
         response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
     }
