@@ -19,13 +19,13 @@
       <form class="form" action="#" method="post">
 
         <h1 class="govuk-heading-l">
-          What restrictions, if any, are there on your leave to remain?
+          When you went away did you intend to return?
         </h1>
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-              name: "restrictions",
+              name: "return-intent",
               fieldset: {
               legend: {
               isPageHeading: true,
@@ -34,31 +34,16 @@
           },
           items: [
             {
-              value: "none",
-              text: " No restrictions"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "limited",
-              text: "Limited leave to remain"
+              value: "no",
+              text: "No"
             },
             {
-              value: "extension-applied",
-              text: "Limited leave to remain extension applied for"
-            },
-            {
-              value: "indefinite",
-              text: "Indefinite leave to remain"
-            },
-            {
-              value: "no-leave",
-              text: "No leave to remain"
-            },
-            {
-              divider: "or,"
-            }, 
-            {
-              value: "unknown",
-              text: "Don’t know"
+              value: "no",
+              text: "Don't know"
             }
           ]
         }) }}

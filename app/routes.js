@@ -2637,6 +2637,33 @@ router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/passpor
     response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain')
 })
 
+//What restrictions, if any, are there on your leave to remain?
+
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain', function(request, response) {
+  var restrictions = request.session.data['restrictions']
+    if (restrictions =='none' || restrictions =='indefinite' || restrictions =='no-leave' || restrictions =='unknown'){
+        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
+    } else if (restrictions =='limited'){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end')
+       }  else if (restrictions == 'extension-applied') {
+            response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end-applied-for')
+    } 
+})
+
+//Limited leave to remain- When does your leave to remain end?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end', function(request, response) {
+    response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
+})
+
+//Limited leave to remain applied for- When does your leave to remain end?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end-applied-for', function(request, response) {
+    response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/when-did-you-apply')
+})
+
+//When did you apply for extension?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/when-did-you-apply', function(request, response) {
+    response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
+})
 
 //what country do you normally live in page
 router.post('/v2-ucd-register/nationality/what-country-do-you-live-in', function(request, response) {
@@ -2663,7 +2690,7 @@ router.post('/v2-ucd-register/nationality/another-country-lived-in', function(re
 router.post('/v2-ucd-register/nationality/lived-elsewhere', function(request, response) {
     var livedElsewhere = request.session.data['lived-elsewhere']
     if (livedElsewhere == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/abroad-over-four-weeks')
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to')
     } else if (livedElsewhere == 'no') {
         response.redirect('/v2-ucd-register/nationality/abroad-over-four-weeks')
     }
@@ -2673,11 +2700,33 @@ router.post('/v2-ucd-register/nationality/lived-elsewhere', function(request, re
 router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
     var livedAbroad = request.session.data['abroad-over-four-weeks']
     if (livedAbroad == 'yes'){
-        response.redirect('#')
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/abroad-over-four-weeks')
     } else if (livedAbroad == 'no') {
         response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
     }
 })
+
+//Which country did you go to?
+
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/which-country-did-you-go-to', function(request, response) {
+    var why = request.session.data['why']
+      if (why =='holiday'){
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
+      } else if (why =='other'){
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/aborad-time/intent-to-return')
+         }  
+  })
+
+  //More abroad?
+
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/more-places', function(request, response) {
+    var more = request.session.data['more-places']
+      if (more =='yes'){
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to')
+      } else if (more =='no'){
+          response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+         }  
+  })
 
 //Are you working or paying national insurance in another country?
 
