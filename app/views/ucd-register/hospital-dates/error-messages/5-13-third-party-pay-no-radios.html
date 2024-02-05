@@ -27,16 +27,14 @@
             titleText: "There is a problem",
             errorList: [
               {
-                text: "Select yes if applicant was living in this place yesterday",
+                text: "Select organisation type if they pay any accommodation costs",
                 href: "#nationality"
               }
             ]
           }) }}
 
-          <h1 class="govuk-heading-l">
-            Were you living in this [place type] yesterday?
-          </h1>
-          
+          <h1 class="govuk-heading-l">Does a local authority, health authority, education authority, Jobcentre Plus, or a charity pay any of the costs for you to live there?</h1>
+
           {% call govukFieldset({
             legend: {
               classes: "govuk-fieldset__legend--l",
@@ -45,28 +43,52 @@
           }) %}
 
           {{ govukRadios({
-            name: "other-yesterday",
+            name: "third-party-pay",
             errorMessage: {
-              text: "Select yes if applicant was living in this place yesterday"
+              text: "Select organisation type if they pay any accommodation costs"
             },
             items: [
-              {
+          {
+            value: "no",
+            text: "No, none of these"
+          },
+          {
+            value: "no",
+            text: "I don't know"
+          },
+          {
+            divider: "or,"
+          },
+            {
+              value: "local",
+              text: "Local authority"
+            },
+            {
               value: "yes",
-              text: "Yes"
-              },
-              {
-              value: "no",
-              text: "No"
-              }
-            ]
+              text: "Health authority"
+            },
+            {
+              value: "yes",
+              text: "Education authority"
+            },
+            {
+              value: "yes",
+              text: "Jobcentre Plus"
+            },
+            {
+              value: "yes",
+              text: "Charity"
+            }
+          ]
           }) }}
 
           {% endcall %}
-
+          
             {{ govukButton({
               text: "Continue"
             }) }}
-
+    
+          
         </div>
       </form>
     </div>

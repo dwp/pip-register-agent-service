@@ -27,15 +27,13 @@
             titleText: "There is a problem",
             errorList: [
               {
-                text: "Select yes if applicant was living in this place yesterday",
+                text: "Select yes if there is an agreement to pay back local authority",
                 href: "#nationality"
               }
             ]
           }) }}
 
-          <h1 class="govuk-heading-l">
-            Were you living in this [place type] yesterday?
-          </h1>
+          <h1 class="govuk-heading-l">Do you have an agreement with [name of the local authority] to pay back any of the costs?</h1>
           
           {% call govukFieldset({
             legend: {
@@ -45,9 +43,9 @@
           }) %}
 
           {{ govukRadios({
-            name: "other-yesterday",
+            name: "third-party-pay",
             errorMessage: {
-              text: "Select yes if applicant was living in this place yesterday"
+              text: "Select yes if there is an agreement to pay back local authority"
             },
             items: [
               {
@@ -57,7 +55,11 @@
               {
               value: "no",
               text: "No"
-              }
+              },
+              {
+                value: "unsure",
+                text: "I don't know"
+                }
             ]
           }) }}
 
@@ -66,7 +68,7 @@
             {{ govukButton({
               text: "Continue"
             }) }}
-
+          
         </div>
       </form>
     </div>
