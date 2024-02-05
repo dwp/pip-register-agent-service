@@ -2540,6 +2540,7 @@ router.post('/v2-ucd-register/additional-support/helpers', function(request, res
     }
 })
 
+
 router.post('/v2-ucd-register/additional-support/who-helps', function(request, response) {
     response.redirect('/v2-ucd-register/additional-support/advice-as-marker')
 })
@@ -2575,11 +2576,66 @@ router.post('/v2-ucd-register/nationality/what-is-your-nationality', function(re
     }
 })
 
+//UNHAPPY PATH
 //Select other nationality
 router.post('/v2-ucd-register/nationality/another-nationality', function(request, response) {
-    response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
+    var anotherNationality = request.session.data['another-nationality']
+    if (anotherNationality == 'Norway' || anotherNationality == 'Iceland'){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before')
+    }
+    if (anotherNationality == 'Australia' || anotherNationality == 'Brazil' ){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status')
+    }
 })
 
+
+//Were you living in the UK on or before 31/12/20?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before', function(request, response) {
+    var before = request.session.data['before']
+    if (before == 'yes'){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/EU-settlement-scheme')
+    } else if (before == 'no') {
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status')
+    }
+})
+
+//Have you made an application to the EU Settlement Scheme or been given a status from the EU Settlement Scheme?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/EU-settlement-scheme', function(request, response) {
+    var application = request.session.data['eu-settlement']
+    if (application == 'yes'){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/what-settlement-scheme')
+    } else if (application == 'no') {
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status')
+    }
+})
+
+//Have you made an application to the EU Settlement Scheme or been given a status from the EU Settlement Scheme?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/what-settlement-scheme', function(request, response) {
+    var scheme = request.session.data['what-scheme']
+    if (scheme =='settled' || scheme =='pending'){
+        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
+    } else if (scheme == 'pre-settled') {
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/leave-to-remain-end')
+    } else if (scheme == 'refused') {
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain')
+    }
+    
+})
+
+//Have you been granted refugee or humanitarian protection status?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status', function(request, response) {
+    var granted = request.session.data['granted-refugee']
+    if (granted == 'yes'){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain')
+    } else if (granted == 'no') {
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/passport-public-funds')
+    }
+})
+
+//Does your passport, or any other document from the Home Office say ‘No recourse to public funds’?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/passport-public-funds', function(request, response) {
+    response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/restrictions-on-leave-to-remain')
+})
 
 
 //what country do you normally live in page
