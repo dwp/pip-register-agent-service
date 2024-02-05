@@ -2707,26 +2707,38 @@ router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(requ
 })
 
 //Which country did you go to?
-
 router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/which-country-did-you-go-to', function(request, response) {
     var why = request.session.data['why']
       if (why =='holiday'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
       } else if (why =='other'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/aborad-time/intent-to-return')
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
          }  
   })
 
-  //More abroad?
+  //More places?
+router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places', function(request, response) {
+    var morePlaces = request.session.data['more']
+    if (morePlaces =='yes'){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to-2')
+    } else if (morePlaces =='no'){
+        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+       }  
+})
 
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/more-places', function(request, response) {
-    var more = request.session.data['more-places']
-      if (more =='yes'){
-          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to')
-      } else if (more =='no'){
-          response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+//Which country did you go to 2?
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/which-country-did-you-go-to-2', function(request, response) {
+    var why = request.session.data['why']
+      if (why =='holiday'){
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
+      } else if (why =='other'){
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
          }  
   })
+    //When you went away did you intend to return?
+    router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return', function(request, response) {
+        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    })
 
 //Are you working or paying national insurance in another country?
 

@@ -22,45 +22,43 @@
           Are there any more periods abroad you should tell us about?
         </h1>
 
+        
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        {{ govukRadios({
-              name: "more-places",
-              fieldset: {
-              legend: {
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No"
-            },
-            {
-              value: "no",
-              text: "Don't know"
-            }
-          ]
-        }) }}
+{{ govukRadios({
+  name: "more",
+  fieldset: {
+    legend: {
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+}) }}
 
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Continue"
-          }) }}
-    
-          {{ govukButton({
-            text: "Change previous answers",
-            classes: "govuk-button--secondary",
-            href: "/v2-ucd-register/task-list-nat-in-progress"
-          }) }}
-        </div>
 
-      </form>
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+  {{ govukButton({
+    text: "Change previous answers",
+    classes: "govuk-button--secondary",
+    href: "#"
+  }) }}
+</div>
+
+</form>
 
     </div>
   </div>
