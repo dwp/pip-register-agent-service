@@ -21,7 +21,7 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
-          <h1 class="govuk-heading-l">Do any of the following organisations help pay the costs for you to live there?</h1>
+          <h1 class="govuk-heading-l">Do any of the following organisations help pay any of the costs for you to live there?</h1>
 
           {% call govukFieldset({
             legend: {
@@ -33,53 +33,42 @@
           {{ govukRadios({
             name: "third-party-pay",
             items: [
+          {
+            value: "health and social care trust",
+            text: "Health and social care trust"
+          },
+          {
+            value: "education authority",
+            text: "Education Authority"
+          },
             {
-              value: "local",
-              text: "Local authority"
+              value: "government",
+              text: "Government department, or"
             },
             {
-              value: "yes",
-              text: "Health authority"
-            },
-            {
-              value: "yes",
-              text: "Education authority"
-            },
-            {
-              value: "yes",
-              text: "Jobcentre Plus"
-            },
-            {
-              value: "yes",
+              value: "a charity",
               text: "Charity"
-            },
+            }, 
             {
               divider: "or,"
-            },
+            },           
             {
-              value: "no",
+              value: "none",
               text: "No, none of these"
             },
             {
-              value: "no",
+              value: "none",
               text: "I don't know"
             }
           ]
           }) }}
 
           {% endcall %}
-
-          <div class="govuk-button-group">
+          
             {{ govukButton({
               text: "Continue"
             }) }}
-      
-            {{ govukButton({
-              text: "Change previous answers",
-              classes: "govuk-button--secondary",
-              href: "/v2-ucd-register/task-list-accom-in-progress"
-            }) }}
-          </div>
+    
           
         </div>
       </form>

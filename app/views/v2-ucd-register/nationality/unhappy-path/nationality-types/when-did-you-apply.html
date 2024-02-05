@@ -18,30 +18,18 @@
 
       <form class="form" action="#" method="post">
 
-        <h1 class="govuk-heading-l">
-          Were you living in the UK on or before 31/12/20?
-        </h1>
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-        {{ govukRadios({
-              name: "abroad-over-four-weeks",
-              fieldset: {
-              legend: {
+        {{ govukDateInput({
+          id: "passport-issued",
+          namePrefix: "passport-issued",
+          fieldset: {
+            legend: {
+              text: "When did you apply for the extension to this date?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No"
-            }
-          ]
+          }
         }) }}
 
         <div class="govuk-button-group">
