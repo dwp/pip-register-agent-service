@@ -2737,7 +2737,7 @@ router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-
   })
     //When you went away did you intend to return?
     router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return', function(request, response) {
-        response.redirect('/v2-ucd-register/nationality/exportability/receiving-benefits')
+        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
     })
 
 //Are you working or paying national insurance in another country?
