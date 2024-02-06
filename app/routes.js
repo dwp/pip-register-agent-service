@@ -2700,7 +2700,7 @@ router.post('/v2-ucd-register/nationality/lived-elsewhere', function(request, re
 router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
     var livedAbroad = request.session.data['abroad-over-four-weeks']
     if (livedAbroad == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to')
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-more-than-4-weeks')
     } else if (livedAbroad == 'no') {
         response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
     }
@@ -2720,14 +2720,14 @@ router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-
 router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places', function(request, response) {
     var morePlaces = request.session.data['more']
     if (morePlaces =='yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to-2')
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/the-other-time-you-went-away')
     } else if (morePlaces =='no'){
         response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
        }  
 })
 
 //Which country did you go to 2?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/which-country-did-you-go-to-2', function(request, response) {
+router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/the-other-time-you-went-away', function(request, response) {
     var why = request.session.data['why']
       if (why =='holiday'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
@@ -2737,7 +2737,7 @@ router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-
   })
     //When you went away did you intend to return?
     router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return', function(request, response) {
-        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+        response.redirect('/v2-ucd-register/nationality/exportability/receiving-benefits')
     })
 
 //Are you working or paying national insurance in another country?
