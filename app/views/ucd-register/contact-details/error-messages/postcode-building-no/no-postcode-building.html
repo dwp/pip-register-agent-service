@@ -39,13 +39,12 @@
             }
           }) %}
 
-          <div class="govuk-form-group govuk-form-group--error">
           {{ govukInput({
             label: {
               text: "Postcode"
             },
             errorMessage: {
-              text: "Enter a UK postcode, or a building number or name"
+              text: "Enter a UK postcode"
             },
             classes: "govuk-!-width-two-thirds",
             id: "postcode",
@@ -57,7 +56,7 @@
               text: "Building number or name (optional)"
             },
             errorMessage: {
-              text: ""
+              text: "Enter a building number or name"
             },
             classes: "govuk-!-width-two-thirds",
             id: "searchString",
@@ -68,7 +67,6 @@
           {{ govukButton({
           text: "Find address"
           }) }}
-        </div>
 
           <p class="govuk-body govuk-!-margin-bottom-3"><a href="/ucd-register/contact-details/enter-address-manually" class="govuk-link">Enter address manually</a></p>
 

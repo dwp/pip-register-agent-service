@@ -37,36 +37,18 @@
             <li>any other benefit you may claim or be awarded in the future.</li>
           </ul>
 
-          <h2 class="govuk-heading-m">Do you agree?  </h2>
+          {% from "govuk/components/button/macro.njk" import govukButton %}
 
-          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+          <p class="govuk-body">If you agree, we can continue to gather the information needed for your claim.</p>
 
-          {{ govukRadios({
-            name: "agree",
-            fieldset: {
-              legend: {
-                isPageHeading: true
-              }
-            },
-            items: [
-              {
-                value: "yes",
-                text: "Yes"
-              },
-              {
-                value: "no",
-                text: "No"
-              }
-            ]
+          <div class="govuk-button-group">
+          {{ govukButton({
+          text: "Agree and continue",
+          href:"/v2-ucd-register/task-list"
           }) }}
 
-          <p class="govuk-body">Thank you, we will now continue to gather the information needed for your claim.</p>
-
-            {{ govukButton({
-              text: "Continue",
-              href:"/v2-ucd-register/task-list"
-            }) }}
-
+          <a class="govuk-link" href="/v2-ucd-register/declaration-kickout">Applicant does not agree</a>
+        </div>
 
       </form>
 
