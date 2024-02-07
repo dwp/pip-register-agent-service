@@ -3036,9 +3036,7 @@ router.post('/v2-ucd-register/hospital-dates/5-16-select-other-address', functio
 // Does a local authority, health authority, Jobcentre Plus, or a charity pay any of the costs for you to live there?
 router.post('/v2-ucd-register/hospital-dates/5-13-third-party-pay', function(request, response) {
     var thirdPartyPay = request.session.data['third-party-pay']
-    if (thirdPartyPay == 'local'){
-        response.redirect('/v2-ucd-register/hospital-dates/5-23-name-local')
-    } else if (thirdPartyPay == 'no') {
+    if (thirdPartyPay == 'no') {
         response.redirect('/v2-ucd-register/bank-details/6-1-start')
     } else if (thirdPartyPay == 'yes') {
         response.redirect('/v2-ucd-register/hospital-dates/5-23-name')
