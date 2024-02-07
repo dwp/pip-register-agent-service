@@ -32,33 +32,33 @@
 
           {{ govukRadios({
             name: "third-party-pay",
-            items: [
+            items: [           
+           {
+             value: "no",
+             text: "No, none of these"
+          },
+           {
+             value: "no",
+            text: "I don't know"
+          },
           {
-            value: "health and social care trust",
+            divider: "or,"
+          },
+          {
+            value: "yes",
             text: "Health and social care trust"
           },
           {
-            value: "education authority",
+            value: "yes",
             text: "Education Authority"
           },
             {
-              value: "government",
+              value: "yes",
               text: "Government department, or"
             },
             {
-              value: "a charity",
+              value: "yes",
               text: "Charity"
-            }, 
-            {
-              divider: "or,"
-            },           
-            {
-              value: "none",
-              text: "No, none of these"
-            },
-            {
-              value: "none",
-              text: "I don't know"
             }
           ]
           }) }}
