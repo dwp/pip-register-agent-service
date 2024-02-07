@@ -21,7 +21,7 @@
   titleText: "There is a problem",
   errorList: [
     {
-      text: "Enter a UK postcode",
+      text: "Enter a UK postcode, or a building number or name",
       href: "#"
     }
   ]
@@ -39,13 +39,14 @@
             }
           }) %}
 
+          <div class="govuk-form-group govuk-form-group--error">
           {{ govukInput({
             label: {
               text: "Postcode"
             },
             errorMessage: {
-                text: "Enter a UK postcode"
-              },
+              text: "Enter a UK postcode, or a building number or name"
+            },
             classes: "govuk-!-width-two-thirds",
             id: "postcode",
             name: "postcode"
@@ -54,6 +55,9 @@
           {{ govukInput({
             label: {
               text: "Building number or name (optional)"
+            },
+            errorMessage: {
+              text: ""
             },
             classes: "govuk-!-width-two-thirds",
             id: "searchString",
@@ -64,6 +68,7 @@
           {{ govukButton({
           text: "Find address"
           }) }}
+        </div>
 
           <p class="govuk-body govuk-!-margin-bottom-3"><a href="/ucd-register/contact-details/enter-address-manually" class="govuk-link">Enter address manually</a></p>
 

@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
+
+        <span class="govuk-caption-l">Bank details</span>
+        <h1 class="govuk-heading-l">
+          The next questions are about your bank details 
+        </h1>
+
+          {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+          {{ govukInsetText({
+            text: "If your application for a claim is successful, we can use these details to pay you straightaway."
+          }) }}
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "details-now",
+            fieldset: {
+              legend: {
+                text: "Can you give me your account details now?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "By account we mean a bank, building society or credit union."
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+            {{ govukButton({
+              text: "Continue",
+              href: "/ucd-register/bank-details/error-messages/6-3-main-account-val-journey"
+            }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
