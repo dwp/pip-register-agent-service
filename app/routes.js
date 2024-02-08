@@ -2593,7 +2593,7 @@ router.post('/v2-ucd-register/nationality/another-nationality', function(request
 router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before', function(request, response) {
     var before = request.session.data['before']
     if (before == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/EU-settlement-scheme')
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/eu-settlement-scheme')
     } else if (before == 'no') {
         response.redirect('/v2-ucd-register/nationality/unhappy-path/nationality-types/granted-refugee-status')
     }
