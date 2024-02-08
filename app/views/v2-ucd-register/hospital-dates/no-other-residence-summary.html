@@ -32,7 +32,7 @@
                 text: "In hospital or hospice today"
               },
               value: {
-                text: "Yes, hospital"
+                text: "No"
               },
               actions: {
                 items: [
@@ -46,10 +46,10 @@
             },
             {
               key: {
-                text: "In hospital yesterday"
+                text: "In other accommodation today"
               },
               value: {
-                text: "Yes"
+                text: "No"
               },
               actions: {
                 items: [
@@ -60,40 +60,6 @@
                   }
                 ]
               }
-            },
-            {
-              key: {
-                text: "Private patient paying all own costs"
-              },
-              value: {
-                text: "No"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/v2-ucd-register/additional-support/read-letters",
-                    text: "Change",
-                    visuallyHiddenText: "Question 2"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Hospital address"
-              },
-              value: {
-                html: "Guy's Hospital,<br>Great Maze Pond,<br>London<br> SE1 9RT"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/v2-ucd-register/hospital-dates/select-hospital-address",
-                    text: "Change",
-                    visuallyHiddenText: "Question 3"
-                  }
-                ]
-              }
             }
           ]
         }) }}
@@ -101,11 +67,11 @@
   
             {{ govukButton({
               text: "Resume questions",
-              href: "/v2-ucd-register/task-list-bank-done"
+              href: "/ucd-register/task-list-accom-done"
             }) }}
 
             <p class="govuk-body">
-              <a href="/v2-ucd-register/task-list-bank-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+              <a href="/ucd-register/task-list-accom-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
             </p>
         </form>
 
