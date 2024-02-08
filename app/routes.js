@@ -3069,9 +3069,19 @@ router.post('/v2-ucd-register/hospital-dates/5-14-local-agreement', function(req
 router.post('/v2-ucd-register/bank-details/6-1-start', function(request, response) {
     var detailsNow = request.session.data['details-now']
     if (detailsNow == 'yes'){
-        response.redirect('/v2-ucd-register/bank-details/6-3-main-account-details-v2')
+        response.redirect('/v2-ucd-register/bank-details/6-5-foreign-account')
     } else if (detailsNow == 'no') {
         response.redirect('/v2-ucd-register/bank-details/6-2-no-details-now')
+    }
+})
+
+// Do you want to get payments in a UK account or a foreign account?
+router.post('/v2-ucd-register/bank-details/6-5-foreign-account', function(request, response) {
+    var uk = request.session.data['foreign-account']
+    if (uk == 'uk'){
+        response.redirect('/v2-ucd-register/bank-details/6-3-main-account-details-v2')
+    } else if (uk == 'non-uk') {
+        response.redirect('/v2-ucd-register/bank-details/6-6-foreign-account-details')
     }
 })
 
@@ -3080,6 +3090,10 @@ router.post('/v2-ucd-register/bank-details/6-3-main-account-details-v2', functio
     response.redirect('/v2-ucd-register/motability/motability')
 })
 
+// foreign account details
+router.post('/v2-ucd-register/bank-details/6-6-foreign-account-details', function(request, response) {
+    response.redirect('/v2-ucd-register/motability/motability')
+})
 
 // You can continue without entering account details
 router.post('/v2-ucd-register/bank-details/6-2-no-details-now', function(request, response) {
