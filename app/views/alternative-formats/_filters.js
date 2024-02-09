@@ -9,7 +9,7 @@ addFilter('getLabel', (id, isCheckAnswers) => {
   
   // Radio/Checkbox button labels
   const labelContent = new Object ({
-    'standard-letter' : 'Standard letter (12-point Arial text on white paper)',
+    'standard-letter' : 'No, standard letter',
     'non-standard-letter' : 'Letter with changes to font, paper colour, spacing or print size',
     'large-print' : 'Large print letter',
     'large-print-16' : '16 point',

@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript: window.history.go(-1)"   
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/alternative-formats/written-email/{{ data['altFormats']['written']['format']}}" method="post" novalidate>
+
+
+        {{ govukTextarea({
+          id: "feedback-preferred-alt-formats",
+          name: "[altFormats].[otherHelp].[details]",
+          value: data["altFormats"]["otherHelp"]["details"],
+          label: {
+            text: "Can I confirm the reason for email as communication? ",
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          hint: {
+            text: "If customer asks for email please advise them that their request will be sent to our alternative format team to consider this request "  
+         }
+        }) }}
+        
+        {{ govukInput({
+          label: {
+            text: "What is your email address?",
+            isPageHeading: true,
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "For example, name@example.com."  
+         },
+          id: "audio-mp3-email",
+          name: "[altFormats].[written].[options].[email]",
+          value: data["altFormats"]["written"]["options"]["email"],
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          name: "email-type",
+          fieldset: {
+            legend: {
+              text: "What type of email address is it?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "If customer asks for email please advise them that their request will be sent to our alternative format team to consider this request."
+          },
+          items: [
+            {
+              value: "home",
+              text: "Home"
+            },
+            {
+              value: "business",
+              text: "Business"
+            },
+            {
+              value: "organisation",
+              text: "Organisation"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+    
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-af-in-progress"
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+

@@ -27,8 +27,10 @@
           <p class="govuk-body">You can either agree to the declaration to continue, or you can register your claim at another time.
           </p>
 
+          {% from "govuk/components/button/macro.njk" import govukButton %}
+
           {{ govukButton({
-            text: "Continue"
+            text: "Exit without saving application"
           }) }}
 
       </form>
