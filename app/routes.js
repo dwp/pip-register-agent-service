@@ -392,11 +392,10 @@ router.post('/ucd-register/contact-details/what-is-your-name', function(request,
     response.redirect('/ucd-register/contact-details/do-you-have-a-previous-last-name')
 })
 
-// What is your name page
+// Do you have a previous last name?
 router.post('/ucd-register/contact-details/do-you-have-a-previous-last-name', function(request, response) {
     response.redirect('/ucd-register/contact-details/what-is-your-phone-number')
 })
-
 
 // What is your phone number page
 router.post('/ucd-register/contact-details/what-is-your-phone-number', function(request, response) {
@@ -2292,11 +2291,6 @@ router.post('/research/pipcs/add-support/read-letters', function(request, respon
 
 // What is your name
 router.post('/v2-ucd-register/contact-details/what-is-your-name', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/do-you-have-a-previous-last-name')
-})
-
-// Do you have a previous last name?
-router.post('/v2-ucd-register/contact-details/do-you-have-a-previous-last-name', function(request, response) {
     response.redirect('/v2-ucd-register/contact-details/what-is-your-phone-number')
 })
 
