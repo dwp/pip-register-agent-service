@@ -19,8 +19,6 @@
     <div class="govuk-grid-column-two-thirds">
       <form class="form" action="#" method="post">
 
-        <span class="govuk-caption-l">Contact information</span>
-
         {% set yesHtml %}
         {{ govukInput({
           id: "contact-by-phone",
@@ -63,7 +61,8 @@
           }) }}
       
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "what-is-your-phone-number"
         }) }}
       </form>
     </div>
