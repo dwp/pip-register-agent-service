@@ -29,7 +29,7 @@
           rows: [
             {
               key: {
-                text: "Has a health condition that makes it hard to remember things"
+                text: "Difficulty remembering, learning, or making decisions"
               },
               value: {
                 text: "No"
@@ -37,7 +37,7 @@
               actions: {
                 items: [
                   {
-                    href: "/current-non-MVP/additional-support/do-you-have-a-condition",
+                    href: "/v2-ucd-register/additional-support/do-you-have-a-condition",
                     text: "Change",
                     visuallyHiddenText: "Question 1"
                   }
@@ -55,7 +55,7 @@
               actions: {
                 items: [
                   {
-                    href: "additional-support/complete-forms",
+                    href: "/v2-ucd-register/additional-support/complete-forms",
                     text: "Change",
                     visuallyHiddenText: "Question 2"
                   }
@@ -67,12 +67,12 @@
                 text: "Able to read and respond to letters"
               },
               value: {
-                text: "Yes"
+                text: "No"
               },
               actions: {
                 items: [
                   {
-                    href: "/current-non-MVP/additional-support/read-letters",
+                    href: "/v2-ucd-register/additional-support/read-letters",
                     text: "Change",
                     visuallyHiddenText: "Question 2"
                   }
@@ -84,12 +84,12 @@
                 text: "Able to manage your post"
               },
               value: {
-                text: "Yes"
+                text: "No"
               },
               actions: {
                 items: [
                   {
-                    href: "/current-non-MVP/additional-support/post",
+                    href: "/v2-ucd-register/additional-support/post",
                     text: "Change",
                     visuallyHiddenText: "Question 2"
                   }
@@ -98,7 +98,7 @@
             },
             {
               key: {
-                text: "Anyone to help"
+                text: "Anyone to help with these tasks"
               },
               value: {
                 text: "Yes"
@@ -106,7 +106,7 @@
               actions: {
                 items: [
                   {
-                    href: "/current-non-MVP/additional-support/helpers",
+                    href: "/v2-ucd-register/additional-support/helpers",
                     text: "Change",
                     visuallyHiddenText: "Question 2"
                   }
@@ -115,15 +115,32 @@
             },
             {
               key: {
-                text: "Who will help"
+                text: "Helper relationship"
               },
               value: {
-                text: "An organisation or professional"
+                text: "Family member"
               },
               actions: {
                 items: [
                   {
-                    href: "/current-non-MVP/additional-support/who-helps",
+                    href: "/v2-ucd-register/additional-support/who-helps",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Would like 'Make the Call' assistance"
+              },
+              value: {
+                text: "Yes"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/v2-ucd-register/additional-support/who-helps",
                     text: "Change",
                     visuallyHiddenText: "Question 2"
                   }
@@ -136,7 +153,7 @@
   
             {{ govukButton({
               text: "Save and continue",
-              href: "/ucd-register/task-list-as-done"
+              href: "/v2-ucd-register/task-list-as-done"
             }) }}
 
             
