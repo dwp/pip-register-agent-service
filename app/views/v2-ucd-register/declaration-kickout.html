@@ -26,16 +26,18 @@
 
           <p class="govuk-body">You can either agree to the declaration to continue, or you can register your claim at another time.
           </p>
+
           {% from "govuk/components/button/macro.njk" import govukButton %}
 
-
-           <p class="govuk-body"><a class="govuk-body govuk-link" href="/v2-ucd-register/declaration">Review declaration</a></p>
-
-          {{ govukButton({
-            text: "Exit without saving application",
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Exit without saving application",
             classes: "govuk-button--warning",
             href: "/service-start-page"
-          }) }}
+            }) }}
+
+            <a class="govuk-body govuk-link" href="/v2-ucd-register/declaration">View and agree declaration</a>
+          </div>
 
 
       </form>
