@@ -2692,20 +2692,30 @@ router.post('/v2-ucd-register/nationality/lived-elsewhere', function(request, re
 
 //Have you been abroad for any periods over 4 weeks, in the last 3 years page
 router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
-    var livedAbroad = request.session.data['abroad-over-four-weeks']
-    if (livedAbroad == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-more-than-4-weeks')
-    } else if (livedAbroad == 'no') {
+    var abroadOverFour = request.session.data['abroad-over-four-weeks']
+    if (abroadOverFour == 'yes'){
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/left-the-uk-more-than-4-weeks')
+    } else if (abroadOverFour == 'no') {
         response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
     }
 })
 
-//Which country did you go to?
+//When you lived abroad
 router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to', function(request, response) {
     var whyDidYouGo = request.session.data['why-did-you-go']
       if (whyDidYouGo =='holiday'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
       } else if (whyDidYouGo =='other'){
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
+         }  
+  })
+
+  //When you left the UK for more than four weeks
+router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/left-the-uk-more-than-4-weeks', function(request, response) {
+    var moreThanFour = request.session.data['more-than-four-weeks']
+      if (moreThanFour =='holiday'){
+          response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
+      } else if (moreThanFour =='other'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
          }  
   })
