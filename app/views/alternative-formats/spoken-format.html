@@ -14,13 +14,42 @@
 
       <form class="form" action="/alternative-formats/spoken-format" method="post" novalidate>
         
+        <h1 class="govuk-heading-l">Do you need support when speaking to us by phone, like use of a Textphone or an interpreter?</h1>
+
+        <form class="form" action="#" method="post">
+          {{ govukInput({
+            label: {
+              text: "Mobile phone number"
+            },
+            id: "telephone-number",
+            name: "telephone-number",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20"
+          }) }}
+          
+          {{ govukInput({
+            label: {
+              text: "Other phone number (optional)"
+            },
+            hint: {
+              text: "For landlines, include a dialling code like 01632 960 001."
+            },
+            id: "telephone-number",
+            name: "telephone-number",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20"
+          }) }}
+          
+
         {{ govukRadios({
           id: "format",
           name: "[altFormats].[spoken].[format]",
           value: data["altFormats"]["spoken"]["format"],
             fieldset: {
             legend: {
-              text: "How should we contact you if we need to speak to you?",
+              text: "What phone number can we use to contact you?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l
             "
@@ -28,7 +57,7 @@
             
           },
           hint: {
-            text: "We usually contact you by phone if we need to speak to you. Select the best option for your needs."  
+            text: "What phone number can we use to contact you?"  
          },
           items: [
             {
