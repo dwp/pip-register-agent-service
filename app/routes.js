@@ -2701,11 +2701,11 @@ router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(requ
 })
 
 //Which country did you go to?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/which-country-did-you-go-to', function(request, response) {
-    var why = request.session.data['why']
-      if (why =='holiday'){
+router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to', function(request, response) {
+    var whyDidYouGo = request.session.data['why-did-you-go']
+      if (whyDidYouGo =='holiday'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
-      } else if (why =='other'){
+      } else if (whyDidYouGo =='other'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
          }  
   })

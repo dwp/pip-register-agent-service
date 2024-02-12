@@ -312,7 +312,7 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {{ govukRadios({
-      name: "why",
+      name: "why-did-you-go",
       fieldset: {
       legend: {
         text: "Why did you go?",
@@ -374,8 +374,7 @@
 
 <div class="govuk-button-group">
   {{ govukButton({
-    text: "Continue",
-    href: "/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places"
+    text: "Continue"
   }) }}
 
   {{ govukButton({
