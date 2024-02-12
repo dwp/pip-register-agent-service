@@ -312,7 +312,7 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {{ govukRadios({
-      name: "why",
+      name: "other-time",
       fieldset: {
       legend: {
         text: "Why did you go?",
@@ -350,23 +350,23 @@
       text: "Employed or business abroad or family member of someone employed or on business abroad"
     },
     {
-      value: "business abroad",
+      value: "other",
       text: "Employed with a UK based employer or family member of someone employed with a UK based employer"
     },
     {
-      value: "business abroad",
+      value: "other",
       text: "Employed with a foreign employer or family member of a person employed with a foreign employer"
     },
     {
-      value: "business abroad",
+      value: "other",
       text: "UK Civil Servant or family member of a UK Civil Servant"
     },
     {
-      value: "business abroad",
+      value: "other",
       text: "Living abroad"
     },
     {
-      value: "business abroad",
+      value: "other",
       text: "Other"
     }
   ]
@@ -374,8 +374,7 @@
 
 <div class="govuk-button-group">
   {{ govukButton({
-    text: "Continue",
-    href: "/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return"
+    text: "Continue"
   }) }}
 
   {{ govukButton({

@@ -2720,12 +2720,12 @@ router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places',
        }  
 })
 
-//Which country did you go to 2?
-router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/abroad-time/the-other-time-you-went-away', function(request, response) {
-    var why = request.session.data['why']
-      if (why =='holiday'){
+//The other time you went away
+router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/the-other-time-you-went-away', function(request, response) {
+    var otherTime = request.session.data['other-time']
+      if (otherTime =='holiday'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
-      } else if (why =='other'){
+      } else if (otherTime =='other'){
           response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return')
          }  
   })
