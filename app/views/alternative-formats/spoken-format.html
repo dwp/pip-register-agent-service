@@ -14,9 +14,36 @@
 
       <form class="form" action="/alternative-formats/spoken-format" method="post" novalidate>
         
-        <h1 class="govuk-heading-l">Do you need support when speaking to us by phone, like use of a Textphone or an interpreter?</h1>
+        <h1 class="govuk-heading-l">If we need to speak to you about your claim, we'll usually contact you by phone</h1>
 
         <form class="form" action="#" method="post">
+
+          <h2 class="govuk-heading-m">What phone number can we use to contact you?</h2>
+
+          {{ govukInput({
+            label: {
+              text: "Mobile phone number"
+            },
+            id: "telephone-number",
+            name: "telephone-number",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20"
+          }) }}
+          
+          {{ govukInput({
+            label: {
+              text: "Other phone number (optional)"
+            },
+            hint: {
+              text: "For landlines, include a dialling code like 01632 960 001."
+            },
+            id: "telephone-number",
+            name: "telephone-number",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-input--width-20"
+          }) }}
 
         {{ govukRadios({
           id: "format",
@@ -24,20 +51,20 @@
           value: data["altFormats"]["spoken"]["format"],
             fieldset: {
             legend: {
-              text: "What phone number can we use to contact you?",
+              text: "Do you need support when speaking to us by phone, like use of a Textphone or an interpreter?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l
+              classes: "govuk-fieldset__legend--m
             "
             }
-            
           },
-          hint: {
-            text: "What phone number can we use to contact you?"  
-         },
+
           items: [
             {
               value: "standard-phone-call",
               text: "standard-phone-call" | getLabel
+            },
+            {
+              divider: "or"
             },
             {
               value: "textphone",
