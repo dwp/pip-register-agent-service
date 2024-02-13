@@ -2291,7 +2291,7 @@ router.post('/research/pipcs/add-support/read-letters', function(request, respon
 
 // What is your name
 router.post('/v2-ucd-register/contact-details/what-is-your-name', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/what-is-your-phone-number')
+    response.redirect('/alternative-formats/spoken-format')
 })
 
 // What is your phone number page
@@ -2741,7 +2741,7 @@ router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/the-other-tim
   })
     //When you went away did you intend to return?
     router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/intent-to-return', function(request, response) {
-        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/more-places')
     })
 
 //Are you working or paying national insurance in another country?
