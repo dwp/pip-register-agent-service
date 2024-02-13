@@ -40,7 +40,7 @@
             text: "UK account"
           },
           value: {
-            text: "Yes"
+            text: "No"
           },
           actions: {
             items: [
@@ -88,6 +88,40 @@
           },
           {
             key: {
+              text: "BIC or SWIFT code"
+            },
+            value: {
+              html: "<p class='govuk-body'>BUKBGB22</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/bank-details/6-3-main-account-details-v2",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "IBAN"
+            },
+            value: {
+              html: "<p class='govuk-body'>FR1420041010050500013M02606</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/bank-details/6-3-main-account-details-v2",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Account number"
             },
             value: {
@@ -108,7 +142,7 @@
               text: "Roll or reference number"
             },
             value: {
-              text: "12345672"
+              text: "No"
             },
             actions: {
               items: [
