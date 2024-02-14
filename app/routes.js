@@ -3108,7 +3108,7 @@ router.post('/v2-ucd-register/bank-details/6-2-no-details-now', function(request
 
 // Motability > tasklist done
 router.post('/v2-ucd-register/motability/motability', function(request, response) {
-    response.redirect('/v2-ucd-register/task-list-bank-done')
+    response.redirect('/v2-ucd-register/task-list-motability-done')
 })
 
 // -------------------------------------------------------------------------------------
