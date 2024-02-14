@@ -24,7 +24,7 @@
 
           <p class="govuk-body">The Motability Scheme lets disabled people use their mobility payments to lease a car, scooter or powered wheelchair.</p>
 
-          <p class="govuk-body">We will not share your personal details with the Scheme.</p>
+          <p class="govuk-body">If you're eligible, we can send you a leaflet with information about the help they offer. We will not share your personal details with the Scheme.</p>
 
           <h2 class="govuk-heading-m"> Would you like us to send you information about the Motability Scheme?  </h2>
 
@@ -50,11 +50,19 @@
           }) }}
 
           <p class="govuk-body">If you decide you do not want us to send you this information, you can let us know by calling the number I gave you earlier.</p>
+          <p class="govuk-body">DWP phone number: 0800 121 6279</p>
 
+          <div class="govuk-button-group"></div>
             {{ govukButton({
               text: "Continue"
             }) }}
 
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/v2-ucd-register/task-list-motability-done"
+            }) }}
+          </div>
 
       </form>
 
