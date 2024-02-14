@@ -73,20 +73,48 @@
         spellcheck: false
       }) }}
 
+      {% set accountHtml %}
       {{ govukInput({
+        id: "roll-number",
+        name: "rollNumber",
+        type: "tel",
+        autocomplete: "tel",
+        classes: "govuk-input--width-20",
         label: {
-          text: "Do you have a building society roll or reference number? (optional)"
-        },
-        classes: "govuk-input--width-20 govuk-input--extra-letter-spacing",
-        hint: {
-          text: "You can find it on your card, statement or passbook."
+          text: "Roll or reference number"
         },
         errorMessage: {
           text: "Roll or reference number must be 18 characters or less"
-        },
-        id: "roll-number",
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
         name: "rollNumber",
-        spellcheck: false
+        fieldset: {
+          legend: {
+            text: "Does your account have a roll or reference number?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "You can find it on your card, statement or passbook."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: true,
+            conditional: {
+              html: accountHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
       }) }}
 
       <form class="form" action="#" method="post">
