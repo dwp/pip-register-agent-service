@@ -3101,7 +3101,7 @@ router.post('/v2-ucd-register/bank-details/6-6-foreign-account-details', functio
 
 // You can continue without entering account details
 router.post('/v2-ucd-register/bank-details/6-2-no-details-now', function(request, response) {
-    response.redirect('/v2-ucd-register/motability/motability')
+    response.redirect('/v2-ucd-register/task-list-motability-done')
 })
 
 // -------------------------------------------------------------------------------------
