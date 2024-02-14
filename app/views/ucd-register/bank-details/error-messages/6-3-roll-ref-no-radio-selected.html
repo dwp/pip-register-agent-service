@@ -17,7 +17,7 @@
   titleText: "There is a problem",
   errorList: [
     {
-      text: "Enter a real roll or reference number like CXJ-K6 897/98X or 10/00002183-9",
+      text: "Select yes if account has a roll or reference number",
       href: "#nationality"
     }
   ]
@@ -82,9 +82,6 @@
         classes: "govuk-input--width-20",
         label: {
           text: "Roll or reference number"
-        },
-        errorMessage: {
-          text: "Enter a real roll or reference number like CXJ-K6 897/98X or 10/00002183-9"
         }
       }) }}
       {% endset -%}
@@ -101,11 +98,13 @@
         hint: {
           text: "You can find it on your card, statement or passbook."
         },
+        errorMessage: {
+          text: "Select yes if account has a roll or reference number"
+        },
         items: [
           {
             value: "yes",
             text: "Yes",
-            checked: true,
             conditional: {
               html: accountHtml
             }
