@@ -68,80 +68,31 @@
             {
             value: "Flat 3 , 228 Cable Street, London, E1 0DR",
             text: "Flat 3 , 228 Cable Street, London, E1 0DR"
-            },
-            {
-            value: "Flat 4 , 228 Cable Street, London, E1 0DR",
-            text: "Flat 4 , 228 Cable Street, London, E1 0DR"
-            },
-            {
-            value: "Flat 5 , 228 Cable Street, London, E1 0DR",
-            text: "Flat 5 , 228 Cable Street, London, E1 0DR"
-            },
-             {
-             value: "Flat 6 , 228 Cable Street, London, E1 0DR",
-              text: "Flat 6 , 228 Cable Street, London, E1 0DR"
-             },
-             {
-              value: "Flat 7 , 228 Cable Street, London, E1 0DR",
-              text: "Flat 7 , 228 Cable Street, London, E1 0DR"
-             },
-             {
-             value: "Flat 8 , 228 Cable Street, London, E1 0DR",
-             text: "Flat 8 , 228 Cable Street, London, E1 0DR"
-             },
-             {
-             value: "Flat 9 , 228 Cable Street, London, E1 0DR",
-             text: "Flat 9 , 228 Cable Street, London, E1 0DR"
-             },
-             {
-             value: "Flat 9a, 228 Cable Street, London, E1 0DR",
-            text: "Flat 9a, 228 Cable Street, London, E1 0DR"
-            },
-            {
-            value: "Flat 9b, 228 Cable Street, London, E1 0DR",
-            text: "Flat 9b, 228 Cable Street, London, E1 0DR"
-            },
-            {
-            value: "Flat 10, 228 Cable Street, London, E1 0DR",
-            text: "Flat 10, 228 Cable Street, London, E1 0DR"
-            },
-           {
-           value: "Flat 11, 228 Cable Street, London, E1 0DR",
-           text: "Flat 11, 228 Cable Street, London, E1 0DR"
-           },
-            {
-             value: "Flat 16, 228 Cable Street, London, E1 0DR",
-             text: "Flat 16, 228 Cable Street, London, E1 0DR"
-            },
-              {
-               value: "Flat 19, 228 Cable Street, London, E1 0DR",
-                text: "Flat 19, 228 Cable Street, London, E1 0DR"
-              },
-           {
-           value: "Flat 20, 228 Cable Street, London, E1 0DR",
-           text: "Flat 20, 228 Cable Street, London, E1 0DR"
-            },
-            {
-             value: "Flat 21, 228 Cable Street, London, E1 0DR",
-            text: "Flat 21, 228 Cable Street, London, E1 0DR"
-           },
-            {
-            value: "Flat 21a, 228 Cable Street, London, E1 0DRR",
-             text: "Flat 21a, 228 Cable Street, London, E1 0DR"
-            },
-            {
-             value: "Flat 22, 228 Cable Street, London, E1 0DR",
-            text: "Flat 22, 228 Cable Street, London, E1 0DR"
-             },
-             {
-            value: "Flat 23, 228 Cable Street, London, E1 0DR",
-             text: "Flat 23, 228 Cable Street, London, E1 0DR"
-             },
-            {
-            value: "Flat 24, 228 Cable Street, London, E1 0DR",
-            text: "Flat 24, 228 Cable Street, London, E1 0DR"
-                          }
+            }
               
+          ]
+        }) }}
+
+        {% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+        {{ govukPagination({
+          next: {
+            href: "/v2-ucd-register/contact-details/select-your-address-2"
+          },
+          items: [
+            {
+              number: 1,
+              current: true,
+              href: "/v2-ucd-register/contact-details/select-your-address"
+            },
+            {
+              number: 2,
+              href: "/v2-ucd-register/contact-details/select-your-address-2"
+            },
+            {
+              number: 3,
+              href: "/v2-ucd-register/contact-details/select-your-address-3"
+            }
           ]
         }) }}
         
