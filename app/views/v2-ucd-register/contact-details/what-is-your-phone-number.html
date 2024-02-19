@@ -17,11 +17,45 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        Do you have a mobile phone number we can use to contact you?
-      </h1>
-
       <form class="form" action="#" method="post">
+
+        <h1 class="govuk-heading-l">If we need to speak to you about your claim, we'll usually contact you by phone</h1>
+
+        {{ govukRadios({
+          name: "spoken-format",
+          fieldset: {
+            legend: {
+              text: "Do you need support when we contact you by phone, like use of a Textphone or an interpreter?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+
+          items: [
+            {
+              value: "standard-phone-call",
+              text: "No, contact by standard phone call"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "textphone",
+              text: "Textphone" 
+            },
+            {
+              value: "signing-lipspeaking",
+              text: "Signing or lipspeaking" 
+            },
+            {
+              value: "interpreter",
+              text: "Language interpreter" 
+            }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-m">What phone number can we use to contact you?</h2>
+
         {{ govukInput({
           label: {
             text: "Mobile phone number"
@@ -47,10 +81,10 @@
           classes: "govuk-input--width-20"
         }) }}
 
-
         {{ govukButton({
           text: "Continue"
         }) }}
+  
       </form>
     </div>
   </div>

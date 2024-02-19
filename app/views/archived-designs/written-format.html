@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript: window.history.go(-1)"   
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/alternative-formats/written-format" method="post" novalidate>
+
+        <span class="govuk-caption-l">Alternative format needs</span>
+
+        <h1 class="govuk-heading-l">When we write to you, we'll usually send you a printed letter</h1>
+
+        <p class="govuk-body">Standard letters are in size 12 Arial font.</p>
+
+        {{ govukRadios({
+          id: "format",
+          name: "[altFormats].[written].[format]",
+          value: data["altFormats"]["written"]["format"],
+          fieldset: {
+            legend: {
+              text: "Would you like us to send your letters in another way, like larger text, audio or braille?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "standard-letter",
+              text: "standard-letter" | getLabel
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "large-print",
+              text:  "large-print" | getLabel
+            },
+            {
+              value: "audio",
+              text: "audio" | getLabel
+            },
+            {
+              value: "braille",
+              text: "braille" | getLabel
+            },
+            {
+              value: "email",
+              text: "email" | getLabel
+            },
+            {
+              value: "pdf",
+              text: "pdf" | getLabel,
+              hint: {
+                text: " Link to download the PDF will be sent by email."
+              }
+            }
+          ]
+        }) }}
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+    
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-af-in-progress"
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+
