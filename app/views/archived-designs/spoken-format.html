@@ -18,42 +18,6 @@
 
         <form class="form" action="#" method="post">
 
-          {{ govukRadios({
-            id: "format",
-            name: "[altFormats].[spoken].[format]",
-            value: data["altFormats"]["spoken"]["format"],
-              fieldset: {
-              legend: {
-                text: "Do you need support when we contact you by phone, like use of a Textphone or an interpreter?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--m
-              "
-              }
-            },
-  
-            items: [
-              {
-                value: "standard-phone-call",
-                text: "No, contact by standard phone call"
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "textphone",
-                text: "textphone"
-              },
-              {
-                value: "signing-lipspeaking",
-                text: "Signing or lipspeaking"
-              },
-              {
-                value: "interpreter",
-                text: "big-word" | getLabel
-              }
-            ]
-          }) }}
-
           <h2 class="govuk-heading-m">What phone number can we use to contact you?</h2>
 
           {{ govukInput({
@@ -80,6 +44,42 @@
             autocomplete: "tel",
             classes: "govuk-input--width-20"
           }) }}
+
+        {{ govukRadios({
+          id: "format",
+          name: "[altFormats].[spoken].[format]",
+          value: data["altFormats"]["spoken"]["format"],
+            fieldset: {
+            legend: {
+              text: "Do you need support when speaking to us by phone, like use of a Textphone or an interpreter?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m
+            "
+            }
+          },
+
+          items: [
+            {
+              value: "standard-phone-call",
+              text: "standard-phone-call" | getLabel
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "textphone",
+              text: "textphone" | getLabel
+            },
+            {
+              value: "signing-lipspeaking",
+              text: "signing-lipspeaking" | getLabel
+            },
+            {
+              value: "big-word",
+              text: "big-word" | getLabel
+            }
+          ]
+        }) }}
 
         <div class="govuk-button-group">
           {{ govukButton({

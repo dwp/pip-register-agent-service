@@ -2291,11 +2291,30 @@ router.post('/research/pipcs/add-support/read-letters', function(request, respon
 
 // What is your name
 router.post('/v2-ucd-register/contact-details/what-is-your-name', function(request, response) {
-    response.redirect('/alternative-formats/spoken-format')
+    response.redirect('/v2-ucd-register/contact-details/what-is-your-phone-number')
 })
 
 // What is your phone number page
 router.post('/v2-ucd-register/contact-details/what-is-your-phone-number', function(request, response) {
+    var spokenFormat = request.session.data['spoken-format']
+    if (spokenFormat == "standard-phone-call"){
+        response.redirect("/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates")
+    } else if (spokenFormat == "textphone") {
+        response.redirect("/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number")
+    } else if (spokenFormat == "signing-lipspeaking") {
+        response.redirect("/v2-ucd-register/contact-details/alt-formats/signing-lipspeaking")
+    } else if (spokenFormat == "interpreter") {
+        response.redirect("/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates")
+    } 
+})
+
+// What is your Textphone number?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates')
+})
+
+// What signing or lipspeaking service do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/signing-lipspeaking', function(request, response) {
     response.redirect('/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates')
 })
 
@@ -2323,10 +2342,44 @@ router.post('/v2-ucd-register/contact-details/enter-address-manually-country', f
 router.post('/v2-ucd-register/contact-details/correspondence-address', function(request, response) {
     var sendLettersElsewhere = request.session.data['should-we-write-to-you']
     if (sendLettersElsewhere == 'yes'){
-        response.redirect('/alternative-formats/written-format')
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/written-format')
     } else if (sendLettersElsewhere == 'no') {
         response.redirect('/v2-ucd-register/contact-details/correspondence-postcode')
     }
+})
+
+// Would you like us to send your letters in another way, like larger text, audio or braille?
+router.post('/v2-ucd-register/contact-details/alt-formats/written-format', function(request, response) {
+    var writtenFormat = request.session.data['written-format']
+    if (writtenFormat == 'standard-letter'){
+        response.redirect('/v2-ucd-register/nationality/start')
+    } else if (writtenFormat == 'large-print') {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/large-print')
+     } else if (writtenFormat == 'audio') {
+        response.redirect('/v2-ucd-register/nationality/start')
+    } else if (writtenFormat == 'braille') {
+        response.redirect('/v2-ucd-register/nationality/start')
+    } else if (writtenFormat == 'email') {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/email-reason')
+    } else if (writtenFormat == 'pdf') {
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
+    } 
+    
+})
+
+// What size print do you need?
+router.post('/v2-ucd-register/contact-details/alt-formats/large-print', function(request, response) {
+    response.redirect('/v2-ucd-register/nationality/start')
+})
+
+// Why do you need us to contact you by email instead of printed letters?
+router.post('/v2-ucd-register/contact-details/alt-formats/email-reason', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
+})
+
+// What is your email address?
+router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-email', function(request, response) {
+    response.redirect('/v2-ucd-register/nationality/start')
 })
 
 // What is your correspondence postcode page
@@ -2336,12 +2389,12 @@ router.post('/v2-ucd-register/contact-details/correspondence-postcode', function
 
 // Confirm correspondence address > correspondence alt formats page
 router.post('/v2-ucd-register/contact-details/confirm-correspondence-address', function(request, response) {
-    response.redirect('/alternative-formats/written-format')
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/written-format')
 })
 
 // Confirm correspondence address page
 router.post('/v2-ucd-register/contact-details/correspondence-enter-address-manually', function(request, response) {
-    response.redirect('/alternative-formats/written-format')
+    response.redirect('/v2-ucd-register/contact-details/alt-formats/written-format')
 })
 
 // Correspondence alternative formats page
@@ -2354,144 +2407,6 @@ router.post('/v2-ucd-register/contact-details/correspondence-alternative-formats
     }
 })
 
-//Alt formats new pattern
-router.post('/v2-ucd-register/contact-details/alt-formats/how-should-we-write-to-you', function(request, response) {
-
-    var writtenFormat = request.session.data['written-format']
-    if (writtenFormat == "Standard letter"){
-        response.redirect("/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you")
-    } else if (writtenFormat == "Large print") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-size-print-do-you-need')
-    } else if (writtenFormat == "Letter with changes") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-changes-do-you-need')
-    } else if (writtenFormat == "Audio") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-type-of-audio-format')
-    } else if (writtenFormat == "Braille") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-type-of-braille-do-you-need')
-    } else if (writtenFormat == "British Sign Language video") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-video-format-do-you-need')
-    } else if (writtenFormat == "PDF with accessible text") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
-    }
-})
-
-// radio 2- what size print do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-size-print-do-you-need', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-})
-
-// radio 3- what changes do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-changes-do-you-need', function(request, response) {
-
-    var changesNeeded = request.session.data['changes-needed']
-    if (changesNeeded == "A different font"){
-        response.redirect("/v2-ucd-register/contact-details/alt-formats/what-font-do-you-need")
-    } else if (changesNeeded == "Bold text") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-    } else if (changesNeeded == "Coloured paper") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-colour-paper-do-you-need')
-    } else if (changesNeeded == "Double line spacing") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-    } else if (changesNeeded == "Large print") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-size-print-do-you-need')
-    } else if (changesNeeded == "Standard letter") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-    } 
-})
-
-// What font do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-font-do-you-need', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-})
-    
-// What type of audio do you need?
-
-// What type of audio do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-type-of-audio-format', function(request, response) {
-
-    var audio = request.session.data['audio-format']
-    if (audio == "CD"){
-        response.redirect("/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you")
-    } else if (audio == "MP3 by email") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
-    } else if (audio == "Casette tape") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-    } else if (audio == "DVD") {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-    } 
-})
-
-// What type of braille do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-type-of-braille-do-you-need', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-})
-
-// What video format do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-video-format-do-you-need', function(request, response) {
-
-    var videoFormat = request.session.data['video-format']
-    if (videoFormat == "DVD"){
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-    } else if (videoFormat == "MPEG file by email"){
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
-    }
-})
-
-// What is your email address?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-email', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-})
-
-// What colour paper do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-colour-paper-do-you-need', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you')
-})
-
-// How should we contact you if we need to speak to you?
-router.post('/v2-ucd-register/contact-details/alt-formats/how-should-we-contact-you', function(request, response) {
-
-    var spokenOptions = request.session.data['spoken-options']
-    if (spokenOptions == "Standard phone call"){
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
-    } else if (spokenOptions == "Relay UK"){
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-relay-uk-number')
-    } else if (spokenOptions == "Textphone"){
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number')
-    } else if (spokenOptions == "Signing or lipspeaking"){
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-signing-service')
-    }
-})
-
-// What is your relay number?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-is-relay-uk-number', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
-})
-
-// What signing or lipspeaking do you need?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-signing-service', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
-})
-
-// What is your textphone number?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
-    response.redirect('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact')
-})
-
-//Do you need any other help when we contact you?
-
-router.post('/v2-ucd-register/contact-details/alt-formats/any-other-help-when-we-contact', function(request, response) {
-    var readLetters = request.session.data['other-help']
-    if (readLetters == 'yes'){
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-other-help-when-we-contact')
-    } else if (readLetters == 'no') {
-        response.redirect('/v2-ucd-register/task-list-cd-done')
-    }
-})
-
-// What other help?
-router.post('/v2-ucd-register/contact-details/alt-formats/what-other-help-when-we-contact', function(request, response) {
-    response.redirect('/v2-ucd-register/task-list-cd-done')
-})
 
 
 //-------------------------------------------------------------------------------------------
