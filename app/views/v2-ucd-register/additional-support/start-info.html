@@ -16,27 +16,39 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <form class="form" action="#" method="post">
+
       <span class="govuk-caption-l">Additional support needs</span>
       <h1 class="govuk-heading-l">
-        The next questions are to tell us if you have difficulty communicating with the Department for Communities
+        The next questions are about the letters and forms we send you
       </h1>
 
-      <p class="govuk-body">Your answers will not affect your eligibility for the benefit.</p>
+      <p class="govuk-body">We need to know if your health conditions can sometimes make it difficult for you to fill them in and send them back to us.</p>
 
-      <p class="govuk-body">If you need help communicating with us, local advice services may be able to assist you. Their details can be found on your local council website.</p>
-     <p class="govuk-body">Make the Call is the Department's own service, and can support  people who need help. </p>
+      <p class="govuk-body">Your answers will not affect whether you qualify for PIP.</p>
 
-     <h2 class="govuk-heading-m">
-      Would you like me to give you the number for the Make the Call service? 
-    </h2>
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-    {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-    {{ govukInsetText({
-      text: "'Make the Call' phone number: 0800 232 1271"
+    {{ govukRadios({
+      name: "remembering-things",
+      fieldset: {
+        legend: {
+          text: "Is it difficult for you to remember things, learn new things, or make everyday decisions?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
     }) }}
-
-     <form class="form" action="#" method="post">
  
       <div class="govuk-button-group">
         {{ govukButton({
@@ -49,8 +61,6 @@
           href: "/v2-ucd-register/task-list-as-in-progress"
         }) }}
       </div>
-
-  
 
     </form>
 
