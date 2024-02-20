@@ -2352,13 +2352,13 @@ router.post('/v2-ucd-register/contact-details/correspondence-address', function(
 router.post('/v2-ucd-register/contact-details/alt-formats/written-format', function(request, response) {
     var writtenFormat = request.session.data['written-format']
     if (writtenFormat == 'standard-letter'){
-        response.redirect('/v2-ucd-register/nationality/start')
+        response.redirect('/v2-ucd-register/additional-support/start-info')
     } else if (writtenFormat == 'large-print') {
         response.redirect('/v2-ucd-register/contact-details/alt-formats/large-print')
      } else if (writtenFormat == 'audio') {
-        response.redirect('/v2-ucd-register/nationality/start')
+        response.redirect('/v2-ucd-register/additional-support/start-info')
     } else if (writtenFormat == 'braille') {
-        response.redirect('/v2-ucd-register/nationality/start')
+        response.redirect('/v2-ucd-register/additional-support/start-info')
     } else if (writtenFormat == 'email') {
         response.redirect('/v2-ucd-register/contact-details/alt-formats/email-reason')
     } else if (writtenFormat == 'pdf') {
@@ -2369,7 +2369,7 @@ router.post('/v2-ucd-register/contact-details/alt-formats/written-format', funct
 
 // What size print do you need?
 router.post('/v2-ucd-register/contact-details/alt-formats/large-print', function(request, response) {
-    response.redirect('/v2-ucd-register/nationality/start')
+    response.redirect('/v2-ucd-register/additional-support/start-info')
 })
 
 // Why do you need us to contact you by email instead of printed letters?
@@ -2379,7 +2379,7 @@ router.post('/v2-ucd-register/contact-details/alt-formats/email-reason', functio
 
 // What is your email address?
 router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-email', function(request, response) {
-    response.redirect('/v2-ucd-register/nationality/start')
+    response.redirect('/v2-ucd-register/additional-support/start-info')
 })
 
 // What is your correspondence postcode page
@@ -2397,24 +2397,17 @@ router.post('/v2-ucd-register/contact-details/correspondence-enter-address-manua
     response.redirect('/v2-ucd-register/contact-details/alt-formats/written-format')
 })
 
-// Correspondence alternative formats page
-router.post('/v2-ucd-register/contact-details/correspondence-alternative-formats', function(request, response) {
-    var differentFormat = request.session.data['different-format']
-    if (differentFormat == 'yes'){
-        response.redirect('#')
-    } else if (differentFormat == 'no') {
-        response.redirect('/v2-ucd-register/additional-support/start-info')
-    }
-})
-
-
-
 //-------------------------------------------------------------------------------------------
 
 //V2-UCD-REGISTER/additional-support
 
 router.post('/v2-ucd-register/additional-support/start-info', function(request, response) {
-    response.redirect('/v2-ucd-register/additional-support/do-you-have-a-condition')
+        var rememberingThings = request.session.data['remembering-things']
+        if (rememberingThings == 'yes'){
+            response.redirect('/v2-ucd-register/additional-support/do-you-have-a-condition')
+        } else if (rememberingThings == 'no') {
+            response.redirect('/v2-ucd-register/additional-support/advice-non-as-marker')
+        }
 })
 
 // do you have a condition 
@@ -2423,7 +2416,7 @@ router.post('/v2-ucd-register/additional-support/do-you-have-a-condition', funct
     if (condition == 'yes'){
         response.redirect('/v2-ucd-register/additional-support/complete-forms')
     } else if (condition == 'no') {
-        response.redirect('/v2-ucd-register/additional-support/complete-forms')
+        response.redirect('/v2-ucd-register/additional-support/advice-non-as-marker')
     }
 })
 
