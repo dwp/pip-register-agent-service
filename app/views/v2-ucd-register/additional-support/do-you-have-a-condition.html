@@ -22,43 +22,6 @@
 
       <form class="form" action="#" method="post">
 
-        {{ govukDetails({
-          summaryText: "Examples of conditions",
-          html: '
-          <p class="govuk-body">This list is not exhaustive:</p>
-          
-              <ul class="govuk-list govuk-list--bullet">
-                <p class= "govuk-body govuk-!-font-weight-bold">By mental-health conditions we mean for example:</p>
-                <li>Severe depression</li>
-                <li>Post Traumatic Stress Disorder (PTSD)</li>
-                <li>Obsessive Compulsive Disorder (OCD)</li>
-                <li>Psychosis</li>
-              </ul>
-    
-              <ul class="govuk-list govuk-list--bullet">
-                <p class= "govuk-body govuk-!-font-weight-bold">By behavioural conditions conditions we mean for example:</p>
-                <li>Attention Deficit Hyperactivity Disorder (ADHD)</li>
-                <li>Conduct disorder</li>
-              </ul>
-              
-              <ul class="govuk-list govuk-list--bullet">
-                <p class= "govuk-body govuk-!-font-weight-bold">By learning difficulty, we mean for example:</p>
-                <li>Down syndrome</li>
-              </ul>
-    
-              <ul class="govuk-list govuk-list--bullet">
-                <p class= "govuk-body govuk-!-font-weight-bold">By developmental disorder we mean for example:</p>
-                <li>Autistic Spectrum disorder</li>
-                <li> developmental delay</li>
-                <li> speech or language disorder</li>
-              </ul>
-    
-              <ul class="govuk-list govuk-list--bullet">
-                <p class= "govuk-body govuk-!-font-weight-bold">By memory problems we mean for example:</p>
-                <li>Alzheimer’s or Dementia</li>
-              </ul>'
-        }) }}
-
         {{ govukRadios({
             name: "condition",
             fieldset: {
@@ -76,6 +39,10 @@
               {
                 value: "no",
                 text: "No"
+              },
+              {
+                value: "unsure",
+                text: "Don't know"
               }
             ]
           }) }}
