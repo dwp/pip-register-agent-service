@@ -19,7 +19,7 @@ require('./views/alternative-formats/_routes')(router);
 router.post('/v2-ucd-register/signposting-eligibility/service-start-page', function(request, response) {
     var newClaim = request.session.data['welcome']
     if (newClaim == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/new-ni-claims')
+        response.redirect('/v2-ucd-register/signposting-eligibility/claiming-self')
     } else if (newClaim == "no") {
         response.redirect('/v2-ucd-register/signposting-eligibility/existing-claims')
     }
@@ -35,6 +35,16 @@ router.post('/v2-ucd-register/signposting-eligibility/new-ni-claims', function(r
     } else if (niPip == "scotland") {
         response.redirect('/v2-ucd-register/signposting-eligibility/scotland')
     }
+})
+
+// Are you claiming for yourself?
+router.post('/v2-ucd-register/signposting-eligibility/claiming-self', function(request, response) {
+    var self = request.session.data['claiming-self']
+    if (self == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/new-ni-claims')
+    } else if (self == "no") {
+        response.redirect('#')
+    } 
 })
 
 
