@@ -13,7 +13,44 @@ const router = govukPrototypeKit.requests.setupRouter()
 // alt-formats routes
 require('./views/alternative-formats/_routes')(router);
 
-// Eligilibility
+// Eligilibility v2
+
+// welcome to PIP
+router.post('/v2-ucd-register/signposting-eligibility/service-start-page', function(request, response) {
+    var newClaim = request.session.data['welcome']
+    if (newClaim == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/new-ni-claims')
+    } else if (newClaim == "no") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/existing-claims')
+    }
+})
+
+// NI new claims
+router.post('/v2-ucd-register/signposting-eligibility/new-ni-claims', function(request, response) {
+    var niPip = request.session.data['ni-pip']
+    if (niPip == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/state-pension-under-16')
+    } else if (niPip == "england-wales") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/england-wales')
+    } else if (niPip == "scotland") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/scotland')
+    }
+})
+
+
+// Are you between 16 and state pension age?
+router.post('/v2-ucd-register/signposting-eligibility/state-pension-under-16', function(request, response) {
+    var ageBracket = request.session.data['age-bracket']
+    if (ageBracket == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/under-16')
+    } else if (ageBracket == "over-state-pension") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/state-pension-under-16')
+    } else if (ageBracket == "over-state-pension") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/state-pension-under-16')
+    }
+})
+//---------------------------------------------------------------------------------------------
+// Eligilibility v1
 
 // 16 or over
 router.post('/research/sprint-4/16-or-over', function(request, response) {
