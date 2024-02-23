@@ -21,7 +21,7 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
-          <h1 class="govuk-heading-l">Are any of the costs to live there paid by a health and social care trust, the Education Authority, a government department, or a charity?</h1>
+          <h1 class="govuk-heading-l">Does a local authority, health authority, education authority, Jobcentre Plus, or a charity pay any of the costs for you to live there?</h1>
 
           {% call govukFieldset({
             legend: {
@@ -32,29 +32,33 @@
 
           {{ govukRadios({
             name: "third-party-pay",
-            items: [           
-           {
-             value: "no",
-             text: "No, none of these"
+            items: [
+          {
+            value: "no",
+            text: "No, none of these"
           },
-           {
-             value: "no",
-            text: "Don't know"
+          {
+            value: "no",
+            text: "I don't know"
           },
           {
             divider: "or,"
           },
-          {
-            value: "health-trust",
-            text: "Health and social care trust"
-          },
-          {
-            value: "yes",
-            text: "Education Authority"
-          },
+            {
+              value: "local",
+              text: "Local authority"
+            },
             {
               value: "yes",
-              text: "Government department"
+              text: "Health authority"
+            },
+            {
+              value: "yes",
+              text: "Education authority"
+            },
+            {
+              value: "yes",
+              text: "Jobcentre Plus"
             },
             {
               value: "yes",
