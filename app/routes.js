@@ -52,7 +52,7 @@ router.post('/v2-ucd-register/signposting-eligibility/claiming-self', function(r
 router.post('/v2-ucd-register/signposting-eligibility/state-pension-under-16', function(request, response) {
     var ageBracket = request.session.data['age-bracket']
     if (ageBracket == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/under-16')
+        response.redirect('/v2-ucd-register/signposting-eligibility/what-is-ni-number')
     } else if (ageBracket == "over-state-pension") {
         response.redirect('/v2-ucd-register/signposting-eligibility/state-pension-under-16')
     } else if (ageBracket == "over-state-pension") {
