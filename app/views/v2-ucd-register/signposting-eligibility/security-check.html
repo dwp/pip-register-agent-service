@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="#" method="post" method="post">
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          name: "waste",
+          fieldset: {
+            legend: {
+              text: "What security questions were answered?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select the three security questions that the applicant answered correctly."
+          },
+          items: [
+          {
+            value: "dob",
+            text: "Date of birth"
+          },
+          {
+            value: "other-benefits",
+            text: "Receiving other benefits"
+          },
+          {
+            value: "address",
+            text: "Address"
+          },
+          {
+            value: "other",
+            text: "other"
+          },
+          {
+            value: "other",
+            text: "other"
+          },
+          {
+            value: "other",
+            text: "other"
+          },
+          {
+            value: "other",
+            text: "other"
+          }
+          ]
+        }) }}
+  
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}

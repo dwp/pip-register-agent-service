@@ -19,7 +19,7 @@ require('./views/alternative-formats/_routes')(router);
 router.post('/v2-ucd-register/signposting-eligibility/service-start-page', function(request, response) {
     var newClaim = request.session.data['welcome']
     if (newClaim == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/claiming-self')
+        response.redirect('/v2-ucd-register/signposting-eligibility/new-ni-claims')
     } else if (newClaim == "no") {
         response.redirect('/v2-ucd-register/signposting-eligibility/existing-claims')
     }
@@ -29,7 +29,7 @@ router.post('/v2-ucd-register/signposting-eligibility/service-start-page', funct
 router.post('/v2-ucd-register/signposting-eligibility/new-ni-claims', function(request, response) {
     var niPip = request.session.data['ni-pip']
     if (niPip == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/state-pension-under-16')
+        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
     } else if (niPip == "england-wales") {
         response.redirect('/v2-ucd-register/signposting-eligibility/england-wales')
     } else if (niPip == "scotland") {
@@ -37,27 +37,45 @@ router.post('/v2-ucd-register/signposting-eligibility/new-ni-claims', function(r
     }
 })
 
+
+// Are you over 16?
+router.post('/v2-ucd-register/signposting-eligibility/over-16', function(request, response) {
+    var over16 = request.session.data['over-16']
+    if (over16 == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/under-state-pension')
+    } else if (over16 == "no") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/under-16-ineligible')
+    }
+})
+
+// Are you under state pension age?
+router.post('/v2-ucd-register/signposting-eligibility/under-state-pension', function(request, response) {
+    var underState = request.session.data['under-state-pension']
+    if (underState == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/what-is-ni-number')
+    } else if (underState == "no") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/stop-getting-pip-last-year')
+    }
+})
+
+// What is your National Insurance number?
+router.post('/v2-ucd-register/signposting-eligibility/what-is-ni-number', function(request, response) {
+    response.redirect('/v2-ucd-register/signposting-eligibility/security-check')
+})
+
+// What security questions were answered?
+router.post('/v2-ucd-register/signposting-eligibility/security-check', function(request, response) {
+    response.redirect('/v2-ucd-register/signposting-eligibility/claiming-self')
+})
+
 // Are you claiming for yourself?
 router.post('/v2-ucd-register/signposting-eligibility/claiming-self', function(request, response) {
     var self = request.session.data['claiming-self']
     if (self == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/new-ni-claims')
+        response.redirect('/v2-ucd-register/signposting-eligibility/srel')
     } else if (self == "no") {
-        response.redirect('#')
+        response.redirect('/v2-ucd-register/signposting-eligibility/person-authorised-claim')
     } 
-})
-
-
-// Are you between 16 and state pension age?
-router.post('/v2-ucd-register/signposting-eligibility/state-pension-under-16', function(request, response) {
-    var ageBracket = request.session.data['age-bracket']
-    if (ageBracket == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/what-is-ni-number')
-    } else if (ageBracket == "over-state-pension") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/state-pension-under-16')
-    } else if (ageBracket == "over-state-pension") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/state-pension-under-16')
-    }
 })
 //---------------------------------------------------------------------------------------------
 // Eligilibility v1
@@ -2917,19 +2935,19 @@ router.post('/v2-ucd-register/hospital-dates/5-7-select-hospital-address', funct
     response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
-// hospital manually > start bank
+// hospital manually > motability
 router.post('/v2-ucd-register/hospital-dates/5-17-hospital-address-manually', function(request, response) {
-    response.redirect('/v2-ucd-register/bank-details/6-1-start')
+    response.redirect('/v2-ucd-register/motability/motability')
 })
 
-// hospice manually > start bank
+// hospice manually > motability
 router.post('/v2-ucd-register/hospital-dates/5-18-hospice-address-manually', function(request, response) {
-    response.redirect('/v2-ucd-register/bank-details/6-1-start')
+    response.redirect('/v2-ucd-register/motability/motability')
 })
 
-// other manually > start bank
+// other manually > motability
 router.post('/v2-ucd-register/hospital-dates/5-19-other-address-manually', function(request, response) {
-    response.redirect('/v2-ucd-register/bank-details/6-1-start')
+    response.redirect('/v2-ucd-register/motability/motability')
 })
 
 // Were you in hospice yesterday?
@@ -2957,9 +2975,9 @@ router.post('/v2-ucd-register/hospital-dates/5-10-hospice-postcode', function(re
     response.redirect('/v2-ucd-register/hospital-dates/5-11-select-hospice-address')
 })
 
-//  Can you confirm the first line of the address place you are staying in?
+//  Can you confirm the first line of the address place you are staying in? > motability
 router.post('/v2-ucd-register/hospital-dates/5-11-select-hospice-address', function(request, response) {
-    response.redirect('/v2-ucd-register/bank-details/6-1-start')
+    response.redirect('/v2-ucd-register/motability/motability')
 })
 
 // Are you living in a care home or nursing home, sheltered housing, a residential college or a hostel today?
@@ -2968,7 +2986,7 @@ router.post('/v2-ucd-register/hospital-dates/5-3-other-housing-today', function(
     if (otherToday == 'yes'){
         response.redirect('/v2-ucd-register/hospital-dates/5-12-other-yesterday')
     } else if (otherToday == 'no') {
-        response.redirect('/v2-ucd-register/bank-details/6-1-start')
+        response.redirect('/v2-ucd-register/motability/motability')
     }
 })
 
@@ -3006,7 +3024,7 @@ router.post('/v2-ucd-register/hospital-dates/5-13-third-party-pay', function(req
 
 // What is the name of the [organisation type]?
 router.post('/v2-ucd-register/hospital-dates/5-23-name', function(request, response) {
-    response.redirect('/v2-ucd-register/bank-details/6-1-start')
+    response.redirect('/v2-ucd-register//motability/motability')
 })
 
 // local auth ---> What is the name -----> agreement?
@@ -3016,7 +3034,7 @@ router.post('/v2-ucd-register/hospital-dates/5-23-name-local', function(request,
 
 // Do you have an agreement with the local authority to repay any of the costs?
 router.post('/v2-ucd-register/hospital-dates/5-14-local-agreement', function(request, response) {
-    response.redirect('/v2-ucd-register/bank-details/6-1-start')
+    response.redirect('/v2-ucd-register//motability/motability')
 })
 // -------------------------------------------------------------------------------------
 
@@ -3046,12 +3064,12 @@ router.post('/v2-ucd-register/bank-details/6-5-foreign-account', function(reques
 
 // account details
 router.post('/v2-ucd-register/bank-details/6-3-main-account-details-v2', function(request, response) {
-    response.redirect('/v2-ucd-register/motability/motability')
+    response.redirect('/v2-ucd-register/task-list-bank-done')
 })
 
 // foreign account details
 router.post('/v2-ucd-register/bank-details/6-6-foreign-account-details', function(request, response) {
-    response.redirect('/v2-ucd-register/motability/motability')
+    response.redirect('/v2-ucd-register/task-list-bank-done')
 })
 
 // You can continue without entering account details
@@ -3063,7 +3081,7 @@ router.post('/v2-ucd-register/bank-details/6-2-no-details-now', function(request
 
 // Motability > tasklist done
 router.post('/v2-ucd-register/motability/motability', function(request, response) {
-    response.redirect('/v2-ucd-register/task-list-motability-done')
+    response.redirect('/v2-ucd-register/bank-details/6-1-start')
 })
 
 // -------------------------------------------------------------------------------------

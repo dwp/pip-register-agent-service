@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="#" method="post" method="post">
+
+      <h1 class="govuk-heading-l">
+        If you have any further questions after this call you should contact us on 0800 121 4433
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        As you do not have a National Insurance number yet, I will need to take your details and send you a form so you can make a claim for PIP.
+      </h2>
+
+      <p class="govuk-body">
+        Request customer name, DOB, address, postcode and telephone number
+       </p>
+
+       <p class="govuk-body">
+        You should receive the form through the post within 5 days.</p>
+
+       <p class="govuk-body">
+        Please return it to us as soon as you can and within 1 month. It will help make things quicker if you include proof of your ID.
+       </p>
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}
