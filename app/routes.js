@@ -2361,17 +2361,8 @@ router.post('/v2-ucd-register/contact-details/what-is-your-name', function(reque
 
 // What is your phone number page
 router.post('/v2-ucd-register/contact-details/what-is-your-phone-number', function(request, response) {
-    var spokenFormat = request.session.data['spoken-format']
-    if (spokenFormat == "standard-phone-call"){
         response.redirect("/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates")
-    } else if (spokenFormat == "textphone") {
-        response.redirect("/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number")
-    } else if (spokenFormat == "signing-lipspeaking") {
-        response.redirect("/v2-ucd-register/contact-details/alt-formats/signing-lipspeaking")
-    } else if (spokenFormat == "interpreter") {
-        response.redirect("/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates")
-    } 
-})
+}) 
 
 // What is your Textphone number?
 router.post('/v2-ucd-register/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {

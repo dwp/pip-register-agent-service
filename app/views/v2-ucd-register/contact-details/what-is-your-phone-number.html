@@ -21,39 +21,6 @@
 
         <h1 class="govuk-heading-l">If we need to speak to you about your claim, we'll usually contact you by phone</h1>
 
-        {{ govukRadios({
-          name: "spoken-format",
-          fieldset: {
-            legend: {
-              text: "Do you need support when we contact you by phone, like use of a Textphone or an interpreter?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-
-          items: [
-            {
-              value: "standard-phone-call",
-              text: "No, contact by standard phone call"
-            },
-            {
-              divider: "or"
-            },
-            {
-              value: "textphone",
-              text: "Textphone" 
-            },
-            {
-              value: "signing-lipspeaking",
-              text: "Signing or lipspeaking" 
-            },
-            {
-              value: "interpreter",
-              text: "Language interpreter" 
-            }
-          ]
-        }) }}
-
         <h2 class="govuk-heading-m">What phone number can we use to contact you?</h2>
 
         {{ govukInput({
@@ -79,6 +46,59 @@
           type: "tel",
           autocomplete: "tel",
           classes: "govuk-input--width-20"
+        }) }}
+
+        {% set phoneHtml %}
+        {{ govukInput({
+          id: "textphone",
+          name: "textphone",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Textphone number"
+          }
+        }) }}
+        {% endset -%}
+        
+        {{ govukRadios({
+          name: "spoken-format",
+          fieldset: {
+            legend: {
+              text: "Do you need support when we contact you by phone, like use of a Textphone or an interpreter?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+
+          items: [
+            {
+              value: "standard-phone-call",
+              text: "No, contact by standard phone call"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "textphone",
+              text: "Textphone",
+              conditional: {
+                html: phoneHtml
+              }
+            },
+            {
+              value: "bsl",
+              text: "British Sign Language (BSL) interpreter" 
+            },
+            {
+              value: "isl",
+              text: " Irish Sign Language (BSL) interpreter" 
+            },
+            {
+              value: "language-interpreter",
+              text: "Foreign language interpreter" 
+            }
+          ]
         }) }}
 
         {{ govukButton({
