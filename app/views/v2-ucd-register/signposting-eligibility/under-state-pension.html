@@ -19,7 +19,7 @@ href: "javascript:window.history.back()"
     <form action="#" method="post" method="post">
 
       <h1 class="govuk-heading-l">
-        Are you between 16 and state pension age?
+        Are you under State Pension age?
       </h1>
 
 
@@ -30,15 +30,12 @@ href: "javascript:window.history.back()"
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "age-bracket",
+      name: "under-state-pension",
       fieldset: {
         legend: {
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
-      },
-      content: {
-        html: "<p class='govuk-body'>This is the content for Writing well for the web.</p>"
       },
       items: [
         {
@@ -46,14 +43,7 @@ href: "javascript:window.history.back()"
           text: "Yes"
         },
         {
-          divider: "or"
-        },
-        {
-          value: "under-16",
-          text: "No, under 16"
-        },
-        {
-          value: "over-state-pension",
+          value: "no",
           text: "No, over State Pension age"
         }
       ]

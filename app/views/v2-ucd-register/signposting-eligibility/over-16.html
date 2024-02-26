@@ -18,23 +18,13 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-l">
-        Are you calling for yourself?
-      </h1>
-
-      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-
-      {{ govukWarningText({
-        text: "If no, check claimant is in the room to declare and consent information",
-        iconFallbackText: "Warning"
-      }) }}
-
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "claiming-self",
+      name: "over-16",
       fieldset: {
         legend: {
+          text: "Are you age 16 or over?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -42,11 +32,11 @@ href: "javascript:window.history.back()"
       items: [
         {
           value: "yes",
-          text: "For themselves"
+          text: "Yes"
         },
         {
           value: "no",
-          text: " For someone else"
+          text: "No, under 16"
         }
       ]
     }) }}
