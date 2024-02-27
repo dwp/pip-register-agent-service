@@ -944,6 +944,11 @@ router.post('/ucd-register/hospital-dates/5-23-name-local', function(request, re
     response.redirect('/ucd-register/hospital-dates/5-14-local-agreement')
 })
 
+// agreement to task list
+router.post('/ucd-register/hospital-dates/5-14-local-agreement', function(request, response) {
+    response.redirect('/ucd-register/task-list-accom-done')
+})
+
 // Do you have an agreement with the local authority to repay any of the costs?
 router.post('/ucd-register/hospital-dates/hospital-dates/5-14-local-agreement', function(request, response) {
     response.redirect('/ucd-register/task-list-accom-done')
