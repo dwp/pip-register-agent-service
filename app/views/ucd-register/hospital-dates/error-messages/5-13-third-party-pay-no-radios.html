@@ -33,7 +33,7 @@
             ]
           }) }}
 
-          <h1 class="govuk-heading-l">Does a local authority, health authority, education authority, Jobcentre Plus, or a charity pay any of the costs for you to live there?</h1>
+          <h1 class="govuk-heading-l">Are any of the costs to live there paid by a health and social care trust, the Education Authority, a government department, or a charity?</h1>
 
           {% call govukFieldset({
             legend: {
@@ -54,26 +54,22 @@
           },
           {
             value: "no",
-            text: "I don't know"
+            text: "Don't know"
           },
           {
             divider: "or,"
           },
             {
               value: "local",
-              text: "Local authority"
+              text: "Health and social care trust"
             },
             {
               value: "yes",
-              text: "Health authority"
+              text: "Education Authority"
             },
             {
               value: "yes",
-              text: "Education authority"
-            },
-            {
-              value: "yes",
-              text: "Jobcentre Plus"
+              text: "Government department"
             },
             {
               value: "yes",
