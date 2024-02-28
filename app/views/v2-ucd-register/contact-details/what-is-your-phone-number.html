@@ -60,12 +60,13 @@
           }
         }) }}
         {% endset -%}
-        
+
+        <h2 class="govuk-heading-m">If we call you in future, do you need a Textphone or an interpreter?</h2>
+                
         {{ govukRadios({
           name: "spoken-format",
           fieldset: {
             legend: {
-              text: "Do you need support when we contact you by phone, like use of a Textphone or an interpreter?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -88,15 +89,7 @@
             },
             {
               value: "bsl",
-              text: "British Sign Language (BSL) interpreter" 
-            },
-            {
-              value: "isl",
-              text: " Irish Sign Language (ISL) interpreter" 
-            },
-            {
-              value: "language-interpreter",
-              text: "Foreign language interpreter" 
+              text: "sign language or language interpreter" 
             }
           ]
         }) }}
