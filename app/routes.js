@@ -29,7 +29,7 @@ router.post('/v2-ucd-register/signposting-eligibility/service-start-page', funct
 router.post('/v2-ucd-register/signposting-eligibility/new-ni-claims', function(request, response) {
     var niPip = request.session.data['ni-pip']
     if (niPip == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
+        response.redirect('/v2-ucd-register/signposting-eligibility/claiming-self')
     } else if (niPip == "england-wales") {
         response.redirect('/v2-ucd-register/signposting-eligibility/england-wales')
     } else if (niPip == "scotland") {
@@ -37,6 +37,15 @@ router.post('/v2-ucd-register/signposting-eligibility/new-ni-claims', function(r
     }
 })
 
+// Are you claiming for yourself?
+router.post('/v2-ucd-register/signposting-eligibility/claiming-self', function(request, response) {
+    var self = request.session.data['claiming-self']
+    if (self == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
+    } else if (self == "no") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/authorised-person')
+    } 
+})
 
 // Are you over 16?
 router.post('/v2-ucd-register/signposting-eligibility/over-16', function(request, response) {
@@ -68,15 +77,6 @@ router.post('/v2-ucd-register/signposting-eligibility/security-check', function(
     response.redirect('/v2-ucd-register/signposting-eligibility/claiming-self')
 })
 
-// Are you claiming for yourself?
-router.post('/v2-ucd-register/signposting-eligibility/claiming-self', function(request, response) {
-    var self = request.session.data['claiming-self']
-    if (self == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/srel')
-    } else if (self == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/person-authorised-claim')
-    } 
-})
 //---------------------------------------------------------------------------------------------
 // Eligilibility v1
 

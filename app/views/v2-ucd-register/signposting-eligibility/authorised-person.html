@@ -18,23 +18,13 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-l">
-        Are you calling to claim PIP for yourself, or for someone else?
-      </h1>
-
-      {% from "govuk/components/details/macro.njk" import govukDetails %}
-
-      {{ govukDetails({
-        summaryText: "If caller is translating for applicant",
-        text: "Confirm the applicant is in room with them, and select 'For themselves'. "
-      }) }}
-
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "claiming-self",
+      name: "over-16",
       fieldset: {
         legend: {
+          text: "Are you age 16 or over?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -42,11 +32,11 @@ href: "javascript:window.history.back()"
       items: [
         {
           value: "yes",
-          text: "For themselves"
+          text: "Yes"
         },
         {
           value: "no",
-          text: " For someone else"
+          text: "No, under 16"
         }
       ]
     }) }}

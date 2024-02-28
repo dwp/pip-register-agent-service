@@ -19,22 +19,22 @@ href: "javascript:window.history.back()"
     <form action="#" method="post" method="post">
 
       <h1 class="govuk-heading-l">
-        Need to apply for GB PIP instead
+        This is the phone line for Northern Ireland only
       </h1>
 
       <p class="govuk-body">
-        If you want to find more information, you can view <a href="https://www.gov.uk/pip" class="govuk-link" rel="noreferrer noopener" target="_blank">PIP GOV information (opens in new tab)</a>
+        If you want to apply for PIP in England or Wales, you need to call the Department for Work and Pensions new claims line.
        </p>
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
-        text: "0800 917 2222"
+        text: "New PIP claims for England and Wales: 0800 917 2222"
       }) }}
 
-    {{ govukButton({
-      text: "Continue"
-    }) }}
+      <p class="govuk-body">
+        If you would still like to make a claim for PIP in Northern Ireland, we can <a href="https://www.mygov.scot/adult-disability-payment" class="govuk-link" rel="noreferrer noopener" target="_blank">continue with your application</a>.
+      </p>
 
   </form>
     
