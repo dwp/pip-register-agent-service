@@ -8,3 +8,7 @@
 .govuk-header__logo {
     display: none;
  }
+
+ .colour-blue {
+    border-color: govuk-colour("blue")
+  }
