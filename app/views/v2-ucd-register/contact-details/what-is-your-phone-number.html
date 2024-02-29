@@ -88,10 +88,20 @@
               }
             },
             {
-              value: "bsl",
-              text: "sign language or language interpreter" 
+              value: "other",
+              text: "Other format",
+              hint: {
+                text: "For example, sign language type or language interpreter."
+              }
             }
           ]
+        }) }}
+
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+        {{ govukInsetText({
+          classes: 'colour-blue govuk-body govuk-!-font-weight-bold',
+          text: "Agent: If 'Other format' selected, Note the type of format in notes."
         }) }}
 
         {{ govukButton({
