@@ -86,7 +86,7 @@ router.post('/v2-ucd-register/signposting-eligibility/what-is-ni-number', functi
 
 // What security questions were answered?
 router.post('/v2-ucd-register/signposting-eligibility/security-check', function(request, response) {
-    response.redirect('/v2-ucd-register/signposting-eligibility/claiming-self')
+    response.redirect('/v2-ucd-register/welcome-screens/welcome-screen-ni')
 })
 
 //---------------------------------------------------------------------------------------------
