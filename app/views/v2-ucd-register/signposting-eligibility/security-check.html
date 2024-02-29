@@ -18,31 +18,25 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-l">Have 2 out of 3 security questions been verified?</h1>
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-      <div class="govuk-hint">
-        Select up to 3 security questions that were asked and mark if they were correctly answered.
-      </div>
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: '<h1 class="govuk-heading-l">Agent: Have 2 out of 3 security questions been verified?</h3>'
+      }) }}
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
       {{ govukRadios({
         name: "securityVerified",
-        fieldset: {
-          legend: {
-            text: "What is your previous surname(s)?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
         items: [
         {
-          value: "answered-correctly",
-          text: "Correctly answered"
+          value: "verified",
+          text: "Yes, at least 2 have been verified"
         },
         {
-          value: "incorrectly-answered",
-          text: "Incorrectly answered"
+          value: "unverified",
+          text: "No, claimant can't be verified"
         }
         ]
       }) }}
