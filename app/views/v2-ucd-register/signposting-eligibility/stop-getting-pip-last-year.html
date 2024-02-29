@@ -32,8 +32,18 @@ href: "javascript:window.history.back()"
        </p>
 
        <p class="govuk-body">
-        You can still claim PIP if you think you're eligible.
+        If you call the Attendance Allowance helpline, you can ask them to send you an application form.
        </p>
+
+       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+       {{ govukInsetText({
+         text: "Attendance Allowance helpline: 0800 731 0122"
+       }) }}
+
+       <p class="govuk-body">
+        If you would still like to make a claim for PIP, we can <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank">continue with your application</a>.
+      </p>
 
     {{ govukButton({
       text: "Continue"

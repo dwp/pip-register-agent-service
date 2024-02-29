@@ -14,6 +14,10 @@
 
       <form class="form" action="#" method="post" novalidate>
 
+        <h1 class="govuk-heading-l">Our large print letters are usually font size 16</h1>
+
+        <h2 class="govuk-heading-m">Do you need them in a larger size?</h2>
+
         {% set printHtml %}
         {{ govukInput({
           id: "contact-by-email",
@@ -34,16 +38,11 @@
           value: large-print,
           fieldset: {
             legend: {
-              text: "What size print do you need?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
             
           },
-          hint: {
-            text: "Our letters are usually in Arial font size 12."  
-         },
-
           items: [
             {
               value: "large-print-16",

@@ -47,6 +47,18 @@ router.post('/v2-ucd-register/signposting-eligibility/claiming-self', function(r
     } 
 })
 
+// Authorised person
+router.post('/v2-ucd-register/signposting-eligibility/authorised-person', function(request, response) {
+    var authorised = request.session.data['authorised-person']
+    if (authorised == 'authorised'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/third-party-route')
+    } else if (authorised == "appointed") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/external-party-route')
+    } else if (authorised == "neither") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/end-call')
+    } 
+})
+
 // Are you over 16?
 router.post('/v2-ucd-register/signposting-eligibility/over-16', function(request, response) {
     var over16 = request.session.data['over-16']

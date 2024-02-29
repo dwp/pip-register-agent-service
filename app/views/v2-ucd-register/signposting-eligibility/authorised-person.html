@@ -21,22 +21,26 @@ href: "javascript:window.history.back()"
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "over-16",
+      name: "authorised-person",
       fieldset: {
         legend: {
-          text: "Are you age 16 or over?",
+          text: "Has the person you're calling for authorised you to make the claim for them, or have you been legally appointed to deal with their benefits?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
       },
       items: [
         {
-          value: "yes",
-          text: "Yes"
+          value: "authorised",
+          text: "Authorised by applicant"
         },
         {
-          value: "no",
-          text: "No, under 16"
+          value: "appointed",
+          text: "Legally appointed"
+        },
+        {
+          value: "neither",
+          text: "Neither"
         }
       ]
     }) }}
