@@ -89,24 +89,14 @@
             },
             {
               value: "other",
-              text: "Other format",
-              hint: {
-                text: "For example, sign language type or language interpreter."
-              }
+              text: "Sign language or language interpreter"
             }
           ]
         }) }}
 
-        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-        {{ govukInsetText({
-          classes: 'colour-blue govuk-body govuk-!-font-weight-bold',
-          text: "Agent: If 'Other format' selected, Note the type of format in notes."
-        }) }}
-
-
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href:"/design-updates/alt-formats-concepts/ni-mtp-routed-2"
         }) }}
   
       </form>
