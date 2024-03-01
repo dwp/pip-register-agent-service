@@ -18,6 +18,7 @@
 
       <form class="form" action="#" method="post">
         
+        <span class="govuk-caption-l">Additional support needs</span>
         <h1 class="govuk-heading-l">
           Who will you ask for help? 
         </h1>
@@ -26,17 +27,35 @@
 
         {{ govukInput({
           label: {
-            text: "Name of helper"
+            text: "Relationship to the applicant"
           },
-          id: "helper-name",
-          name: "helpertName"
+          hint: {
+            text: "For example, family member, friend, neighbour, support worker."
+          },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        {{ govukInput({
+            label: {
+              text: "Full name (optional)"
+            },
+          id: "event-name",
+          name: "eventName"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Phone number (optional)"
+          },
+          id: "event-name",
+          name: "eventName"
         }) }}
         
           {{ govukButton({
             text: "Continue"
           }) }}
-
-
+    
       </form>
 
     </div>

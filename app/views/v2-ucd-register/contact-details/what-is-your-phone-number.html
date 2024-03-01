@@ -21,34 +21,9 @@
 
         <h1 class="govuk-heading-l">If we need to speak to you about your claim, we'll usually contact you by phone</h1>
 
-        <h2 class="govuk-heading-m">What phone number can we use to contact you?</h2>
+        <h2 class="govuk-heading-m">Will you need a Textphone or an interpreter?</h2>
 
-        {{ govukInput({
-          label: {
-            text: "Mobile phone number"
-          },
-          id: "telephone-number",
-          name: "telephone-number",
-          type: "tel",
-          autocomplete: "tel",
-          classes: "govuk-input--width-20"
-        }) }}
-        
-        {{ govukInput({
-          label: {
-            text: "Other phone number (optional)"
-          },
-          hint: {
-            text: "For landlines, include a dialling code like 01632 960 001."
-          },
-          id: "telephone-number",
-          name: "telephone-number",
-          type: "tel",
-          autocomplete: "tel",
-          classes: "govuk-input--width-20"
-        }) }}
-
-        {% set phoneHtml %}
+        {% set textphoneHtml %}
         {{ govukInput({
           id: "textphone",
           name: "textphone",
@@ -61,8 +36,19 @@
         }) }}
         {% endset -%}
 
-        <h2 class="govuk-heading-m">If we call you in future, do you need a Textphone or an interpreter?</h2>
-                
+        {% set interpreterHtml %}
+        {{ govukInput({
+          id: "interpreter",
+          name: "interpreter",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Type of interpreter"
+          }
+        }) }}
+        {% endset -%}
+
         {{ govukRadios({
           name: "spoken-format",
           fieldset: {
@@ -82,26 +68,50 @@
             },
             {
               value: "textphone",
-              text: "Textphone",
+              text: "Yes, textphone",
               conditional: {
-                html: phoneHtml
+                html: textphoneHtml
               }
             },
             {
-              value: "other",
-              text: "Other format",
+              value: "interpreter",
+              text: "Yes, interpreter",
               hint: {
-                text: "For example, sign language type or language interpreter."
-              }
+                text: "For example, a non-English language or sign language interpreter."
+              },
+                conditional: {
+                  html: interpreterHtml
+                }
+
             }
           ]
         }) }}
 
-        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+        <h2 class="govuk-heading-m">What is your mobile phone number?</h2>
 
-        {{ govukInsetText({
-          classes: 'colour-blue govuk-body govuk-!-font-weight-bold',
-          text: "Agent: If 'Other format' selected, Note the type of format in notes."
+        {{ govukInput({
+          label: {
+            text: "Mobile phone number"
+          },
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+        
+        {{ govukInput({
+          label: {
+            text: "Other phone number (optional)"
+          },
+          hint: {
+            text: "For landline, include a dialling code like 01632 960 001."
+          },
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
         }) }}
 
         {{ govukButton({

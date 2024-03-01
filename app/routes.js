@@ -764,7 +764,7 @@ router.post('/ucd-register/healthcare-professional/hcp-cyas/add-new/additional-s
 }
 })
 
-
+//----------------------------------------------------------------------------------
 //UCD-REGISTER/ADDITIONAL-SUPPORT
 
 router.post('/ucd-register/additional-support/start-info', function(request, response) {
@@ -773,11 +773,11 @@ router.post('/ucd-register/additional-support/start-info', function(request, res
 
 // do you have a condition 
 router.post('/ucd-register/additional-support/do-you-have-a-condition', function(request, response) {
-    var condition = request.session.data['condition']
-    if (condition == 'yes'){
+    var anyCondition = request.session.data['any-condition']
+    if (anyCondition == 'yes'){
         response.redirect('/ucd-register/additional-support/complete-forms')
-    } else if (condition == 'no') {
-        response.redirect('/ucd-register/additional-support/complete-forms')
+    } else if (anyCondition == 'no') {
+        response.redirect('/ucd-register/additional-support/advice-non-as-marker')
     }
 })
 
@@ -3115,7 +3115,7 @@ router.post('/design-updates/new-script-as/read-letters', function(request, resp
 
 //helpers
 router.post('/design-updates/new-script-as/helpers', function(request, response) {
-    var helpers = request.session.data['helpers']
+    var helpers = reqest.session.data['helpers']
     if (helpers == 'yes'){
         response.redirect('/design-updates/new-script-as/who-helps')
     } else if (helpers == 'no') {
@@ -3129,59 +3129,3 @@ router.post('/design-updates/new-script-as/who-helps', function(request, respons
 })
 
 // -------------------------------------------------------------------------------------
-
-//UCD-REGISTER/ADDITIONAL-SUPPORT
-
-router.post('/design-updates/additional-support/start-info', function(request, response) {
-    response.redirect('/design-updates/additional-support/do-you-have-a-condition')
-})
-
-// do you have a condition 
-router.post('/design-updates/additional-support/do-you-have-a-condition', function(request, response) {
-    var condition = request.session.data['condition']
-    if (condition == 'yes'){
-        response.redirect('/design-updates/additional-support/complete-forms')
-    } else if (condition == 'no') {
-        response.redirect('/design-updates/additional-support/complete-forms')
-    }
-})
-
-// can you complete forms
-router.post('/design-updates/additional-support/complete-forms', function(request, response) {
-    var completeForms = request.session.data['complete-forms']
-    if (completeForms == 'yes'){
-        response.redirect('/design-updates/additional-support/read-letters')
-    } else if (completeForms == 'no') {
-        response.redirect('/design-updates/additional-support/read-letters')
-    }
-})
-
-router.post('/design-updates/additional-support/read-letters', function(request, response) {
-    response.redirect('/design-updates/additional-support/post')
-})
-
-router.post('/design-updates/additional-support/post', function(request, response) {
-    response.redirect('/design-updates/additional-support/helpers')
-})
-
-// Do you have anyone to help you?
-router.post('/design-updates/additional-support/helpers', function(request, response) {
-    var anyoneHelp = request.session.data['helpers']
-    if (anyoneHelp == 'yes'){
-        response.redirect('/design-updates/additional-support/who-helps')
-    } else if (anyoneHelp == 'no') {
-        response.redirect('/design-updates/additional-support/advice')
-    }
-})
-
-router.post('/design-updates/additional-support/who-helps', function(request, response) {
-    response.redirect('/design-updates/additional-support/advice')
-})
-
-router.post('/design-updates/additional-support/advice', function(request, response) {
-    response.redirect('/design-updates/additional-support/add-support-summary')
-})
-
-router.post('/design-updates/additional-support/add-support-summary', function(request, response) {
-    response.redirect('/ucd-concepts-testing')
-})
