@@ -16,7 +16,7 @@
 
         <h1 class="govuk-heading-l">Our large print letters are usually font size 16</h1>
 
-        <h2 class="govuk-heading-m">Do you need them in a larger size?</h2>
+        <h2 class="govuk-heading-m">Is that large enough for you to read?</h2>
 
         {% set printHtml %}
         {{ govukInput({
@@ -46,11 +46,11 @@
           items: [
             {
               value: "large-print-16",
-              text: "Font size 16" 
+              text: "Yes, size 16" 
             },
             {
               value: "another-size",
-              text: "Another size",
+              text: "No, another size",
               conditional: {
                 html: printHtml
               }
