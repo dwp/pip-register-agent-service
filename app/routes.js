@@ -2769,7 +2769,7 @@ router.post('/v2-ucd-register/nationality/exportability/working-paying-insurance
   
         //What country are you receiving pensions or benefits in?
         router.post('/v2-ucd-register/nationality/exportability/what-country-benefits', function(request, response) {
-            response.redirect('/v2-ucd-register/nationality/exportability/family-receiving-benefits')
+            response.redirect('/v2-ucd-register/healthcare-professional/start')
         })
   
     //Are any of your family members receiving pensions or benefits in another country?
