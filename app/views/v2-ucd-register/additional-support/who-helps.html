@@ -26,26 +26,17 @@
 
         {{ govukInput({
           label: {
-            text: "Relationship to the applicant"
+            text: "Name of helper"
           },
-          hint: {
-            text: "For example, family member, friend, neighbour, support worker."
-          },
-          id: "event-name",
-          name: "eventName"
+          classes: "govuk-!-width-two-thirds",
+          id: "helper-name",
+          name: "helpertName"
         }) }}
         
-        <div class="govuk-button-group">
           {{ govukButton({
             text: "Continue"
           }) }}
-    
-          {{ govukButton({
-            text: "Change previous answers",
-            classes: "govuk-button--secondary",
-            href: "/v2-ucd-register/task-list-as-in-progress"
-          }) }}
-        </div>
+
 
       </form>
 
