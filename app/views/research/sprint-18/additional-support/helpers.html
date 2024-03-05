@@ -17,13 +17,13 @@
     <div class="govuk-grid-column-two-thirds">
       
       <h1 class="govuk-heading-l">
-        Do you have a mental health condition, or a condition that makes it difficult for you to remember things, learn new things, or make everyday decisions?
+        Do you have anyone to help you with these tasks?
       </h1>
 
       <form class="form" action="#" method="post">
 
         {{ govukRadios({
-            name: "any-condition",
+            name: "helpers",
             fieldset: {
               legend: {
 
@@ -43,9 +43,19 @@
             ]
           }) }}
 
-          {{ govukButton({
-            text: "Continue"
-          }) }}
+        
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+      
+            {{ govukButton({
+              text: "Change previous answers",
+              classes: "govuk-button--secondary",
+              href: "/v2-ucd-register/task-list-as-in-progress"
+            }) }}
+          </div>
+
 
       </form>
 
