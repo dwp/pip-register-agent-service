@@ -20,7 +20,7 @@ href: "javascript:window.history.back()"
 
       <h1 class="govuk-heading-l">I need to ask you three questions to confirm your identity</h1>
 
-      <p class="govuk-hint">Then we can start your application.</p>
+      <p class="govuk-body">Then we can start your application.</p>
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
@@ -33,8 +33,21 @@ href: "javascript:window.history.back()"
 
       {{ govukDetails({
         summaryText: "Security questions",
-        text: "We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post."
-      }) }}
+          html: '
+              <ul class="govuk-list govuk-list--bullet">
+                <li>What is your previous surname(s)?What is your previous surname(s)?</li>
+                <li>What is your previous address(es)? First line of address and town are acceptable, without postcode. </li>
+                <li>Name another benefit you receive? A “None” response is acceptable</li>
+                <li>On which date did your claim for the other benefit start? The correct month and year are acceptable.</li>
+                <li>What is the weekly or monthly amount of the other benefit? Answers up to £5 more or less than the correct number are acceptable.</li>
+                <li>What other benefit have you claimed previously, regardless of whether you were paid it?</li>
+                <li>What is your partner’s National Insurance Number?</li>
+                <li>What is your partner’s full name?</li>
+                <li>What is your partner’s date of birth?</li>
+                <li>What is one of your children’s full names?</li>
+                <li>What is one of your children’s dates of birth?</li>
+              </ul>'
+        }) }}
 
 
       {{ govukInsetText({
