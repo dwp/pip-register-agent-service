@@ -22,12 +22,7 @@ href: "javascript:window.history.back()"
         Are you calling to claim PIP for yourself, or for someone else?
       </h1>
 
-      {% from "govuk/components/details/macro.njk" import govukDetails %}
-
-      {{ govukDetails({
-        summaryText: "If caller is translating for applicant",
-        text: "Confirm the applicant is in room with them, and select 'For themselves'. "
-      }) }}
+      <p class="govuk-hint">Select 'Yes' if caller is helping applicant make the claim, and is in the room with them.</p>
 
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
