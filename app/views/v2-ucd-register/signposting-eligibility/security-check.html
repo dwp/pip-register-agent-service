@@ -18,11 +18,28 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
+      <h1 class="govuk-heading-l">I need to ask you three questions to confirm your identity</h1>
+
+      <p class="govuk-hint">Then we can start your application.</p>
+
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
         classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h1 class="govuk-heading-l">Agent: Have 2 out of 3 security questions been verified?</h3>'
+          html: '<h2 class="govuk-heading-m">Agent: Ask the applicant to confirm 3 of their personal data entries on Searchlite.</h2>'
+      }) }}
+
+      {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+      {{ govukDetails({
+        summaryText: "Security questions",
+        text: "We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post."
+      }) }}
+
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: '<h2 class="govuk-heading-m">Agent: Have 2 out of 3 security questions been verified?</h2>'
       }) }}
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
