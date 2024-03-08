@@ -20,19 +20,17 @@ href: "javascript:window.history.back()"
 
       <h1 class="govuk-heading-l">I need to ask you three questions to confirm your identity</h1>
 
-      <p class="govuk-body">Then we can start your application.</p>
-
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
         classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h2 class="govuk-heading-m">Agent: Ask the applicant to confirm 3 of their personal data entries on Searchlite.</h2>'
+          html: '<h2 class="govuk-body">Agent action: Ask the applicant to confirm 3 of their personal data entries on Searchlite.</h2>'
       }) }}
 
       {% from "govuk/components/details/macro.njk" import govukDetails %}
 
       {{ govukDetails({
-        summaryText: "Security questions",
+        summaryText: "List of security questions",
           html: '
               <ul class="govuk-list govuk-list--bullet">
                 <li>What is your previous surname(s)?What is your previous surname(s)?</li>
@@ -52,7 +50,7 @@ href: "javascript:window.history.back()"
 
       {{ govukInsetText({
         classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h2 class="govuk-heading-m">Agent: Have 2 out of 3 security questions been verified?</h2>'
+          html: '<h2 class="govuk-body">Agent action: Have 2 out of 3 security questions been verified?</h2>'
       }) }}
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
