@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="#" method="post" method="post">
+
+      <h1 class="govuk-heading-l">
+        This is the phone line for Northern Ireland only
+      </h1> 
+
+      <p class="govuk-body">
+        If you live in Scotland, you may be eligible for Adult Disability Payment (ADP) instead. 
+       </p>
+
+       <p class="govuk-body">To apply for ADP, you can call Social Security Scotland.</p>
+
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+        {{ govukInsetText({
+          text: "Social Security Scotland: 0800 182 2222"
+        }) }}
+
+        <p class="govuk-body">
+          Or you can apply online by visiting <a href="https://www.mygov.scot/adult-disability-payment" class="govuk-link" rel="noreferrer noopener" target="_blank">www.mygov.scot/adult-disability-payment</a>.
+        </p>
+
+      <p class="govuk-body">
+        If you would still like to make a claim for PIP, we can <a href="/v2-ucd-register/signposting-eligibility/claiming-self" class="govuk-link">continue with your application</a>.
+    </p>
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}
