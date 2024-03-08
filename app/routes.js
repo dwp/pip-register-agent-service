@@ -2070,7 +2070,100 @@ router.post('/non-MVP/additional-support/who-helps', function(request, response)
 
 //-------------------------------------------------------------------------------------------
 
+// RESEARCH SPRINT 19 - ELIGIBILITY ROUTES
+
+// welcome to PIP
+router.post('/research/sprint-19/signposting-eligibility/service-start-page', function(request, response) {
+    var newClaim = request.session.data['welcome']
+    if (newClaim == 'yes'){
+        response.redirect('/research/sprint-19/signposting-eligibility/new-ni-claims')
+    } else if (newClaim == "no") {
+        response.redirect('/research/sprint-19/signposting-eligibility/existing-claims')
+    }
+})
+
+// NI new claims
+router.post('/research/sprint-19/signposting-eligibility/new-ni-claims', function(request, response) {
+    var niPip = request.session.data['ni-pip']
+    if (niPip == 'yes'){
+        response.redirect('/research/sprint-19/signposting-eligibility/claiming-self')
+    } else if (niPip == "england-wales") {
+        response.redirect('/research/sprint-19/signposting-eligibility/england-wales')
+    } else if (niPip == "scotland") {
+        response.redirect('/research/sprint-19/signposting-eligibility/scotland')
+    }
+})
+
+// Are you claiming for yourself?
+router.post('/research/sprint-19/signposting-eligibility/claiming-self', function(request, response) {
+    var self = request.session.data['claiming-self']
+    if (self == 'yes'){
+        response.redirect('/research/sprint-19/signposting-eligibility/srel')
+    } else if (self == "no") {
+        response.redirect('/research/sprint-19/signposting-eligibility/srel-bau-kickout')
+    } 
+})
+
+// Claiming under SREL?
+router.post('/research/sprint-19/signposting-eligibility/srel', function(request, response) {
+    var srel = request.session.data['srel']
+    if (srel == 'yes'){
+        response.redirect('/research/sprint-19/signposting-eligibility/srel-bau-kickout')
+    } else if (srel == "no") {
+        response.redirect('/research/sprint-19/signposting-eligibility/over-16')
+    } 
+})
+
+// Authorised person
+router.post('/research/sprint-19/signposting-eligibility/authorised-person', function(request, response) {
+    var authorised = request.session.data['authorised-person']
+    if (authorised == 'authorised'){
+        response.redirect('/research/sprint-19/signposting-eligibility/third-party-route')
+    } else if (authorised == "appointed") {
+        response.redirect('/research/sprint-19/signposting-eligibility/external-party-route')
+    } else if (authorised == "neither") {
+        response.redirect('/research/sprint-19/signposting-eligibility/end-call')
+    } 
+})
+
+// Are you over 16?
+router.post('/research/sprint-19/signposting-eligibility/over-16', function(request, response) {
+    var over16 = request.session.data['over-16']
+    if (over16 == 'yes'){
+        response.redirect('/research/sprint-19/signposting-eligibility/under-state-pension')
+    } else if (over16 == "no") {
+        response.redirect('/research/sprint-19/signposting-eligibility/under-16-ineligible')
+    }
+})
+
+// Are you under state pension age?
+router.post('/research/sprint-19/signposting-eligibility/under-state-pension', function(request, response) {
+    var underState = request.session.data['under-state-pension']
+    if (underState == 'yes'){
+        response.redirect('/research/sprint-19/signposting-eligibility/what-is-ni-number')
+    } else if (underState == "no") {
+        response.redirect('/research/sprint-19/signposting-eligibility/stop-getting-pip-last-year')
+    }
+})
+
+// What is your National Insurance number?
+router.post('/research/sprint-19/signposting-eligibility/what-is-ni-number', function(request, response) {
+    response.redirect('/research/sprint-19/signposting-eligibility/security-check')
+})
+
+// What security questions were answered?
+router.post('/research/sprint-19/signposting-eligibility/security-check', function(request, response) {
+    response.redirect('/research/sprint-19/signposting-eligibility/passed-security')
+})
+
+// Passed security
+router.post('/research/sprint-19/signposting-eligibility/passed-security', function(request, response) {
+    response.redirect('/index')
+})
+
+
 // RESEARCH: NON-MVP PROTOTYPE
+
 
 //RESEARCH/SPRINT-8/CONTACT-DETAILS
 
