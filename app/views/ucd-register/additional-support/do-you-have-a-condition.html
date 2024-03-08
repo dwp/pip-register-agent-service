@@ -17,8 +17,27 @@
     <div class="govuk-grid-column-two-thirds">
       
       <h1 class="govuk-heading-l">
-        Do you have a mental health condition, or a condition that makes it difficult for you to remember things, learn new things, or make everyday decisions?
+        Do you have a mental health condition or a condition that causes you significant difficulties remembering things, learning new things, or making everyday decisions?
       </h1>
+
+      {{ govukDetails({
+        summaryText: "Examples of conditions",
+        html: '
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Severe depression</li>
+              <li>Bipolar disorder</li>
+              <li>Post Traumatic Stress Disorder (PTSD)</li>
+              <li>Obsessive Compulsive Disorder (OCD)</li>
+              <li>Psychosis</li>
+              <li>Schizophrenia</li>
+              <li>Personality disorder</li>
+              <li>Conduct disorder</li>
+              <li>Attention deficit hyperactivity disorder (ADHD)</li>
+              <li>Down syndrome</li>
+              <li>developmental delay</li>
+              <li>Alzheimer’s or Dementia</li>
+            </ul>'
+      }) }}
 
       <form class="form" action="#" method="post">
 
