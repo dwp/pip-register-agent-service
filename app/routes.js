@@ -464,7 +464,100 @@ router.post('/register/hospital-dates/other-residence-summary', function(request
 
 // -------------------------------------------------------------------------------------
 
-// UCD-REGISTER 
+// DEV READY
+
+// Eligibility launched from main UI
+router.post('/ucd-register/signposting-eligibility/service-start-page', function(request, response) {
+var newClaim = request.session.data['welcome']
+if (newClaim == 'yes'){
+    response.redirect('/ucd-register/signposting-eligibility/new-ni-claims')
+} else if (newClaim == "no") {
+    response.redirect('/ucd-register/signposting-eligibility/existing-claims')
+}
+})
+
+// NI new claims
+router.post('/ucd-register/signposting-eligibility/new-ni-claims', function(request, response) {
+var niPip = request.session.data['ni-pip']
+if (niPip == 'yes'){
+    response.redirect('/ucd-register/signposting-eligibility/claiming-self')
+} else if (niPip == "england-wales") {
+    response.redirect('/ucd-register/signposting-eligibility/england-wales')
+} else if (niPip == "scotland") {
+    response.redirect('/ucd-register/signposting-eligibility/scotland')
+}
+})
+
+// Are you claiming for yourself?
+router.post('/ucd-register/signposting-eligibility/claiming-self', function(request, response) {
+var self = request.session.data['claiming-self']
+if (self == 'yes'){
+    response.redirect('/ucd-register/signposting-eligibility/srel')
+} else if (self == "no") {
+    response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
+} 
+})
+
+// Claiming under SREL?
+router.post('/ucd-register/signposting-eligibility/srel', function(request, response) {
+var srel = request.session.data['srel']
+if (srel == 'yes'){
+    response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
+} else if (srel == "no") {
+    response.redirect('/ucd-register/signposting-eligibility/over-16')
+} 
+})
+
+// Authorised person
+router.post('/ucd-register/signposting-eligibility/authorised-person', function(request, response) {
+var authorised = request.session.data['authorised-person']
+if (authorised == 'authorised'){
+    response.redirect('/ucd-register/signposting-eligibility/third-party-route')
+} else if (authorised == "appointed") {
+    response.redirect('/ucd-register/signposting-eligibility/external-party-route')
+} else if (authorised == "neither") {
+    response.redirect('/ucd-register/signposting-eligibility/end-call')
+} 
+})
+
+// Are you over 16?
+router.post('/ucd-register/signposting-eligibility/over-16', function(request, response) {
+var over16 = request.session.data['over-16']
+if (over16 == 'yes'){
+    response.redirect('/ucd-register/signposting-eligibility/under-state-pension')
+} else if (over16 == "no") {
+    response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
+}
+})
+
+// Are you under state pension age?
+router.post('/ucd-register/signposting-eligibility/under-state-pension', function(request, response) {
+var underState = request.session.data['under-state-pension']
+if (underState == 'yes'){
+    response.redirect('/ucd-register/signposting-eligibility/what-is-ni-number')
+} else if (underState == "no") {
+    response.redirect('/ucd-register/signposting-eligibility/stop-getting-pip-last-year')
+}
+})
+
+// What is your National Insurance number?
+router.post('/ucd-register/signposting-eligibility/what-is-ni-number', function(request, response) {
+response.redirect('/ucd-register/signposting-eligibility/security-check')
+})
+
+// What security questions were answered?
+router.post('/ucd-register/signposting-eligibility/security-check', function(request, response) {
+response.redirect('/ucd-register/signposting-eligibility/passed-security')
+})
+
+// Passed security
+router.post('/ucd-register/signposting-eligibility/passed-security', function(request, response) {
+response.redirect('/ucd-register/welcome-screens/welcome-screen-ni')
+})
+
+//---------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------
 
 // Declaration
 router.post('/ucd-register/declaration', function(request, response) {
