@@ -18,13 +18,32 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-l">I need to ask you three questions to confirm your identity</h1>
+      <form action="#" method="post" method="post">
+        
+        <h1 class="govuk-heading-l">I need to ask you three questions to confirm your identity</h1>
+
+        <h2 class="govuk-heading-m">What is your National Insurance number?</h2>
+  
+        <p class="govuk-hint">It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.</p>
+  
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+  
+        {{ govukInsetText({
+          classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+            html: '<h1 class="govuk-body">Agent: Enter National Insurance number in Searchlite.</h3>'
+        }) }}
+  
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/signposting-eligibility/further-questions-nino" class="govuk-link govuk-link--no-visited-state">Applicant cannot give a UK National Insurance number
+          </a>
+        </p>
+
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
         classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h2 class="govuk-body">Agent action: Ask the applicant to confirm 3 of their personal data entries on Searchlite.</h2>'
+          html: '<h2 class="govuk-heading-m">Agent: Ask the applicant to confirm 3 of their personal data entries on Searchlite.</h2>'
       }) }}
 
       {% from "govuk/components/details/macro.njk" import govukDetails %}
