@@ -19,32 +19,10 @@ require('./views/alternative-formats/_routes')(router);
 router.post('/v2-ucd-register/signposting-eligibility/service-start-page', function(request, response) {
     var claimingSelf = request.session.data['claiming-self']
     if (claimingSelf == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
-    } else if (claimingSelf == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/srel-bau-kickout')
-    }
-})
-
-// NI new claims
-router.post('/v2-ucd-register/signposting-eligibility/new-ni-claims', function(request, response) {
-    var niPip = request.session.data['ni-pip']
-    if (niPip == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/claiming-self')
-    } else if (niPip == "england-wales") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/england-wales')
-    } else if (niPip == "scotland") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/scotland')
-    }
-})
-
-// Are you claiming for yourself?
-router.post('/v2-ucd-register/signposting-eligibility/claiming-self', function(request, response) {
-    var self = request.session.data['claiming-self']
-    if (self == 'yes'){
         response.redirect('/v2-ucd-register/signposting-eligibility/srel')
-    } else if (self == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/srel-bau-kickout')
-    } 
+    } else if (claimingSelf == "no") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/someone-else-bau-kickout')
+    }
 })
 
 // Claiming under SREL?
@@ -54,18 +32,6 @@ router.post('/v2-ucd-register/signposting-eligibility/srel', function(request, r
         response.redirect('/v2-ucd-register/signposting-eligibility/srel-bau-kickout')
     } else if (srel == "no") {
         response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
-    } 
-})
-
-// Authorised person
-router.post('/v2-ucd-register/signposting-eligibility/authorised-person', function(request, response) {
-    var authorised = request.session.data['authorised-person']
-    if (authorised == 'authorised'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/third-party-route')
-    } else if (authorised == "appointed") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/external-party-route')
-    } else if (authorised == "neither") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/end-call')
     } 
 })
 
@@ -81,29 +47,14 @@ router.post('/v2-ucd-register/signposting-eligibility/over-16', function(request
     }
 })
 
-// Are you under state pension age?
-router.post('/v2-ucd-register/signposting-eligibility/under-state-pension', function(request, response) {
-    var underState = request.session.data['under-state-pension']
-    if (underState == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/what-is-ni-number')
-    } else if (underState == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/stop-getting-pip-last-year')
-    }
-})
-
-// What is your National Insurance number?
-router.post('/v2-ucd-register/signposting-eligibility/what-is-ni-number', function(request, response) {
-    response.redirect('/v2-ucd-register/signposting-eligibility/security-check')
-})
-
-// What security questions were answered?
+// Passed security?
 router.post('/v2-ucd-register/signposting-eligibility/security-check', function(request, response) {
-    response.redirect('/v2-ucd-register/signposting-eligibility/passed-security')
-})
-
-// Passed security
-router.post('/v2-ucd-register/signposting-eligibility/passed-security', function(request, response) {
-    response.redirect('/v2-ucd-register/welcome-screens/welcome-screen-ni')
+    var verified = request.session.data['security-verified']
+    if (verified == 'yes'){
+        response.redirect('/v2-ucd-register/welcome-screens/welcome-screen-ni')
+    } else if (verified == "no") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/failed-security')
+    }
 })
 
 //---------------------------------------------------------------------------------------------

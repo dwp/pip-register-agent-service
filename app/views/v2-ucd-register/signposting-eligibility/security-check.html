@@ -86,14 +86,14 @@ href: "javascript:window.history.back()"
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
       {{ govukRadios({
-        name: "securityVerified",
+        name: "security-verified",
         items: [
         {
-          value: "verified",
+          value: "yes",
           text: "Yes"
         },
         {
-          value: "unverified",
+          value: "no",
           text: "No"
         }
         ]

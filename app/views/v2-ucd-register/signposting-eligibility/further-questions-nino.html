@@ -18,23 +18,26 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-l">
-        If you have any further questions after this call you should contact us on 0800 121 4433
-      </h1>
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: '<h1 class="govuk-heading-l">Agent: You need to register this claim in PIPCS </h3>'
+      }) }}
 
       <h2 class="govuk-heading-m">
-        As you do not have a National Insurance number yet, I will need to take your details and send you a form so you can make a claim for PIP.
+        You can only use this service if the applicant gives you a UK National Insurance number.
       </h2>
 
-      <p class="govuk-body">
-        Request customer name, DOB, address, postcode and telephone number
-       </p>
-
        <p class="govuk-body">
-        You should receive the form through the post within 5 days.</p>
-
-       <p class="govuk-body">
-        Please return it to us as soon as you can and within 1 month. It will help make things quicker if you include proof of your ID.
+        Follow normal procedure in PIPCS if the applicant:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>does not have a National Insurance number</li>
+            
+          <li> War Pension Mobility Supplement (WPMS)</li>
+          <li>cannot find their National Insurance number, or</li>
+          <li>has a National Insurance number from the Channel Islands or Isle of Man</li>
+        </ul>
        </p>
 
   </form>
