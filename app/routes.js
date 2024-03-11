@@ -17,11 +17,11 @@ require('./views/alternative-formats/_routes')(router);
 
 // welcome to PIP
 router.post('/v2-ucd-register/signposting-eligibility/service-start-page', function(request, response) {
-    var newClaim = request.session.data['welcome']
-    if (newClaim == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/new-ni-claims')
-    } else if (newClaim == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/existing-claims')
+    var claimingSelf = request.session.data['claiming-self']
+    if (claimingSelf == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
+    } else if (claimingSelf == "no") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/srel-bau-kickout')
     }
 })
 
@@ -69,13 +69,15 @@ router.post('/v2-ucd-register/signposting-eligibility/authorised-person', functi
     } 
 })
 
-// Are you over 16?
+// Are you over 16 and under SPA?
 router.post('/v2-ucd-register/signposting-eligibility/over-16', function(request, response) {
-    var over16 = request.session.data['over-16']
-    if (over16 == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/under-state-pension')
-    } else if (over16 == "no") {
+    var correctAge = request.session.data['age']
+    if (correctAge == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/security-check')
+    } else if (correctAge == "no-under-16") {
         response.redirect('/v2-ucd-register/signposting-eligibility/under-16-ineligible')
+    } else if (correctAge == "no-over-spa") {
+        response.redirect('/v2-ucd-register/signposting-eligibility/stop-getting-pip-last-year')
     }
 })
 
@@ -2677,12 +2679,7 @@ router.post('/v2-ucd-register/contact-details/correspondence-enter-address-manua
 //V2-UCD-REGISTER/additional-support
 
 router.post('/v2-ucd-register/additional-support/start-info', function(request, response) {
-        var rememberingThings = request.session.data['remembering-things']
-        if (rememberingThings == 'yes'){
             response.redirect('/v2-ucd-register/additional-support/do-you-have-a-condition')
-        } else if (rememberingThings == 'no') {
-            response.redirect('/v2-ucd-register/additional-support/advice-non-as-marker')
-        }
 })
 
 // do you have a condition 
