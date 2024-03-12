@@ -19,20 +19,10 @@ require('./views/alternative-formats/_routes')(router);
 router.post('/v2-ucd-register/signposting-eligibility/service-start-page', function(request, response) {
     var claimingSelf = request.session.data['claiming-self']
     if (claimingSelf == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/srel')
+        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
     } else if (claimingSelf == "no") {
         response.redirect('/v2-ucd-register/signposting-eligibility/someone-else-bau-kickout')
     }
-})
-
-// Claiming under SREL?
-router.post('/v2-ucd-register/signposting-eligibility/srel', function(request, response) {
-    var srel = request.session.data['srel']
-    if (srel == 'yes'){
-        response.redirect('/v2-ucd-register/signposting-eligibility/srel-bau-kickout')
-    } else if (srel == "no") {
-        response.redirect('/v2-ucd-register/signposting-eligibility/over-16')
-    } 
 })
 
 // Are you over 16 and under SPA?
@@ -47,14 +37,25 @@ router.post('/v2-ucd-register/signposting-eligibility/over-16', function(request
     }
 })
 
+
 // Passed security?
 router.post('/v2-ucd-register/signposting-eligibility/security-check', function(request, response) {
     var verified = request.session.data['security-verified']
     if (verified == 'yes'){
-        response.redirect('/v2-ucd-register/welcome-screens/welcome-screen-ni')
+        response.redirect('/v2-ucd-register/signposting-eligibility/srel')
     } else if (verified == "no") {
         response.redirect('/v2-ucd-register/signposting-eligibility/failed-security')
     }
+})
+
+// Claiming under SREL?
+router.post('/v2-ucd-register/signposting-eligibility/srel', function(request, response) {
+    var srel = request.session.data['srel']
+    if (srel == 'yes'){
+        response.redirect('/v2-ucd-register/signposting-eligibility/srel-bau-kickout')
+    } else if (srel == "no") {
+        response.redirect('/v2-ucd-register/welcome-screens/welcome-screen-ni')
+    } 
 })
 
 //---------------------------------------------------------------------------------------------
