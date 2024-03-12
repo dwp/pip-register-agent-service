@@ -22,19 +22,17 @@ href: "javascript:window.history.back()"
         
         <h1 class="govuk-heading-l">Before we can start your claim we need to confirm your identity</h1>
 
+        <h2 class="govuk-heading-m">What is your National Insurance number?</h2>
+
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
           {{ govukInput({
-            label: {
-              text: "What is your National Insurance number?",
-              classes: "govuk-label--m",
-              isPageHeading: true
-            },
+            classes: "govuk-input--width-20",
+            id: "event-name",
+            name: "eventName",
             hint: {
               text: "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
-            },
-            id: "event-name",
-            name: "eventName"
+            }
           }) }}
   
         <p class="govuk-body">
