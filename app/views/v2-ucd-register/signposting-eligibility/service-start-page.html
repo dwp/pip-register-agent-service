@@ -50,16 +50,6 @@
               </ul>'
       }) }}
 
-      {{ govukInsetText({
-        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h2 class="govuk-heading-m">Agent: Check they are able to continue the call in English.</h2>'
-      }) }}
-
-      {{ govukDetails({
-        summaryText: "If you need an interpreter to continue",
-        text: "Big word redirect?"
-      }) }}
-
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
