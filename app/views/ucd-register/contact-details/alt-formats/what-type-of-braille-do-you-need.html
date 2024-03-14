@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+
+      {{ govukRadios({
+      name: "braille-format",
+      fieldset: {
+      legend: {
+      text: "What type of braille do you need?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+      }
+      },
+      hint: {
+      html: "<p class='govuk-hint'>Our letters are usually 12-point Arial font.<p>"  
+      },
+      items: [
+      {
+      value: "uncontracted braille (grade 1)",
+      text: "Uncontracted braille (grade 1)"
+      },
+      {
+      value: "contracted braille (grade 2)",
+      text:  "Contracted braille (grade 2)"
+      }
+      ]
+      }) }}
+
+      {{ govukButton({
+      text: "Continue"
+      }) }}
+
+    </form> 
+
+  </div>
+</div> 
+
+
+{% endblock %}
+
