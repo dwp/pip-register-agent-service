@@ -591,7 +591,7 @@ router.post('/ucd-register/contact-details/alt-formats/written-format', function
     } else if (writtenFormat == 'email') {
         response.redirect('/ucd-register/contact-details/alt-formats/email-reason')
     } else if (writtenFormat == 'pdf') {
-        response.redirect('/ucd-register/contact-details/alt-formats/what-is-your-email')
+        response.redirect('/ucd-register/contact-details/alt-formats/email-reason')
     } 
     
 })
@@ -2797,7 +2797,7 @@ router.post('/v2-ucd-register/contact-details/alt-formats/written-format', funct
     } else if (writtenFormat == 'email') {
         response.redirect('/v2-ucd-register/contact-details/alt-formats/email-reason')
     } else if (writtenFormat == 'pdf') {
-        response.redirect('/v2-ucd-register/contact-details/alt-formats/what-is-your-email')
+        response.redirect('/v2-ucd-register/contact-details/alt-formats/email-reason')
     } 
     
 })
