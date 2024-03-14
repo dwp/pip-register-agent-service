@@ -30,12 +30,46 @@
               text: "Name"
             },
             value: {
-              text: "John Smith"
+              text: "Elizabeth Smith"
             },
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/what-is-your-name",
+                  href: "/ucd-register/contact-details/what-is-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: '<p class="govuk-body govuk-!-font-size-19 govuk-!-font-weight-bold">Same name for contact</p><p class="govuk-body govuk-!-font-size-19 govuk-!-font-weight-bold">Preferred name</p>'
+            },
+            value: {
+            html: '<p class="govuk-body govuk-!-font-size-19">No</p><br><p class="govuk-body govuk-!-font-size-19">Lizzie Smith</p>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/versions/devs/what-is-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Previous last name"
+            },
+            value: {
+              text: "None"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/versions/devs/what-is-your-name",
                   text: "Change",
                   visuallyHiddenText: "Question 1"
                 }
@@ -52,7 +86,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  href: "/versions/devs/change-what-is-your-phone-number",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -69,7 +103,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  href: "/versions/devs/change-what-is-your-phone-number",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -78,24 +112,7 @@
           },
           {
             key: {
-              text: "Textphone number"
-            },
-            value: {
-              text: "18002 876546"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
-                  text: "Change",
-                  visuallyHiddenText: "Question 2"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Opt out of text message updates"
+              text: "Text message updates"
             },
             value: {
               text: "Yes"
@@ -103,7 +120,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates",
+                  href: "/versions/devs/do-you-want-to-receive-text-updates",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -120,7 +137,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/select-your-address",
+                  href: "/versions/devs/select-your-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -137,7 +154,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  href: "/versions/devs/correspondence-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -154,7 +171,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  href: "/versions/devs/correspondence-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -180,7 +197,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/alternative-formats",
+                  href: "/versions/devs/alternative-formats",
                   text: "Change",
                   visuallyHiddenText: "Question 1"
                 }
@@ -190,11 +207,15 @@
         ]
       }) }}
 
-      <form action="/ucd-register/task-list-cd-done" method="post">
+      <form action="/versions/devs/task-list-cd-done" method="post">
 
         {{ govukButton({
           text: "Save and continue"
         }) }}
+
+        <p class="govuk-body">
+          <a href="/versions/devs/task-list-cd-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
 
       </form>
 

@@ -1,5 +1,4 @@
 {% extends "layouts/main.html" %}
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% block pageTitle %}
   Question page template – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,25 +15,19 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form class="form" action="#" method="post">
 
-        <h1 class="govuk-heading-l">
-          Do you want to get text message updates about your claim?
-        </h1>
-        
+      <form class="form" action="/contact-details-summary" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-          {{ govukRadios({
-            name: "do-you-want-to-receive-text-updates",
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+            name: "should-we-write-to-you",
             fieldset: {
               legend: {
+                text: "Is this the address we should send letters to?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
-            },
-            hint: {
-              html:'
-              <p class="govuk-hint">You can opt out of getting them at any time, by contacting us.</p>'
             },
             items: [
               {
@@ -43,7 +36,7 @@
               },
               {
                 value: "no",
-                text: "No"
+                text: "No, provide an alternative address "
               }
             ]
           }) }}
@@ -51,7 +44,9 @@
         {{ govukButton({
           text: "Continue"
         }) }}
+
       </form>
+
     </div>
   </div>
 

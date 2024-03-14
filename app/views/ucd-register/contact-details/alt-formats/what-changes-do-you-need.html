@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+  
+      {{ govukCheckboxes({
+      name: "changes-needed",
+      fieldset: {
+      legend: {
+      text: "What changes do you need?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+      }
+
+      },
+      hint: {
+      text: "You can choose more than one option. We will ask for more detail if necessary."  
+      },
+
+      items: [
+      {
+      value: "A different font",
+      text: "A different font"
+      },
+      {
+      value: "Bold text",
+      text: "Bold text"
+      },
+      {
+      value: "Coloured paper",
+      text: "Coloured paper"
+      },
+      {
+      value: "Double line spacing",
+      text: "Double line spacing"
+      },
+
+      {
+      value: "Large print",
+      text: "Large print"
+      },
+      {
+      divider: "or"
+      },
+      {
+      value: "Standard letter",
+      text: "Standard letter (12-point Arial text on white paper)",
+      behaviour: "exclusive"
+      }
+      ]
+      }) }}
+
+      {{ govukButton({
+      text: "Continue"
+      }) }}
+      
+    </form> 
+
+  </div>
+</div> 
+
+{% endblock %}
+

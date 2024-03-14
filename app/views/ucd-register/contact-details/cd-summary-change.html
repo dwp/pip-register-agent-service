@@ -4,16 +4,23 @@
   Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-{% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+      {% set html %}
+        <h3 class="govuk-notification-banner__heading">
+         Phone number updated
+        </h3>
+        <p class="govuk-body">Review your updated answers in <a class="govuk-notification-banner__link" href="#">Contact details</a> before continuing.</p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html,
+        type: "success"
+      }) }}
 
       <h1 class="govuk-heading-l">
         Check your answers
@@ -47,7 +54,7 @@
               text: "Mobile phone number"
             },
             value: {
-              html: "<p class='govuk-body'>07700 900457</p>"
+              html: "<p class='govuk-body'>07345 569383</p>"
             },
             actions: {
               items: [
@@ -95,7 +102,7 @@
           },
           {
             key: {
-              text: "Opt out of text message updates"
+              text: "Text message updates"
             },
             value: {
               text: "Yes"
@@ -132,24 +139,7 @@
               text: "Same address for letters"
             },
             value: {
-              text: "No"
-            },
-            actions: {
-              items: [
-                {
-                  href: "/v2-ucd-register/contact-details/correspondence-address",
-                  text: "Change",
-                  visuallyHiddenText: "Question 3"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Address for letters"
-            },
-            value: {
-              html: "	10 Downing Street<br>Worcester<br>WNR 1MT"
+              text: "Yes"
             },
             actions: {
               items: [
@@ -190,11 +180,16 @@
         ]
       }) }}
 
-      <form action="/ucd-register/task-list-cd-done" method="post">
+      <form action="#" method="post">
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Resume questions",
+          href: "/v2-ucd-register/additional-support/start-info"
         }) }}
+
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/task-list-cd-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
 
       </form>
 
