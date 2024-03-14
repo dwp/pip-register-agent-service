@@ -23,29 +23,16 @@
 
     <form class="form" action="#" method="post">
 
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: [
-          {
-            text: "Postcode must be 10 characters or less",
-            href: "#full-name-input"
-          }
-        ]
-      }) }}
-
-
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
-  {% call govukFieldset({
-    legend: {
-      text: "What is your full address?",
-      classes: "govuk-fieldset__legend--l",
-      isPageHeading: true
-    }
-  }) %}
+{% call govukFieldset({
+  legend: {
+    text: "What is the address we should send letters to?",
+    classes: "govuk-fieldset__legend--l",
+    isPageHeading: true
+  }
+}) %}
 
   {{ govukInput({
     label: {
@@ -91,9 +78,6 @@
     classes: "govuk-input--width-10",
     id: "address-postcode",
     name: "address-postcode",
-    errorMessage: {
-      text: "Postcode must be 10 characters or less"
-    },
     autocomplete: "postal-code"
   }) }}
 
@@ -103,25 +87,25 @@
     id: "country",
     name: "country",
     label: {
-      text: "Country",
-      for: "country"
+      text: "Country"
     },
     items: [
-    {
-      value: "select-country",
-      text: "Select a country"
-    }
+      {
+        value: "select-country",
+        text: "Select a country"
+      }
     ]
   }) }}
-
-  {{ govukButton({
-    text: "Confirm this address"
-  }) }}
+  
+    {{ govukButton({
+      text: "Confirm this address",
+      href:"/ucd-register/contact-details/dev-alt-formats"
+    }) }}
 
   <div class="govuk-body">
     <a href="/ucd-register/contact-details/what-is-your-postcode">Search by postcode</a>
   </div>
-  
+
 {% endcall %}
 {% endblock %}
 

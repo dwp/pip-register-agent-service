@@ -22,11 +22,7 @@
   errorList: [
     {
       text: "Enter a UK postcode",
-      href: "#postcode"
-    },
-    {
-      text: "Enter a building number or name",
-      href: "#searchString"
+      href: "#"
     }
   ]
 }) }}
@@ -48,8 +44,8 @@
               text: "Postcode"
             },
             errorMessage: {
-              text: "Enter a UK postcode"
-            },
+                text: "Enter a UK postcode"
+              },
             classes: "govuk-!-width-two-thirds",
             id: "postcode",
             name: "postcode"
@@ -58,9 +54,6 @@
           {{ govukInput({
             label: {
               text: "Building number or name (optional)"
-            },
-            errorMessage: {
-              text: "Enter a building number or name"
             },
             classes: "govuk-!-width-two-thirds",
             id: "searchString",

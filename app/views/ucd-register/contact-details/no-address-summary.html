@@ -35,7 +35,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/what-is-your-name",
+                  href: "/register/contact-details/what-is-your-name",
                   text: "Change",
                   visuallyHiddenText: "Question 1"
                 }
@@ -52,7 +52,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  href: "/register/contact-details/what-is-your-phone-number",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -69,7 +69,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  href: "/register/contact-details/what-is-your-phone-number",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -81,12 +81,12 @@
               text: "Textphone number"
             },
             value: {
-              text: "18002 876546"
+              text: "Not provided"
             },
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  href: "#",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -95,7 +95,7 @@
           },
           {
             key: {
-              text: "Opt out of text message updates"
+              text: "Text message updates"
             },
             value: {
               text: "Yes"
@@ -103,7 +103,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates",
+                  href: "/register/contact-details/do-you-want-to-receive-text-updates",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -115,12 +115,12 @@
               text: "Address"
             },
             value: {
-              html: "1 Washington Street,<br>Worcester<br>WR1 1NL"
+              text: "No permanent address"
             },
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/select-your-address",
+                  href: "/register/contact-details/select-your-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -132,12 +132,12 @@
               text: "Same address for letters"
             },
             value: {
-              text: "No"
+              text: "Not provided"
             },
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  href: "/register/contact-details/correspondence-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -154,7 +154,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  href: "/register/contact-details/correspondence-address",
                   text: "Change",
                   visuallyHiddenText: "Question 3"
                 }
@@ -180,7 +180,7 @@
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/alternative-formats",
+                  href: "/register/contact-details/alternative-formats",
                   text: "Change",
                   visuallyHiddenText: "Question 1"
                 }
@@ -193,8 +193,12 @@
       <form action="/ucd-register/task-list-cd-done" method="post">
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Resume questions"
         }) }}
+
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/task-list-cd-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
 
       </form>
 

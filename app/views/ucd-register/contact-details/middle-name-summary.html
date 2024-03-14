@@ -30,7 +30,7 @@
               text: "Name"
             },
             value: {
-              text: "John Edward Smith"
+              text: "Johnv Edward Smith"
             },
             actions: {
               items: [
@@ -64,12 +64,12 @@
               text: "Other phone number"
             },
             value: {
-              html: "<p class='govuk-body'>Not provided</p>"
+              html: "<p class='govuk-body'>01622 563219</p>"
             },
             actions: {
               items: [
                 {
-                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  href: "/register/contact-details/what-is-your-phone-number",
                   text: "Change",
                   visuallyHiddenText: "Question 2"
                 }
@@ -143,6 +143,23 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Address for letters"
+            },
+            value: {
+              text: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
           }
         ]
       }) }}
@@ -173,11 +190,15 @@
         ]
       }) }}
 
-      <form action="/ucd-register/task-list" method="post">
+      <form action="/ucd-register/task-list-cd-done" method="post">
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Resume questions"
         }) }}
+        
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/task-list-cd-done" class="govuk-link govuk-link--no-visited-state">Return to task list</a>
+        </p>
 
       </form>
 

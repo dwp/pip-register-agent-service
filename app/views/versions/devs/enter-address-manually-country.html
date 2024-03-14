@@ -23,18 +23,6 @@
 
     <form class="form" action="#" method="post">
 
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: [
-          {
-            text: "Enter address line 1, typically the building and street",
-            href: "#full-name-input"
-          }
-        ]
-      }) }}
-
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
@@ -53,9 +41,6 @@
     },
     id: "address-line-1",
     name: "address-line-1",
-    errorMessage: {
-      text: "Enter address line 1, typically the building and street"
-    },
     autocomplete: "address-line1"
   }) }}
 

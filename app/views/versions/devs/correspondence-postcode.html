@@ -17,7 +17,6 @@
   <div class="govuk-grid-column-two-thirds">
     <form class="form" action="#" method="post">
       <div class="govuk-width-container">
-
         {% call govukFieldset({
           legend: {
             text: "What is the postcode and building number of the address we should send letters to?",
@@ -44,13 +43,13 @@
           name: "searchString"
         }) }}
 
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/ucd-register/contact-details/correspondence-enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
         {% endcall %}
 
         {{ govukButton({
         text: "Find address"
         }) }}
-
-        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/v2-ucd-register/contact-details/correspondence-enter-address-manually" class="govuk-link">Enter address manually</a></p>
 
       </div>
     </form>
