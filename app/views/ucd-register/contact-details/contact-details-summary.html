@@ -1,0 +1,330 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your answers
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Contact details
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Elizabeth Smith"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/what-is-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Preferred name"
+            },
+            value: {
+              text: "Eliza Smith"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/what-is-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Need textphone or interpreter"
+            },
+            value: {
+              text: "Yes / No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/what-is-your-name",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Need textphone or interpreter"
+            },
+            value: {
+              text: "No / Textphone / Interpreter"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Textphone number"
+            },
+            value: {
+              text: "18002 876546"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Type of interpreter"
+            },
+            value: {
+              text: "BSL / ISL / non-English type"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Mobile phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>07700 900457</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Other phone number"
+            },
+            value: {
+              html: "<p class='govuk-body'>01622 563219</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/change-what-is-your-phone-number",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Text message updates"
+            },
+            value: {
+              text: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/do-you-want-to-receive-text-updates",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "1 Washington Street,<br>Worcester<br>WR1 1NL"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/select-your-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Same address for letters"
+            },
+            value: {
+              text: "No"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address for letters"
+            },
+            value: {
+              html: "	10 Downing Street<br>Worcester<br>WNR 1MT"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Alternative letter format"
+            },
+            value: {
+              text: "No / Large print / Audio CD / Braille type 1 / Email / PDF"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Large print letter size"
+            },
+            value: {
+              text: "16 / [size entered in conditional reveal textbox]"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Need for email"
+            },
+            value: {
+              text: "[text entered in text area]"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Need for PDF"
+            },
+            value: {
+              text: "[text entered in text area]"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "example@gmail.com"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/v2-ucd-register/contact-details/correspondence-address",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form action="/ucd-register/task-list-cd-done" method="post">
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

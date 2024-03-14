@@ -1,0 +1,23 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-l">No address found</h1>
+  <p>We could not find an address that matches <b>wr11nl</b> and <b>1</b>. You can search again or enter the address manually.</p>
+  <p><a href="#">Search again</a></p>
+  <p class="govuk-body govuk-!-margin-bottom-0"><a href="/register/contact-details/enter-address-manually" class="govuk-link">Enter address manually</a></p>
+  </div> 
+
+{% endblock %}

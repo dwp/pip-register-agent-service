@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+
+      
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+
+{{ govukTextarea({
+  name: "other-help-details",
+  id: "more-detail",
+  rows: "8",
+  label: {
+    text: "What other help do you need when we contact you?",
+    classes: "govuk-label--l",
+    isPageHeading: true
+  }
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+  }) }}
+    
+    </form> 
+
+  </div>
+</div> 
+
+{% endblock %}
+
