@@ -19,7 +19,7 @@
       <form class="form" action="#" method="post">
 
         <h1 class="govuk-heading-l">
-          Were you living in the UK on or before 31/12/20?
+          Did you start living in the UK before 2021?
         </h1>
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -27,10 +27,14 @@
         {{ govukRadios({
               name: "before",
               fieldset: {
-              legend: {
-              isPageHeading: true,
+                legend: {
+                  text: "Have you been in the UK for at least 2 of the last 3 years?",
+                    isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
+          },
+          hint: {
+            text: "The UK is Northern Ireland, England, Scotland and Wales."
           },
           items: [
             {

@@ -24,18 +24,18 @@
       <form class="form" action="#" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
-
-        <h1 class="govuk-heading-l">
-          Have you been in the UK for at least 2 of the last 3 years?
-        </h1>
         
         {{ govukRadios({
           name: "uk-years",
           fieldset: {
             legend: {
+            text: "Have you been in the UK for at least 2 of the last 3 years?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
+          },
+          hint: {
+            text: "The UK is Northern Ireland, England, Scotland and Wales."
           },
           items: [
           {
