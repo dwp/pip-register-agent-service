@@ -2735,6 +2735,11 @@ router.post('/ucd-register/signposting-eligibility/service-start-page', function
 
 // What is your name
 router.post('/v2-ucd-register/contact-details/what-is-your-name', function(request, response) {
+    response.redirect('/v2-ucd-register/contact-details/what-is-your-dob')
+})
+
+// What is your DOB?
+router.post('/v2-ucd-register/contact-details/what-is-your-dob', function(request, response) {
     response.redirect('/v2-ucd-register/contact-details/what-is-your-phone-number')
 })
 
@@ -2900,9 +2905,9 @@ router.post('/v2-ucd-register/nationality/start', function(request, response) {
 router.post('/v2-ucd-register/nationality/what-is-your-nationality', function(request, response) {
     var nationality = request.session.data['nationality']
     if (nationality == 'british'){
-        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
+        response.redirect('/v2-ucd-register/nationality/uk-2-of-3-years')
     } else if (nationality == 'irish') {
-        response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
+        response.redirect('/v2-ucd-register/nationality/uk-2-of-3-years')
     } else if (nationality == 'other') {
         response.redirect('/v2-ucd-register/nationality/another-nationality')
     }
@@ -2997,20 +3002,18 @@ router.post('/v2-ucd-register/nationality/unhappy-path/nationality-types/when-di
     response.redirect('/v2-ucd-register/nationality/what-country-do-you-live-in')
 })
 
-//what country do you normally live in page
-router.post('/v2-ucd-register/nationality/what-country-do-you-live-in', function(request, response) {
-    var nationality = request.session.data['country']
-    if (nationality == 'northern-ireland'){
-        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
-    } else if (nationality == 'england') {
-        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
-    } else if (nationality == 'wales') {
-        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
-    } else if (nationality == 'scotland') {
-        response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
-    } else if (nationality == 'another-country') {
-        response.redirect('/v2-ucd-register/nationality/another-country-lived-in')
-    }
+//----------------------------------------------------------------------------------------------------
+
+//Have you been in the UK for at least 2 of the last 3 years?
+router.post('/v2-ucd-register/nationality/uk-2-of-3-years', function(request, response) {
+    var ukYears = request.session.data['uk-years']
+    if (ukYears == 'yes'){
+        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    } else if (ukYears == 'no') {
+        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    } else if (ukYears == 'unsure') {
+        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    } 
 })
 
 // Another country
@@ -3018,25 +3021,6 @@ router.post('/v2-ucd-register/nationality/another-country-lived-in', function(re
     response.redirect('/v2-ucd-register/nationality/lived-elsewhere')
 })
 
-//Have you lived anywhere other than UK in last 3 years page
-router.post('/v2-ucd-register/nationality/lived-elsewhere', function(request, response) {
-    var livedElsewhere = request.session.data['lived-elsewhere']
-    if (livedElsewhere == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to')
-    } else if (livedElsewhere == 'no') {
-        response.redirect('/v2-ucd-register/nationality/abroad-over-four-weeks')
-    }
-})
-
-//Have you been abroad for any periods over 4 weeks, in the last 3 years page
-router.post('/v2-ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
-    var abroadOverFour = request.session.data['abroad-over-four-weeks']
-    if (abroadOverFour == 'yes'){
-        response.redirect('/v2-ucd-register/nationality/unhappy-path/abroad-time/left-the-uk-more-than-4-weeks')
-    } else if (abroadOverFour == 'no') {
-        response.redirect('/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad')
-    }
-})
 
 //When you lived abroad
 router.post('/v2-ucd-register/nationality/unhappy-path/abroad-time/which-country-did-you-go-to', function(request, response) {
