@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        <h1 class="govuk-heading-l">
+          What restrictions, if any, are there on your leave to remain?
+        </h1>
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+              name: "restrictions",
+              fieldset: {
+              legend: {
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "none",
+              text: " No restrictions"
+            },
+            {
+              value: "limited",
+              text: "Limited leave to remain"
+            },
+            {
+              value: "extension-applied",
+              text: "Limited leave to remain extension applied for"
+            },
+            {
+              value: "indefinite",
+              text: "Indefinite leave to remain"
+            },
+            {
+              value: "no-leave",
+              text: "No leave to remain"
+            },
+            {
+              divider: "or,"
+            }, 
+            {
+              value: "unknown",
+              text: "Don’t know"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+    
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-nat-in-progress"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
