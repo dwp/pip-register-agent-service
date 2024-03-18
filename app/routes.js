@@ -474,24 +474,16 @@ if (authorised == 'authorised'){
 } 
 })
 
-// Are you over 16?
+// Are you over 16 and under SPA?
 router.post('/ucd-register/signposting-eligibility/over-16', function(request, response) {
-var over16 = request.session.data['over-16']
-if (over16 == 'yes'){
-    response.redirect('/ucd-register/signposting-eligibility/under-state-pension')
-} else if (over16 == "no") {
-    response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
-}
-})
-
-// Are you under state pension age?
-router.post('/ucd-register/signposting-eligibility/under-state-pension', function(request, response) {
-var underState = request.session.data['under-state-pension']
-if (underState == 'yes'){
-    response.redirect('/ucd-register/signposting-eligibility/what-is-ni-number')
-} else if (underState == "no") {
-    response.redirect('/ucd-register/signposting-eligibility/stop-getting-pip-last-year')
-}
+    var correctAge = request.session.data['age']
+    if (correctAge == 'yes'){
+        response.redirect('/ucd-register/signposting-eligibility/security-check')
+    } else if (correctAge == "no-under-16") {
+        response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
+    } else if (correctAge == "no-over-spa") {
+        response.redirect('/ucd-register/signposting-eligibility/stop-getting-pip-last-year')
+    }
 })
 
 // What is your National Insurance number?

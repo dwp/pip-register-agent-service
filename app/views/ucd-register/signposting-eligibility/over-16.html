@@ -21,10 +21,10 @@ href: "javascript:window.history.back()"
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "over-16",
+      name: "age",
       fieldset: {
         legend: {
-          text: "Are you age 16 or over?",
+          text: "Are you over 16 years old, and under State Pension age?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -35,8 +35,12 @@ href: "javascript:window.history.back()"
           text: "Yes"
         },
         {
-          value: "no",
+          value: "no-under-16",
           text: "No, under 16"
+        },
+        {
+          value: "no-over-spa",
+          text: "No, over State Pension age"
         }
       ]
     }) }}
