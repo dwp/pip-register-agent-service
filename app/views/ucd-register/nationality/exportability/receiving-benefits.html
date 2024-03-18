@@ -13,21 +13,19 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="#" method="post">
+    <form class="form" action="#" method="post">
 
         <h1 class="govuk-heading-l">
-          Have you left the UK for more than 4 weeks at a time, in the last 3 years?
+          Are you receiving pensions or benefits from a country outside the UK?
         </h1>
-
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
+      
         {{ govukRadios({
-              name: "abroad-over-four-weeks",
-              fieldset: {
-              legend: {
+          name: "receiving-benefits",
+          fieldset: {
+            legend: {
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -43,15 +41,15 @@
             }
           ]
         }) }}
-
-
+  
         {{ govukButton({
           text: "Continue"
         }) }}
 
-      </form>
+  </form>
 
-    </div>
   </div>
+</div>
+
 
 {% endblock %}

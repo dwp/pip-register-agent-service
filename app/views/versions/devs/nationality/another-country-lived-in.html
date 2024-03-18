@@ -28,7 +28,7 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
 <h1 class="govuk-heading-l">
- Select another country
+  The country you normally live in
 </h1>
 
 
@@ -285,10 +285,10 @@
 
 <div class="govuk-body govuk-!-margin-bottom-6"></div>
 
+  {{ govukButton({
+    text: "Continue"
+  }) }}
 
-{{ govukButton({
-  text: "Continue"
-}) }}
 
 </form>
 {% endblock %}

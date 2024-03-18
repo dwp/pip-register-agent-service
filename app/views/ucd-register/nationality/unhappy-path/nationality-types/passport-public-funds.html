@@ -19,7 +19,7 @@
       <form class="form" action="#" method="post">
 
         <h1 class="govuk-heading-l">
-          Have you left the UK for more than 4 weeks at a time, in the last 3 years?
+          Does your passport, or any other document from the Home Office say ‘No recourse to public funds’?
         </h1>
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -32,6 +32,9 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "Ask the claimant to check the inside pages of their passport and documents from the Home Office for the words ‘No recourse to public funds’."
+          },
           items: [
             {
               value: "yes",
@@ -40,14 +43,25 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "not sure",
+              text: "Don't know"
             }
           ]
         }) }}
 
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+    
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-nat-in-progress"
+          }) }}
+        </div>
 
       </form>
 

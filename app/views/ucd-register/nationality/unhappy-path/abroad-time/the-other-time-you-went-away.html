@@ -23,13 +23,17 @@
 
     <form class="form" action="#" method="post">
 
+      <h1 class="govuk-heading-l">
+        The other time you were outside the UK
+      </h1>
+
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
-<h1 class="govuk-heading-l">
- Select another country
-</h1>
+<h2 class="govuk-heading-m">
+  Which country did you go to?
+</h2>
 
 
         <label class="govuk-label" for="sort">
@@ -285,10 +289,100 @@
 
 <div class="govuk-body govuk-!-margin-bottom-6"></div>
 
+<h1 class="govuk-heading-m">
+  When did you go?
+</h1>
 
-{{ govukButton({
-  text: "Continue"
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+{{ govukDateInput({
+  id: "passport-issued",
+  namePrefix: "passport-issued",
+  fieldset: {
+    legend: {
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  }
 }) }}
+
+<div class="govuk-body govuk-!-margin-bottom-6"></div>
+
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+      name: "other-time",
+      fieldset: {
+      legend: {
+        text: "Why did you go?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "holiday",
+      text: "Holiday"
+    },
+    {
+      value: "other",
+      text: "Medical treatment"
+    },
+    {
+      value: "other",
+      text: "A member of Her Majesty’s Forces or a family member of a person serving in Her Majesty’s Forces"
+    },
+    {
+      value: "other",
+      text: "Aircraft worker"
+    },
+    {
+      value: "other",
+      text: "Mariner"
+    },
+    {
+      value: "other",
+      text: "Continental Shelf Operative"
+    },
+    {
+      value: "other",
+      text: "Employed or business abroad or family member of someone employed or on business abroad"
+    },
+    {
+      value: "other",
+      text: "Employed with a UK based employer or family member of someone employed with a UK based employer"
+    },
+    {
+      value: "other",
+      text: "Employed with a foreign employer or family member of a person employed with a foreign employer"
+    },
+    {
+      value: "other",
+      text: "UK Civil Servant or family member of a UK Civil Servant"
+    },
+    {
+      value: "other",
+      text: "Living abroad"
+    },
+    {
+      value: "other",
+      text: "Other"
+    }
+  ]
+}) }}
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+  {{ govukButton({
+    text: "Change previous answers",
+    classes: "govuk-button--secondary",
+    href: "/v2-ucd-register/task-list-as-done"
+  }) }}
+</div>
 
 </form>
 {% endblock %}

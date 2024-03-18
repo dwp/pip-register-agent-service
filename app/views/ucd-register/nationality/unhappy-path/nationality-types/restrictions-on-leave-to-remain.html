@@ -18,32 +18,47 @@
 
       <form class="form" action="#" method="post">
 
+        <h1 class="govuk-heading-l">
+          What restrictions, if any, are there on your leave to remain?
+        </h1>
+
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-              name: "before",
+              name: "restrictions",
               fieldset: {
-                legend: {
-                  text: " Did you start living in the UK before 2021?",
-                    isPageHeading: true,
+              legend: {
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "The UK is Northern Ireland, England, Scotland and Wales."
-          },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "none",
+              text: " No restrictions"
             },
             {
-              value: "no",
-              text: "No"
+              value: "limited",
+              text: "Limited leave to remain"
             },
             {
-              value: "yes",
-              text: "Don't know"
+              value: "extension-applied",
+              text: "Limited leave to remain extension applied for"
+            },
+            {
+              value: "indefinite",
+              text: "Indefinite leave to remain"
+            },
+            {
+              value: "no-leave",
+              text: "No leave to remain"
+            },
+            {
+              divider: "or,"
+            }, 
+            {
+              value: "unknown",
+              text: "Don’t know"
             }
           ]
         }) }}

@@ -18,23 +18,24 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="#" method="post">
-
-
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-
-<h1 class="govuk-heading-l">
- Select another country
-</h1>
-
+      <form class="form" action="#" method="post">
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        
+        <h1 class="govuk-heading-l">
+          What country are you working or paying insurance in?
+        </h1>
+        {% from "govuk/components/select/macro.njk" import govukSelect %}
 
         <label class="govuk-label" for="sort">
           Choose country
-        </label>    
+        </label>   
+        <div id="location-hint" class="govuk-hint">
+          Enter country and select the right option.
+         </div> 
         
 <select id="country" name="country" class="form-control">
     <option value="Afghanistan">Afghanistan</option>
@@ -304,4 +305,5 @@ accessibleAutocomplete.enhanceSelectElement({
 selectElement: element
 })
 </script>
-{% endblock %}
+      {% endblock %}
+

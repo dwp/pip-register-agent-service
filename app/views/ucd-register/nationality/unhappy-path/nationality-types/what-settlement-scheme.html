@@ -19,13 +19,13 @@
       <form class="form" action="#" method="post">
 
         <h1 class="govuk-heading-l">
-          Have you left the UK for more than 4 weeks at a time, in the last 3 years?
+          What EU Settlement Scheme status have you been granted?
         </h1>
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-              name: "abroad-over-four-weeks",
+              name: "what-scheme",
               fieldset: {
               legend: {
               isPageHeading: true,
@@ -34,20 +34,35 @@
           },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "settled",
+              text: " Settled (Indefinite leave to remain) "
             },
             {
-              value: "no",
-              text: "No"
+              value: "pre-settled",
+              text: "Pre-settled (Limited leave to remain)"
+            },
+            {
+              value: "pending",
+              text: "Application pending"
+            },
+            {
+              value: "refused",
+              text: "Refused"
             }
           ]
         }) }}
 
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+    
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-nat-in-progress"
+          }) }}
+        </div>
 
       </form>
 

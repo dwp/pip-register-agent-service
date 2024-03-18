@@ -19,13 +19,13 @@
       <form class="form" action="#" method="post">
 
         <h1 class="govuk-heading-l">
-          Have you left the UK for more than 4 weeks at a time, in the last 3 years?
+          Have you been granted refugee or humanitarian protection status?
         </h1>
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-              name: "abroad-over-four-weeks",
+              name: "granted-refugee",
               fieldset: {
               legend: {
               isPageHeading: true,
@@ -40,14 +40,25 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "no",
+              text: "Don't know"
             }
           ]
         }) }}
 
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+    
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-nat-in-progress"
+          }) }}
+        </div>
 
       </form>
 

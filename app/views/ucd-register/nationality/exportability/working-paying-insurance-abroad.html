@@ -13,21 +13,26 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="#" method="post">
+    <form class="form" action="#" method="post">
 
         <h1 class="govuk-heading-l">
-          Have you left the UK for more than 4 weeks at a time, in the last 3 years?
+          Are you working or paying national insurance in a country outside the UK?
         </h1>
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
+        {{ govukInsetText({
+          text: "By insurance we only mean insurance connected to your work, like UK National Insurance."
+        }) }}
+
+      
         {{ govukRadios({
-              name: "abroad-over-four-weeks",
-              fieldset: {
-              legend: {
+          name: "insurance-abroad",
+          fieldset: {
+            legend: {
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -43,15 +48,17 @@
             }
           ]
         }) }}
-
+  
 
         {{ govukButton({
           text: "Continue"
         }) }}
 
-      </form>
 
-    </div>
+  </form>
+
   </div>
+</div>
+
 
 {% endblock %}
