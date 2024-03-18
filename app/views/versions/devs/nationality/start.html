@@ -16,7 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="#" method="post" novalidate>
+      <form action="#" method="post" novalidate></form>
       <span class="govuk-caption-l">Nationality, work and residence</span>
       <h1 class="govuk-heading-l">
         The next questions are about your nationality and time you've spent in other countries
@@ -26,9 +26,10 @@
 
 
           {{ govukButton({
-            text: "Continue"
+            text: "Continue",
+            href: "/ucd-register/nationality/what-is-your-nationality",
+            isContinueButton: true
           }) }}
-          </div>
 
       </form>
 

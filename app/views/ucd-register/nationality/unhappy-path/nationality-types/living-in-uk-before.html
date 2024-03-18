@@ -18,19 +18,19 @@
 
       <form class="form" action="#" method="post">
 
-        <h1 class="govuk-heading-l">
-          Have you left the UK for more than 4 weeks at a time, in the last 3 years?
-        </h1>
-
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-              name: "abroad-over-four-weeks",
+              name: "before",
               fieldset: {
-              legend: {
-              isPageHeading: true,
+                legend: {
+                  text: "Did you start living in the UK before 2021?",
+                    isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
+          },
+          hint: {
+            text: "The UK is Northern Ireland, England, Scotland and Wales."
           },
           items: [
             {
@@ -40,14 +40,25 @@
             {
               value: "no",
               text: "No"
+            },
+            {
+              value: "yes",
+              text: "Don't know"
             }
           ]
         }) }}
 
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+    
+          {{ govukButton({
+            text: "Change previous answers",
+            classes: "govuk-button--secondary",
+            href: "/v2-ucd-register/task-list-nat-in-progress"
+          }) }}
+        </div>
 
       </form>
 

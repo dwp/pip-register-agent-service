@@ -18,12 +18,8 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    <form class="form" action="#" method="post">
-
   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <form class="form" action="#" method="post">
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -44,10 +40,7 @@
           items: [
           {
             value: "british",
-            text: "British",
-            hint: {
-              text: "Includes Northern Irish, English, Scottish and Welsh."
-            }
+            text: "British"
           },
           {
             value: "irish",
@@ -60,22 +53,17 @@
           ]
         }) }}
 
+
           {{ govukButton({
             text: "Continue"
           }) }}
 
+
       </form>
       {% endblock %}
-
+    </div>
   </div>
 
 {% block scripts %}
-  {{ super() }}
-  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-  <script type="text/javascript">
-    element = document.querySelector('#country')
-    accessibleAutocomplete.enhanceSelectElement({
-      selectElement: element
-    })
-  </script>
+
 {% endblock %}

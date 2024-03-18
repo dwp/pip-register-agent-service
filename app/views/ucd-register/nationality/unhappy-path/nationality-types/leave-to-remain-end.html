@@ -18,34 +18,18 @@
 
       <form class="form" action="#" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
-        {{ govukRadios({
-              name: "before",
-              fieldset: {
-                legend: {
-                  text: " Did you start living in the UK before 2021?",
-                    isPageHeading: true,
+        {{ govukDateInput({
+          id: "passport-issued",
+          namePrefix: "passport-issued",
+          fieldset: {
+            legend: {
+              text: "When does your leave to remain end?",
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
-          },
-          hint: {
-            text: "The UK is Northern Ireland, England, Scotland and Wales."
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No"
-            },
-            {
-              value: "yes",
-              text: "Don't know"
-            }
-          ]
+          }
         }) }}
 
         <div class="govuk-button-group">

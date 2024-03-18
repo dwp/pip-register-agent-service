@@ -639,6 +639,107 @@ router.post('/ucd-register/contact-details/contact-details-summary', function(re
 
 //UCD-REGISTER/NATIONALITY
 
+//MTP APRIL RELEASE - NATIONALITY
+//v2-ucd-register/nationality
+
+//start
+router.post('/ucd-register/nationality/start', function(request, response) {
+    response.redirect('/ucd-register/nationality/what-is-your-nationality')
+})
+
+//what is your nationality
+router.post('/ucd-register/nationality/what-is-your-nationality', function(request, response) {
+    var nationality = request.session.data['nationality']
+    if (nationality == 'british'){
+        response.redirect('/ucd-register/nationality/uk-2-of-3-years')
+    } else if (nationality == 'irish') {
+        response.redirect('/ucd-register/nationality/uk-2-of-3-years')
+    } else if (nationality == 'other') {
+        response.redirect('/ucd-register/nationality/another-nationality')
+    }
+})
+
+//Have you been in the UK for at least 2 of the last 3 years?
+router.post('/ucd-register/nationality/uk-2-of-3-years', function(request, response) {
+    var ukYears = request.session.data['uk-years']
+    if (ukYears == 'yes'){
+        response.redirect('/ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    } else if (ukYears == 'no') {
+        response.redirect('/ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    } else if (ukYears == 'unsure') {
+        response.redirect('/ucd-register/nationality/exportability/working-paying-insurance-abroad')
+    } 
+})
+
+// Another country
+router.post('/ucd-register/nationality/another-country-lived-in', function(request, response) {
+    response.redirect('/ucd-register/nationality/lived-elsewhere')
+})
+
+//Are you working or paying national insurance in another country?
+
+router.post('/ucd-register/nationality/exportability/working-paying-insurance-abroad', function(request, response) {
+    var payingInsurance= request.session.data['insurance-abroad']
+    if (payingInsurance == 'no'){
+      response.redirect('/ucd-register/nationality/exportability/family-paying-insurance-abroad')
+    } else if (payingInsurance == 'yes') {
+        response.redirect('/ucd-register/nationality/exportability/what-country-insurance')
+    }
+  })
+
+    //Are any of your family members working or paying national insurance in another country?
+    router.post('/ucd-register/nationality/exportability/what-country-insurance', function(request, response) {
+        response.redirect('/ucd-register/nationality/exportability/receiving-benefits')
+    })
+    
+  
+  //Are any of your family members working or paying national insurance in another country?
+  router.post('/ucd-register/nationality/exportability/family-paying-insurance-abroad', function(request, response) {
+    var payingInsurance= request.session.data['family-insurance-abroad']
+    if (payingInsurance == 'no'){
+      response.redirect('/ucd-register/nationality/exportability/receiving-benefits')
+    } else if (payingInsurance == 'yes') {
+        response.redirect('/ucd-register/nationality/exportability/family-country-insurance')
+    }
+  })
+
+      //What country are your family members working or paying national insurance in?
+      router.post('/ucd-register/nationality/exportability/family-country-insurance', function(request, response) {
+        response.redirect('/ucd-register/nationality/exportability/receiving-benefits')
+    })
+  
+  // Are you receiving pensions or benefits in another country?
+  router.post('/ucd-register/nationality/exportability/receiving-benefits', function(request, response) {
+      var payingBenefits= request.session.data['receiving-benefits']
+      if (payingBenefits == 'no'){
+        response.redirect('/ucd-register/nationality/exportability/family-receiving-benefits')
+      } else if (payingBenefits == 'yes') {
+          response.redirect('/ucd-register/nationality/exportability/what-country-benefits')
+      }
+  })
+  
+        //What country are you receiving pensions or benefits in?
+        router.post('/ucd-register/nationality/exportability/what-country-benefits', function(request, response) {
+            response.redirect('/ucd-register/task-list-nat-done')
+        })
+  
+    //Are any of your family members receiving pensions or benefits in another country?
+    router.post('/ucd-register/nationality/exportability/family-receiving-benefits', function(request, response) {
+        var payingBenefits= request.session.data['family-receiving-benefits']
+        if (payingBenefits == 'no'){
+        response.redirect('/ucd-register/task-list-nat-done')
+        } else if (payingBenefits == 'yes') {
+            response.redirect('/ucd-register/nationality/exportability/family-country-benefits')
+        }
+    })
+
+    //What country are your family members receiving pensions or benefits in?
+    router.post('/ucd-register/nationality/exportability/family-country-benefits', function(request, response) {
+    response.redirect('/ucd-register/task-list-nat-done')
+    })
+
+
+//--------------------------------------------------------------------------------------------------------------
 //nationality start
 router.post('/ucd-register/nationality/start', function(request, response) {
     response.redirect('/ucd-register/nationality/what-is-your-nationality')
@@ -657,75 +758,75 @@ router.post('/ucd-register/nationality/what-is-your-nationality', function(reque
 })
 
 // Another nationality
-router.post('/ucd-register/nationality/another-nationality', function(request, response) {
-    response.redirect('/ucd-register/nationality/what-country-do-you-live-in')
+router.post('/versions/devs/nationality/another-nationality', function(request, response) {
+    response.redirect('/versions/devs/nationality/what-country-do-you-live-in')
 })
 
 //what country do you normally live in page
-router.post('/ucd-register/nationality/what-country-do-you-live-in', function(request, response) {
+router.post('/versions/devs/nationality/what-country-do-you-live-in', function(request, response) {
     var nationality = request.session.data['country']
     if (nationality == 'northern-ireland'){
-        response.redirect('/ucd-register/nationality/lived-elsewhere')
+        response.redirect('/versions/devs/nationality/lived-elsewhere')
     } else if (nationality == 'england') {
-        response.redirect('/ucd-register/nationality/lived-elsewhere')
+        response.redirect('/versions/devs/nationality/lived-elsewhere')
     } else if (nationality == 'wales') {
-        response.redirect('/ucd-register/nationality/lived-elsewhere')
+        response.redirect('/versions/devs/nationality/lived-elsewhere')
     } else if (nationality == 'scotland') {
-        response.redirect('/ucd-register/nationality/lived-elsewhere')
+        response.redirect('/versions/devs/nationality/lived-elsewhere')
     } else if (nationality == 'another-country') {
-        response.redirect('/ucd-register/nationality/another-country-lived-in')
+        response.redirect('/versions/devs/nationality/another-country-lived-in')
     }
 })
 
 // Another country
-router.post('/ucd-register/nationality/another-country-lived-in', function(request, response) {
-    response.redirect('/ucd-register/nationality/lived-elsewhere')
+router.post('/versions/devs/another-country-lived-in', function(request, response) {
+    response.redirect('/versions/devs/nationality/lived-elsewhere')
 })
 
 
 //Have you lived anywhere other than UK in last 3 years page
-router.post('/ucd-register/nationality/lived-elsewhere', function(request, response) {
+router.post('/versions/devs/nationality/lived-elsewhere', function(request, response) {
     var livedElsewhere = request.session.data['lived-elsewhere']
     if (livedElsewhere == 'yes'){
         response.redirect('#')
     } else if (livedElsewhere == 'no') {
-        response.redirect('/ucd-register/nationality/abroad-over-four-weeks')
+        response.redirect('/versions/devs/nationality/abroad-over-four-weeks')
     }
 })
 
 //Have you been abroad for any periods over 4 weeks, in the last 3 years page
-router.post('/ucd-register/nationality/abroad-over-four-weeks', function(request, response) {
+router.post('/versions/devs/nationality/abroad-over-four-weeks', function(request, response) {
     var livedAbroad = request.session.data['abroad-over-four-weeks']
     if (livedAbroad == 'yes'){
         response.redirect('#')
     } else if (livedAbroad == 'no') {
-        response.redirect('/ucd-register/nationality/benefits-abroad')
+        response.redirect('/versions/devs/nationality/benefits-abroad')
     }
 })
 
 //benefits abroad
-router.post('/ucd-register/nationality/benefits-abroad', function(request, response) {
+router.post('/versions/devs/nationality/benefits-abroad', function(request, response) {
     var benefitsAbroad = request.session.data['benefits-abroad']
     if (benefitsAbroad == 'yes'){
-        response.redirect('/ucd-register/nationality/insurance-abroad')
+        response.redirect('/versions/devs/nationality/insurance-abroad')
     } else if (benefitsAbroad == 'no') {
-        response.redirect('/ucd-register/nationality/insurance-abroad')
+        response.redirect('/versions/devs/nationality/insurance-abroad')
     }
 })
 
 //are you or a family member working or paying insurance from Switzerland or EEA?
-router.post('/ucd-register/nationality/insurance-abroad', function(request, response) {
+router.post('/versions/devs/nationality/insurance-abroad', function(request, response) {
     var insuranceAbroad = request.session.data['insurance-abroad']
     if (insuranceAbroad == 'yes'){
-        response.redirect('/ucd-register/nationality/nationality-summary')
+        response.redirect('/versions/devs/nationality/nationality-summary')
     } else if (insuranceAbroad == 'no') {
-        response.redirect('/ucd-register/nationality/nationality-summary')
+        response.redirect('/versions/devs/nationality/nationality-summary')
     }
 })
 
 //summary to task list
-router.post('/ucd-register/nationality/nationality-summary', function(request, response) {
-    response.redirect('/ucd-register/task-list-nat-done')
+router.post('/versions/devs/nationality/nationality-summary', function(request, response) {
+    response.redirect('/versions/devs/task-list-nat-done')
 })
 
 // -------------------------------------------------------------------------------------
