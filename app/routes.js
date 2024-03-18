@@ -632,7 +632,7 @@ router.post('/ucd-register/contact-details/contact-details-summary', function(re
 //UCD-REGISTER/NATIONALITY
 
 //MTP APRIL RELEASE - NATIONALITY
-//v2-ucd-register/nationality
+//ucd-register/nationality
 
 //start
 router.post('/ucd-register/nationality/start', function(request, response) {
@@ -672,6 +672,11 @@ router.post('/ucd-register/nationality/another-nationality', function(request, r
     if (anotherNationality == 'Australia' || anotherNationality == 'Brazil' || anotherNationality == 'Bangladesh' ){
         response.redirect('/ucd-register/nationality/uk-2-of-3-years')
     }
+})
+
+//Were you living in the UK on or before 31/12/20?
+router.post('/ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before', function(request, response) {
+    response.redirect('/ucd-register/nationality/uk-2-of-3-years')
 })
 
 //Are you working or paying national insurance in another country?
@@ -3008,7 +3013,7 @@ router.post('/v2-ucd-register/nationality/what-is-your-nationality', function(re
     } else if (nationality == 'irish') {
         response.redirect('/v2-ucd-register/nationality/uk-2-of-3-years')
     } else if (nationality == 'other') {
-        response.redirect('/v2-ucd-register/nationality/another-nationality')
+        response.redirect('/ucd-register/nationality/another-nationality')
     }
 })
 
