@@ -663,9 +663,15 @@ router.post('/ucd-register/nationality/uk-2-of-3-years', function(request, respo
     } 
 })
 
-// Another country
-router.post('/ucd-register/nationality/another-country-lived-in', function(request, response) {
-    response.redirect('/ucd-register/nationality/lived-elsewhere')
+//Select other nationality
+router.post('/ucd-register/nationality/another-nationality', function(request, response) {
+    var anotherNationality = request.session.data['another-nationality']
+    if (anotherNationality == 'Norway' || anotherNationality == 'Iceland'){
+        response.redirect('/ucd-register/nationality/unhappy-path/nationality-types/living-in-uk-before')
+    }
+    if (anotherNationality == 'Australia' || anotherNationality == 'Brazil' || anotherNationality == 'Bangladesh' ){
+        response.redirect('/ucd-register/nationality/uk-2-of-3-years')
+    }
 })
 
 //Are you working or paying national insurance in another country?
