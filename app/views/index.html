@@ -26,7 +26,7 @@
   rows: [
   {
     key: {
-      text: "Sprint 19 - E2E prototype"
+      text: "MTP - E2E prototype"
     },
     value: {
         text:"To be used in reference to current sprint for development tickets. Starts from Eligibility and signposting launched from main UI."
@@ -100,6 +100,36 @@
   ]
 }) }}
 
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+{{govukTag({
+  text: "MTP ready backlog",
+  classes: "govuk-tag--purple"
+})}}
+
+{{ govukSummaryList({
+
+  rows: [
+  {
+    key: {
+      text: "MTP - E2E prototype"
+    },
+    value: {
+        text:"To be used in reference to current sprint for development tickets. Starts from Eligibility and signposting launched from main UI."
+    },
+    actions: {
+      items: [
+        {
+          href: "/ucd-concepts-testing#mtp-backlog",
+          text: "Open page",
+          visuallyHiddenText: "contact details"
+        }
+      ]
+    }
+  }
+  ]
+}) }}
 
 <div class="govuk-!-padding-bottom-6"></div>
 

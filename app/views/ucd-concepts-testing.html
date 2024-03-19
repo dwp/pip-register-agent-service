@@ -19,6 +19,46 @@
 {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
+{% set mtpBacklogHtml %}
+<h2 class="govuk-heading-l">MTP Backlog</h2>
+{{ govukTable({
+  head: [
+    {
+      text: "Screen or journey"
+    },
+    {
+      text: "Screen or prototype link"
+    }
+  ],
+  rows: [
+  [
+   {
+     text: "Accommodation: Hospice date asked separately if known (UCD)"
+   },
+   {
+     html: '<a href="/v2-ucd-register/hospital-dates/mtp-backlog/5-8-know-hospice-date" class="govuk-link">Hospice date new route'
+   }
+  ],
+  [
+  {
+    text: "Nationality: EEA 4 question route (TESTED)"
+  },
+  {
+    html: '<a href="/v2-ucd-register/nationality/exportability/working-paying-insurance-abroad" class="govuk-link">4 question split journey'
+  }
+ ],
+ [
+ {
+   text: "HCP Details: Remove only HCP warning"
+ },
+ {
+   html: '<a href="/v2-ucd-register/healthcare-professional/mtp-backlog/remove-add-health-professional" class="govuk-link">Warning to add an HCP'
+ }
+]
+    ]
+    }) }}
+    {% endset -%}
+
 {% set pastYearHtml %}
 <h2 class="govuk-heading-l">Journey scenarios</h2>
 {{ govukTable({
@@ -408,6 +448,13 @@
 
 {{ govukTabs({
   items: [
+  {
+    label: "MTP backlog",
+    id: "mtp-backlog",
+    panel: {
+      html: mtpBacklogHtml
+    }
+  },
     {
       label: "User journey scenarios",
       id: "past-year",
