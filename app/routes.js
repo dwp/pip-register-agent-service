@@ -446,19 +446,9 @@ if (niPip == 'yes'){
 router.post('/ucd-register/signposting-eligibility/claiming-self', function(request, response) {
 var self = request.session.data['claiming-self']
 if (self == 'yes'){
-    response.redirect('/ucd-register/signposting-eligibility/srel')
-} else if (self == "no") {
-    response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
-} 
-})
-
-// Claiming under SREL?
-router.post('/ucd-register/signposting-eligibility/srel', function(request, response) {
-var srel = request.session.data['srel']
-if (srel == 'yes'){
-    response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
-} else if (srel == "no") {
     response.redirect('/ucd-register/signposting-eligibility/over-16')
+} else if (self == "no") {
+    response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
 } 
 })
 
@@ -498,8 +488,18 @@ response.redirect('/ucd-register/signposting-eligibility/passed-security')
 
 // Passed security
 router.post('/ucd-register/signposting-eligibility/passed-security', function(request, response) {
-response.redirect('/ucd-register/welcome-screens/welcome-screen-ni')
+response.redirect('/ucd-register/signposting-eligibility/srel')
 })
+
+// Claiming under SREL?
+router.post('/ucd-register/signposting-eligibility/srel', function(request, response) {
+    var srel = request.session.data['srel']
+    if (srel == 'yes'){
+        response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
+    } else if (srel == "no") {
+        response.redirect('/ucd-register/welcome-screens/welcome-screen-ni')
+    } 
+    })
 
 //---------------------------------------------------------------------------------------------
 
