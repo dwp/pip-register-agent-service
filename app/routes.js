@@ -908,18 +908,18 @@ router.post('/ucd-register/healthcare-professional/consent-NI', function(request
 //ucd-register/HEALTHCARE-PROFESSIONAL/CYAS
 
 //remove 2nd hcp
-router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-health-professional', function(request, response) {
-    var removeHcp = request.session.data['remove-hcp']
+router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-health-professional-2', function(request, response) {
+    var removeHcp = request.session.data['remove-second-hcp']
     if (removeHcp == 'yes'){
-        response.redirect('/ucd-register/healthcare-professional/hcp-cyas/remove-second-hcp')
+        response.redirect('/ucd-register/healthcare-professional/healthcare-prof-type')
     } else if (removeHcp == 'no'){
-    response.redirect('/ucd-register/healthcare-professional/hcp-cyas/hp-summary-two')
+    response.redirect('/ucd-register/healthcare-professional/hcp-cyas/remove-second-hcp')
 }
 })
 
 //remove main hcp
-router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-main-professional', function(request, response) {
-    var removeHcp = request.session.data['remove-main-hcp']
+router.post('/ucd-register/healthcare-professional/hcp-cyas/remove-health-professional', function(request, response) {
+    var removeHcp = request.session.data['remove-hcp']
     if (removeHcp == 'yes'){
         response.redirect('/ucd-register/healthcare-professional/hcp-cyas/remove-main-hcp')
     } else if (removeHcp == 'no'){
@@ -2642,6 +2642,22 @@ router.post('/research/pipcs/add-support/read-letters', function(request, respon
         response.redirect('/research/pipcs/add-support/helpers')
     } else if (readLetters == 'no') {
         response.redirect('/research/pipcs/add-support/difficulty-communicating')
+    }
+})
+
+//-------------------------------------------------------------------------------------------
+
+// MTP-BACKLOG
+
+// Do you know the date you entered the hospice? > what was the date
+router.post('/v2-ucd-register/hospital-dates/mtp-backlog/5-8-know-hospice-date', function(request, response) {
+    var knowDate = request.session.data['know-the-date']
+    if (knowDate == 'today'){
+        response.redirect('/ucd-register/hospital-dates/5-10-hospice-postcode')
+    } else if (knowDate == 'before-today') {
+        response.redirect('/v2-ucd-register/hospital-dates/mtp-backlog/5-9-hospice-date')
+    } else if (knowDate == 'no') {
+        response.redirect('/ucd-register/hospital-dates/5-10-hospice-postcode')
     }
 })
 
