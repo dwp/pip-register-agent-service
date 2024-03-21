@@ -19,18 +19,26 @@
       <form action="#" method="post" method="post">
 
           <h1 class="govuk-heading-l">
-            Sorry, we cannot begin your claim.
+            We cannot start your application now
           </h1>
 
-          <p class="govuk-body">In order to begin your claim, the declaration must be agreed to. </p>
+          <p class="govuk-body">You need to agree to the declaration in order to apply for PIP.</p>
 
-          <p class="govuk-body">
-            <a class="govuk-link" href="/index">Return to main agent UI</a> to access other services.
+          <p class="govuk-body">You can either agree to the declaration to continue, or you can register your claim at another time.
           </p>
 
-          {{ govukButton({
-            text: "Continue"
-          }) }}
+          {% from "govuk/components/button/macro.njk" import govukButton %}
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Stop application",
+            classes: "govuk-button--warning",
+            href: "/service-start-page"
+            }) }}
+
+            <a class="govuk-body govuk-link" href="/v2-ucd-register/declaration">Back to declaration</a>
+          </div>
+
 
       </form>
 

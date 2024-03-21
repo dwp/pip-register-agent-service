@@ -1,0 +1,145 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="#" method="post" method="post">
+
+      <form action="#" method="post" method="post">
+        
+        <h1 class="govuk-heading-l">Before we can start your claim we need to confirm your identity</h1>
+
+        <h2 class="govuk-heading-m">What is your National Insurance number?</h2>
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          classes: "govuk-input--width-20",
+          id: "niNumber",
+          name: "niNumber",
+          hint: {
+            text: "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
+          }
+        }) }}
+        
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/signposting-eligibility/further-questions-nino" class="govuk-link govuk-link--no-visited-state">Applicant cannot give a UK National Insurance number
+          </a>
+        </p>
+
+        <h2 class="govuk-heading-m"> I need to look you up on our system and ask you 3 security questions</h2>
+
+      {{ govukDetails({
+        summaryText: "List of security questions",
+          html: '
+              <ul class="govuk-list govuk-list--bullet">
+                <li>What is your previous surname(s)?What is your previous surname(s)?</li>
+                <li>What is your previous address(es)? First line of address and town are acceptable, without postcode. </li>
+                <li>Name another benefit you receive? A “None” response is acceptable</li>
+                <li>On which date did your claim for the other benefit start? The correct month and year are acceptable.</li>
+                <li>What is the weekly or monthly amount of the other benefit? Answers up to £5 more or less than the correct number are acceptable.</li>
+                <li>What other benefit have you claimed previously, regardless of whether you were paid it?</li>
+                <li>What is your partner’s National Insurance Number?</li>
+                <li>What is your partner’s full name?</li>
+                <li>What is your partner’s date of birth?</li>
+                <li>What is one of your children’s full names?</li>
+                <li>What is one of your children’s dates of birth?</li>
+              </ul>'
+        }) }}
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  name: "securityVerified",
+  fieldset: {
+    legend: {
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "passed",
+      text: "2 or 3 correct answers"
+    },
+    {
+      value: "more-needed",
+      text: "1 or 0 correct answers"
+    }
+  ]
+}) }}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "otherBenefits",
+  fieldset: {
+    legend: {
+      text: "Are you getting any other benefits?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: " If the applicant gets any benefits named in the checkboxes, enter the benefit names in PIPCS notes."
+  },
+  items: [
+    {
+      value: "wpcaa",
+      text: "War Pension Constant Attendance Allowance (WPCAA)"
+    },
+    {
+      value: "wpms",
+      text: "War Pension Mobility Supplement (WPMS)"
+    },
+    {
+      value: "industrial-injuries",
+      text: "Industrial Injuries Disablement Benefit Constant"
+    },
+    {
+      value: "attendance",
+      text: "Attendance Allowance (IIDBCAA)"
+    },
+    {
+      value: "afip",
+      text: "Armed Forces Independence Payment (AFIP)"
+    },
+    {
+      value: "another",
+      text: "Another benefit"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "no",
+      text: " No",
+      behaviour: "exclusive"
+    }
+  ]
+}) }}
+
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}

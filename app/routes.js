@@ -468,7 +468,7 @@ if (authorised == 'authorised'){
 router.post('/ucd-register/signposting-eligibility/over-16', function(request, response) {
     var correctAge = request.session.data['age']
     if (correctAge == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/security-check')
+        response.redirect('/ucd-register/signposting-eligibility/security-check-2')
     } else if (correctAge == "no-under-16") {
         response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
     } else if (correctAge == "no-over-spa") {
@@ -573,7 +573,7 @@ router.post('/ucd-register/contact-details/correspondence-address', function(req
 router.post('/ucd-register/contact-details/alt-formats/written-format', function(request, response) {
     var writtenFormat = request.session.data['written-format']
     if (writtenFormat == 'standard-letter'){
-        response.redirect('/ucd-register/contact-details/contact-details-summary')
+        response.redirect('/ucd-register/task-list-cd-done')
     } else if (writtenFormat == 'large-print') {
         response.redirect('/ucd-register/contact-details/alt-formats/large-print')
      } else if (writtenFormat == 'audio') {
@@ -1166,7 +1166,7 @@ router.post('/ucd-register/bank-details/6-1-start', function(request, response) 
 
 // You can continue without entering account details
 router.post('/ucd-register/bank-details/6-2-no-details-now', function(request, response) {
-    response.redirect('/ucd-register/motability/motability')
+    response.redirect('/ucd-register/task-list-bank-done')
 })
 
 // Main account details
@@ -1176,12 +1176,12 @@ router.post('/ucd-register/bank-details/6-3-main-account-details-v2', function(r
 
 // Bank details CYA to task list
 router.post('/ucd-register/bank-details/bank-details-summary', function(request, response) {
-    response.redirect('/ucd-register/motability/motability')
+    response.redirect('/ucd-register/task-list-bank-done')
 })
 
 // Bank details CYA to task list
 router.post('/ucd-register/motability/motability', function(request, response) {
-    response.redirect('/ucd-register/task-list-bank-done')
+    response.redirect('/ucd-register/task-list-motability-done')
 })
 
 // -------------------------------------------------------------------------------------
@@ -2815,29 +2815,19 @@ router.post('/ucd-register/signposting-eligibility/service-start-page', function
     router.post('/ucd-register/signposting-eligibility/over-16', function(request, response) {
     var over16 = request.session.data['over-16']
     if (over16 == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/under-state-pension')
+        response.redirect('/ucd-register/signposting-eligibility/security-check-2')
     } else if (over16 == "no") {
         response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
     }
     })
     
-    // Are you under state pension age?
-    router.post('/ucd-register/signposting-eligibility/under-state-pension', function(request, response) {
-    var underState = request.session.data['under-state-pension']
-    if (underState == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/what-is-ni-number')
-    } else if (underState == "no") {
-        response.redirect('/ucd-register/signposting-eligibility/stop-getting-pip-last-year')
-    }
-    })
-    
     // What is your National Insurance number?
     router.post('/ucd-register/signposting-eligibility/what-is-ni-number', function(request, response) {
-    response.redirect('/ucd-register/signposting-eligibility/security-check')
+    response.redirect('/ucd-register/signposting-eligibility/security-check-2')
     })
     
     // What security questions were answered?
-    router.post('/ucd-register/signposting-eligibility/security-check', function(request, response) {
+    router.post('/ucd-register/signposting-eligibility/security-check-2', function(request, response) {
     response.redirect('/ucd-register/signposting-eligibility/passed-security')
     })
     
