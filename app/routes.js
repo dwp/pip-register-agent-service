@@ -521,6 +521,11 @@ router.post('/ucd-register/declaration', function(request, response) {
 
 // What is your name
 router.post('/ucd-register/contact-details/what-is-your-name', function(request, response) {
+    response.redirect('/ucd-register/contact-details/what-is-your-dob')
+})
+
+// What is your DOB
+router.post('/ucd-register/contact-details/what-is-your-dob', function(request, response) {
     response.redirect('/ucd-register/contact-details/what-is-your-phone-number')
 })
 
