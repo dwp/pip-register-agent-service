@@ -68,48 +68,31 @@
             {
             value: "Flat 3 , 228 Cable Street, London, E1 0DR",
             text: "Flat 3 , 228 Cable Street, London, E1 0DR"
+            }
+              
+          ]
+        }) }}
+
+        {% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+        {{ govukPagination({
+          next: {
+            href: "/versions/devs/address-development/select-your-address-2"
+          },
+          items: [
+            {
+              number: 1,
+              current: true,
+              href: "//versions/devs/address-development/select-your-address"
             },
             {
-              value: "Flat 4 , 228 Cable Street, London, E1 0DR",
-              text: "Flat 4 , 228 Cable Street, London, E1 0DR"
-              },
-              {
-              value: "Flat 5 , 228 Cable Street, London, E1 0DR",
-              text: "Flat 5 , 228 Cable Street, London, E1 0DR"
-              },
-               {
-               value: "Flat 6 , 228 Cable Street, London, E1 0DR",
-                text: "Flat 6 , 228 Cable Street, London, E1 0DR"
-               },
-               {
-                value: "Flat 7 , 228 Cable Street, London, E1 0DR",
-                text: "Flat 7 , 228 Cable Street, London, E1 0DR"
-               },
-               {
-               value: "Flat 8 , 228 Cable Street, London, E1 0DR",
-               text: "Flat 8 , 228 Cable Street, London, E1 0DR"
-               },
-               {
-               value: "Flat 9 , 228 Cable Street, London, E1 0DR",
-               text: "Flat 9 , 228 Cable Street, London, E1 0DR"
-               },
-               {
-               value: "Flat 9a, 228 Cable Street, London, E1 0DR",
-              text: "Flat 9a, 228 Cable Street, London, E1 0DR"
-              },
-              {
-              value: "Flat 9b, 228 Cable Street, London, E1 0DR",
-              text: "Flat 9b, 228 Cable Street, London, E1 0DR"
-              },
-              {
-              value: "Flat 10, 228 Cable Street, London, E1 0DR",
-              text: "Flat 10, 228 Cable Street, London, E1 0DR"
-              },
-             {
-             value: "Flat 11, 228 Cable Street, London, E1 0DR",
-             text: "Flat 11, 228 Cable Street, London, E1 0DR"
-             }
-              
+              number: 2,
+              href: "/versions/devs/address-development/select-your-address-2"
+            },
+            {
+              number: 3,
+              href: "/versions/devs/address-development/select-your-address-3"
+            }
           ]
         }) }}
         
