@@ -54,13 +54,21 @@
  {
    html: '<a href="/v2-ucd-register/healthcare-professional/mtp-backlog/remove-add-health-professional" class="govuk-link">Warning to add an HCP'
  }
+],
+[
+{
+  text: "Design clinic: playback address before confirming (tbc ucd)"
+},
+{
+  html: '<a href="/design-updates/address-lookup/address-confirm-playback" class="govuk-link">Concept (POST MTP): Address confirmation'
+}
 ]
     ]
     }) }}
     {% endset -%}
 
 {% set pastYearHtml %}
-<h2 class="govuk-heading-l">Journey scenarios</h2>
+<h2 class="govuk-heading-l">User group variations</h2>
 {{ govukTable({
   head: [
     {
@@ -296,7 +304,7 @@
 {{ govukTable({
   head: [
     {
-      text: "Section or component"
+      text: "Section or pattern"
     },
     {
       text: "Page or prototype link"
@@ -359,6 +367,18 @@
       <ul class="govuk-list">
         <li>
           <a href="/design-updates/contact-details/what-is-your-name" class="govuk-link">Full name, preferred name & previous name</a>
+        </li>
+      </ul>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="/versions/devs/address-development/select-your-address" class="govuk-link">V.1 Address pagination</a>
+        </li>
+      </ul>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="/design-updates/address-lookup/address-confirm-playback" class="govuk-link">Concept (POST MTP): Address confirmation</a>
         </li>
       </ul>'
     }
@@ -456,7 +476,7 @@
     }
   },
     {
-      label: "User journey scenarios",
+      label: "User group variations",
       id: "past-year",
       panel: {
         html: pastYearHtml
