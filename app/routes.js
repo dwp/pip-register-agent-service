@@ -660,11 +660,11 @@ router.post('/ucd-register/nationality/what-is-your-nationality', function(reque
 router.post('/ucd-register/nationality/uk-2-of-3-years', function(request, response) {
     var ukYears = request.session.data['uk-years']
     if (ukYears == 'yes'){
-        response.redirect('/ucd-register/nationality/exportability/working-paying-insurance-abroad')
+        response.redirect('/ucd-register/nationality/insurance-abroad')
     } else if (ukYears == 'no') {
-        response.redirect('/ucd-register/nationality/exportability/working-paying-insurance-abroad')
+        response.redirect('/ucd-register/nationality/exportability/insurance-abroad')
     } else if (ukYears == 'unsure') {
-        response.redirect('/ucd-register/nationality/exportability/working-paying-insurance-abroad')
+        response.redirect('/ucd-register/nationality/exportability/insurance-abroad')
     } 
 })
 
@@ -686,43 +686,22 @@ router.post('/ucd-register/nationality/unhappy-path/nationality-types/living-in-
 
 //Are you working or paying national insurance in another country?
 
-router.post('/ucd-register/nationality/exportability/working-paying-insurance-abroad', function(request, response) {
+router.post('/ucd-register/nationality/insurance-abroad', function(request, response) {
     var payingInsurance= request.session.data['insurance-abroad']
     if (payingInsurance == 'no'){
-      response.redirect('/ucd-register/nationality/exportability/family-paying-insurance-abroad')
+      response.redirect('/ucd-register/nationality/benefits-abroad')
     } else if (payingInsurance == 'yes') {
-        response.redirect('/ucd-register/nationality/exportability/what-country-insurance')
+        response.redirect('/ucd-register/nationality/benefits-abroad')
     }
   })
-
-    //Are any of your family members working or paying national insurance in another country?
-    router.post('/ucd-register/nationality/exportability/what-country-insurance', function(request, response) {
-        response.redirect('/ucd-register/nationality/exportability/receiving-benefits')
-    })
-    
-  
-  //Are any of your family members working or paying national insurance in another country?
-  router.post('/ucd-register/nationality/exportability/family-paying-insurance-abroad', function(request, response) {
-    var payingInsurance= request.session.data['family-insurance-abroad']
-    if (payingInsurance == 'no'){
-      response.redirect('/ucd-register/nationality/exportability/receiving-benefits')
-    } else if (payingInsurance == 'yes') {
-        response.redirect('/ucd-register/nationality/exportability/family-country-insurance')
-    }
-  })
-
-      //What country are your family members working or paying national insurance in?
-      router.post('/ucd-register/nationality/exportability/family-country-insurance', function(request, response) {
-        response.redirect('/ucd-register/nationality/exportability/receiving-benefits')
-    })
   
   // Are you receiving pensions or benefits in another country?
-  router.post('/ucd-register/nationality/exportability/receiving-benefits', function(request, response) {
-      var payingBenefits= request.session.data['receiving-benefits']
+  router.post('/ucd-register/nationality/benefits-abroad', function(request, response) {
+      var payingBenefits= request.session.data['benefits-abroad']
       if (payingBenefits == 'no'){
-        response.redirect('/ucd-register/nationality/exportability/family-receiving-benefits')
+        response.redirect('/ucd-register/task-list-nat-done')
       } else if (payingBenefits == 'yes') {
-          response.redirect('/ucd-register/nationality/exportability/what-country-benefits')
+          response.redirect('/ucd-register/task-list-nat-done')
       }
   })
   
