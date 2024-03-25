@@ -112,14 +112,14 @@
 
       <h2 class="govuk-heading-m">Application sections completed</h2>
 
-      <p class="govuk-body">All information has been input for the applicant. You can now clear the session data by submitting application.</p>
+      <p class="govuk-body">All information has been input for the applicant. <br> Continue to save and submit the application and wrap up the call.</p>
 
       <form action="/form-handler" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         {{ govukButton({
-          text: "Clear session and finish"
+          text: "Save application and continue"
         }) }}
     </div>
   </div>
