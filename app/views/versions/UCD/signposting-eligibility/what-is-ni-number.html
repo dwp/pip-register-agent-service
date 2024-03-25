@@ -18,25 +18,24 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
+      <h1 class="govuk-heading-l">What is your National Insurance number?</h1>
+
+      <p class="govuk-hint">It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.</p>
+
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
         classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h1 class="govuk-heading-l">Agent: You need to register this claim in PIPCS </h3>'
+          html: '<h1 class="govuk-heading-m">Agent: Enter National Insurance number in Searchlite.</h3>'
       }) }}
 
-      <h2 class="govuk-heading-m">
-        You can only use this service if the applicant gives you a UK National Insurance number.
-      </h2>
+      <p class="govuk-body">
+        <a href="/v2-ucd-register/signposting-eligibility/further-questions-nino" class="govuk-link govuk-link--no-visited-state">Applicant does not have a National Insurance number</a>
+      </p>
 
-       <p class="govuk-body">
-        Follow normal procedure in PIPCS if the applicant:
-        <ul class="govuk-list govuk-list--bullet">
-          <li>does not have a National Insurance number</li>
-          <li>cannot find their National Insurance number, or</li>
-          <li>has a National Insurance number from the Channel Islands or Isle of Man</li>
-        </ul>
-       </p>
+    {{ govukButton({
+      text: "Continue"
+    }) }}
 
   </form>
     
