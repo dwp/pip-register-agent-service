@@ -2728,6 +2728,37 @@ router.post('/versions/sprint-6/contact-details/contact-details-summary', functi
 
 //-------------------------------------------------------------------------------------------
 
+// RESEARCH-SPRINT-20
+//design-updates/sprint-20/what-happens-next/what-happens-next
+router.post('/design-updates/what-happens-next/what-happens-next', function(request, response) {
+    var previousOnline = request.session.data['previous-online-claim']
+    if (previousOnline  == 'yes'){
+        response.redirect('/design-updates/what-happens-next/online-form-option')
+    } else if (previousOnline  == 'no') {
+        response.redirect('/design-updates/what-happens-next/previously-claimed-online')
+    }
+})
+
+router.post('/design-updates/what-happens-next/previously-claimed-online', function(request, response) {
+    var previousOnline = request.session.data['can-receive-post']
+    if (previousOnline  == 'yes'){
+        response.redirect('/design-updates/what-happens-next/paper-whn-1')
+    } else if (previousOnline  == 'no') {
+        response.redirect('#')
+    }
+})
+
+// Paper whn 1- whn 2
+router.post('/design-updates/what-happens-next/paper-whn-1', function(request, response) {
+    response.redirect('/design-updates/what-happens-next/paper-whn-2')
+})
+
+// Paper whn 2- paper-after-sent
+router.post('/design-updates/what-happens-next/paper-whn-2', function(request, response) {
+    response.redirect('/design-updates/what-happens-next/paper-after-sent')
+})
+//-------------------------------------------------------------------------------------------
+
 // RESEARCH/PIP-CS/ADD-SUPPORT
 
 // Alternative formats page

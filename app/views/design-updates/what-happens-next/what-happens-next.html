@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
+        
+          <h1 class="govuk-heading-l">
+            I will now submit your claim
+          </h1>
+
+          <p class="govuk-body">As I do this, I need to give you some important information about what happens next.</p>
+
+          <h2 class="govuk-heading-m">
+            First, we will confirm we have all the information we need from you
+          </h2>
+
+          <p class="govuk-body">We will contact you if we need any more details to continue with your claim.</p>
+
+          <h2 class="govuk-heading-m">
+            We will then send you a form called 'How your disability affects you'
+          </h2>
+          <p class="govuk-body">You can either:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>fill in the form online, using a link we will email to you, or</li>
+            <li>fill in a paper form, which we will send you through the post.</li>
+          </ul>
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            name: "previous-online-claim",
+            fieldset: {
+              legend: {
+                text: "Have you previously claimed PIP online?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
