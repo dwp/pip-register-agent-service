@@ -112,15 +112,18 @@
 
       <h2 class="govuk-heading-m">Application sections completed</h2>
 
-      <p class="govuk-body">All information has been input for the applicant. <br> Continue to save and submit the application and wrap up the call.</p>
+      <p class="govuk-body">All information has been input for the applicant. <br> Continue to submit the application and wrap up the call.</p>
 
-      <form action="/form-handler" method="post" novalidate>
+      <form action="/ucd-register/confirm-application" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         {{ govukButton({
           text: "Save application and continue"
         }) }}
+
+         </form>
+
     </div>
   </div>
 
