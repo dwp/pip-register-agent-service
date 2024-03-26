@@ -2729,6 +2729,11 @@ router.post('/versions/sprint-6/contact-details/contact-details-summary', functi
 //-------------------------------------------------------------------------------------------
 
 // RESEARCH-SPRINT-20
+
+// Save application- i will now submit
+router.post('/design-updates/what-happens-next/save-application', function(request, response) {
+    response.redirect('/design-updates/what-happens-next/what-happens-next')
+})
 //design-updates/sprint-20/what-happens-next/what-happens-next
 router.post('/design-updates/what-happens-next/what-happens-next', function(request, response) {
     var previousOnline = request.session.data['previous-online-claim']
@@ -2780,6 +2785,11 @@ router.post('/design-updates/what-happens-next/paper-whn-1', function(request, r
 // Paper whn 2- paper-after-sent
 router.post('/design-updates/what-happens-next/paper-whn-2', function(request, response) {
     response.redirect('/design-updates/what-happens-next/after-form-sent')
+})
+
+// After-form-sent > end claim and clear session
+router.post('/design-updates/what-happens-next/after-form-sent', function(request, response) {
+    response.redirect('/design-updates/what-happens-next/end-clear-session')
 })
 //-------------------------------------------------------------------------------------------
 
