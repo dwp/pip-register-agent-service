@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Select yes if applicant has a mental health condition or other condition that causes difficulty with memory, learning and decisions",
+      href: "#any-condition"
+    }
+  ]
+}) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-form-group govuk-form-group--error">
+      
+      <h1 class="govuk-heading-l">
+        Do you have a mental health condition or a condition that causes you significant difficulties remembering things, learning new things, or making everyday decisions?
+      </h1>
+
+      {{ govukDetails({
+        summaryText: "Examples of conditions",
+        html: '<p class="govuk-body">This list is not exhaustive.</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Severe depression</li>
+              <li>Bipolar disorder</li>
+              <li>Post Traumatic Stress Disorder (PTSD)</li>
+              <li>Obsessive Compulsive Disorder (OCD)</li>
+              <li>Psychosis</li>
+              <li>Schizophrenia</li>
+              <li>Personality disorder</li>
+              <li>Conduct disorder</li>
+              <li>Attention deficit hyperactivity disorder (ADHD)</li>
+              <li>Down syndrome</li>
+              <li>developmental delay</li>
+              <li>Alzheimer’s or Dementia</li>
+            </ul>'
+      }) }}
+
+      <form class="form" action="#" method="post">
+
+        {{ govukRadios({
+            name: "any-condition",
+            fieldset: {
+              legend: {
+
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ],
+            errorMessage: {
+              text: "Select yes if applicant has a mental health condition or other condition that causes difficulty with memory, learning and decisions"
+            }
+          }) }}
+
+        </div>
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
