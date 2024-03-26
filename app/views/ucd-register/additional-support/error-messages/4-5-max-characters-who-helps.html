@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Name of person helping the applicant must be 200 characters or less",
+      href: "#helpertName"
+    }
+  ]
+}) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        <div class="govuk-form-group govuk-form-group--error">
+        
+        <h1 class="govuk-heading-l">
+          Who will you ask for help? 
+        </h1>
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "Name of helper"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "helper-name",
+          name: "helpertName",
+          errorMessage: {
+            text: "Name of person helping the applicant must be 200 characters or less"
+          }
+        }) }}
+
+      </div>
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
