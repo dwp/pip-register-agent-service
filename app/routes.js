@@ -2733,10 +2733,34 @@ router.post('/versions/sprint-6/contact-details/contact-details-summary', functi
 router.post('/design-updates/what-happens-next/what-happens-next', function(request, response) {
     var previousOnline = request.session.data['previous-online-claim']
     if (previousOnline  == 'yes'){
-        response.redirect('/design-updates/what-happens-next/online-form-option')
-    } else if (previousOnline  == 'no') {
         response.redirect('/design-updates/what-happens-next/previously-claimed-online')
+    } else if (previousOnline  == 'no') {
+        response.redirect('/design-updates/what-happens-next/online-form-option')
     }
+})
+
+router.post('/design-updates/what-happens-next/online-form-option', function(request, response) {
+    var previousOnline = request.session.data['form-online']
+    if (previousOnline  == 'online'){
+        response.redirect('/design-updates/what-happens-next/online-form-contact')
+    } else if (previousOnline  == 'paper') {
+        response.redirect('/design-updates/what-happens-next/paper-whn-1')
+    }
+})
+
+// Online whn1 (form contact details)
+router.post('/design-updates/what-happens-next/online-form-contact', function(request, response) {
+    response.redirect('/design-updates/what-happens-next/online-whn-1')
+})
+
+// Online whn 1- whn 2
+router.post('/design-updates/what-happens-next/online-whn-1', function(request, response) {
+    response.redirect('/design-updates/what-happens-next/online-whn-2')
+})
+
+// Online whn 2- paper-after-sent
+router.post('/design-updates/what-happens-next/online-whn-2', function(request, response) {
+    response.redirect('/design-updates/what-happens-next/after-form-sent')
 })
 
 router.post('/design-updates/what-happens-next/previously-claimed-online', function(request, response) {
@@ -2755,7 +2779,7 @@ router.post('/design-updates/what-happens-next/paper-whn-1', function(request, r
 
 // Paper whn 2- paper-after-sent
 router.post('/design-updates/what-happens-next/paper-whn-2', function(request, response) {
-    response.redirect('/design-updates/what-happens-next/paper-after-sent')
+    response.redirect('/design-updates/what-happens-next/after-form-sent')
 })
 //-------------------------------------------------------------------------------------------
 
