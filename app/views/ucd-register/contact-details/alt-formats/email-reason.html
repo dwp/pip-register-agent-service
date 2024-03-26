@@ -20,21 +20,22 @@
     <div class="govuk-grid-column-two-thirds">
 
     <form class="form" action="#" method="post">
-       
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
-      {{ govukTextarea({
-        name: "moreDetail",
-        id: "more-detail",
-        label: {
-          text: "Why do you need us to contact you by email instead of printed letters?",
-          classes: "govuk-label--l",
-          isPageHeading: true
-        },
-        hint: {
-          text: "Any information you give us will help our 'alternative formats' team assess your request."
-        }
-      }) }}
+      {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+        {{ govukCharacterCount({
+          name: "moreDetail",
+          id: "more-detail",
+          maxlength: 240,
+          label: {
+            text: "Why do you need us to contact you by email instead of printed letters?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Any information you give us will help our 'alternative formats' team assess your request."
+          }
+        }) }}
 
       {{ govukButton({
         text: "Continue"

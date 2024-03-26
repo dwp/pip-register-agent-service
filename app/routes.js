@@ -2769,12 +2769,7 @@ router.post('/design-updates/what-happens-next/online-whn-2', function(request, 
 })
 
 router.post('/design-updates/what-happens-next/previously-claimed-online', function(request, response) {
-    var previousOnline = request.session.data['can-receive-post']
-    if (previousOnline  == 'yes'){
         response.redirect('/design-updates/what-happens-next/paper-whn-1')
-    } else if (previousOnline  == 'no') {
-        response.redirect('#')
-    }
 })
 
 // Paper whn 1- whn 2
