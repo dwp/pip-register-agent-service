@@ -32,8 +32,8 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Enter your last name",
-              href: "#full-name-input"
+              text: "Select yes if same name should be used when contacting applicant",
+              href: "#preferred-name"
             }
           ]
         }) }}
@@ -66,23 +66,40 @@
           },
           id: "last-name",
           name: "last-name",
-          autocomplete: "name",
-          errorMessage: {
-            text: "Enter your last name",
-            spellcheck: false
-          }
+          autocomplete: "name"
         }) }}
 
         {% endcall %}
 
+        {% set preferredNameHtml %}
+        {{ govukInput({
+          id: "preferred-name",
+          name: "preferred-name",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Preferred name"
+          },
+          errorMessage: {
+            text: "Preferred name must be 100 characters or less",
+            spellcheck: false
+          }
+        }) }}
+        {% endset -%}
+
         {{ govukRadios({
-          name: "contact",
+          name: "preferred-name",
           fieldset: {
             legend: {
               text: "Is this the name we should use when we contact you?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
+          },
+          errorMessage: {
+            text: "Select yes if same name should be used when contacting applicant",
+            spellcheck: false
           },
           items: [
             {
