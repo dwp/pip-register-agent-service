@@ -32,8 +32,8 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Enter your last name",
-              href: "#full-name-input"
+              text: "Preferred name must be 100 characters or less",
+              href: "#preferred-name"
             }
           ]
         }) }}
@@ -66,17 +66,30 @@
           },
           id: "last-name",
           name: "last-name",
-          autocomplete: "name",
-          errorMessage: {
-            text: "Enter your last name",
-            spellcheck: false
-          }
+          autocomplete: "name"
         }) }}
 
         {% endcall %}
 
+      {% set preferredNameHtml %}
+      {{ govukInput({
+        id: "preferred-name",
+        name: "preferred-name",
+        type: "tel",
+        autocomplete: "tel",
+        classes: "govuk-!-width-two-thirds",
+        label: {
+          text: "Preferred name"
+        },
+        errorMessage: {
+          text: "Preferred name must be 100 characters or less",
+          spellcheck: false
+        }
+      }) }}
+      {% endset -%}
+
         {{ govukRadios({
-          name: "contact",
+          name: "contact-name",
           fieldset: {
             legend: {
               text: "Is this the name we should use when we contact you?",
@@ -92,8 +105,9 @@
             {
               value: "no",
               text: "No",
+              checked: true,
               conditional: {
-                html: noHtml
+                html: preferredNameHtml
               }
             }
           ]
