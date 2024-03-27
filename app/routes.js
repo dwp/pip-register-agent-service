@@ -662,9 +662,9 @@ router.post('/ucd-register/nationality/uk-2-of-3-years', function(request, respo
     if (ukYears == 'yes'){
         response.redirect('/ucd-register/nationality/insurance-abroad')
     } else if (ukYears == 'no') {
-        response.redirect('/ucd-register/nationality/exportability/insurance-abroad')
+        response.redirect('/ucd-register/nationality/insurance-abroad')
     } else if (ukYears == 'unsure') {
-        response.redirect('/ucd-register/nationality/exportability/insurance-abroad')
+        response.redirect('/ucd-register/nationality/insurance-abroad')
     } 
 })
 
@@ -2738,7 +2738,7 @@ router.post('/design-updates/what-happens-next/save-application', function(reque
 router.post('/design-updates/what-happens-next/what-happens-next', function(request, response) {
     var previousOnline = request.session.data['previous-online-claim']
     if (previousOnline  == 'yes'){
-        response.redirect('/design-updates/what-happens-next/previously-claimed-online')
+        response.redirect('/design-updates/what-happens-next/paper-whn-1')
     } else if (previousOnline  == 'no') {
         response.redirect('/design-updates/what-happens-next/online-form-option')
     }
@@ -2983,8 +2983,13 @@ router.post('/ucd-register/signposting-eligibility/service-start-page', function
     
     // What security questions were answered?
     router.post('/ucd-register/signposting-eligibility/security-check-2', function(request, response) {
-    response.redirect('/ucd-register/signposting-eligibility/passed-security')
-    })
+        var passed = request.session.data['security-verified']
+        if (passed == "passed"){
+            response.redirect('/ucd-register/signposting-eligibility/passed-security')
+        } else if (passed == "more-needed") {
+            response.redirect('/ucd-register/signposting-eligibility/failed-security')
+        }
+        })
     
     // Passed security
     router.post('/ucd-register/signposting-eligibility/passed-security', function(request, response) {

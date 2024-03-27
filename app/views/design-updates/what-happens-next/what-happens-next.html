@@ -24,20 +24,22 @@
 
           <p class="govuk-body">As I do this, I need to give you some important information about what happens next.</p>
 
-          <h2 class="govuk-heading-m">
-            First, we will confirm we have all the information we need from you
-          </h2>
+          <p class="govuk-body">
+            First, we will confirm we have all the information we need from you. We will contact you if we need any more details to continue with your claim.</p>
 
-          <p class="govuk-body">We will contact you if we need any more details to continue with your claim.</p>
+            <p class="govuk-body">
+            We will then send you a form called 'How your disability affects you'.
+            </P>
 
-          <h2 class="govuk-heading-m">
-            We will then send you a form called 'How your disability affects you'
-          </h2>
-          <p class="govuk-body">You can either:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>fill in the form online, using a link we will email to you, or</li>
-            <li>fill in a paper form, which we will send you through the post.</li>
-          </ul>
+          <p class="govuk-body">If you've previously claimed online, you will now need to fill out a paper form.</p>
+
+          {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+          {{ govukDetails({
+            summaryText: "Why applicant cannot apply online again",
+            text: "[Reason why they can't apply online again]"
+          }) }}
+          
 
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
