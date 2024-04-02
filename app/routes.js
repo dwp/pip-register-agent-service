@@ -1170,6 +1170,65 @@ router.post('/ucd-register/motability/motability', function(request, response) {
 
 // -------------------------------------------------------------------------------------
 
+// Save application- i will now submit
+router.post('/ucd-register/what-happens-next/save-application', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/what-happens-next')
+})
+//design-updates/sprint-20/what-happens-next/what-happens-next
+router.post('/ucd-register/what-happens-next/what-happens-next', function(request, response) {
+    var previousOnline = request.session.data['previous-online-claim']
+    if (previousOnline  == 'yes'){
+        response.redirect('/ucd-register/what-happens-next/paper-whn-1')
+    } else if (previousOnline  == 'no') {
+        response.redirect('/ucd-register/what-happens-next/online-form-option')
+    }
+})
+
+router.post('/ucd-register/what-happens-next/online-form-option', function(request, response) {
+    var previousOnline = request.session.data['form-online']
+    if (previousOnline  == 'online'){
+        response.redirect('/ucd-register/what-happens-next/online-form-contact')
+    } else if (previousOnline  == 'paper') {
+        response.redirect('/ucd-register/what-happens-next/paper-whn-1')
+    }
+})
+
+// Online whn1 (form contact details)
+router.post('/ucd-register/what-happens-next/online-form-contact', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/online-whn-1')
+})
+
+// Online whn 1- whn 2
+router.post('/ucd-register/what-happens-next/online-whn-1', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/online-whn-2')
+})
+
+// Online whn 2- paper-after-sent
+router.post('/ucd-register/what-happens-next/online-whn-2', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/after-form-sent')
+})
+
+router.post('/ucd-register/what-happens-next/previously-claimed-online', function(request, response) {
+        response.redirect('/ucd-register/what-happens-next/paper-whn-1')
+})
+
+// Paper whn 1- whn 2
+router.post('/ucd-register/what-happens-next/paper-whn-1', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/paper-whn-2')
+})
+
+// Paper whn 2- paper-after-sent
+router.post('/ucd-register/what-happens-next/paper-whn-2', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/after-form-sent')
+})
+
+// After-form-sent > end claim and clear session
+router.post('/ucd-register/what-happens-next/after-form-sent', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/end-clear-session')
+})
+
+// -------------------------------------------------------------------------------------
+
 // CURRENT: NON-MVP PROTOTYPE
 
 // What is your name page
