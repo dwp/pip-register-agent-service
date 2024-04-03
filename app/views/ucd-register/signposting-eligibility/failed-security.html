@@ -22,9 +22,10 @@ href: "javascript:window.history.back()"
 
       <p class="govuk-body">If we cannot confirm your identity, you will not be able to claim PIP.</p>
 
-      <p class="govuk-body">
-        But if you would still like to apply for PIP now, we can <a href="/ucd-register/signposting-eligibility/srel" class="govuk-link">continue with your application</a>.
-      </p>
+      {{ govukButton({
+        text: "Continue",
+        href: "/ucd-register/signposting-eligibility/srel"
+      }) }}
 
   </form>
     
