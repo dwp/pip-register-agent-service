@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="#" method="post" method="post">
+
+      <h1 class="govuk-heading-l">We may need to contact you for more information to confirm your identity</h1>
+
+      <p class="govuk-body">If we cannot confirm your identity, you will not be able to claim PIP.</p>
+
+      {{ govukButton({
+        text: "Continue",
+        href: "/ucd-register/signposting-eligibility/srel"
+      }) }}
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}
