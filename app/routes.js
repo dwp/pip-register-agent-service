@@ -448,7 +448,7 @@ var self = request.session.data['claiming-self']
 if (self == 'yes'){
     response.redirect('/ucd-register/signposting-eligibility/over-16')
 } else if (self == "no") {
-    response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
+    response.redirect('/ucd-register/signposting-eligibility/someone-else-bau-kickout')
 } 
 })
 
@@ -2969,90 +2969,92 @@ router.post('/versions/devs/contact-details-summary', function(request, response
 
 //-------------------------------------------------------------------------------------------
 
-// DEV READY
+// Post MTP Eligibility and signposting route
 
 // Eligibility launched from main UI
-router.post('/ucd-register/signposting-eligibility/service-start-page', function(request, response) {
+router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', function(request, response) {
     var newClaim = request.session.data['welcome']
     if (newClaim == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/new-ni-claims')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims')
     } else if (newClaim == "no") {
-        response.redirect('/ucd-register/signposting-eligibility/existing-claims')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/existing-claims')
     }
     })
     
     // NI new claims
-    router.post('/ucd-register/signposting-eligibility/new-ni-claims', function(request, response) {
+    router.post('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims', function(request, response) {
     var niPip = request.session.data['ni-pip']
     if (niPip == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/claiming-self')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/claiming-self')
     } else if (niPip == "england-wales") {
-        response.redirect('/ucd-register/signposting-eligibility/england-wales')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/england-wales')
     } else if (niPip == "scotland") {
-        response.redirect('/ucd-register/signposting-eligibility/scotland')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/scotland')
     }
     })
     
     // Are you claiming for yourself?
-    router.post('/ucd-register/signposting-eligibility/claiming-self', function(request, response) {
+    router.post('/versions/UCD/post-mtp-sign-eligibility/claiming-self', function(request, response) {
     var self = request.session.data['claiming-self']
     if (self == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/srel')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
     } else if (self == "no") {
-        response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel-bau-kickout')
     } 
     })
     
     // Claiming under SREL?
-    router.post('/ucd-register/signposting-eligibility/srel', function(request, response) {
+    router.post('/versions/UCD/post-mtp-sign-eligibility/srel', function(request, response) {
     var srel = request.session.data['srel']
     if (srel == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/srel-bau-kickout')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel-bau-kickout')
     } else if (srel == "no") {
-        response.redirect('/ucd-register/signposting-eligibility/over-16')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/over-16')
     } 
     })
     
     // Authorised person
-    router.post('/ucd-register/signposting-eligibility/authorised-person', function(request, response) {
+    router.post('/versions/UCD/post-mtp-sign-eligibility/authorised-person', function(request, response) {
     var authorised = request.session.data['authorised-person']
     if (authorised == 'authorised'){
-        response.redirect('/ucd-register/signposting-eligibility/third-party-route')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/third-party-route')
     } else if (authorised == "appointed") {
-        response.redirect('/ucd-register/signposting-eligibility/external-party-route')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/external-party-route')
     } else if (authorised == "neither") {
-        response.redirect('/ucd-register/signposting-eligibility/end-call')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/end-call')
     } 
     })
     
     // Are you over 16?
-    router.post('/ucd-register/signposting-eligibility/over-16', function(request, response) {
-    var over16 = request.session.data['over-16']
+    router.post('/versions/UCD/post-mtp-sign-eligibility/over-16', function(request, response) {
+    var over16 = request.session.data['age']
     if (over16 == 'yes'){
-        response.redirect('/ucd-register/signposting-eligibility/security-check-2')
-    } else if (over16 == "no") {
-        response.redirect('/ucd-register/signposting-eligibility/under-16-ineligible')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/security-check-2')
+    } else if (over16 == "no-under-16") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/under-16-ineligible')
+    } else if (over16 == "no-over-spa") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/stop-getting-pip-last-year')
     }
     })
     
     // What is your National Insurance number?
-    router.post('/ucd-register/signposting-eligibility/what-is-ni-number', function(request, response) {
-    response.redirect('/ucd-register/signposting-eligibility/security-check-2')
+    router.post('/versions/UCD/post-mtp-sign-eligibility/what-is-ni-number', function(request, response) {
+    response.redirect('/versions/UCD/post-mtp-sign-eligibility/security-check-2')
     })
     
     // What security questions were answered?
-    router.post('/ucd-register/signposting-eligibility/security-check-2', function(request, response) {
+    router.post('/versions/UCD/post-mtp-sign-eligibility/security-check-2', function(request, response) {
         var passed = request.session.data['security-verified']
         if (passed == "passed"){
-            response.redirect('/ucd-register/signposting-eligibility/passed-security')
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/passed-security')
         } else if (passed == "more-needed") {
-            response.redirect('/ucd-register/signposting-eligibility/failed-security')
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/failed-security')
         }
         })
     
     // Passed security
-    router.post('/ucd-register/signposting-eligibility/passed-security', function(request, response) {
-    response.redirect('/ucd-register/welcome-screens/welcome-screen-ni')
+    router.post('/versions/UCD/post-mtp-sign-eligibility/passed-security', function(request, response) {
+    response.redirect('/ucd-concepts-testing')
     })
 
 //--------------------------------------------------------------------------------------------
