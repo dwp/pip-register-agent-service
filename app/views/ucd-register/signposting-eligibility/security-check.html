@@ -18,21 +18,47 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-l">I need to ask you three questions to confirm your identity</h1>
+      <form action="#" method="post" method="post">
+        
+        <h1 class="govuk-heading-l">Before we can start your claim we need to confirm your identity</h1>
 
-      <p class="govuk-body">Then we can start your application.</p>
+        <h2 class="govuk-heading-m">What is your National Insurance number?</h2>
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+          {{ govukInput({
+            classes: "govuk-input--width-20",
+            id: "event-name",
+            name: "eventName",
+            hint: {
+              text: "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
+            }
+          }) }}
+  
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/signposting-eligibility/further-questions-nino" class="govuk-link govuk-link--no-visited-state">Applicant cannot give a UK National Insurance number
+          </a>
+        </p>
+
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+  
+        {{ govukInsetText({
+          classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+            html: '<h1 class="govuk-body">Agent: Enter National Insurance number in Searchlight.</h3>'
+        }) }}
+
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
         classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h2 class="govuk-heading-m">Agent: Ask the applicant to confirm 3 of their personal data entries on Searchlite.</h2>'
+          html: "<h2 class='govuk-heading-m'>Agent: Ask 3 security questions, to check against applicant's record in Searchlight</h2>"
       }) }}
 
       {% from "govuk/components/details/macro.njk" import govukDetails %}
 
       {{ govukDetails({
-        summaryText: "Security questions",
+        summaryText: "List of security questions",
           html: '
               <ul class="govuk-list govuk-list--bullet">
                 <li>What is your previous surname(s)?What is your previous surname(s)?</li>
@@ -48,27 +74,46 @@ href: "javascript:window.history.back()"
                 <li>What is one of your children’s dates of birth?</li>
               </ul>'
         }) }}
-        
-      {{ govukInsetText({
-        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h2 class="govuk-heading-m">Agent: Have 2 out of 3 security questions been verified?</h2>'
-      }) }}
+
+
+        {{ govukInsetText({
+          classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+            html: "<h2 class='govuk-heading-m'>Agent: Have at least 2 out of 3 questions been answered correctly?</h2>"
+        }) }}
 
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
       {{ govukRadios({
-        name: "securityVerified",
+        name: "security-verified",
         items: [
         {
-          value: "verified",
-          text: "Yes, at least 2 have been verified"
+          value: "yes",
+          text: "Yes"
         },
         {
-          value: "unverified",
-          text: "No, claimant can't be verified"
+          value: "no",
+          text: "No"
         }
         ]
       }) }}
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: "<h2 class='govuk-heading-m'>Agent: Check if applicant is getting any of these benefits:</h2>"
+      }) }}
+      <ul class="govuk-list govuk-list--bullet">
+        <li>War Pension Constant Attendance Allowance (WPCAA)</li>
+          Armed Forces Independence Payment (AFIP)</li>
+        <li> War Pension Mobility Supplement (WPMS)</li>
+        <li>Industrial Injuries Disablement Benefit Constant Attendance Allowance (IIDBCAA)</li>
+        <li>Armed Forces Independence Payment (AFIP)</li>
+      </ul>
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: "<h2 class='govuk-heading-m'>Agent: If applicant is getting any of these benefits, enter which ones in PIPCS Notes.</h2>"
+      }) }}
+
 
     {{ govukButton({
       text: "Continue"
