@@ -31,16 +31,6 @@
             We will then send you a form called 'How your disability affects you'.
             </P>
 
-          <p class="govuk-body">If you've previously claimed online, you will now need to fill out a paper form.</p>
-
-          {% from "govuk/components/details/macro.njk" import govukDetails %}
-
-          {{ govukDetails({
-            summaryText: "Why applicant cannot apply online again",
-            text: "[Reason why they can't apply online again]"
-          }) }}
-          
-
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
           {{ govukRadios({
