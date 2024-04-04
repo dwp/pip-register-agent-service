@@ -426,7 +426,7 @@ var newClaim = request.session.data['claiming-self']
 if (newClaim == 'yes'){
     response.redirect('/ucd-register/signposting-eligibility/over-16')
 } else if (newClaim == "no") {
-    response.redirect('/ucd-register/signposting-eligibility/existing-claims')
+    response.redirect('/ucd-register/signposting-eligibility/someone-else-bau-kickout')
 }
 })
 
