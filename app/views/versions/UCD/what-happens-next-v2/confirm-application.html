@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirmation page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Application complete",
+        html: "Your reference number<br><strong>HDJ2123F</strong>"
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>
+        I will now submit your claim.
+      </p>
+
+      <p>
+        I need to give you some important information about what happens next.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        We will then send you a form called 'How your disability affects you'
+      </h2>
+
+      <p class="govuk-body">You can either:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>fill in the form online, using a link we will email to you, or</li>
+        <li>fill in a paper form, which we will send you through the post.</li>
+      </ul>
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        name: "previousOnlineClaim",
+        fieldset: {
+          legend: {
+            text: "Have you previously claimed PIP online?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

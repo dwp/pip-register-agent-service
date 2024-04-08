@@ -110,16 +110,12 @@
 
       </ol>
 
-      <h2 class="govuk-heading-m">Application completed</h2>
-
-      <p class="govuk-body">All registration information has completed.<br> Continue to save and submit the application and explain what happens next.</p>
-
       <form action="/ucd-register/what-happens-next/what-happens-next" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         {{ govukButton({
-          text: "Save application and continue"
+          text: "Save and continue"
         }) }}
 
          </form>
