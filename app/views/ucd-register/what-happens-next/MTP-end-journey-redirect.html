@@ -18,33 +18,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ govukPanel({
-        titleText: "Application complete"
-      }) }}
 
-      <h2 class="govuk-heading-m">What happens now</h2>
+      <h1 class="govuk-heading-l">[Service start]</h1>
 
       <p class="govuk-body">
-        This is a test version of the claim registration journey, so the data you have entered will not be submitted.
-      </p>
-
-      <p class="govuk-body">
-        You can now delete the application data and return to the home page.
+        <a href="/index" class="govuk-link govuk-link--no-visited-state">Return to Prototype homepage</a>
       </p>
       
-    </div>
-  </div>
-
-
-  {{ govukButton({
-    text: "Delete and exit",
-    classes: "govuk-button--warning",
-    href: "/ucd-register/what-happens-next/MTP-end-journey-redirect"
-   }) }}
-
-
-      </form>
-
     </div>
   </div>
 
