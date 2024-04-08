@@ -100,22 +100,25 @@
               <li class="govuk-prototype-kit-task-list__item">
                 <span class="govuk-prototype-kit-task-list__task-name">
                   <a href="/ucd-register/motability/motability-summary" aria-describedby="read-declaration-status">
-                   Change Motability Scheme
+                   Change Motability
                   </a>
                 </span>
                 <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="eligibility-status">Completed</strong>
               </li>
             </ul>
             </li>
-
       </ol>
 
-      <form action="#" method="post" novalidate>
+      <h2 class="govuk-heading-m">Application completed</h2>
+
+      <p class="govuk-body">All registration information has completed.<br> Continue to save and submit the application and explain what happens next.</p>
+
+      <form action="/ucd-register/what-happens-next/what-happens-next" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Save application and continue"
         }) }}
 
          </form>
