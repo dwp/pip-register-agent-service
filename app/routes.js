@@ -1125,9 +1125,14 @@ router.post('/ucd-register/bank-details/bank-details-summary', function(request,
     response.redirect('/ucd-register/task-list-bank-done')
 })
 
-// Bank details CYA to task list
+//Motability to Motability CYA
 router.post('/ucd-register/motability/motability', function(request, response) {
     response.redirect('/ucd-register/task-list-motability-done')
+})
+
+//Motability to Motability CYA
+router.post('/ucd-register/task-list-motability-done', function(request, response) {
+    response.redirect('/ucd-register/what-happens-next/what-happens-next')
 })
 
 // -------------------------------------------------------------------------------------
