@@ -22,9 +22,10 @@
             We need to send a login code to your mobile phone, and a link to your email
           </h1>
 
-          <p class="govuk-body">
-            <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank"> Enter phone number and email address (opens in new tab)</a>
-          </p>
+          {{ govukInsetText({
+            classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+              html: "<h1 class='govuk-heading-m'>Agent: Enter phone number and email address</h3>"
+          }) }}
 
           {{ govukButton({
             text: "Continue"
