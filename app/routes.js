@@ -2964,31 +2964,9 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
     router.post('/versions/UCD/post-mtp-sign-eligibility/claiming-self', function(request, response) {
     var self = request.session.data['claiming-self']
     if (self == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
-    } else if (self == "no") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel-bau-kickout')
-    } 
-    })
-    
-    // Claiming under SREL?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/srel', function(request, response) {
-    var srel = request.session.data['srel']
-    if (srel == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel-bau-kickout')
-    } else if (srel == "no") {
         response.redirect('/versions/UCD/post-mtp-sign-eligibility/over-16')
-    } 
-    })
-    
-    // Authorised person
-    router.post('/versions/UCD/post-mtp-sign-eligibility/authorised-person', function(request, response) {
-    var authorised = request.session.data['authorised-person']
-    if (authorised == 'authorised'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/third-party-route')
-    } else if (authorised == "appointed") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/external-party-route')
-    } else if (authorised == "neither") {
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/end-call')
+    } else if (self == "no") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/someone-else-bau-kickout')
     } 
     })
     
@@ -3003,26 +2981,26 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
         response.redirect('/versions/UCD/post-mtp-sign-eligibility/stop-getting-pip-last-year')
     }
     })
-    
-    // What is your National Insurance number?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/what-is-ni-number', function(request, response) {
-    response.redirect('/versions/UCD/post-mtp-sign-eligibility/security-check-2')
-    })
-    
+
     // What security questions were answered?
     router.post('/versions/UCD/post-mtp-sign-eligibility/security-check-2', function(request, response) {
         var passed = request.session.data['security-verified']
         if (passed == "passed"){
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/passed-security')
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
         } else if (passed == "more-needed") {
             response.redirect('/versions/UCD/post-mtp-sign-eligibility/failed-security')
         }
         })
-    
-    // Passed security
-    router.post('/versions/UCD/post-mtp-sign-eligibility/passed-security', function(request, response) {
-    response.redirect('/ucd-concepts-testing')
-    })
+
+    // Claiming under SREL?
+    router.post('/versions/UCD/post-mtp-sign-eligibility/srel', function(request, response) {
+        var srel = request.session.data['srel']
+        if (srel == 'yes'){
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel-bau-kickout')
+        } else if (srel == "no") {
+            response.redirect('/ucd-concepts-testing')
+        } 
+        })
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
