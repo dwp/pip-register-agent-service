@@ -22,59 +22,13 @@
             We need to send a login code to your mobile phone, and a link to your email
           </h1>
 
-          {% set phoneHtml %}
-          {{ govukInput({
-            id: "contact-by-phone",
-            name: "contactByPhone",
-            type: "tel",
-            autocomplete: "tel",
-            classes: "govuk-!-width-one-third",
-            label: {
-              text: "Mobile phone number"
-            }
+          <p class="govuk-body">
+            <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank"> Enter phone number and email address (opens in new tab)</a>
+          </p>
+
+          {{ govukButton({
+            text: "Continue"
           }) }}
-          {% endset -%}
-
-          {{ govukRadios({
-            name: "can-receive-post",
-            fieldset: {
-              legend: {
-                text: "Should we send the code to the mobile phone number you gave us earlier?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            items: [
-              {
-                value: "mobile",
-                text: "[mobile phone number]"
-              },
-              {
-                value: "different",
-                text: "Different number",
-                conditional: {
-                  html: phoneHtml
-                }
-              }
-            ]
-          }) }}
-
-          {% from "govuk/components/input/macro.njk" import govukInput %}
-
-          {{ govukInput({
-            label: {
-              text: "What email address should we send the link to?",
-              classes: "govuk-label--m",
-              isPageHeading: true
-            },
-            id: "email-address",
-            name: "emailAddress"
-          }) }}
-
-            {{ govukButton({
-              text: "Continue"
-            }) }}
-
 
       </form>
 
