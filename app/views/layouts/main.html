@@ -9,26 +9,30 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% block header %}
   {{ dwpHeader({
-  name: "Register for PIP",
+  name: "Personal Independnce Payment",
   serviceHref: '/',
   container:true
   }) }}
 {% endblock %}
 
+{% block footer %}
+
 {% from "internal-service-footer/macro.njk" import dwpFooter %}
 
 {{ dwpFooter({
-meta: {
-visuallyHiddenTitle: "Support links",
-items: [
-{
-  href: "",
-  text: "Accessibility statement"
-},
-{
-  href: "",
-  text: "Privacy notice"
-}
-]
-}
+  meta: {
+    visuallyHiddenTitle: "Meta links",
+    items: [
+    {
+      href: "#1",
+      text: "Accessibility statement"
+    },
+    {
+      href: "#2",
+      text: "Cookies"
+    }
+    ]
+  }
 }) }} 
+
+{% endblock %}
