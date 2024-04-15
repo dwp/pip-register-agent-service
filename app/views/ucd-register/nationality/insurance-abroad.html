@@ -16,26 +16,25 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form class="form" action="#" method="post">
-
-        <h1 class="govuk-heading-l">
-          Are you or a family member working or paying insurance in a country in the European Economic Area or Switzerland?
-        </h1> 
-
-          <p class="govuk-body">By family member we mean:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>A husband, wife or civil partner, or</li>
-            <li>A parent you are dependent on</li>
-          </ul>
+    <form class="form" action="#" method="post"> 
       
       {{ govukRadios({
         name: "insurance-abroad",
         fieldset: {
           legend: {
+            text: "Are you or a family member working or paying insurance in a country in the European Economic Area or Switzerland?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
+          hint: {
+            html:'
+            <p class="govuk-body govuk-hint">By family member we mean:</p>
+            <ul class="govuk-hint govuk-list govuk-list--bullet">
+              <li>A husband, wife or civil partner, or</li>
+              <li>A parent you are dependent on</li>
+            </ul>'
+          },
         items: [
           {
             value: "yes",

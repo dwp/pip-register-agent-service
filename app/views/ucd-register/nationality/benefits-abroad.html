@@ -19,24 +19,21 @@
       
       <form class="form" action="#" method="post">
 
-        <h1 class="govuk-heading-l">
-          Are you or a family member receiving pensions or benefits from a country in the European Economic Area or Switzerland?
-        </h1>
-
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
           name: "benefits-abroad",
           fieldset: {
             legend: {
+              text: "Are you or a family member receiving pensions or benefits from a country in the European Economic Area or Switzerland?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
             html:'
-            <p class="govuk-body">By family member we mean:</p>
-            <ul class="govuk-list govuk-list--bullet">
+            <p class="govuk-body govuk-hint">By family member we mean:</p>
+            <ul class="govuk-hint govuk-list govuk-list--bullet">
               <li>A husband, wife or civil partner, or</li>
               <li>A parent you are dependent on</li>
             </ul>'
