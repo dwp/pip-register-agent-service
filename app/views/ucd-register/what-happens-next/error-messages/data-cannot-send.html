@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <form action="#" method="post" method="post">
+
+  <h1 class="govuk-heading-l">Sorry, there is a problem submitting the application</h1>
+
+  <p>Check if the applicant’s claim data is now in PIPCS.</p>
+  <p>If any of the claim data is missing, copy it over to PIPCS now.</p>
+  
+  <p><a href="/ucd-register/task-list-motability-done">Go to application answers</a></p>
+  <p><a href="/ucd-register/signposting-eligibility/service-start-page">Start new claim</a></p>
+  <p><a href="#">Go to homepage</a></p>
+
+</form>
+
+  </div>
+</div>
+
+  {% endblock %}
