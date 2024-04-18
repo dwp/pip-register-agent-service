@@ -1191,7 +1191,7 @@ router.post('/ucd-register/what-happens-next/paper-whn-2', function(request, res
 
 // After-form-sent > end claim and clear session
 router.post('/ucd-register/what-happens-next/after-form-sent', function(request, response) {
-    response.redirect('/ucd-register/what-happens-next/end-clear-session')
+    response.redirect('/ucd-register/what-happens-next/application-submitted')
 })
 
 // -------------------------------------------------------------------------------------

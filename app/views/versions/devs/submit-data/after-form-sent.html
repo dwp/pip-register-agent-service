@@ -15,6 +15,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
         
           <h1 class="govuk-heading-l">
             After you send us the form
@@ -31,12 +33,6 @@
               iconFallbackText: "Warning"
             }) }}
 
-    </div>
-
-        <div class="govuk-grid-column-two-thirds">
-
-            <form action="#" method="post" method="post">
-
             <h2 class="govuk-heading-m">If you have an assessment, you can ask for a recording</h2>
 
             <p class="govuk-body">Having a recording may be useful if you disagree with any of the information recorded in the assessment report.  </p>
@@ -47,15 +43,14 @@
 
             <h2 class="govuk-heading-m">Do you understand what happens next and what you need to do now?</h2>
 
-            <p class="govuk-body">Thank you for calling the PIP new claims line.</p>
-
               {{ govukButton({
-                text: "Send application"
+                text: "Continue"
               }) }}
-            
-            </form>
-          
-        </div>
+
+
+      </form>
+
+    </div>
   </div>
 
 {% endblock %}
