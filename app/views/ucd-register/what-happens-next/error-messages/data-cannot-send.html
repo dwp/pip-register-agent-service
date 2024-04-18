@@ -23,8 +23,17 @@
   <p>Check if the applicant’s answers are now in PIPCS.</p>
   <p>If any or all of the claim data is missing, copy it over to PIPCS now.</p>
   <p><a href="/ucd-register/task-list-motability-done">Go to applicant's answers</a></p>
-  <p><a href="/ucd-register/signposting-eligibility/service-start-page">Start new claim</a></p>
-  <p><a href="#">Go to homepage</a></p>
+
+  {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "Any answers that are not in PIPCS will be deleted if you start a new claim or go to homepage.",
+  iconFallbackText: "Warning"
+}) }}
+
+<p class="govuk-body">If all the applicant’s answers are in PIPCS, you can <a class="govuk-link" href="/ucd-register/signposting-eligibility/service-start-page">start a new claim</a>.</p>
+
+<p class="govuk-body"><a class="govuk-link" href="#">Go to homepage</a></p>
 
 </form>
 
