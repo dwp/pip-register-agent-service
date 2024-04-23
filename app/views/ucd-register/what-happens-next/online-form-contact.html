@@ -32,59 +32,63 @@
             classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
               html: "<p class='govuk-body'>Action: Copy the applicant's details into the invitation form, then return to this screen.</p>"
           }) }}
-                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      National Insurance number
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      QQ 12 34 56 A
-                    </dd>
-                  </div>
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      First name
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      Sarah
-                    </dd>
-                  </div>
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Last name
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      Phillips
-                    </dd>
-                  </div>
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Date of birth
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      21 05 1979
-                    </dd>
-                  </div>
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                     Postcode
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      <p class="govuk-body">WR1 1NL</p>
-                    </dd>
-                  </div>
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Mobile number
-                     </dt>
-                  <dd class="govuk-summary-list__value">
-                    <p class="govuk-body">07700 900457</p>
-                  </dd>
-                  </div>
-                </dl>
-              
-              </div>
-            </div>
+
+          {% from "govuk/components/table/macro.njk" import govukTable %}
+
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--l",
+              firstCellIsHeader: true,
+              rows: [
+              [
+              {
+                text: " National Insurance number"
+              },
+              {
+                text: "QQ 12 34 56 A"
+              }
+            ],
+                [
+                  {
+                    text: " First name"
+                  },
+                  {
+                    text: "Sarah"
+                  }
+                ],
+                [
+                  {
+                    text: "Last name"
+                  },
+                  {
+                    text: "Phillips"
+                  }
+                ],
+                [
+                  {
+                    text: "Date of birth"
+                  },
+                  {
+                    text: "21 05 1979"
+                  }
+                ],
+                [
+                {
+                  text: "Postcode"
+                },
+                {
+                  text: "WR1 1NL"
+                }
+              ],
+              [
+              {
+                text: "Mobile number"
+              },
+              {
+                text: "07700 900457"
+              }
+            ]
+              ]
+            }) }}
 
           {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
@@ -92,13 +96,13 @@
             name: "email-sent",
             fieldset: {
               legend: {
-                text: "Confirm email invitation has been sent",
+                text: "I have sent you the email now",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--m"
               }
             },
             hint: {
-              text: "Email must be sent to claimant to receive the online form."
+              text: "Select the completed task."
             },
             items: [
               {
