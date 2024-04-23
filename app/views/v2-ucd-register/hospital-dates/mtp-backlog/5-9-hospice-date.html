@@ -22,16 +22,21 @@
       <form class="form" action="#" method="post">
         <div class="govuk-width-container">
 
-          <h1 class="govuk-heading-l">What date did you enter the hospice?</h1>
-
           {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
         {{ govukDateInput({
           id: "passport-issued",
           namePrefix: "hospice-date",
-          hint: {
-            text: "Enter a date, like  27 3 2007"
-          }
+          fieldset: {
+            legend: {
+              text: "What date did you enter the hospice?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+               }
+            },
+            hint: {
+              text: "Enter a date, like  27 3 2007"
+            }
         }) }}
 
         {{ govukButton({
