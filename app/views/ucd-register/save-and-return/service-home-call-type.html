@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
+
+      <h1 class="govuk-heading-xl">
+        Hello, you're through to the Department for Communities
+      </h1>
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        name: "call-type",
+        fieldset: {
+          legend: {
+            text: "What are you calling about?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "new-claim",
+            text: "New claim",
+            hint: {
+              text: "Person does not have a claim with PIP."
+            }
+          },
+          {
+            value: "resume-application",
+            text: "Resume a claim application",
+            hint: {
+              text: "e.g. an applicaiton was disconnected on the phone."
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+
+{% endblock %}

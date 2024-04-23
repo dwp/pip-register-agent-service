@@ -1195,6 +1195,39 @@ router.post('/ucd-register/what-happens-next/after-form-sent', function(request,
 })
 
 // -------------------------------------------------------------------------------------
+// POST MTP: 
+
+//Save and return
+router.post('/ucd-register/save-and-return/service-home-call-type', function(request, response) {
+    var callType = request.session.data['call-type']
+    if (callType  == 'new-claim'){
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims')
+    } else if (callType  == 'resume-application') {
+        response.redirect('/ucd-register/save-and-return/search-claimant')
+    }
+})
+
+// claimant search > found nino
+router.post('/ucd-register/save-and-return/search-claimant', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/nino-found')
+})
+
+// confirm nino > security check
+router.post('/ucd-register/save-and-return/nino-found', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/security-check')
+})
+
+// security check > access task list
+router.post('/ucd-register/save-and-return/security-check', function(request, response) {
+    var passed = request.session.data['security-verified']
+    if (passed  == 'yes') {
+    response.redirect('/ucd-register/save-and-return/task-list-in-progress-hospice')
+} else if (passed  == 'no') {
+    response.redirect('#')
+}
+})
+
+// -------------------------------------------------------------------------------------
 
 // CURRENT: NON-MVP PROTOTYPE
 

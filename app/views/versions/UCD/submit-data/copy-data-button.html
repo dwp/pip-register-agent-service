@@ -19,19 +19,17 @@
       <form action="#" method="post" method="post">
         
           <h1 class="govuk-heading-l">
-            We will now send you an email with a link to the online form
+            We need to send you an email with a link to the online form
           </h1>
 
           <p class="govuk-body">
-            I need to enter some of your details again to <a href="https://www.notifications.service.gov.uk/sign-in" class="govuk-link" rel="noreferrer noopener" target="_blank">send the email invitation (opens in new tab)</a>.
+            Action: Copy the applicant's details into the <a href="https://www.notifications.service.gov.uk/sign-in" class="govuk-link" rel="noreferrer noopener" target="_blank">email invitation form (opens in new tab)</a>.
           </p>
 
-          {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-  
-          {{ govukInsetText({
-            classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
-              html: "<p class='govuk-body'>Action: Copy the applicant's details into the invitation form, then return to this screen.</p>"
-          }) }}
+          <p class="govuk-body">
+            Return to this screen to confirm the invitation email has been sent.
+          </p>
+ 
                 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
@@ -39,6 +37,11 @@
                     </dt>
                     <dd class="govuk-summary-list__value">
                       QQ 12 34 56 A
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <div class="app-example__code">
+                        <button class="app-example__copy-code-button" aria-live="assertive" data-module="html">Copy</button>
+                      </div>
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
@@ -48,6 +51,11 @@
                     <dd class="govuk-summary-list__value">
                       Sarah
                     </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <div class="app-example__code">
+                        <button class="app-example__copy-code-button" aria-live="assertive" data-module="html">Copy</button>
+                      </div>
+                    </dd>
                   </div>
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
@@ -55,6 +63,11 @@
                     </dt>
                     <dd class="govuk-summary-list__value">
                       Phillips
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <div class="app-example__code">
+                        <button class="app-example__copy-code-button" aria-live="assertive" data-module="html">Copy</button>
+                      </div>
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
@@ -64,6 +77,11 @@
                     <dd class="govuk-summary-list__value">
                       21 05 1979
                     </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <div class="app-example__code">
+                        <button class="app-example__copy-code-button" aria-live="assertive" data-module="html">Copy</button>
+                      </div>
+                    </dd>
                   </div>
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
@@ -71,6 +89,12 @@
                     </dt>
                     <dd class="govuk-summary-list__value">
                       <p class="govuk-body">WR1 1NL</p>
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <div class="app-example__code">
+                        <button class="app-example__copy-code-button" aria-live="assertive" data-module="html">Copy
+                        </button>
+                      </div>
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
@@ -80,30 +104,27 @@
                   <dd class="govuk-summary-list__value">
                     <p class="govuk-body">07700 900457</p>
                   </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <div class="app-example__code">
+                      <button class="app-example__copy-code-button" aria-live="assertive" data-module="html">Copy</button>
+                    </div>
+                  </dd>
                   </div>
                 </dl>
               
               </div>
             </div>
-
+      
           {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
           {{ govukCheckboxes({
             name: "email-sent",
             fieldset: {
-              legend: {
-                text: "Confirm email invitation has been sent",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            hint: {
-              text: "Email must be sent to claimant to receive the online form."
             },
             items: [
               {
                 value: "email-sent",
-                text: "Sent invitation email"
+                text: "Invitation email has been sent"
               }
             ]
           }) }}

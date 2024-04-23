@@ -1,0 +1,126 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="#" method="post" method="post">
+
+      <form action="#" method="post" method="post">
+        
+        <h1 class="govuk-heading-l">Before we can start your claim we need to confirm your identity</h1>
+
+        <h2 class="govuk-heading-m">What is your National Insurance number?</h2>
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+          {{ govukInput({
+            classes: "govuk-input--width-20",
+            id: "event-name",
+            name: "eventName",
+            hint: {
+              text: "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
+            }
+          }) }}
+  
+        <p class="govuk-body">
+          <a href="/v2-ucd-register/signposting-eligibility/further-questions-nino" class="govuk-link govuk-link--no-visited-state">Applicant cannot give a UK National Insurance number
+          </a>
+        </p>
+
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+  
+        {{ govukInsetText({
+          classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+            html: '<h1 class="govuk-body">Agent: Enter National Insurance number in Searchlight.</h3>'
+        }) }}
+
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: "<h2 class='govuk-heading-m'>Agent: Ask 3 security questions, to check against applicant's record in Searchlight</h2>"
+      }) }}
+
+      {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+      {{ govukDetails({
+        summaryText: "List of security questions",
+          html: '
+              <ul class="govuk-list govuk-list--bullet">
+                <li>What is your previous surname(s)?</li>
+                <li>What is your previous address(es)? First line of address and town are acceptable, without postcode. </li>
+                <li>Name another benefit you receive? A “None” response is acceptable</li>
+                <li>On which date did your claim for the other benefit start? The correct month and year are acceptable.</li>
+                <li>What is the weekly or monthly amount of the other benefit? Answers up to £5 more or less than the correct number are acceptable.</li>
+                <li>What other benefit have you claimed previously, regardless of whether you were paid it?</li>
+                <li>What is your partner’s National Insurance Number?</li>
+                <li>What is your partner’s full name?</li>
+                <li>What is your partner’s date of birth?</li>
+                <li>What is one of your children’s full names?</li>
+                <li>What is one of your children’s dates of birth?</li>
+              </ul>'
+        }) }}
+
+
+        {{ govukInsetText({
+          classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+            html: "<h2 class='govuk-heading-m'>Agent: Have at least 2 out of 3 questions been answered correctly?</h2>"
+        }) }}
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        name: "security-verified",
+        items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+        ]
+      }) }}
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: "<h2 class='govuk-heading-m'>Agent: Check if applicant is getting any of these benefits:</h2>"
+      }) }}
+      <ul class="govuk-list govuk-list--bullet">
+        <li>War Pension Constant Attendance Allowance (WPCAA)</li>
+        <li> War Pension Mobility Supplement (WPMS)</li>
+        <li>Industrial Injuries Disablement Benefit Constant Attendance Allowance (IIDBCAA)</li>
+        <li>Armed Forces Independence Payment (AFIP)</li>
+      </ul>
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: "<h2 class='govuk-heading-m'>Agent: If applicant is getting any of these benefits, enter which ones in PIPCS Notes.</h2>"
+      }) }}
+
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}
