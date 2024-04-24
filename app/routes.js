@@ -661,9 +661,9 @@ router.post('/ucd-register/nationality/insurance-abroad', function(request, resp
   router.post('/ucd-register/nationality/benefits-abroad', function(request, response) {
       var payingBenefits= request.session.data['benefits-abroad']
       if (payingBenefits == 'no'){
-        response.redirect('/ucd-register/task-list-nat-done')
+        response.redirect('/ucd-register/nationality/nationality-summary')
       } else if (payingBenefits == 'yes') {
-          response.redirect('/ucd-register/task-list-nat-done')
+          response.redirect('/ucd-register/nationality/nationality-summary')
       }
   })
   
@@ -921,6 +921,10 @@ router.post('/ucd-register/additional-support/complete-forms', function(request,
       } else if (forms == 'no' || letters == 'no' || post == 'no') {
         response.redirect('/ucd-register/additional-support/helpers')
       }
+})
+
+router.post('/ucd-register/additional-support/advice-non-as-marker', function(request, response) {
+    response.redirect('/ucd-register/additional-support/add-support-summary')
 })
 
 router.post('/ucd-register/additional-support/read-letters', function(request, response) {
