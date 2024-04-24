@@ -423,11 +423,9 @@ router.post('/register/hospital-dates/other-residence-summary', function(request
 // Eligibility launched from main UI
 router.post('/ucd-register/signposting-eligibility/service-start-page', function(request, response) {
 var newClaim = request.session.data['claiming-self']
-if (newClaim == 'person-claiming'){
+if (newClaim == 'yes'){
     response.redirect('/ucd-register/signposting-eligibility/over-16')
-} else if (newClaim == "appointee") {
-    response.redirect('/ucd-register/signposting-eligibility/someone-else-bau-kickout')
-} else if (newClaim == "third-party") {
+} else if (newClaim == "no") {
     response.redirect('/ucd-register/signposting-eligibility/someone-else-bau-kickout')
 }
 })
