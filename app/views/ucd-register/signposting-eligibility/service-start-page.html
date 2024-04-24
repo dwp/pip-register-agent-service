@@ -57,23 +57,19 @@
           name: "claiming-self",
           fieldset: {
             legend: {
-              text: "Are you the person who wants to claim PIP, a legal appointee, or calling to apply for someone else?",
+              text: "Are you calling to claim PIP for yourself?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "person-claiming",
-              text: "Person who wants to claim, or their interpreter"
+              value: "yes",
+              text: "Yes, for myself or with an interpreter"
             },
             {
-              value: "appointee",
-              text: " Appointee"
-            },
-            {
-              value: "third-party",
-              text: "Other third party"
+              value: "no",
+              text: " No, for someone else"
             }
           ]
         }) }}
