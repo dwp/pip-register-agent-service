@@ -11,7 +11,8 @@
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back"
+    text: "Back",
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
 
