@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="#" method="post">
+
+        {{ govukRadios({
+        name: "audio-format",
+        fieldset: {
+        legend: {
+        text: "What type of audio do you need?",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+          }
+          },
+          items: [
+          {
+          value: "CD",
+          text: "CD"
+          },
+          {
+          value: "MP3 by email",
+          text:  "MP3 by email"
+          },
+          {
+          value: "Casette tape",
+          text:  "Casette tape"
+          },
+          {
+            value: "DVD",
+            text:  "DVD"
+            }
+        ]
+        }) }}
+
+        {{ govukButton({
+        text: "Continue"
+        }) }}
+        
+    </form> 
+
+  </div>
+</div> 
+{% endblock %}
+

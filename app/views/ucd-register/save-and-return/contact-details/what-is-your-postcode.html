@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+
+          {% call govukFieldset({
+            legend: {
+              text: "What is your postcode and building number?",
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+            }
+          }) %}
+
+
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "postcode",
+            name: "postcode"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Building number or name (optional)"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "searchString",
+            name: "searchString"
+          }) }}
+          {% endcall %}
+
+          {{ govukButton({
+          text: "Find address"
+          }) }}
+
+          <p class="govuk-body govuk-!-margin-bottom-3"><a href="/ucd-register/contact-details/enter-address-manually-country" class="govuk-link">Enter address manually</a></p>
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

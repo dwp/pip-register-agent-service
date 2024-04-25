@@ -1,0 +1,138 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "Enter a mobile phone number",
+      href: "#full-name-input"
+    }
+  ]
+}) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+      <h1 class="govuk-heading-l">If we need to speak to you about your claim, we'll usually contact you by phone</h1>
+
+        <h2 class="govuk-heading-m">Will you need a textphone or an interpreter?</h2>
+
+        {% set textphoneHtml %}
+        {{ govukInput({
+          id: "textphone",
+          name: "textphone",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Textphone number"
+          }
+        }) }}
+        {% endset -%}
+
+        {% set interpreterHtml %}
+        {{ govukInput({
+          id: "interpreter",
+          name: "interpreter",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Type of interpreter"
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          name: "spoken-format",
+          fieldset: {
+            legend: {
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+
+          items: [
+            {
+              value: "standard-phone-call",
+              text: "No, contact by standard phone call"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "textphone",
+              text: "Yes, textphone",
+              conditional: {
+                html: textphoneHtml
+              }
+            },
+            {
+              value: "interpreter",
+              text: "Yes, interpreter",
+              hint: {
+                text: "Enter interpreter needs in PIPCS notes, such as sign language or a non-English language."
+              }
+
+            }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-m">What is your mobile phone number?</h2>
+
+        {{ govukInput({
+          label: {
+            text: "Main phone number"
+          },
+          errorMessage: {
+            text: "Enter a mobile phone number"
+          },
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+        
+        {{ govukInput({
+          label: {
+            text: "Other phone number (optional)"
+          },
+          hint: {
+            text: "For landline, include a dialling code like 01632 960 001."
+          },
+          id: "telephone-number",
+          name: "telephone-number",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
