@@ -4,11 +4,6 @@
   Question page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% block head %}
-  {{ super() }}
-  <link rel="stylesheet" href="/public/sass/accessible-autocomplete.min.css">
-{% endblock %}
-
 {% block beforeContent %}
   {{ govukBackLink({
   text: "Back",
@@ -21,10 +16,6 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">
-      What is the hospital's full address?
-    </h1>
-
     <form class="form" action="#" method="post">
 
 
@@ -33,6 +24,7 @@
 
   {% call govukFieldset({
     legend: {
+      text: "What is your full address?",
       classes: "govuk-fieldset__legend--l",
       isPageHeading: true
     }
@@ -85,42 +77,14 @@
     autocomplete: "postal-code"
   }) }}
 
-
-  {% from "govuk/components/select/macro.njk" import govukSelect %}
-
-  {{ govukSelect({
-    id: "country",
-    name: "country",
-    label: {
-      text: "Country"
-    },
-    items: [
-      {
-        value: "select-country",
-        text: "Select a country"
-      }
-    ]
+  {{ govukButton({
+    text: "Confirm this address"
   }) }}
 
-    {{ govukButton({
-      text: "Confirm this address"
-    }) }}
-
-
   <div class="govuk-body">
-    <a href="/ucd-register/hospital-dates/5-6-postcode">Search by postcode</a>
+    <a href="/ucd-register/contact-details/what-is-your-postcode">Search by postcode</a>
   </div>
   
 {% endcall %}
-{% endblock %}
 
-{% block scripts %}
-  {{ super() }}
-  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-  <script type="text/javascript">
-    element = document.querySelector('#country')
-    accessibleAutocomplete.enhanceSelectElement({
-      selectElement: element
-    })
-  </script>
 {% endblock %}

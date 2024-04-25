@@ -540,7 +540,7 @@ router.post('/ucd-register/contact-details/correspondence-address', function(req
 router.post('/ucd-register/contact-details/alt-formats/written-format', function(request, response) {
     var writtenFormat = request.session.data['written-format']
     if (writtenFormat == 'standard-letter'){
-        response.redirect('/ucd-register/task-list-cd-done')
+        response.redirect('/ucd-register/contact-details/contact-details-summary')
     } else if (writtenFormat == 'large-print') {
         response.redirect('/ucd-register/contact-details/alt-formats/large-print')
      } else if (writtenFormat == 'audio') {
@@ -990,17 +990,17 @@ router.post('/ucd-register/hospital-dates/5-6-postcode', function(request, respo
 
 // postcode > select address
 router.post('/ucd-register/hospital-dates/5-7-select-hospital-address', function(request, response) {
-    response.redirect('/ucd-register/task-list-accom-done')
+    response.redirect('/ucd-register/hospital-dates/hospital-residence-summary')
 })
 
 // hospital manually > start bank
 router.post('/ucd-register/hospital-dates/5-17-hospital-address-manually', function(request, response) {
-    response.redirect('/ucd-register/task-list-accom-done')
+    response.redirect('/ucd-register/hospital-dates/hospital-residence-summary')
 })
 
 // hospice manually > start bank
 router.post('/ucd-register/hospital-dates/5-18-hospice-address-manually', function(request, response) {
-    response.redirect('/ucd-register/task-list-accom-done')
+    response.redirect('/ucd-register/hospital-dates/hospice-residence-summary')
 })
 
 // other manually > start bank
@@ -1035,7 +1035,7 @@ router.post('/ucd-register/hospital-dates/5-10-hospice-postcode', function(reque
 
 //  Can you confirm the first line of the address place you are staying in?
 router.post('/ucd-register/hospital-dates/5-11-select-hospice-address', function(request, response) {
-    response.redirect('/ucd-register/task-list-accom-done')
+    response.redirect('/ucd-register/hospital-dates/hospice-residence-summary')
 })
 
 // Are you living in a care home or nursing home, sheltered housing, a residential college or a hostel today?
@@ -1074,7 +1074,7 @@ router.post('/ucd-register/hospital-dates/5-13-third-party-pay', function(reques
     if (thirdPartyPay == 'health-trust'){
         response.redirect('/ucd-register/hospital-dates/5-23-name-local')
     } else if (thirdPartyPay == 'no') {
-        response.redirect('/ucd-register/task-list-accom-done')
+        response.redirect('/ucd-register/hospital-dates/other-residence-summary')
     } else if (thirdPartyPay == 'yes') {
         response.redirect('/ucd-register/hospital-dates/5-23-name')
     }
@@ -1097,6 +1097,12 @@ router.post('/ucd-register/hospital-dates/5-14-local-agreement', function(reques
 
 // Do you have an agreement with the local authority to repay any of the costs?
 router.post('/ucd-register/hospital-dates/hospital-dates/5-14-local-agreement', function(request, response) {
+    response.redirect('/ucd-register/task-list-accom-done')
+})
+
+
+// other residence summary >  tasklist
+router.post('/ucd-register/hospital-dates/hospital-dates/other-residence-summary', function(request, response) {
     response.redirect('/ucd-register/task-list-accom-done')
 })
 
