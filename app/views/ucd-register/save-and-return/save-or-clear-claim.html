@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Remove item from order - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form action="#" method="post" novalidate>
+
+        <input type="hidden" id="binnedChineseId" name="binnedChineseId" value="{{ binnedPizza.id }}">
+
+        {{ govukRadios({
+          name: "remove-hcp",
+          fieldset: {
+            legend: {
+              text: "Do you want to delete your application for PIP, or save your answers and finish the application later
+              ?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "save-and-return",
+              text: "Save and finish later"
+            },
+            {
+              value: "delete",
+              text: "Delete application"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

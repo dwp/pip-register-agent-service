@@ -1206,6 +1206,114 @@ router.post('/ucd-register/what-happens-next/after-form-sent', function(request,
 
 // -------------------------------------------------------------------------------------
 // POST MTP: 
+// DIVERT FROM A CLAIM (save and continue button with exit link)
+
+// What is your name?
+router.post('/ucd-register/save-and-return/contact-details/what-is-your-name', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/what-is-your-dob')
+})
+
+// What is your DOB
+router.post('/ucd-register/save-and-return/contact-details/what-is-your-dob', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/what-is-your-phone-number')
+})
+
+// What is your phone number page
+router.post('/ucd-register/save-and-return/contact-details/what-is-your-phone-number', function(request, response) {
+        response.redirect("/ucd-register/save-and-return/contact-details/do-you-want-to-receive-text-updates")
+}) 
+
+// Do you want to receive text updates
+router.post('/ucd-register/save-and-return/contact-details/do-you-want-to-receive-text-updates', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/what-is-your-postcode')
+})
+
+// What is your postcode page
+router.post('/ucd-register/save-and-return/contact-details/what-is-your-postcode', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/select-your-address')
+})
+
+// Select your address page
+router.post('/ucd-register/save-and-return/contact-details/select-your-address', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/correspondence-address')
+})
+
+// Enter address manually page
+router.post('/ucd-register/save-and-return/contact-details/enter-address-manually-country', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/correspondence-address')
+})
+
+// Is this the address we should send letters to page
+router.post('/ucd-register/save-and-return/contact-details/correspondence-address', function(request, response) {
+    var sendLettersElsewhere = request.session.data['should-we-write-to-you']
+    if (sendLettersElsewhere == 'yes'){
+        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/written-format')
+    } else if (sendLettersElsewhere == 'no') {
+        response.redirect('/ucd-register/save-and-return/contact-details/correspondence-postcode')
+    }
+})
+
+// Would you like us to send your letters in another way, like larger text, audio or braille?
+router.post('/ucd-register/save-and-return/contact-details/alt-formats/written-format', function(request, response) {
+    var writtenFormat = request.session.data['written-format']
+    if (writtenFormat == 'standard-letter'){
+        response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
+    } else if (writtenFormat == 'large-print') {
+        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/large-print')
+     } else if (writtenFormat == 'audio') {
+        response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
+    } else if (writtenFormat == 'braille') {
+        response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
+    } else if (writtenFormat == 'email') {
+        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/email-reason')
+    } else if (writtenFormat == 'pdf') {
+        response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/email-reason')
+    } 
+    
+})
+
+// What size print do you need?
+router.post('/ucd-register/save-and-return/contact-details/alt-formats/large-print', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
+})
+
+// Why do you need us to contact you by email instead of printed letters?
+router.post('/ucd-register/save-and-return/contact-details/alt-formats/email-reason', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/what-is-your-email')
+})
+
+// What is your email address?
+router.post('/ucd-register/save-and-return/contact-details/alt-formats/what-is-your-email', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/contact-details-summary')
+})
+
+// What is your correspondence postcode page
+router.post('/ucd-register/save-and-return/contact-details/correspondence-postcode', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/confirm-correspondence-address')
+})
+
+// Confirm correspondence address > correspondence alt formats page
+router.post('/ucd-register/save-and-return/contact-details/confirm-correspondence-address', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/written-format')
+})
+
+// Confirm correspondence address page
+router.post('/ucd-register/save-and-return/contact-details/correspondence-enter-address-manually', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/contact-details/alt-formats/written-format')
+})
+
+// Contact details summary page
+router.post('/ucd-register/save-and-return/contact-details/contact-details-summary', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/task-list-cd-done')
+})
+
+// -------------------------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------------------------
+// POST MTP: 
+// RESUME A CLAIM
+
 
 //Save and return
 router.post('/ucd-register/save-and-return/service-home-call-type', function(request, response) {
@@ -1219,12 +1327,12 @@ router.post('/ucd-register/save-and-return/service-home-call-type', function(req
 
 // claimant search > found nino
 router.post('/ucd-register/save-and-return/search-claimant', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/nino-found')
+    response.redirect('/ucd-register/save-and-return/security-check')
 })
 
 // confirm nino > security check
-router.post('/ucd-register/save-and-return/nino-found', function(request, response) {
-    response.redirect('/ucd-register/save-and-return/security-check')
+router.post('/ucd-register/save-and-return/security-check', function(request, response) {
+    response.redirect('/ucd-register/save-and-return/nino-found')
 })
 
 // security check > access task list
