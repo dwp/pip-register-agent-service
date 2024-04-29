@@ -35,9 +35,13 @@
           }
         }) }}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          <a class="govuk-link" href="/ucd-register/save-and-return/save-or-clear-claim">Exit claim</a>
+        </div>
 
       </form>
     </div>

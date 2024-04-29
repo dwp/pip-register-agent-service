@@ -16,7 +16,6 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% endblock %}
 
 {% block footer %}
-
 {% from "internal-service-footer/macro.njk" import dwpFooter %}
 
 {{ dwpFooter({
@@ -26,5 +25,26 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
     ]
   }
 }) }} 
+{% endblock %}
 
+{% block dwpKeyDetailsBar %}
+{% from "key-details-bar/macro.njk" import dwpKeyDetailsBar %}
+
+{{
+    dwpKeyDetailsBar({
+        primaryIdentifier: {
+            text: 'Name:',
+            value: 'Jane Doe'
+        },
+        secondaryIdentifier: {
+            text: 'National Insurance Number:',
+            value: 'QQ 12 34 56 X'
+        },
+        status: {
+            text: 'Claim status:',
+            value: 'Urgent',
+            classes: 'govuk-tag--red'
+        }
+    })
+}}
 {% endblock %}
