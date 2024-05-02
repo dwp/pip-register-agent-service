@@ -1208,6 +1208,16 @@ router.post('/ucd-register/what-happens-next/after-form-sent', function(request,
 // POST MTP: 
 // DIVERT FROM A CLAIM (save and continue button with exit link)
 
+// Delete application or save and come back later
+router.post('/ucd-register/save-and-return/save-or-clear-claim', function(request, response) {
+    var saveOrClear = request.session.data['save-or-clear']
+    if (saveOrClear == 'save-and-return'){
+        response.redirect('/ucd-register/save-and-return/application-saved')
+    } else if (saveOrClear == 'delete') {
+        response.redirect('/ucd-register/save-and-return/are-you-sure-delete-question')
+    }
+})
+
 // What is your name?
 router.post('/ucd-register/save-and-return/contact-details/what-is-your-name', function(request, response) {
     response.redirect('/ucd-register/save-and-return/contact-details/what-is-your-dob')
@@ -1321,6 +1331,18 @@ router.post('/ucd-register/save-and-return/service-home-call-type', function(req
     if (callType  == 'new-claim'){
         response.redirect('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims')
     } else if (callType  == 'resume-application') {
+        response.redirect('/ucd-register/save-and-return/self-or-appointee')
+    }
+})
+
+// self or appointee > search claimant
+router.post('/ucd-register/save-and-return/self-or-appointee', function(request, response) {
+    var caller = request.session.data['caller-type']
+    if (caller == 'self'){
+        response.redirect('/ucd-register/save-and-return/search-claimant')
+    } else if (caller  == 'legal-appointee') {
+        response.redirect('/ucd-register/save-and-return/search-claimant')
+    } else if (caller  == 'other') {
         response.redirect('/ucd-register/save-and-return/search-claimant')
     }
 })

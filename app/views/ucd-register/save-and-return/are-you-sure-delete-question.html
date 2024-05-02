@@ -14,38 +14,38 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
+ 
       <form action="#" method="post" novalidate>
-
-        <input type="hidden" id="binnedChineseId" name="binnedChineseId" value="{{ binnedPizza.id }}">
 
         {{ govukRadios({
           name: "save-or-clear",
           fieldset: {
             legend: {
-              text: "Do you want to save your answers and come back later, or delete your application for PIP?",
+              text: "Are you sure you want to delete your application?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "Select save if the call has been cut off."
+            text: "If you delete your application, none of your answers will be saved."
           },
           items: [
             {
-              value: "save-and-return",
-              text: "Save and come back later"
+              value: "delete",
+              text: "Yes"
             },
             {
-              value: "delete",
-              text: "Delete application"
+              value: "save",
+              text: "No"
             }
           ]
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          classes: "govuk-button"
         }) }}
+
       </form>
     </div>
   </div>

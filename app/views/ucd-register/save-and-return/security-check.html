@@ -16,33 +16,33 @@ href: "javascript:window.history.back()"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Before we can continue your claim we need to confirm your identity</h1>
-
           {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
           {{ govukCheckboxes({
             name: "kbvs",
             fieldset: {
               legend: {
-                text: "I need to look you up on our system and ask you 3 security questions",
+                text: "I'm now going to ask you 3 security questions",
                 isPageHeading: true,
-                classes: "govuk-fieldset__legend--m"
+                classes: "govuk-fieldset__legend--l"
               }
             },
             hint: {
-              text: "Ask 3 questions and select if the caller has passed or failed."
+              text: "Find the 3 previously asked questions that have an answer recorded in Searchlight. "
             },
             items: [
               {
                 value: "previous-surname",
-                text: "What is your previous surname(s)?"
+                text: "What is your previous surname(s)?",
+                checked: true
               },
               {
                 value: "previous-address",
                 text: "What is your previous address(es)?",
                 hint: {
                   text: "First line of address and town are acceptable, without postcode."
-                }
+                },
+                checked: true
               },
               {
                 value: "other-benefit-name",
@@ -67,32 +67,28 @@ href: "javascript:window.history.back()"
               },
               {
                 value: "other-claim",
-                text: "What other benefit have you claimed previously, regardless of whether you were paid it?"
+                text: "What other benefit have you claimed previously, regardless of whether you were paid it?",
+                checked: true
               },
               {
                 value: "partners-nino",
-                text: "What is your partner’s National Insurance Number?",
-                behaviour: "exclusive"
+                text: "What is your partner’s National Insurance Number?"
               },
               {
                 value: "partners-nino",
-                text: "What is your partner’s full name?",
-                behaviour: "exclusive"
+                text: "What is your partner’s full name?"
               },
               {
                 value: "partners-dob",
-                text:  "What is your partner’s date of birth?",
-                behaviour: "exclusive"
+                text:  "What is your partner’s date of birth?"
               },
               {
                 value: "child-fullname",
-                text: "What is one of your children’s full names?",
-                behaviour: "exclusive"
+                text: "What is one of your children’s full names?"
               },
               {
                 value: "partners-dob",
-                text:   "What is one of your children’s dates of birth?",
-                behaviour: "exclusive"
+                text:   "What is one of your children’s dates of birth?"
               }
             ]
           }) }}

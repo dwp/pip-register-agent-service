@@ -18,18 +18,20 @@
 
       <form action="#" method="post" method="post">
 
+        <h1 class="govuk-heading-l">We need to confirm your identity before we can continue</h1>
+
       {% from "govuk/components/input/macro.njk" import govukInput %}
 
         {{ govukInput({
           label: {
-            text: "Search for a claimant",
-            classes: "govuk-label--l",
+            text: "What is your national insurance number?",
+            classes: "govuk-label--m",
             isPageHeading: true
           },
           id: "event-name",
           name: "eventName",
           hint: {
-            text: "Enter a National Insurance number"
+            text: "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’."
           }
         }) }}
 
