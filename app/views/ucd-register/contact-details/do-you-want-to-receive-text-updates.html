@@ -17,10 +17,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form class="form" action="#" method="post">
-
-        <h1 class="govuk-heading-l">
-          Do you want to get text message updates about your claim?
-        </h1>
         
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -28,6 +24,7 @@
             name: "do-you-want-to-receive-text-updates",
             fieldset: {
               legend: {
+                text: "Do you want to get text message updates about your claim?",
                 isPageHeading: true,
                 classes: "govuk-fieldset__legend--l"
               }
