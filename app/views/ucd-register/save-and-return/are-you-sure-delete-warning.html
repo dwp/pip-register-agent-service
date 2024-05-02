@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Remove item from order - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+      <form action="#" method="post" novalidate>
+        <h2 class="govuk-heading-l">Are you sure you want to delete your application?</h2>
+        {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+        {{ govukWarningText({
+          text: " If you delete your application, none of your answers will be saved.",
+          iconFallbackText: "Warning"
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Delete claim",
+            classes: "govuk-button--warning"
+          }) }}
+
+          <a class="govuk-link" href="/ucd-register/save-and-return/save-or-clear-claim">Save and come back later</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

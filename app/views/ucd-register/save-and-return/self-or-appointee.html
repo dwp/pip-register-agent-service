@@ -4,6 +4,13 @@
   Start page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -11,43 +18,29 @@
 
       <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-xl">
-        Hello, you're through to the new claims line for Personal Independence Payment, which I will call PIP from now on
-      </h1>
-
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
       {{ govukRadios({
-        name: "call-type",
+        name: "caller-type",
         fieldset: {
           legend: {
-            text: "How can I help you today?",
+            text: "Is the application for yourself, or are you a legal appointee for the person who wants to claim?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         items: [
           {
-            value: "new-claim",
-            text: "Start a new application"
+            value: "self",
+            text: "Myself"
           },
           {
-            value: "resume-application",
-            text: "Continue an application",
-            hint: {
-              text: "For example, the call was disconnected."
-            }
-          },
-          {
-            value: "delete-application",
-            text: "Cancel an application"
-          },
-          {
-            divider: "or"
+            value: "legal-appointee",
+            text: "Legal appointee"
           },
           {
             value: "other",
-            text: "Other reason for call"
+            text: "Other third party or interpreter"
           }
         ]
       }) }}
