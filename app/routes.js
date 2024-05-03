@@ -3147,13 +3147,18 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
     router.post('/versions/UCD/post-mtp-sign-eligibility/over-16', function(request, response) {
     var over16 = request.session.data['age']
     if (over16 == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/security-check-2')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/search-claimant')
     } else if (over16 == "no-under-16") {
         response.redirect('/versions/UCD/post-mtp-sign-eligibility/under-16-ineligible')
     } else if (over16 == "no-over-spa") {
         response.redirect('/versions/UCD/post-mtp-sign-eligibility/stop-getting-pip-last-year')
     }
     })
+
+     // Are you over 16?
+     router.post('/versions/UCD/post-mtp-sign-eligibility/search-claimant', function(request, response) {
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs')
+        })
 
     // What security questions were answered?
     router.post('/versions/UCD/post-mtp-sign-eligibility/security-check-2', function(request, response) {
