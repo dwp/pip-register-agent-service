@@ -17,10 +17,6 @@ href: "javascript:window.history.back()"
   <div class="govuk-grid-column-two-thirds">
 
     <form action="#" method="post" method="post">
-
-      <h1 class="govuk-heading-l">
-        Are you calling to claim PIP for yourself?
-      </h1>
       
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -28,6 +24,7 @@ href: "javascript:window.history.back()"
       name: "claiming-self",
       fieldset: {
         legend: {
+          text:"Are you applying for yourself or for someone else?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -35,11 +32,11 @@ href: "javascript:window.history.back()"
       items: [
         {
           value: "yes",
-          text: "Yes, for myself or with an interpreter"
+          text: "For myself, or as an interpreter"
         },
         {
           value: "no",
-          text: " No, for someone else"
+          text: " For someone else"
         }
       ]
     }) }}
