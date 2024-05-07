@@ -3137,13 +3137,20 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
     router.post('/versions/UCD/post-mtp-sign-eligibility/claiming-self', function(request, response) {
     var self = request.session.data['claiming-self']
     if (self == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/over-16')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/what-is-your-dob')
     } else if (self == "no") {
         response.redirect('/versions/UCD/post-mtp-sign-eligibility/someone-else-bau-kickout')
     } 
     })
+
+  // Establish identity
+ router.post('/versions/UCD/post-mtp-sign-eligibility/what-is-your-dob', function(request, response) {
+     response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs')
+        })
+
     
-    // Are you over 16?
+    // PRE-MTP
+    //Are you over 16?
     router.post('/versions/UCD/post-mtp-sign-eligibility/over-16', function(request, response) {
     var over16 = request.session.data['age']
     if (over16 == 'yes'){
@@ -3155,7 +3162,7 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
     }
     })
 
-     // Are you over 16?
+     // Establish identity
      router.post('/versions/UCD/post-mtp-sign-eligibility/search-claimant', function(request, response) {
             response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs')
         })
