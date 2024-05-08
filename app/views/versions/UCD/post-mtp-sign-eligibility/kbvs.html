@@ -16,6 +16,10 @@ href: "javascript:window.history.back()"
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    <h1 class="govuk-heading-l">
+      I need to ask you some questions to confirm your identity
+    </h1> 
+
           {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
           {% set kbvHtml %}
@@ -35,103 +39,89 @@ href: "javascript:window.history.back()"
             name: "kbvs",
             fieldset: {
               legend: {
-                text: "I'm now going to ask you 3 security questions",
+                text: "Security questions",
                 isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
+                classes: "govuk-fieldset__legend--m"
               }
             },
             hint: {
-              text: "Select the checkboxes of the 3 security questions asked to the caller and note their answers. "
+              text: "Ask 3 security questions. If they answer the first 2 correctly, you do not need to ask a third question. "
             },
             items: [
               {
-                value: "previous-surname",
-                text: "What is your previous surname(s)?",
+                value: "home-phone-number",
+                text: "What is your home phone number?",
                 conditional: {
                   html: kbvHtml
                 }
               },
               {
-                value: "previous-address",
-                text: "What is your previous address(es)?",
-                hint: {
-                  text: "First line of address and town are acceptable, without postcode."
-                },
+                value: "mobile-phone-number",
+                text: "What is your mobile phone number?",
                 conditional: {
                   html: kbvHtml
                 }
               },
               {
-                value: "other-benefit-name",
-                text: "Name another benefit you receive?",
-                hint: {
-                  text: "A “None” response is acceptable."
-                },
+                value: "eldest-child-name",
+                text: "What is your eldest child’s full name?",
                 conditional: {
                   html: kbvHtml
                 }
               },
               {
-                value: "other-benefit-date",
-                text: "On which date did your claim for the other benefit start?",
-                hint: {
-                  text: "The correct month and year are acceptable."
-                },
+                value: "eldest-child-dob",
+                text: "What is your eldest child’s date of birth?",
                 conditional: {
                   html: kbvHtml
                 }
               },
               {
-                value: "other-benefit-amount",
-                text: "What is the weekly or monthly amount of the other benefit?",
-                hint: {
-                  text: "Answers up to £5 more or less than the correct number are acceptable."
-                },
+                value: "partner-dob",
+                text: "What is your partner’s date of birth?",
                 conditional: {
                   html: kbvHtml
                 }
               },
               {
-                value: "other-claim",
-                text: "What other benefit have you claimed previously, regardless of whether you were paid it?",
+                value: "partner-nino",
+                text: "What is your partner’s National Insurance number?",
                 conditional: {
                   html: kbvHtml
                 }
               },
               {
-                value: "partners-nino",
-                text: "What is your partner’s National Insurance Number?",
+                value: "other-benefits",
+                text: "What other benefits have you received in the last 31 months?",
                 conditional: {
                   html: kbvHtml
                 }
+              }
+            ]
+          }) }}
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            name: "pass-kbvs",
+            fieldset: {
+              legend: {
+                text: "Applicant answers",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "Select one option."
+            },
+            items: [
+              {
+                value: "passed",
+                text: "2 correct answers"
               },
               {
-                value: "partners-nino",
-                text: "What is your partner’s full name?",
-                conditional: {
-                  html: kbvHtml
-                }
-              },
-              {
-                value: "partners-dob",
-                text:  "What is your partner’s date of birth?",
-                conditional: {
-                  html: kbvHtml
-                }
-              },
-              {
-                value: "child-fullname",
-                text: "What is one of your children’s full names?",
-                conditional: {
-                  html: kbvHtml
-                }
-              },
-              {
-                value: "partners-dob",
-                text:   "What is one of your children’s dates of birth?",
-                conditional: {
-                  html: kbvHtml
-                }
+                value: "failed",
+                text: "1 correct answer"
               }
             ]
           }) }}
