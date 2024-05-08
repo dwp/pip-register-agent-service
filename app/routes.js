@@ -3137,19 +3137,12 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
     router.post('/versions/UCD/post-mtp-sign-eligibility/claiming-self', function(request, response) {
     var self = request.session.data['claiming-self']
     if (self == 'yes'){
-        response.redirect('/versions/UCD/post-mtp-sign-eligibility/what-is-your-dob')
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/over-16')
     } else if (self == "no") {
         response.redirect('/versions/UCD/post-mtp-sign-eligibility/someone-else-bau-kickout')
     } 
     })
 
-  // Establish identity
- router.post('/versions/UCD/post-mtp-sign-eligibility/what-is-your-dob', function(request, response) {
-     response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs')
-        })
-
-    
-    // PRE-MTP
     //Are you over 16?
     router.post('/versions/UCD/post-mtp-sign-eligibility/over-16', function(request, response) {
     var over16 = request.session.data['age']
@@ -3162,19 +3155,24 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
     }
     })
 
+      // POST MTP: AGE ELIGIBILITY UPDATE TBC: Establish identity
+ router.post('/versions/UCD/post-mtp-sign-eligibility/what-is-your-dob', function(request, response) {
+    response.redirect('/versions/UCD/post-mtp-sign-eligibility/search-claimant')
+       })
+
      // Establish identity
      router.post('/versions/UCD/post-mtp-sign-eligibility/search-claimant', function(request, response) {
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs')
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs-body-text')
         })
 
-    // What security questions were answered?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/security-check-2', function(request, response) {
-        var passed = request.session.data['security-verified']
-        if (passed == "passed"){
+ // What security questions were answered?
+    router.post('/versions/UCD/post-mtp-sign-eligibility/kbvs-body-text', function(request, response) {
+        var security = request.session.data['security']
+        if (security == 'passed'){
             response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
-        } else if (passed == "more-needed") {
+        } else if (security == "failed") {
             response.redirect('/versions/UCD/post-mtp-sign-eligibility/failed-security')
-        }
+        } 
         })
 
     // Claiming under SREL?

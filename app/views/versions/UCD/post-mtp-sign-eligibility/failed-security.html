@@ -22,6 +22,13 @@ href: "javascript:window.history.back()"
 
       <p class="govuk-body">If we cannot confirm your identity, you will not be able to claim PIP.</p>
 
+
+    {{ govukInsetText({
+      classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
+        html: "<p class='govuk-body'>Action: If this call is not recorded, enter the questions the applicant failed in PIPCS notes.
+        </p>"
+    }) }}
+
       {{ govukButton({
         text: "Continue",
         href: "/ucd-register/signposting-eligibility/srel"
