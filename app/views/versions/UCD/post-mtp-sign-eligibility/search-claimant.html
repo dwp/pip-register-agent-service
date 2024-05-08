@@ -22,7 +22,7 @@
 
         {{ govukInput({
           label: {
-            text: "What is your national insurance number?",
+            text: "What is your National Insurance number?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
@@ -33,16 +33,15 @@
           }
         }) }}
 
-        {{ govukInsetText({
-          classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
-            html: "<p class='govuk-body'>Action: Enter National Insurance number in Searchlight.</p>"
-        }) }}
-
-
         <p class="govuk-body">
           <a href="/v2-ucd-register/signposting-eligibility/further-questions-nino" class="govuk-link govuk-link--no-visited-state">Applicant cannot give a UK National Insurance number
           </a>
         </p>
+
+        {{ govukInsetText({
+          classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
+            html: "<p class='govuk-body'>Action: Enter National Insurance number in Searchlight, and confirm applicant identity.</p>"
+        }) }}
 
       {{ govukButton({
         text: "Continue"
