@@ -3172,6 +3172,8 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', functi
             response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
         } else if (security == "failed") {
             response.redirect('/versions/UCD/post-mtp-sign-eligibility/failed-security')
+        } else if (security == "not-enough") {
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/not-enough-cis-data')
         } 
         })
 
