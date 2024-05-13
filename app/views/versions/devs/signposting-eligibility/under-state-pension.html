@@ -17,14 +17,22 @@ href: "javascript:window.history.back()"
   <div class="govuk-grid-column-two-thirds">
 
     <form action="#" method="post" method="post">
-      
+
+      <h1 class="govuk-heading-l">
+        Are you under State Pension age?
+      </h1>
+
+
+      <p class="govuk-body">
+       If you are not sure, you can <a href="#" class="govuk-link" rel="noreferrer noopener" target="_blank">check your State Pension age (opens in new tab)</a>.
+      </p>
+
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "claiming-self",
+      name: "under-state-pension",
       fieldset: {
         legend: {
-          text:"Are you applying for yourself or for someone else?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -32,11 +40,11 @@ href: "javascript:window.history.back()"
       items: [
         {
           value: "yes",
-          text: "For myself, or as an interpreter"
+          text: "Yes"
         },
         {
           value: "no",
-          text: " For someone else"
+          text: "No, over State Pension age"
         }
       ]
     }) }}
