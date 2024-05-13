@@ -19,15 +19,26 @@ href: "javascript:window.history.back()"
     <form action="#" method="post" method="post">
 
       <h1 class="govuk-heading-l">
-        I need to collect some more details to continue the application
+        PIP is only for people aged 16 or over
       </h1>
+
+       <p class="govuk-body">
+        You may be eligible for DLA for children instead. 
+       </p>
+
+       <p class="govuk-body">
+        To apply for DLA, contact the Disability and Carers Service or your local Jobs and Benefits office.
+       </p>
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
-        classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
-          html: "<p class='govuk-body'>Action: Register the claim in PIPCS, and follow normal procedure for third party and external party claims.</p>"
+        text: "Disability and Carers Service: 0800 587 0912"
       }) }}
+
+      <p class="govuk-body">
+        If you would still like to make a claim for PIP, we can <a href="/v2-ucd-register/signposting-eligibility/security-check" class="govuk-link">continue with your application</a>.
+      </p>
 
   </form>
     

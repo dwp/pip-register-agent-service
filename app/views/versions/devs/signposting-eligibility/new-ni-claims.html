@@ -17,14 +17,14 @@ href: "javascript:window.history.back()"
   <div class="govuk-grid-column-two-thirds">
 
     <form action="#" method="post" method="post">
-      
+
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "claiming-self",
+      name: "ni-pip",
       fieldset: {
         legend: {
-          text:"Are you applying for yourself or for someone else?",
+          text: "Do you want to apply for PIP in Northern Ireland?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
@@ -32,11 +32,18 @@ href: "javascript:window.history.back()"
       items: [
         {
           value: "yes",
-          text: "For myself, or as an interpreter"
+          text: "Yes, Northern Ireland"
         },
         {
-          value: "no",
-          text: " For someone else"
+          divider: "or"
+        },
+        {
+          value: "england-wales",
+          text: "No, England and Wales"
+        },
+        {
+          value: "scotland",
+          text: "No, Scotland"
         }
       ]
     }) }}

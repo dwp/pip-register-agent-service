@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
+
+      <h1 class="govuk-heading-xl">
+        Hello, you're through to the PIP new claims line
+      </h1>
+
+      <h2 class="govuk-heading-l">How can I help you today?</h2>
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+  
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: '<h1 class="govuk-heading-m">Agent: Check they are making a new claim for PIP.</h3>'
+      }) }}
+
+
+      {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+      {{ govukDetails({
+        summaryText: " If you're calling about an existing claim",
+        text: "You need to call the Enquiry line number: 0800 587 0932"
+      }) }}
+
+      {{ govukInsetText({
+        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
+          html: "<h1 class='govuk-heading-m'>Agent: Check they're applying for PIP in Northern Ireland</h3>"
+      }) }}
+
+      {{ govukDetails({
+        summaryText: " If you want to apply in England or Wales",
+        text: " You should call the Department for Work and Pensions new claims line: 0800 917 2222"
+      }) }}
+      {{ govukDetails({
+        summaryText: " If you want to apply in Scotland",
+        html: '<p>You may be eligible for Adult Disability Payment (ADP) instead.</p>
+        <ol class="govuk-list govuk-list--bullet">
+          <p>To apply for ADP, you can:</p>
+          <li>Call Social Security Scotland on 0800 182 2222, or</li>
+         <li>Apply online, by visiting www.mygov.scot</li>
+        </ol>'
+      }) }}
+      
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          name: "claiming-self",
+          fieldset: {
+            legend: {
+              text: "Are you calling to claim PIP for yourself?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, for myself or with an interpreter"
+            },
+            {
+              value: "no",
+              text: " No, for someone else"
+            }
+          ]
+        }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    </div>
+  </div>
+
+{% endblock %}

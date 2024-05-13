@@ -17,26 +17,30 @@ href: "javascript:window.history.back()"
   <div class="govuk-grid-column-two-thirds">
 
     <form action="#" method="post" method="post">
-      
+
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
     {{ govukRadios({
-      name: "claiming-self",
+      name: "authorised-person",
       fieldset: {
         legend: {
-          text:"Are you applying for yourself or for someone else?",
+          text: "Has the person you're calling for authorised you to make the claim for them, or have you been legally appointed to deal with their benefits?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
       },
       items: [
         {
-          value: "yes",
-          text: "For myself, or as an interpreter"
+          value: "authorised",
+          text: "Authorised by applicant"
         },
         {
-          value: "no",
-          text: " For someone else"
+          value: "appointed",
+          text: "Legally appointed"
+        },
+        {
+          value: "neither",
+          text: "Neither"
         }
       ]
     }) }}
