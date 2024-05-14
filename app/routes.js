@@ -1410,8 +1410,91 @@ router.post('/ucd-register/save-and-return/contact-details/contact-details-summa
 
 // -------------------------------------------------------------------------------------
 // POST MTP: 
-// RESUME A CLAIM
 
+//new claims
+
+//new claim?
+router.post('/versions/UCD/post-mtp-sign-eligibility/service-start-page', function(request, response) {
+    var newClaim = request.session.data['new-claims']
+    if (newClaim  == 'yes'){
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims')
+    } else if (newClaim  == 'no') {
+        response.redirect('/ucd-register/signposting-eligibility/existing-claims')
+    }
+})
+
+// NI new claims
+router.post('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims', function(request, response) {
+    var niPip = request.session.data['ni-pip']
+    if (niPip == 'yes'){
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/claiming-self')
+    } else if (niPip == "england-wales") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/england-wales')
+    } else if (niPip == "scotland") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/scotland')
+    }
+    })
+    
+    // Are you claiming for yourself?
+    router.post('/versions/UCD/post-mtp-sign-eligibility/claiming-self', function(request, response) {
+    var self = request.session.data['claiming-self']
+    if (self == 'yes'){
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/over-16')
+    } else if (self == "no") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/someone-else-bau-kickout')
+    } 
+    })
+
+    //Are you over 16?
+    router.post('/versions/UCD/post-mtp-sign-eligibility/over-16', function(request, response) {
+    var over16 = request.session.data['age']
+    if (over16 == 'yes'){
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/search-claimant')
+    } else if (over16 == "no-under-16") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/under-16-ineligible')
+    } else if (over16 == "no-over-spa") {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/stop-getting-pip-last-year')
+    }
+    })
+
+     // Establish identity
+     router.post('/versions/UCD/post-mtp-sign-eligibility/search-claimant', function(request, response) {
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes')
+        })
+
+ // What security questions were answered?
+    router.post('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes', function(request, response) {
+        var security = request.session.data['security']
+        if (security == 'passed'){
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
+        } else if (security == "failed") {
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/failed-security')
+        } else if (security == "not-enough") {
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/not-enough-cis-data')
+        } 
+        })
+
+    // Claiming under SREL?
+    router.post('/versions/UCD/post-mtp-sign-eligibility/srel', function(request, response) {
+        var srel = request.session.data['srel']
+        if (srel == 'yes'){
+            response.redirect('/ucd-concepts-testing#mtp-backlog')
+        } else if (srel == "no") {
+            response.redirect('/ucd-concepts-testing#mtp-backlog')
+        } 
+        })
+
+     // 1 or no correct answers available
+    router.post('/versions/UCD/post-mtp-sign-eligibility/failed-security', function(request, response) {
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
+        })
+
+     // no applicant data
+    router.post('/versions/UCD/post-mtp-sign-eligibility/not-enough-cis-data', function(request, response) {
+        response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
+    })
+
+// RESUME A CLAIM
 
 //Save and return
 router.post('/ucd-register/save-and-return/service-home-call-type', function(request, response) {
