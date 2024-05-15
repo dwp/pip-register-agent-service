@@ -19,14 +19,17 @@ href: "javascript:window.history.back()"
      <form action="#" method="post" method="post">
 
     <h1 class="govuk-heading-l">
-      I need to ask you some questions to confirm your identity
+      I need to check your details for security reasons 
     </h1> 
 
     {{ govukInsetText({
       classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
-        html: "<p class='govuk-body'>Action: Ask 3 questions, or stop asking questions if first 2 answers are correct.
+        html: "<p class='govuk-body'>Action: Ask 3 questions, or stop asking questions if the first 2 answers are correct.
         </p>"
     }) }}
+
+    <p class="govuk-body"><a href="/versions/UCD/post-mtp-sign-eligibility/not-enough-cis-data" class="govuk-link">Not enough applicant data to ask security questions</a>
+    </p>
 
             {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
@@ -102,13 +105,6 @@ href: "javascript:window.history.back()"
         {
           value: "failed",
           text: "No correct answers"
-        },
-        {
-          divider: "or"
-        },
-        {
-          value: "not-enough",
-          text: "Not enough applicant data to ask security questions"
         }
       ]
     }) }}
