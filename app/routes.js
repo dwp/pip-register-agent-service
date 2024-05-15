@@ -1459,11 +1459,11 @@ router.post('/versions/UCD/post-mtp-sign-eligibility/new-ni-claims', function(re
 
      // Establish identity
      router.post('/versions/UCD/post-mtp-sign-eligibility/search-claimant', function(request, response) {
-            response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes')
+            response.redirect('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes-link')
         })
 
  // What security questions were answered?
-    router.post('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes', function(request, response) {
+    router.post('/versions/UCD/post-mtp-sign-eligibility/kbvs-checkboxes-link', function(request, response) {
         var security = request.session.data['security']
         if (security == 'passed'){
             response.redirect('/versions/UCD/post-mtp-sign-eligibility/srel')
@@ -2161,9 +2161,9 @@ router.post('/ucd-register/contact-details/alt-formats/written-format', function
     } else if (writtenFormat == 'large-print') {
         response.redirect('/ucd-register/contact-details/alt-formats/large-print')
      } else if (writtenFormat == 'audio') {
-        response.redirect('/ucd-register/contact-details/contact-details-summary')
+        response.redirect('/ucd-register/task-list-cd-done')
     } else if (writtenFormat == 'braille') {
-        response.redirect('/ucd-register/contact-details/contact-details-summary')
+        response.redirect('/ucd-register/task-list-cd-done')
     } else if (writtenFormat == 'email') {
         response.redirect('/ucd-register/contact-details/alt-formats/email-reason')
     } else if (writtenFormat == 'pdf') {
