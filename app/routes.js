@@ -422,7 +422,7 @@ router.post('/register/hospital-dates/other-residence-summary', function(request
 
 // Eligibility launched from main UI
 router.post('/ucd-register/signposting-eligibility/service-start-page', function(request, response) {
-    var newClaim = request.session.data['welcome']
+    var newClaim = request.session.data['new-claims']
     if (newClaim == 'yes'){
         response.redirect('/ucd-register/signposting-eligibility/new-ni-claims')
     } else if (newClaim == "no") {
@@ -471,20 +471,28 @@ router.post('/ucd-register/signposting-eligibility/service-start-page', function
 
      // Establish identity
      router.post('/ucd-register/signposting-eligibility/search-claimant', function(request, response) {
-            response.redirect('/ucd-register/signposting-eligibility/kbvs-body-text')
+            response.redirect('/ucd-register/signposting-eligibility/kbvs-checkboxes-link')
         })
 
  // What security questions were answered?
-    router.post('/ucd-register/signposting-eligibility/kbvs-body-text', function(request, response) {
+    router.post('/ucd-register/signposting-eligibility/kbvs-checkboxes-link', function(request, response) {
         var security = request.session.data['security']
         if (security == 'passed'){
             response.redirect('/ucd-register/signposting-eligibility/srel')
         } else if (security == "failed") {
             response.redirect('/ucd-register/signposting-eligibility/failed-security')
-        } else if (security == "not-enough") {
-            response.redirect('/ucd-register/signposting-eligibility/not-enough-cis-data')
         } 
         })
+
+    // Failed security
+         router.post('/ucd-register/signposting-eligibility/failed-security', function(request, response) {
+         response.redirect('/ucd-register/signposting-eligibility/srel')
+         })
+
+    // Not enough applicant data
+         router.post('/ucd-register/signposting-eligibility/not-enough-cis-data', function(request, response) {
+         response.redirect('/ucd-register/signposting-eligibility/srel')
+         })
 
     // Claiming under SREL?
     router.post('/ucd-register/signposting-eligibility/srel', function(request, response) {
