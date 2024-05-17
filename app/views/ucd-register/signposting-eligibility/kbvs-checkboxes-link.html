@@ -1,0 +1,122 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+     <form action="#" method="post" method="post">
+
+    <h1 class="govuk-heading-l">
+      I need to check your details for security reasons 
+    </h1> 
+
+    {{ govukInsetText({
+      classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
+        html: "<p class='govuk-body'>Action: Ask 3 questions, or stop asking questions if the first 2 answers are correct.
+        </p>"
+    }) }}
+
+    <p class="govuk-body"><a href="/ucd-register/signposting-eligibility/not-enough-cis-data" class="govuk-link">Not enough applicant data to ask security questions</a>
+    </p>
+
+            {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          name: "questions",
+          fieldset: {
+            legend: {
+              text: "Security questions",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select the questions you ask the applicant."
+          },
+          items: [
+            {
+              value: "home-phone",
+              text: "Home phone number"
+            },
+            {
+              value: "mobile-phone",
+              text: "Mobile phone number"
+            },
+            {
+              value: "eldest-name",
+              text: "Eldest child’s full name"
+            },
+            {
+              value: "eldest-dob",
+              text: "Eldest child’s date of birth"
+            },
+            {
+              value: "partners-dob",
+              text: "Partner’s date of birth"
+            },
+            {
+              value: "partners-nino",
+              text: "Partner’s National Insurance number"
+            },
+            {
+              value: "other-benefits",
+              text: "Other benefits received (in last 31 months)"
+            }
+
+          ]
+        }) }}
+
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+    {{ govukRadios({
+      name: "security",
+      fieldset: {
+        legend: {
+          text: "Applicant answers",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      hint: {
+        text: "Select one option."
+      },
+      items: [
+        {
+          value: "passed",
+          text: "2 correct answers"
+        },
+        {
+          value: "failed",
+          text: "1 correct answer"
+        },
+        {
+          value: "failed",
+          text: "No correct answers"
+        }
+      ]
+    }) }}
+
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}

@@ -18,20 +18,19 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      <h1 class="govuk-heading-l">We may need to contact you for more information to confirm your identity</h1>
+      <h1 class="govuk-heading-l">We may need to contact you for more information</h1>
 
-      <p class="govuk-body">If we cannot confirm your identity, you will not be able to claim PIP.</p>
+      <p class="govuk-body">You will only be able to claim PIP if we can confirm your identity.</p>
 
 
     {{ govukInsetText({
       classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
-        html: "<p class='govuk-body'>Action: Enter not enough applicant data to ask questions in PIPCS notes.
+        html: "<p class='govuk-body'>Action: Enter 'Not enough applicant data to ask security questions' in PIPCS notes.
         </p>"
     }) }}
 
       {{ govukButton({
-        text: "Continue",
-        href: "/ucd-register/signposting-eligibility/srel"
+        text: "Continue"
       }) }}
 
   </form>
