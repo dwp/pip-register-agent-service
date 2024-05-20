@@ -1,0 +1,47 @@
+{% from "internal-service-header/macro.njk" import dwpHeader %}
+{% from "internal-service-footer/macro.njk" import dwpFooter %}
+
+{{
+    dwpHeader({
+        serviceName: "Service name",
+        serviceHref: '#',
+        container: true
+    })
+}}
+
+<main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
+<div class="govuk-width-container">       
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Example heading
+    </h1>
+    <p class="govuk-body">
+      Example content
+    </p>
+  </div>
+</div>
+</div>
+</main>
+
+{{
+    dwpFooter({
+        meta: {
+            visuallyHiddenTitle: "footer links",
+            items: [
+            {
+                href: "#1",
+                text: "Item 1"
+            },
+            {
+                href: "#2",
+                text: "Item 2"
+            },
+            {
+                href: "#3",
+                text: "Item 3"
+            }
+            ]
+        }
+    })
+}}

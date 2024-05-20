@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript: window.history.go(-1)"   
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post" novalidate>
+
+        <h1 class="govuk-heading-l">When we write to you, we'll usually send you a printed letter</h1>
+
+        <p class="govuk-body">Our letters are usually in Arial font size 12.</p>
+
+        {{ govukRadios({
+          name: "written-format",
+          fieldset: {
+          legend: {
+          text: "Would you like us to send your letters in another format, like larger text, audio or braille?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+          }
+          },
+          items: [
+            {
+              value: "standard-letter",
+              text: "No, standard letter"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "large-print",
+              text:  "Large print letter"
+            },
+            {
+              value: "audio",
+              text: "Audio CD"
+            },
+            {
+              value: "braille",
+              text: "Braille type 1"
+            },
+            {
+              value: "email",
+              text: "Email"
+            },
+            {
+              value: "pdf",
+              text: "PDF",
+              hint: {
+                text: " Link to download the PDF will be sent by email."
+              }
+            }
+          ]
+        }) }}
+        
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+

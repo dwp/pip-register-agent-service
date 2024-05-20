@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="#" method="post">
+
+        {% from "govuk/components/button/macro.njk" import govukButton %}
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+
+          <div class="govuk-width-container">
+          <h1 class="govuk-heading-l">One record found</h1>
+          <p class="govuk-body">1 open application found for <b>NA 11 22 33 C</b>. <a href="/ucd-register/save-and-return/search-claimant">Search again</a></p>
+
+          <p class="govuk-body govuk-!-margin-bottom-2">Application claim date: <strong>14 April 2024</strong></p>
+          <p class="govuk-body govuk-!-margin-bottom-2">Verified identity: <strong>Yes</strong></p>
+          <p class="govuk-body govuk-!-margin-bottom-2">Agreed to Declaration: <strong>Yes</strong></p>
+          <p class="govuk-body">Claim information questions: <strong>In progress</strong></p>
+
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            name: "continue-claim",
+            fieldset: {
+              legend: {
+                text: "Does the claimant want to continue existing application or delete and start a new claim?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "Ensure applicant is aware starting a new application will delete existing claim."
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Continue application"
+              },
+              {
+                value: "no",
+                text: "Start a new claim and delete existing"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

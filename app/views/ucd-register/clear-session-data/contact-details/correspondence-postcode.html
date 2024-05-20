@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="#" method="post">
+      <div class="govuk-width-container">
+
+        {% call govukFieldset({
+          legend: {
+            text: "What is the postcode and building number of the address we should send letters to?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+        <p class="govuk-hint">This can be the applicant's local Jobcentre, if there is no other address.</p>
+
+        {{ govukInput({
+          label: {
+            text: "Postcode"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "postcode",
+          name: "postcode"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Building number or name (optional)"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "searchString",
+          name: "searchString"
+        }) }}
+
+        {% endcall %}
+
+        {{ govukButton({
+        text: "Find address"
+        }) }}
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/v2-ucd-register/contact-details/correspondence-enter-address-manually" class="govuk-link">Enter address manually</a></p>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      I need to ask you some questions to confirm your identity
+    </h1> 
+
+          {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+          {% set kbvHtml %}
+          {{ govukInput({
+            id: "kbv-answer",
+            name: "kbv-answer",
+            type: "tel",
+            autocomplete: "tel",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Answer"
+            }
+          }) }}
+          {% endset -%}
+
+          {{ govukCheckboxes({
+            name: "kbvs",
+            fieldset: {
+              legend: {
+                text: "Security questions",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "Ask 3 security questions. If they answer the first 2 correctly, you do not need to ask a third question. "
+            },
+            items: [
+              {
+                value: "home-phone-number",
+                text: "What is your home phone number?",
+                conditional: {
+                  html: kbvHtml
+                }
+              },
+              {
+                value: "mobile-phone-number",
+                text: "What is your mobile phone number?",
+                conditional: {
+                  html: kbvHtml
+                }
+              },
+              {
+                value: "eldest-child-name",
+                text: "What is your eldest child’s full name?",
+                conditional: {
+                  html: kbvHtml
+                }
+              },
+              {
+                value: "eldest-child-dob",
+                text: "What is your eldest child’s date of birth?",
+                conditional: {
+                  html: kbvHtml
+                }
+              },
+              {
+                value: "partner-dob",
+                text: "What is your partner’s date of birth?",
+                conditional: {
+                  html: kbvHtml
+                }
+              },
+              {
+                value: "partner-nino",
+                text: "What is your partner’s National Insurance number?",
+                conditional: {
+                  html: kbvHtml
+                }
+              },
+              {
+                value: "other-benefits",
+                text: "What other benefits have you received in the last 31 months?",
+                conditional: {
+                  html: kbvHtml
+                }
+              }
+            ]
+          }) }}
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            name: "pass-kbvs",
+            fieldset: {
+              legend: {
+                text: "Applicant answers",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "Select one option."
+            },
+            items: [
+              {
+                value: "passed",
+                text: "2 correct answers"
+              },
+              {
+                value: "failed",
+                text: "1 correct answer"
+              }
+            ]
+          }) }}
+
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+    
+  </div>
+</div>
+
+{% endblock %}

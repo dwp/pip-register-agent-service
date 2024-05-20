@@ -17,14 +17,22 @@ href: "javascript:window.history.back()"
   <div class="govuk-grid-column-two-thirds">
 
     <form action="#" method="post" method="post">
-      
-      <h1 class="govuk-heading-l">I need to collect some more details to continue the application </h1>
+
+      <h1 class="govuk-heading-l">We may need to contact you for more information</h1>
+
+      <p class="govuk-body">You will only be able to claim PIP if we can confirm your identity.</p>
 
 
     {{ govukInsetText({
       classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
-        html: "<p class='govuk-body'>Action: Register the claim in PIPCS, and follow normal procedure for applicants who cannot give a UK National Insurance number."
+        html: "<p class='govuk-body'>Action: Enter the questions you asked in PIPCS notes.<br><br>
+          Questions asked:
+          [selected question 1], [selected question 2], and [selected question 3].</p>"
     }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
 
   </form>
     
