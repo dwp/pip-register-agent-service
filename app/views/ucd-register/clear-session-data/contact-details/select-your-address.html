@@ -1,0 +1,129 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Can you confirm your address?
+      </h1>
+
+      <form class="form" action="#" method="post">
+        <div class="govuk-width-container">
+          <p>6 addresses found for <b>E1 0DR</b> and <b>228</b>. <a href="/v2-ucd-register/contact-details/what-is-your-postcode">Search again</a></p>
+
+        {{ govukRadios({
+          name: "select-an-address",
+          items: [
+            {
+            value: "Flat 1 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 1 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 10 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 10 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 11 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 11 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 12 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 12 , 228 Cable Street, London, E1 0DRL"
+            },
+            {
+            value: "Flat 13 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 13 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 14 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 14 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 15 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 15 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 16 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 16 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 2 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 2 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+            value: "Flat 3 , 228 Cable Street, London, E1 0DR",
+            text: "Flat 3 , 228 Cable Street, London, E1 0DR"
+            },
+            {
+              value: "Flat 4 , 228 Cable Street, London, E1 0DR",
+              text: "Flat 4 , 228 Cable Street, London, E1 0DR"
+              },
+              {
+              value: "Flat 5 , 228 Cable Street, London, E1 0DR",
+              text: "Flat 5 , 228 Cable Street, London, E1 0DR"
+              },
+               {
+               value: "Flat 6 , 228 Cable Street, London, E1 0DR",
+                text: "Flat 6 , 228 Cable Street, London, E1 0DR"
+               },
+               {
+                value: "Flat 7 , 228 Cable Street, London, E1 0DR",
+                text: "Flat 7 , 228 Cable Street, London, E1 0DR"
+               },
+               {
+               value: "Flat 8 , 228 Cable Street, London, E1 0DR",
+               text: "Flat 8 , 228 Cable Street, London, E1 0DR"
+               },
+               {
+               value: "Flat 9 , 228 Cable Street, London, E1 0DR",
+               text: "Flat 9 , 228 Cable Street, London, E1 0DR"
+               },
+               {
+               value: "Flat 9a, 228 Cable Street, London, E1 0DR",
+              text: "Flat 9a, 228 Cable Street, London, E1 0DR"
+              },
+              {
+              value: "Flat 9b, 228 Cable Street, London, E1 0DR",
+              text: "Flat 9b, 228 Cable Street, London, E1 0DR"
+              },
+              {
+              value: "Flat 10, 228 Cable Street, London, E1 0DR",
+              text: "Flat 10, 228 Cable Street, London, E1 0DR"
+              },
+             {
+             value: "Flat 11, 228 Cable Street, London, E1 0DR",
+             text: "Flat 11, 228 Cable Street, London, E1 0DR"
+             }
+              
+          ]
+        }) }}
+        
+      </div> 
+
+        {{ govukButton({
+        text: "Confirm this address"
+        }) }}
+
+        <p class="govuk-body govuk-!-margin-bottom-6"><a href="/ucd-register/contact-details/enter-address-manually-country" class="govuk-link">Enter address manually</a></p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

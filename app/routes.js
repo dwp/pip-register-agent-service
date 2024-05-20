@@ -4029,3 +4029,104 @@ router.post('/design-updates/new-script-as/who-helps', function(request, respons
 })
 
 // -------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------
+
+// Exit applicaiton > clear session data
+
+
+// Eligibility launched from main UI
+router.post('/ucd-register/clear-session-data/signposting-eligibility/service-start-page', function(request, response) {
+    var newClaim = request.session.data['new-claims']
+    if (newClaim == 'yes'){
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/new-ni-claims')
+    } else if (newClaim == "no") {
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/existing-claims')
+    }
+    })
+    
+    // NI new claims
+    router.post('/ucd-register/clear-session-data/signposting-eligibility/new-ni-claims', function(request, response) {
+    var niPip = request.session.data['ni-pip']
+    if (niPip == 'yes'){
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/claiming-self')
+    } else if (niPip == "england-wales") {
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/england-wales')
+    } else if (niPip == "scotland") {
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/scotland')
+    }
+    })
+    
+    // Are you claiming for yourself?
+    router.post('/ucd-register/clear-session-data/signposting-eligibility/claiming-self', function(request, response) {
+    var self = request.session.data['claiming-self']
+    if (self == 'yes'){
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/over-16')
+    } else if (self == "no") {
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/someone-else-bau-kickout')
+    } 
+    })
+
+    //Are you over 16?
+    router.post('/ucd-register/clear-session-data/signposting-eligibility/over-16', function(request, response) {
+    var over16 = request.session.data['age']
+    if (over16 == 'yes'){
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/search-claimant')
+    } else if (over16 == "no-under-16") {
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/under-16-ineligible')
+    } else if (over16 == "no-over-spa") {
+        response.redirect('/ucd-register/clear-session-data/signposting-eligibility/stop-getting-pip-last-year')
+    }
+    })
+
+      // POST MTP: AGE ELIGIBILITY UPDATE TBC: Establish identity
+ router.post('/ucd-register/clear-session-data/signposting-eligibility/what-is-your-dob', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/signposting-eligibility/search-claimant')
+       })
+
+     // Establish identity
+     router.post('/ucd-register/clear-session-data/signposting-eligibility/search-claimant', function(request, response) {
+            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/kbvs-checkboxes-link')
+        })
+
+ // What security questions were answered?
+    router.post('/ucd-register/clear-session-data/signposting-eligibility/kbvs-checkboxes-link', function(request, response) {
+        var security = request.session.data['security']
+        if (security == 'passed'){
+            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel')
+        } else if (security == "failed") {
+            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/failed-security')
+        } 
+        })
+
+    // Failed security
+         router.post('/ucd-register/clear-session-data/signposting-eligibility/failed-security', function(request, response) {
+         response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel')
+         })
+
+    // Not enough applicant data
+         router.post('/ucd-register/clear-session-data/signposting-eligibility/not-enough-cis-data', function(request, response) {
+         response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel')
+         })
+
+    // Claiming under SREL?
+    router.post('/ucd-register/clear-session-data/signposting-eligibility/srel', function(request, response) {
+        var srel = request.session.data['srel']
+        if (srel == 'yes'){
+            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/srel-bau-kickout')
+        } else if (srel == "no") {
+            response.redirect('/ucd-register/clear-session-data/welcome-screens/welcome-screen-ni')
+        } 
+        })
+
+//--------------------------------------------------------------------------------------------
+
+//Exit session routes
+router.post('/ucd-register/clear-session-data/save-or-clear-claim', function(request, response) {
+    var srel = request.session.data['save-or-clear']
+    if (srel == 'copy'){
+        response.redirect('/ucd-register/clear-session-data/task-list-cd-in-progress')
+    } else if (srel == "cancel") {
+        response.redirect('/ucd-register/clear-session-data/are-you-sure-delete-question')
+    } 
+    })
