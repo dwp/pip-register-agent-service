@@ -4,12 +4,51 @@
   Start page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+{% block header %}
+  {{ dwpHeader({
+  name: "Personal Independence Payment",
+  serviceHref: '/',
+  container:true,
+  navigation: {
+    items: [
+        {
+            href: "#",
+            text: "Exit application"
+        }
+    ]
+}
+  }) }}
+{% endblock %}
+
+{% from "key-details-bar/macro.njk" import dwpKeyDetailsBar %}
+
+{{ 
+    dwpKeyDetailsBar({
+        primaryIdentifier: {
+            text: 'First item descrition:',
+            value: 'First item'
+        },
+        secondaryIdentifier: {
+            text: 'Second item description:',
+            value: 'Second item'
+        },
+        status: {
+            text: 'Status tag description:',
+            value: 'Status tag'
+        }
+    })
+}}
+
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <form action="#" method="post" method="post">
+
+        <button type="submit" class="govuk-button govuk-button--inverse" data-module="govuk-button">
+          Exit application
+        </button>
 
       <h1 class="govuk-heading-l">
         Hello, you're through to the new claims line for Personal Independence Payment (PIP)

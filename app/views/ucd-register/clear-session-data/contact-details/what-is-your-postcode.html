@@ -48,9 +48,13 @@
           }) }}
           {% endcall %}
 
-          {{ govukButton({
-          text: "Find address"
-          }) }}
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Find address"
+            }) }}
+  
+            <a class="govuk-link" href="/ucd-register/clear-session-data/save-or-clear-claim">Exit session</a>
+          </div>
 
           <p class="govuk-body govuk-!-margin-bottom-3"><a href="/ucd-register/contact-details/enter-address-manually-country" class="govuk-link">Enter address manually</a></p>
           

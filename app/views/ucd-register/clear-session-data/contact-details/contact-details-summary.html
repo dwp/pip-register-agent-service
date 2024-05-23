@@ -15,6 +15,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
+      <form action="/ucd-register/task-list-cd-done" method="post">
+
       <h1 class="govuk-heading-l">
         Check your answers
       </h1>
@@ -317,11 +319,14 @@
         ]
       }) }}
 
-      <form action="/ucd-register/task-list-cd-done" method="post">
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue",
+            href: "/ucd-register/clear-session-data/task-list-cd-done"
+          }) }}
 
-        {{ govukButton({
-          text: "Save and continue"
-        }) }}
+          <a class="govuk-link" href="/ucd-register/clear-session-data/save-or-clear-claim">Exit session</a>
+        </div>
 
       </form>
 
