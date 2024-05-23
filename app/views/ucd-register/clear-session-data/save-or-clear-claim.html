@@ -23,7 +23,7 @@
           name: "save-or-clear",
           fieldset: {
             legend: {
-              text: "Do you want to save your answers and come back later, or cancel your application for PIP?",
+              text: "What would you like to do with this application?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -33,12 +33,18 @@
           },
           items: [
             {
-              value: "copy",
-              text: "Save application and copy answers to another system"
+              value: "save-copy",
+              text: "Save application progress",
+              hint: {
+                text:"Copy answers to PIPCS."
+              }
             },
             {
               value: "cancel",
-              text: "Cancel application"
+              text: "Cancel application",
+              hint: {
+                text:"This will clear session data."
+              }
             }
           ]
         }) }}

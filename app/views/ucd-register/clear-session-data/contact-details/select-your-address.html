@@ -115,9 +115,13 @@
         
       </div> 
 
-        {{ govukButton({
-        text: "Confirm this address"
-        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Confirm this address"
+          }) }}
+
+          <a class="govuk-link" href="/ucd-register/clear-session-data/save-or-clear-claim">Exit session</a>
+        </div>
 
         <p class="govuk-body govuk-!-margin-bottom-6"><a href="/ucd-register/contact-details/enter-address-manually-country" class="govuk-link">Enter address manually</a></p>
 

@@ -4124,7 +4124,7 @@ router.post('/ucd-register/clear-session-data/signposting-eligibility/service-st
 //Exit session routes
 router.post('/ucd-register/clear-session-data/save-or-clear-claim', function(request, response) {
     var srel = request.session.data['save-or-clear']
-    if (srel == 'copy'){
+    if (srel == 'save-copy'){
         response.redirect('/ucd-register/clear-session-data/task-list-cd-in-progress')
     } else if (srel == "cancel") {
         response.redirect('/ucd-register/clear-session-data/are-you-sure-delete-question')
@@ -4146,14 +4146,9 @@ router.post('/ucd-register/clear-session-data/contact-details/what-is-your-dob',
 })
 
 // What is your phone number page
-router.post(' /ucd-register/clear-session-data/contact-details/what-is-your-phone-number', function(request, response) {
-        response.redirect("/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates")
+router.post('/ucd-register/clear-session-data/contact-details/what-is-your-phone-number', function(request, response) {
+        response.redirect('/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates')
 }) 
-
-// What is your Textphone number?
-router.post('/ucd-register/clear-session-data/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
-    response.redirect('/ucd-register/contact-details/do-you-want-to-receive-text-updates')
-})
 
 // What signing or lipspeaking service do you need?
 router.post('/ucd-register/clear-session-data/contact-details/alt-formats/signing-lipspeaking', function(request, response) {

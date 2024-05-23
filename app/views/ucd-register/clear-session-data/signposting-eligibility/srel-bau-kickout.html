@@ -18,12 +18,13 @@ href: "javascript:window.history.back()"
 
     <form action="#" method="post" method="post">
 
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+      <h1 class="govuk-heading-l">I need to collect some more details to continue the application</h1>
 
-      {{ govukInsetText({
-        classes: 'colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold',
-          html: '<h1 class="govuk-heading-l">Agent:  Redirect to SREL BAU process</h3>'
-      }) }}
+
+    {{ govukInsetText({
+      classes: "colour-blue govuk-!-font-size-36 govuk-!-font-weight-bold",
+        html: "<p class='govuk-body'>Action: Register the claim in PIPCS, and follow normal procedure for applications under Special Rules for End of Life (SREL)."
+    }) }}
 
   </form>
     
