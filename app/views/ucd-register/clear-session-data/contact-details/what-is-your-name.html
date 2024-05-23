@@ -39,7 +39,8 @@
           id: "first-name",
           name: "first-name",
           autocomplete: "name",
-          spellcheck: false
+          spellcheck: false,
+          value: "Lucy"
         }) }}
 
         {{ govukInput({
@@ -49,7 +50,8 @@
           id: "middle-name",
           name: "middle-name",
           autocomplete: "name",
-          spellcheck: false
+          spellcheck: false,
+          value: "Louise"
         }) }}
 
         {{ govukInput({
@@ -59,7 +61,8 @@
           id: "last-name",
           name: "last-name",
           autocomplete: "name",
-          spellcheck: false
+          spellcheck: false,
+          value: "Edmonds"
         }) }}
 
         {% endcall %}
@@ -97,7 +100,8 @@
           items: [
             {
               value: "yes",
-              text: "Yes"
+              text: "Yes",
+              checked: true
             },
             {
               value: "no",

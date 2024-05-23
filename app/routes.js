@@ -4032,8 +4032,8 @@ router.post('/design-updates/new-script-as/who-helps', function(request, respons
 
 // -------------------------------------------------------------------------------------
 
-// Exit applicaiton > clear session data
-
+//POST MTP- BACKLOG
+// EXIT APPLICATION > CLEAR SESSION DATA
 
 // Eligibility launched from main UI
 router.post('/ucd-register/clear-session-data/signposting-eligibility/service-start-page', function(request, response) {
@@ -4130,3 +4130,118 @@ router.post('/ucd-register/clear-session-data/save-or-clear-claim', function(req
         response.redirect('/ucd-register/clear-session-data/are-you-sure-delete-question')
     } 
     })
+
+//--------------------------------------------------------------------------------------------
+
+//ucd-register/clear-session-data/contact-details/what-is-your-name
+
+// What is your name
+router.post('/ucd-register/clear-session-data/contact-details/what-is-your-name', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/what-is-your-dob')
+})
+
+// What is your DOB
+router.post('/ucd-register/clear-session-data/contact-details/what-is-your-dob', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/what-is-your-phone-number')
+})
+
+// What is your phone number page
+router.post(' /ucd-register/clear-session-data/contact-details/what-is-your-phone-number', function(request, response) {
+        response.redirect("/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates")
+}) 
+
+// What is your Textphone number?
+router.post('/ucd-register/clear-session-data/contact-details/alt-formats/what-is-your-textphone-number', function(request, response) {
+    response.redirect('/ucd-register/contact-details/do-you-want-to-receive-text-updates')
+})
+
+// What signing or lipspeaking service do you need?
+router.post('/ucd-register/clear-session-data/contact-details/alt-formats/signing-lipspeaking', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates')
+})
+
+// Do you want to receive text updates
+router.post('/ucd-register/clear-session-data/contact-details/do-you-want-to-receive-text-updates', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/what-is-your-postcode')
+})
+
+// What is your postcode page
+router.post('/ucd-register/clear-session-data/contact-details/what-is-your-postcode', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/select-your-address')
+})
+
+// Select your address page
+router.post('/ucd-register/clear-session-data/contact-details/select-your-address', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/correspondence-address')
+})
+
+// Enter address manually page
+router.post('/ucd-register/clear-session-data/contact-details/enter-address-manually-country', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/correspondence-address')
+})
+
+// Is this the address we should send letters to page
+router.post('/ucd-register/clear-session-data/contact-details/correspondence-address', function(request, response) {
+    var sendLettersElsewhere = request.session.data['should-we-write-to-you']
+    if (sendLettersElsewhere == 'yes'){
+        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/written-format')
+    } else if (sendLettersElsewhere == 'no') {
+        response.redirect('/ucd-register/clear-session-data/contact-details/correspondence-postcode')
+    }
+})
+
+// Would you like us to send your letters in another way, like larger text, audio or braille?
+router.post('/ucd-register/clear-session-data/contact-details/alt-formats/written-format', function(request, response) {
+    var writtenFormat = request.session.data['written-format']
+    if (writtenFormat == 'standard-letter'){
+        response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
+    } else if (writtenFormat == 'large-print') {
+        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/large-print')
+     } else if (writtenFormat == 'audio') {
+        response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
+    } else if (writtenFormat == 'braille') {
+        response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
+    } else if (writtenFormat == 'email') {
+        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/email-reason')
+    } else if (writtenFormat == 'pdf') {
+        response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/email-reason')
+    } 
+    
+})
+
+// What size print do you need?
+router.post('/ucd-register/clear-session-data/contact-details/alt-formats/large-print', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
+})
+
+// Why do you need us to contact you by email instead of printed letters?
+router.post('/ucd-register/clear-session-data/contact-details/alt-formats/email-reason', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/what-is-your-email')
+})
+
+// What is your email address?
+router.post('/ucd-register/clear-session-data/contact-details/alt-formats/what-is-your-email', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/contact-details-summary')
+})
+
+// What is your correspondence postcode page
+router.post('/ucd-register/clear-session-data/contact-details/correspondence-postcode', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/confirm-correspondence-address')
+})
+
+// Confirm correspondence address > correspondence alt formats page
+router.post('/ucd-register/clear-session-data/contact-details/confirm-correspondence-address', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/written-format')
+})
+
+// Confirm correspondence address page
+router.post('/ucd-register/clear-session-data/contact-details/correspondence-enter-address-manually', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/contact-details/alt-formats/written-format')
+})
+
+// Contact details summary page
+router.post('/ucd-register/clear-session-data/contact-details/contact-details-summary', function(request, response) {
+    response.redirect('/ucd-register/clear-session-data/task-list-cd-done')
+})
+
+// -------------------------------------------------------------------------------------
