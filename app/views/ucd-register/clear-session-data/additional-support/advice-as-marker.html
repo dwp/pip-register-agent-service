@@ -1,0 +1,72 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Local advice services may be able to help you fill in the forms we send to you
+      </h1>
+
+      <p class="govuk-body">
+        Their details can be found on your council website.
+      </p>
+
+      <p class="govuk-body">'Make the Call' is the Department's own service, and can support people who need help with forms.  </p>
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      {{ govukInsetText({
+        text:  "'Make the Call' phone number: 0800 232 1271"
+      }) }}
+
+
+
+    <h2 class="govuk-heading-m">
+      Would you like assistance from the Make the Call service?
+    </h2>
+
+    {{ govukRadios({
+      name: "makeTheCall",
+      fieldset: {
+        legend: {
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "If yes, someone from Make the Call will contact you to help you fill in the forms."
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+            
+          {{ govukButton({
+            text: "Continue",
+            href: "/ucd-register/task-list-as-done"
+          }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

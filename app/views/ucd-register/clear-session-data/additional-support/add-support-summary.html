@@ -1,0 +1,164 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <div class="govuk-body govuk-!-margin-bottom-9">
+
+        <h1 class="govuk-heading-l">
+          Check your answers
+        </h1>
+  
+        <h2 class="govuk-heading-m">
+          Additional support
+        </h2>
+  
+              {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Mental health condition or other condition that causes difficulty"
+              },
+              value: {
+                text: "Yes / No"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/additional-support/do-you-have-a-condition",
+                    text: "Change",
+                    visuallyHiddenText: "Question 1"
+                  }
+                ]
+              }
+            }
+            ,
+            {
+              key: {
+                text: "Able to complete forms"
+              },
+              value: {
+                text: "Yes / No"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/additional-support/complete-forms",
+                    text: "Change",
+                    visuallyHiddenText: "Question 2"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Able to read and respond to letters"
+              },
+              value: {
+                text: "Yes / No"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/additional-support/complete-forms",
+                    text: "Change",
+                    visuallyHiddenText: "Question 3"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Able to manage post"
+              },
+              value: {
+                text: "Yes / No"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/additional-support/complete-forms",
+                    text: "Change",
+                    visuallyHiddenText: "Question 4"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Anyone to help with these tasks"
+              },
+              value: {
+                text: "Yes / No"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/additional-support/helpers",
+                    text: "Change",
+                    visuallyHiddenText: "Question 5"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Helper name"
+              },
+              value: {
+                text: "Judy Dench"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/additional-support/who-helps",
+                    text: "Change",
+                    visuallyHiddenText: "Question 6"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Would like 'Make the Call' assistance"
+              },
+              value: {
+                text: "Yes / No"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ucd-register/additional-support/advice-as-marker",
+                    text: "Change",
+                    visuallyHiddenText: "Question 7"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      </div>
+  
+            {{ govukButton({
+              text: "Save and continue",
+              href: "/ucd-register/task-list-as-done"
+            }) }}
+
+        
+        </form>
+
+    </div>
+  </div>
+{% endblock %}

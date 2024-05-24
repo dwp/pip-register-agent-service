@@ -39,10 +39,14 @@
               <li>your bank or building society account</li>
           </ul>
 
-            {{ govukButton({
-              text: "Continue",
-              href: "/ucd-register/clear-session-data/welcome-screens/welcome-screen-ni-2"
-            }) }}
+            <div class="govuk-button-group">
+              {{ govukButton({
+                text: "Continue",
+                href: "/ucd-register/clear-session-data/welcome-screens/welcome-screen-ni-2"
+              }) }}
+    
+              <a class="govuk-link" href="/ucd-register/clear-session-data/are-you-sure-cancel">Cancel application</a>
+            </div>
 
 
       </form>

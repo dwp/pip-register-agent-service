@@ -4131,6 +4131,23 @@ router.post('/ucd-register/clear-session-data/save-or-clear-claim', function(req
     } 
     })
 
+    router.post('/ucd-register/clear-session-data/are-you-sure-cancel', function(request, response) {
+        var cancel = request.session.data['cancel-session']
+        if (cancel == 'yes'){
+            response.redirect('/ucd-register/clear-session-data/application-cleared')
+        } else if (cancel == "no") {
+            response.redirect('/ucd-register/clear-session-data/signposting-eligibility/service-start-page')
+        } 
+        })
+
+    router.post('/ucd-register/clear-session-data/are-you-sure-delete-question', function(request, response) {
+        var clear = request.session.data['clear-session']
+        if (clear == 'yes'){
+            response.redirect('/ucd-register/clear-session-data/application-cleared')
+        } else if (clear == "no") {
+            response.redirect('/ucd-register/clear-session-data/fresh-task-list')
+        } 
+        })
 //--------------------------------------------------------------------------------------------
 
 //ucd-register/clear-session-data/contact-details/what-is-your-name
