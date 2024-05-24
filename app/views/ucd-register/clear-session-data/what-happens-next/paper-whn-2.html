@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
+        
+          <h1 class="govuk-heading-l">
+            Once you get your form, you have one month to fill it in and send it back to us with your evidence
+          </h1>
+
+          <p class="govuk-body">The front of the form will tell you the date you need to send everything by. </p>
+
+          <p class="govuk-body">But please send it sooner if you can, to prevent delays to your claim. </p>
+            <p class="govuk-body">We will not be able to make a decision on your claim until you do this, and we may end your claim if it is not returned in time.  </p>
+
+            <h2 class="govuk-heading-m"> If you need more time to complete the form or gather evidence</h2>
+
+            <p class="govuk-body">Call us to let us know, on 0800 587 0932. </p>
+
+            <p class="govuk-body">You can find more information on how to complete your claim on the NI Direct website (www.nidirect.gov.uk).
+            </p>
+
+              {{ govukButton({
+                text: "Continue"
+              }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

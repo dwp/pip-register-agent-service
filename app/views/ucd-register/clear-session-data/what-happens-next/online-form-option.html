@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="#" method="post" method="post">
+        
+          <h1 class="govuk-heading-l">You can fill in the form online or on paper</h1>
+
+          <h2 class="govuk-heading-m">If you choose the paper form</h2>
+
+          <p class="govuk-body">We will send this to you through the post.</p>
+
+          {% from "govuk/components/details/macro.njk" import govukDetails %}
+
+            {{ govukDetails({
+              summaryText: "How long it takes to get the paper form",
+              text: "This stage can take around 3 weeks, but may take longer in some circumstances."
+            }) }}
+
+            <h2 class="govuk-heading-m">If you choose the online form</h2>
+
+            <p class="govuk-body">You will get quicker access to the form, and you will not need to leave your house to post it back to us.</p>
+
+            <p class="govuk-body">You will be able to upload any further evidence online, and you will need to scan or take photos of your evidence before you upload it. </p>
+
+            {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+            {{ govukRadios({
+              name: "form-online",
+              fieldset: {
+                legend: {
+                  text: "Would you like to fill in the form online, or get a paper form through the post?",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "online",
+                  text: "Online form"
+                },
+                {
+                  value: "paper",
+                  text: "Paper form"
+                }
+              ]
+            }) }}
+  
+              {{ govukButton({
+                text: "Continue"
+              }) }}
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
