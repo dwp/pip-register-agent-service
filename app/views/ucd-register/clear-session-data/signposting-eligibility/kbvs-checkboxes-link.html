@@ -110,9 +110,13 @@ href: "javascript:window.history.back()"
     }) }}
 
 
-    {{ govukButton({
-      text: "Continue"
-    }) }}
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      <a class="govuk-link" href="/ucd-register/clear-session-data/are-you-sure-cancel">Cancel application</a>
+    </div>
 
   </form>
     

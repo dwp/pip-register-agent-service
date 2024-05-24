@@ -18,16 +18,16 @@
       <form action="#" method="post" novalidate>
 
         {{ govukRadios({
-          name: "clear-session",
+          name: "cancel-session",
           fieldset: {
             legend: {
-              text: "Are you sure you want to delete the applicant's answers?",
+              text: "Are you sure you want to cancel this application?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
-            text: "If you have not copied the answers to another system, they will be permanently deleted."
+            text: "Any data you have entered will be permanently deleted."
           },
           items: [
             {

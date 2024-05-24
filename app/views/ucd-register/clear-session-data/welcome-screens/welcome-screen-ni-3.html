@@ -41,12 +41,15 @@
               }) }}
 
               <h2 class="govuk-heading-m">Are you ready to continue?</h2>
-
-            {{ govukButton({
-              text: "Continue",
-              href: "/ucd-register/clear-session-data/declaration"
-            }) }}
-
+              
+            <div class="govuk-button-group">
+              {{ govukButton({
+                text: "Continue",
+                href: "/ucd-register/clear-session-data/declaration"
+              }) }}
+    
+              <a class="govuk-link" href="/ucd-register/clear-session-data/are-you-sure-cancel">Cancel application</a>
+            </div>
 
       </form>
 

@@ -112,6 +112,15 @@
             </li>
 
       </ol>
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+        text: "Delete application",
+        classes: "govuk-button--warning",
+        href: "/ucd-register/clear-session-data/are-you-sure-delete-question"
+      }) }}
+
     </div>
   </div>
 

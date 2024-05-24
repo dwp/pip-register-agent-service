@@ -319,14 +319,10 @@
         ]
       }) }}
 
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue",
-            href: "/ucd-register/clear-session-data/task-list-cd-done"
-          }) }}
-
-          <a class="govuk-link" href="/ucd-register/clear-session-data/save-or-clear-claim">Exit session</a>
-        </div>
+        {{ govukButton({
+          text: "Continue",
+          href: "/ucd-register/clear-session-data/task-list-cd-done"
+        }) }}
 
       </form>
 

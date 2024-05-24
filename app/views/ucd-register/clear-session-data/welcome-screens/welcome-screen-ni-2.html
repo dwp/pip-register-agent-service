@@ -30,10 +30,14 @@
 
           <p class="govuk-body">This will be done by a company called Capita.</p>
 
-            {{ govukButton({
-              text: "Continue",
-              href: "/ucd-register/clear-session-data/welcome-screens/welcome-screen-ni-3"
-            }) }}
+            <div class="govuk-button-group">
+              {{ govukButton({
+                text: "Continue",
+                href: "/ucd-register/clear-session-data/welcome-screens/welcome-screen-ni-3"
+              }) }}
+    
+              <a class="govuk-link" href="/ucd-register/clear-session-data/are-you-sure-cancel">Cancel application</a>
+            </div>
 
 
       </form>
