@@ -5,6 +5,10 @@
 // 
 
 // Add extra styles here
+.right-align {
+  flex-direction: row;
+}
+
 .govuk-header__logo {
     display: none;
  }
