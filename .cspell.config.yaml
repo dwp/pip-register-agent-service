@@ -5,7 +5,7 @@ $schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell
 
 version: "0.2"
 
-name: pip-register-agent-service-prototype
+name: pip-register-agent-service
 
 failFast: true
 noConfigSearch: true
