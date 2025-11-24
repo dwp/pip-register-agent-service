@@ -34,7 +34,7 @@ repos:
           - --no-progress
           - --no-summary
         additional_dependencies:
-          - "@cspell/dict-en-gb@5.0.14"
+          - "@cspell/dict-en-gb@5.0.19"
         stages:
           - pre-commit
           - commit-msg
@@ -71,7 +71,7 @@ repos:
       - id: markdownlint-cli2
         additional_dependencies:
           - markdownlint-rule-titlecase@0.1.0
-          - markdownlint-cli2-formatter-codequality@0.0.6
+          - markdownlint-cli2-formatter-codequality@0.0.7
 
   - repo: https://github.com/rbubley/mirrors-prettier
     rev: v3.6.2
